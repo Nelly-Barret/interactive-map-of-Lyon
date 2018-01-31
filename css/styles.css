@@ -1,0 +1,13 @@
+#navMenu {
+	background: none !important; /* !important to override Bootstrap's styles  */ /* transparent navbar */
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}

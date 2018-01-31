@@ -1,0 +1,175 @@
+/* css/style.css */
+
+/* !important is required for all change font, to have priority on Bootstrap's default styles */
+body {
+	padding-top: 50px; /* because of the fixed-top navbar */
+}
+
+header {
+	background-image: linear-gradient(to top, white 0%, LightSkyBlue 100%);
+}
+
+a.linkNav {
+	font-size: 15px !important;
+	font-weight: bold;
+	border-radius: 0;
+	width: 100%;
+	text-align: center; /* vertical alignment */
+	margin: auto; '/* horizontal alignment */
+}
+
+a.linkNav:hover {
+	color: #000000;
+}
+
+/*
+.disabledLink:hover {
+	cursor: no-drop;
+}*/
+
+p {
+	font-size: 13px !important;
+}
+
+.name {
+	font-size: 24px !important;
+}
+
+.student {
+	font-style: italic;
+	font-size: 16px !important;
+}
+
+.quote {
+	color: Gray;
+	text-align: center;
+	font-family: Times New Roman;
+	font-style: italic;
+	font-size: 18px !important;
+}
+
+.autor {
+	text-align:center;
+	font-family: Times New Roman;
+	font-size: 16px !important;
+}
+
+/* titles for "competences", "domaines d'interets", "projets scolaires" and "projets personnels" */
+.titlePart {
+	text-align: center;
+	text-decoration: underline;
+	font-size: 20px !important;
+}
+
+.titleEduc {
+	color: rgb(128,0,255) !important; /* purple */
+	font-size: 18px !important;
+}
+
+.titleWork {
+	color: rgb(0,128,0) !important; /* green */
+	font-size: 18px !important;
+}
+
+/* capitalize - pruple */
+.capitalizeP {
+	font-variant : small-caps;
+	font-size: 16px !important;
+	color: rgb(128,0,255);
+}
+
+/* capitalize - green */
+.capitalizeG {
+	font-variant : small-caps;
+	font-size: 16px !important;
+	color: rgb(0,128,0);
+}
+
+/* to remove horizontal lines */
+.table th, .table td { 
+  border-top: none !important; /* forces to remove Bootstrap borders (which are by default) */
+  border-bottom: none !important;
+}
+
+#tableSkills {
+	border-collapse: separate;
+	border-spacing: 0px;
+	width: 100%;
+}
+
+/* each column sizes 12.5% of the table */
+#tableSkills th {
+	width: 12.5%;
+	text-align: center;
+}
+
+#tableSkills td {
+	width: 12.5%;
+	padding: 0px 0px 0px 20px;
+}
+
+#tableInterest td {
+	width: 25%;
+	padding: 0px 0px 0px 20px;
+}
+
+#tableHobbies th {
+	font-size: 14px !important;
+	text-align: center;
+}
+
+#tableHobbies td {
+	font-size: 13px !important;
+}
+
+.titleSkills {
+	font-size: 16px !important;
+}
+
+/* alignment for cell contents */
+.alignLeft {
+	text-align: left;
+}
+
+.alignRight {
+	text-align: right;
+}
+
+.alignJust {
+	text-align: justify;
+}
+
+.alignCenter {
+	text-align: center;
+}
+
+footer {
+	font-size: 13px !important;
+	text-align: center;
+	height: 120px;
+	min-height: 120px;
+	max-height: 120px;
+	background-image: linear-gradient(to top, LightSkyBlue 0%, white 100%) !important; /* linear-gradient requires background-image and not background-color */
+}
+
+/* gallery */
+/* source code : https://bootsnipp.com/snippets/featured/portfolio-gallery-with-filtering-category */
+.filterButton
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #42B32F;
+    margin-bottom: 30px;
+}
+
+.portImage
+{
+    width: 100%;
+}
+
+.galleryProduct
+{
+    margin-bottom: 30px;
+}
