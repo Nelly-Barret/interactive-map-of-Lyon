@@ -1,5 +1,8 @@
 #navMenu {
-	background: none !important; /* !important to override Bootstrap's styles  */ /* transparent navbar */
+	z-index: 100;
+	position: absolute; /* we use absolute position in order to fix the navbar in the top-left corner */
+	margin: 0px 0px 0px 0px;
+	background: none !important; 
 }
 
 html {
@@ -8,6 +11,7 @@ html {
 
 body {
 	height: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
+	background-color: red;
 }
