@@ -1,10 +1,3 @@
-#navMenu {
-	z-index: 100;
-	position: absolute; /* we use absolute position in order to fix the navbar in the top-left corner */
-	margin: 0px 0px 0px 0px;
-	background: none !important; 
-}
-
 html {
 	height: 100%;
 }
@@ -13,5 +6,33 @@ body {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: red;
+	background-color: white;
+}
+
+#navMenu {
+	z-index: 100;
+	position: absolute; /* we use absolute position in order to fix the navbar in the top-left corner */
+	margin: 0px 0px 0px 0px;
+	background: none !important; /* !important to override Bootstrap's styles */
+}
+
+/* for the navbar's buttons */
+/* element1 element2 : Selects all element2 inside element1 */
+nav button {
+	/* padding : the space between the content and the border */
+	/* margin : the space around the border (document side)*/
+	margin-left: 0px;
+	margin-right: 6px;
+	margin-top: 0px;
+	margin-right: 6px;
+}
+
+/* under this size, we use the toggle icon for the navbar, so we adjust the position of buttons */
+@media only screen and (max-width: 580px) {
+  nav button {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
 }
