@@ -30,9 +30,13 @@ nav button {
 /* under this size, we use the toggle icon for the navbar, so we adjust the position of buttons */
 @media only screen and (max-width: 580px) {
   nav button {
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-top: 10px;
-	margin-right: 10px;
-}
+		margin-left: 10px;
+		margin-right: 10px;
+		margin-top: 10px;
+		margin-right: 10px;
+	}
+
+	#tooglerButton {
+		background-color: white;
+	}
 }
