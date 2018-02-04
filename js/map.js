@@ -22,6 +22,8 @@ var bars = "";              // JSON String with bars
 
 var restaurants = "";       // JSON String with restaurants
 
+var barsRestaurants = "";            // JSON String with all places
+
 // Initialisation of user's location with coordinates of Lyon
 
 userCoordinates = {
@@ -114,6 +116,107 @@ function setUserCoordinates(position) {
 
 // updateJSONDataFile : update the JSON data file with nearby places
 
+function updatePlaces()
+{
+
+    var location = new google.maps.LatLng( userCoordinates.userLatitude, userCoordinates.userLongitude );
+
+    placesRequest = {
+
+        location : location,
+
+        radius : 5000,
+
+        type : 'bar, restaurant'
+
+    }
+
+    service = new google.maps.places.PlacesService( document.createElement('div') );
+
+    service.nearbySearch( placesRequest, callbackPlaces );
+
+}
+
+function callbackPlaces( results, status )
+{
+
+    places = "[";
+
+    bars = "[";
+
+    restaurants = "[";
+
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+        for (var i = 0; i < results.length ; i++) {
+
+            var actualPlace = results[i];
+
+            placeInformations = {
+
+                "id" : actualPlace['place_id'],
+
+                "coordinates" : actualPlace['geometry']['location'],
+
+                "adress" : actualPlace['vicinity'],
+
+                "rating" : actualPlace['rating'],
+
+                "opened" : "Peut-être ouvert ou fermé",
+
+                "name" : actualPlace ['name'],
+
+                "type" : "Lieu",
+
+                //"photo" : actualPlace['photos']
+
+            };
+
+            if( actualPlace['opening_hours'] )
+                placeInformations.opened = actualPlace['opening_hours']['open_now'];
+
+            var isBar = actualPlace.types.find(isBar);
+
+            var isRestaurant = actualPlace.types.find(isRestaurant);
+
+            if( isBar && isRestaurant)
+            {
+
+                console.log("bar restaurant");
+
+            }
+            else if ( isBar )
+            {
+
+                console.log("bar");
+
+            }
+            else if ( isRestaurant )
+            {
+
+                console.log("restaurant");
+
+            }
+
+            if(i === results.length - 1)
+                bars += JSON.stringify(placeInformations) ;
+            else
+                bars += JSON.stringify(placeInformations) + ",";
+
+        }
+
+    }
+
+    places += "]";
+
+    bars += "]";
+
+    restaurants += "]";
+
+    displayBars(bars);
+
+}
+
 function updateBars()
 {
 
@@ -136,8 +239,6 @@ function updateBars()
 }
 
 function callbackBars(results, status) {
-
-    locationsMarkers = [];
 
     bars = "[";
 
@@ -208,13 +309,13 @@ function updateRestaurants()
 
 function callbackRestaurants(results, status) {
 
-    locationsMarkers = [];
-
     restaurants = "[";
 
     if (status == google.maps.places.PlacesServiceStatus.OK) {
 
         for (var i = 0; i < results.length ; i++) {
+
+            console.log(results[i]);
 
             var actualPlace = results[i];
 
@@ -270,7 +371,7 @@ function clearMap()
 
 }
 
-function displayMarkersWithOptions(bars, restaurants)
+function displayMarkersWithOptions(bars, restaurants) // yet to implement, seems usefull
 {
 
     switch(searchOptions) {
@@ -395,6 +496,19 @@ function createMarkerPopupHTML(place)
         + "<br><a>Note : " + place.rating + "/5</a>"
 
     return html;
+
+}
+
+
+function isBar(place) {
+
+    return place.type == "bar";
+
+}
+
+function isRestaurant(place) {
+
+    return place.type == "restaurant";
 
 }
 
