@@ -1,5 +1,7 @@
 // Variables
 
+var googlePlacesAPIService; // Service for API request executions
+
 var userCoordinates;        // User's coordinates
 
 var searchOptions = 0;      // Search options: 0 = no filter ; 1 = Bars ; 2 = Restaurants
@@ -80,9 +82,11 @@ userPositionMarker.setPopup( popup );
 
 userPositionMarker.addTo(map);
 
-updateBars();
+googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
-updateRestaurants();
+// updatePlaces();
+
+getAllPlaceIDs();
 
 //Functions
 
@@ -127,13 +131,23 @@ function updatePlaces()
 
         radius : 5000,
 
-        type : 'bar, restaurant'
+        type : 'bar'
 
     }
 
-    service = new google.maps.places.PlacesService( document.createElement('div') );
+    googlePlacesAPIService.nearbySearch( placesRequest, callbackPlaces );
 
-    service.nearbySearch( placesRequest, callbackPlaces );
+    placesRequest = {
+
+        location : location,
+
+        radius : 5000,
+
+        type : 'restaurant'
+
+    }
+
+    googlePlacesAPIService.nearbySearch( placesRequest, callbackPlaces );
 
 }
 
@@ -175,26 +189,26 @@ function callbackPlaces( results, status )
             if( actualPlace['opening_hours'] )
                 placeInformations.opened = actualPlace['opening_hours']['open_now'];
 
-            var isBar = actualPlace.types.find(isBar);
+            var isBar = checkIfPlaceIsBar(actualPlace);
 
-            var isRestaurant = actualPlace.types.find(isRestaurant);
+            var isRestaurant = checkIfPlaceIsRestaurant(actualPlace);
 
             if( isBar && isRestaurant)
             {
 
-                console.log("bar restaurant");
+                placeInformations.type = "Bar-restaurant";
 
             }
             else if ( isBar )
             {
 
-                console.log("bar");
+                placeInformations.type = "Bar";
 
             }
             else if ( isRestaurant )
             {
 
-                console.log("restaurant");
+                placeInformations.type = "Restaurant";
 
             }
 
@@ -232,9 +246,7 @@ function updateBars()
 
     }
 
-    service = new google.maps.places.PlacesService(document.createElement('div'));
-
-    service.nearbySearch(placesRequest, callbackBars);
+    googlePlacesAPIService.nearbySearch(placesRequest, callbackBars);
 
 }
 
@@ -301,9 +313,7 @@ function updateRestaurants()
 
     }
 
-    service = new google.maps.places.PlacesService(document.createElement('div'));
-
-    service.nearbySearch(placesRequest, callbackRestaurants);
+    googlePlacesAPIService.nearbySearch(placesRequest, callbackRestaurants);
 
 }
 
@@ -500,15 +510,183 @@ function createMarkerPopupHTML(place)
 }
 
 
-function isBar(place) {
+function checkIfPlaceIsBar(place) {
 
-    return place.type == "bar";
+    for(var i = 0; i < place.types.length; i++)
+    {
+
+        if ( place.types[i] == "bar" )
+            return true;
+
+    }
+
+    return false;
 
 }
 
-function isRestaurant(place) {
+function checkIfPlaceIsRestaurant(place) {
 
-    return place.type == "restaurant";
+    for(var i = 0; i < place.types.length; i++)
+    {
+
+        if ( place.types[i] == "restaurant" )
+            return true;
+
+    }
+
+    return false;
+
+}
+
+
+
+function getAllPlaceIDs() {
+
+    var location = new google.maps.LatLng( userCoordinates.userLatitude, userCoordinates.userLongitude );
+
+    placesRequest = {
+
+        location : location,
+
+        radius : 5000,
+
+        type : "bar"
+
+    }
+
+    googlePlacesAPIService.radarSearch(placesRequest, callbackPlacesID);
+
+}
+
+function callbackPlacesID( results, status) {
+
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+        console.log(results.length);
+
+        barsRestaurants = "[";
+
+        bars = "[";
+
+        restaurants = "[";
+
+        for (var i = 0; i < results.length; i++)
+        {
+
+            var coordinates = JSON.stringify(results[i]['geometry']['location']);
+
+            createSimpleMarker( coordinates );
+
+            var detailsRequest = {
+
+                placeId : results[i]["place_id"]
+
+            };
+
+            //googlePlacesAPIService.getDetails( detailsRequest, getDetailsCallback);
+
+        }
+
+        barsRestaurants += "]";
+
+        bars += "]";
+
+        restaurants += "]";
+
+        displayBars(bars);
+
+    }
+
+}
+
+function getDetailsCallback( result, status) {
+
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+        var actualPlace = result;
+
+        placeInformations = {
+
+            "id" : actualPlace['place_id'],
+
+            "coordinates" : actualPlace['geometry']['location'],
+
+            "adress" : actualPlace['vicinity'],
+
+            "rating" : actualPlace['rating'],
+
+            "opened" : "unknown",
+
+            "name" : actualPlace ['name'],
+
+            "type" : 'bar',
+
+            "website" : actualPlace['website'],
+
+            "phone" : actualPlace['formatted_phone_number']
+
+        };
+
+        if( actualPlace['opening_hours'] )
+            placeInformations.opened = actualPlace['opening_hours']['open_now'];
+
+        var isBar = checkIfPlaceIsBar(actualPlace);
+
+        var isRestaurant = checkIfPlaceIsRestaurant(actualPlace);
+
+        if( isBar && isRestaurant)
+        {
+
+            placeInformations.type = "Bar-restaurant";
+
+            barsRestaurants += JSON.stringify(placeInformations);
+
+        }
+        else if ( isBar )
+        {
+
+            placeInformations.type = "Bar";
+
+            bars += JSON.stringify(placeInformations);
+
+        }
+        else if ( isRestaurant )
+        {
+
+            placeInformations.type = "Restaurant";
+
+            restaurants += JSON.stringify(placeInformations);
+
+        }
+
+    }
+
+}
+
+function createSimpleMarker( placeCoordinates )
+{
+
+    var marker = new  mapboxgl.Marker().setLngLat(JSON.parse( placeCoordinates ));
+
+    var markerHeight = 50, markerRadius = 10, linearOffset = 25;
+
+    var popupOffsets = {
+        'top': [0, 0],
+        'top-left': [0,0],
+        'top-right': [0,0],
+        'bottom': [0, -markerHeight],
+        'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        'left': [markerRadius, (markerHeight - markerRadius) * -1],
+        'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+    };
+
+
+    //marker.setPopup( popup );
+
+    locationsMarkers.push( marker );
+
+    marker.addTo( map );
 
 }
 

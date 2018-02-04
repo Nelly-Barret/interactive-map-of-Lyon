@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fed8780f-f301-4ac6-996e-0b69ff54c569" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/js/map.js" afterPath="$PROJECT_DIR$/js/map.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,24 +16,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="map.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="142" column="17" lean-forward="true" selection-start-line="142" selection-start-column="17" selection-end-line="142" selection-end-column="17" />
+            <state relative-caret-position="673">
+              <caret line="705" column="6" lean-forward="false" selection-start-line="705" selection-start-column="6" selection-end-line="705" selection-end-column="6" />
               <folding>
-                <marker date="1517760266917" expanded="true" signature="11117:11135" ph="..." />
+                <marker date="1517764882019" expanded="true" signature="11288:11306" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/LIFPROJET/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="673">
-              <caret line="527" column="6" lean-forward="false" selection-start-line="527" selection-start-column="6" selection-end-line="527" selection-end-column="6" />
-              <folding />
+            <state relative-caret-position="412">
+              <caret line="684" column="31" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="705" selection-end-column="6" />
+              <folding>
+                <marker date="1517764816187" expanded="true" signature="11288:11306" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,6 +62,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>placeInformations</find>
+      <find>places</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -77,8 +79,8 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="C:/xampp/htdocs/LIFPROJET/js/map.js" />
-        <option value="$PROJECT_DIR$/js/map.js" />
         <option value="$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/LIFPROJET/js/map.js" />
+        <option value="$PROJECT_DIR$/js/map.js" />
       </list>
     </option>
   </component>
@@ -168,12 +170,12 @@
       <workItem from="1517405405492" duration="906000" />
       <workItem from="1517477158335" duration="9000" />
       <workItem from="1517477202876" duration="7505000" />
-      <workItem from="1517576564135" duration="4620000" />
+      <workItem from="1517576564135" duration="8714000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24198000" />
+    <option name="totallyTimeSpent" value="28292000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -217,7 +219,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1517760266917" expanded="true" signature="11117:11135" ph="..." />
+            <marker date="1517764882019" expanded="true" signature="11288:11306" ph="..." />
           </folding>
         </state>
       </provider>
@@ -235,7 +237,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1517760266917" expanded="true" signature="11117:11135" ph="..." />
+            <marker date="1517764882019" expanded="true" signature="11288:11306" ph="..." />
           </folding>
         </state>
       </provider>
@@ -245,7 +247,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1517760266917" expanded="true" signature="11117:11135" ph="..." />
+            <marker date="1517764882019" expanded="true" signature="11288:11306" ph="..." />
           </folding>
         </state>
       </provider>
@@ -305,21 +307,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/map.js">
+    <entry file="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/LIFPROJET/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="142" column="17" lean-forward="true" selection-start-line="142" selection-start-column="17" selection-end-line="142" selection-end-column="17" />
+        <state relative-caret-position="412">
+          <caret line="684" column="31" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="705" selection-end-column="6" />
           <folding>
-            <marker date="1517760266917" expanded="true" signature="11117:11135" ph="..." />
+            <marker date="1517764816187" expanded="true" signature="11288:11306" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/LIFPROJET/js/map.js">
+    <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="673">
-          <caret line="527" column="6" lean-forward="false" selection-start-line="527" selection-start-column="6" selection-end-line="527" selection-end-column="6" />
-          <folding />
+          <caret line="705" column="6" lean-forward="false" selection-start-line="705" selection-start-column="6" selection-end-line="705" selection-end-column="6" />
+          <folding>
+            <marker date="1517764882019" expanded="true" signature="11288:11306" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
