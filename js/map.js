@@ -24,7 +24,13 @@ var bars = "";              // JSON String with bars
 
 var restaurants = "";       // JSON String with restaurants
 
-var barsRestaurants = "";            // JSON String with all places
+var barsRestaurants = "";   // JSON String with all places
+
+var requestItemsNumber;     // Number of items requested
+
+var counter;                // Simple counter for tasks
+
+var requestingInterval;     // Interval for requests
 
 // Initialisation of user's location with coordinates of Lyon
 
@@ -50,7 +56,7 @@ map = new mapboxgl.Map({
 
     center: [ userCoordinates.userLongitude, userCoordinates.userLatitude ],
 
-    zoom: 14,
+    zoom: 16,
 
     style: 'mapbox://styles/mapbox/streets-v9'
 
@@ -84,9 +90,9 @@ userPositionMarker.addTo(map);
 
 googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
-// updatePlaces();
+updatePlaces();
 
-getAllPlaceIDs();
+//getAllPlaceIDs();
 
 //Functions
 
@@ -129,7 +135,7 @@ function updatePlaces()
 
         location : location,
 
-        radius : 5000,
+        radius : 50,
 
         type : 'bar'
 
@@ -141,7 +147,7 @@ function updatePlaces()
 
         location : location,
 
-        radius : 5000,
+        radius : 50,
 
         type : 'restaurant'
 
@@ -542,13 +548,17 @@ function checkIfPlaceIsRestaurant(place) {
 
 function getAllPlaceIDs() {
 
+    requestItemsNumber = 0;
+
+    counter = 0;
+
     var location = new google.maps.LatLng( userCoordinates.userLatitude, userCoordinates.userLongitude );
 
     placesRequest = {
 
         location : location,
 
-        radius : 5000,
+        radius : 500,
 
         type : "bar"
 
@@ -556,11 +566,25 @@ function getAllPlaceIDs() {
 
     googlePlacesAPIService.radarSearch(placesRequest, callbackPlacesID);
 
+    placesRequest = {
+
+        location : location,
+
+        radius : 500,
+
+        type : "restaurant"
+
+    }
+
+    googlePlacesAPIService.radarSearch(placesRequest, callbackPlacesID);
+
 }
 
-function callbackPlacesID( results, status) {
+function callbackPlacesID( results, status, callback) {
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+        requestItemsaNumber += results.length;
 
         console.log(results.length);
 
@@ -583,9 +607,25 @@ function callbackPlacesID( results, status) {
 
             };
 
-            //googlePlacesAPIService.getDetails( detailsRequest, getDetailsCallback);
+            requestingInterval = setInterval(googlePlacesAPIService.getDetails( detailsRequest, getDetailsCallback ), 1000);
 
         }
+
+    }
+
+}
+
+function closeJSONCallback(value)
+{
+
+    counter += value;
+
+    console.log(counter);
+
+    if( counter == requestItemsNumber )
+    {
+
+        window.clearInterval(requestingInterval);
 
         barsRestaurants += "]";
 
@@ -593,15 +633,17 @@ function callbackPlacesID( results, status) {
 
         restaurants += "]";
 
-        displayBars(bars);
+        console.log("a");
 
     }
 
 }
 
-function getDetailsCallback( result, status) {
+function getDetailsCallback( result, status ) {
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+        console.log("test");
 
         var actualPlace = result;
 
@@ -659,6 +701,8 @@ function getDetailsCallback( result, status) {
 
         }
 
+        closeJSONCallback(1);
+
     }
 
 }
@@ -689,6 +733,8 @@ function createSimpleMarker( placeCoordinates )
     marker.addTo( map );
 
 }
+
+
 
 // Location button by mapbox
 /*
