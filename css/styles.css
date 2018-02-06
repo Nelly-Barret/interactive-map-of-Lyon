@@ -39,6 +39,13 @@ nav button {
 
 .btnPrice {
 	width: 70px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 0px;
+}
+
+.btnPrice:focus {
+	background-color: green;
 }
 
 .disableSelction {
@@ -64,7 +71,7 @@ nav button {
 	margin-top :20px;
 	margin-left: 10px;
 	padding-top: 2px;
-	width: 330px;
+	width: 350px;
 }
 
 #go {

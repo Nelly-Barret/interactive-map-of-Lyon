@@ -40,14 +40,20 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="currencyContainer">
-											<button type="btn" class="btnPrice btn">
+											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
 												<i class="fa fa-euro"></i>
 											</button>
-											<button type="btn" class="btnPrice btn">
+											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
 												<i class="fa fa-euro"></i>
 												<i class="fa fa-euro"></i>
 											</button>
-											<button type="btn" class="btnPrice btn">
+											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
+												<i class="fa fa-euro"></i>
+												<i class="fa fa-euro"></i>
+												<i class="fa fa-euro"></i>
+											</button>
+											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
+												<i class="fa fa-euro"></i>
 												<i class="fa fa-euro"></i>
 												<i class="fa fa-euro"></i>
 												<i class="fa fa-euro"></i>
@@ -100,33 +106,38 @@
 </div>
 
 <script type="text/javascript">
+	var numberClick = 0;
 	
-	/* for all the items of the filters */
-	$(".dropdown-item").on('click', function (e) {
-	  e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
+	$(document).ready(function() {
+		
 	});
 
-	function colorUncolor(element, clicked)
+	/* for all the items of the filters */
+	$(".dropdown-item, .btnPrice").on('click', function (e) {
+	  
+	  e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
+
+	});
+
+	function colorUncolor(element)
 	{
-		if(clicked) {
-			element.style.color = "red";
+
+		numberClick = numberClick + 1;
+
+		if(numberClick%2 == 0) 
+		{
+		
+			element.style.backgroundColor = "#DDDDDD";
+		
 		}
 
-		else {
-			element.style.color = "green";
+		else 
+		{
+		
+			element.style.backgroundColor = "green";
+		
 		}
 	}
-
-	/* color and uncolor buttons */
-	$(".btnPrice").on('click', function(clicked) {
-		var color = clicked ? 'green' : 'blue';
-		
-		$(this).css('background-color', color);
-		clicked = !clicked;
-	});
-
-
-
 
 
 </script>
