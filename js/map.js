@@ -234,6 +234,7 @@ function callbackBars( results, status ) {
                 placeInformations.opened = actualPlace['opening_hours']['open_now'];
 
             if(i === results.length - 1)
+
                 bars += JSON.stringify(placeInformations) ;
             else
                 bars += JSON.stringify(placeInformations) + ",";
@@ -247,6 +248,7 @@ function callbackBars( results, status ) {
     }
 
 }
+
 function callbackRestaurants(results, status) {
 
     if (status == google.maps.places.PlacesServiceStatus.OK) {
