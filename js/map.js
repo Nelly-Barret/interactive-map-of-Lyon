@@ -122,8 +122,6 @@ function getUserLocation()
 
 function setUserCoordinates( position ) {
 
-    console.log("chec");
-
     userCoordinates.userLatitude = position.coords.latitude;
 
     userCoordinates.userLongitude = position.coords.longitude;
