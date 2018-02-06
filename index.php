@@ -3,14 +3,18 @@
 	<head>
 		<meta charset="UTF-8">
 		
-		<title>Navbar</title>
+		<title>Interactive map of Lyon</title>
 
 		<!-- Don't change the order else it won't work -->
 		
 		<!-- Latest compiled and minified CSS (Bootstrap) -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+		<!-- CSS for Bootstrap toggle -->
+		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 		<!-- font-awsome for icons (search...) -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 		<!-- jQuery library -->
@@ -19,21 +23,12 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+		<!-- JS for Bootstrap toggle -->
+		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 		<!-- our CSS -->
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
 
-		<!-- ?? -->
-		<link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet">
-
-		<!-- ?? -->
-		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
-
-		<!-- ?? -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		
-		<!-- ?? -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		
 
 		<!-- Mapbox -->
 		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
