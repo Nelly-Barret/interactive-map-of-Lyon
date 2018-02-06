@@ -1,12 +1,19 @@
 html {
+
 	height: 100%;
+
 }
 
 body {
+
 	height: 100%;
+
 	margin: 0px;
+
 	padding: 0px;
+
 	background-color: white;
+
 }
 
 
@@ -14,109 +21,195 @@ body {
 /* navbar */
 
 #navMenu {
+
 	z-index: 100;
+
 	position: absolute; /* we use absolute position in order to fix the navbar in the top-left corner */
+
 	margin: 0px 0px 0px 0px;
+
 	background: none !important; /* !important to override Bootstrap's styles */
+
 }
 
 /* for the navbar's buttons */
 /* element1 element2 : Selects all element2 inside element1 */
+/* padding : the space between the content and the border */
+/* margin : the space around the border (document side)*/
 nav button {
-	/* padding : the space between the content and the border */
-	/* margin : the space around the border (document side)*/
+
 	margin-left: 10px;
+
 	margin-right: 10px;
+
 	margin-top: 10px;
+
 	margin-right: 10px;
+
 }
 
 #togglerButton {
+
 	background-color: white;
-}
 
-/* CSS for filters */
-
-.btnPrice {
-	width: 70px;
-	margin-left: 0px;
-	margin-right: 0px;
-	padding: 0px;
-}
-
-.btnPrice:focus {
-	background-color: green;
-}
-
-.disableSelction {
-	user-select: none;
-}
-
-.inlineBlock {
-	display: inline-block;
-}
-
-/* /!\ doesn't work /!\ */
-.checkbox {
-	border-radius: 50%;
-	cursor: pointer;
-}
-
-#openCheckbox {
-	animation: animationCheckbox 5s infinite;
-	background-color: black;
 }
 
 .dropdown-menu {
+
 	margin-top :20px;
+
 	margin-left: 10px;
+
 	padding-top: 2px;
+
 	width: 350px;
+
 }
 
+.smallLink {
+
+	display: inline-block;
+
+	height: 30px;
+
+}
+
+
+/*******************************************************************/
+/* filters */
+
+/* rating */
+.btnStar {
+
+	width: 50px;
+
+	margin-left: 0px;
+
+	margin-right: 10px;
+
+	padding: 0px;
+
+}
+
+
+/* prices */
+.btnPrice {
+
+	width: 70px;
+
+	margin-left: 0px;
+
+	margin-right: 10px;
+
+	padding: 0px;
+
+}
+
+
+/* opened now and around me switches */
+.switch {
+
+	position: relative;
+
+	display: inline-block;
+
+	width: 40px;
+
+	height: 22px;
+
+}
+
+.switch input {
+
+	display:inline-block;
+
+}
+
+.slider {
+
+	position: absolute;
+
+	cursor: pointer;
+
+	top: 0;
+
+	left: 0;
+
+	right: 0;
+
+	bottom: 0;
+
+	background-color: #ccc;
+
+	transition: .4s;
+
+	border-radius: 20%; /* rounded corners */
+
+}
+
+.slider:before {
+
+	position: absolute;
+
+	content: "";
+	
+	height: 16px;
+	
+	width: 16px;
+	
+	left: 3px;
+	
+	bottom: 3px;
+	
+	background-color: white;
+		
+	transition: .4s;
+
+	border-radius: 20%; /* rounded corners */
+
+}
+
+input:checked + .slider {
+
+	background-color: rgb(40, 167, 69); /* green */
+
+}
+
+input:checked + .slider:before {
+
+	transform: translateX(16px); /* move the button in the slider */
+
+}
+
+
+/* go */
 #go {
+
 	text-align: center;
+
 }
 
-@keyframes animationCheckbox {
-  0% {background-color:red !important;}
-  100% {background-color:green !important;}
+
+/*******************************************************************/
+/* layout */
+
+.inlineBlock {
+
+	display: inline-block;
+
+}
+
+.alignLeft {
+
+	margin: 0px;
+
+	padding: 0px;
+
 }
 
 /*******************************************************************/
-/* slider */
+/* media queries */
 
-/* we use inline-block for the slider ans its value to align them */
-.sliderPrice {
-	display: inline-block;
-	-webkit-appearance: none;
-    height: 10px;
-    border-radius: 5px;   
-    background: #d3d3d3; /* light grey */
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
+@media screen and(max-width: 500px) {
 
-.sliderPrice::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%; 
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-.sliderPrice::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-#valSlider {
-	display: inline-block;
 }

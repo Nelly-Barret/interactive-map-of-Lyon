@@ -16,56 +16,49 @@
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Filters
 					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownFilters">
+					<div id="dropdownMenu" class="dropdown-menu" aria-labelledby="dropdownFilters">
 						<!-- filters -->
-						<a class="dropdown-item">Around me</a>
-						<a class="dropdown-item" class="disableSelection">Rating
-							<div class="container">
+						<a class="dropdown-item smallLink">
+							<div>
+								<p class="inlineBlock">Around me</p>
+								<label class="switch">
+									<input type="checkbox">
+									<span class="slider"></span>
+								</label>
+							</div>
+						</a>
+
+						<a class="dropdown-item">Rating
+							<div class="container alignLeft">
 								<div class="row">
 									<div class="col-lg-12">
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
+										<!-- we couldn't have breaklines between buttons => childnodes returns #text -->
+										<div class="starContainer" id="starContainer"><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button></div>
 									</div>
 								</div>
 							</div>
 						</a>
+
 						<a class="dropdown-item">Price
-							<div class="container">
+							<div class="container alignLeft">
 								<!-- we create a new row which takes all the place to display the euro signs -->
 								<div class="row">
 									<div class="col-lg-12">
-										<div class="currencyContainer">
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-											</button>
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-											</button>
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-											</button>
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-											</button>
-										</div>
+										<!-- we couldn't have breaklines between buttons => childnodes returns #text -->
+										<div class="currencyContainer" id="currencyContainer"><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="btnPriceBr" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button></div>
 									</div>
 								</div>
 							</div>
 						</a>
-						<a class="dropdown-item">
-							<p class="inlineBlock">Opened now</p>
-							<input type="checkbox" checked data-toggle="toggle" data-onstyle="success">
+
+						<a class="dropdown-item smallLink">
+							<div>
+								<p class="inlineBlock">Opened now</p>
+								<label class="switch">
+									<input type="checkbox">
+									<span class="slider"></span>
+								</label>
+							</div>
 						</a>
 						<a>
 							<button class="btn btn-success" id="go">Go</button>
@@ -106,38 +99,74 @@
 </div>
 
 <script type="text/javascript">
-	var numberClick = 0;
 	
-	$(document).ready(function() {
-		
-	});
+	var numberClick = 0;
 
 	/* for all the items of the filters */
 	$(".dropdown-item, .btnPrice").on('click', function (e) {
-	  
-	  e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
+		
+		e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
 
 	});
 
-	function colorUncolor(element)
-	{
 
-		numberClick = numberClick + 1;
+	/* color and un-color price buttons when clicking */
+	$(".btnPrice, .btnStar").on('click', function() {
 
-		if(numberClick%2 == 0) 
+		if($(this).css("background-color") == 'rgb(221, 221, 221)') /* grey */
 		{
-		
-			element.style.backgroundColor = "#DDDDDD";
-		
+
+			$(this).css("background-color", "rgb(0, 128, 0)");
+
 		}
 
-		else 
+		else if($(this).css("background-color") == 'rgb(0, 128, 0)') /* green */
 		{
+
+			$(this).css("background-color", "rgb(221, 221, 221)");
+
+		}
+
+	});
+
+
+	/* add a br between price buttons when the screen is too small */
+	function addBr(mediaQuery) {
 		
-			element.style.backgroundColor = "green";
-		
+		if(mediaQuery.matches) {
+			
+			var newBr1 = document.createElement("br"); /* we create a new breakline */
+
+			var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same twice */
+			
+			var containerPrice = document.getElementById("currencyContainer");
+
+			var containerStar = document.getElementById("starContainer");
+
+			console.log(containerPrice);
+
+			containerPrice.insertBefore(newBr1, containerPrice.childNodes[2]); /* we add the breakline before the third button for prices */
+
+			containerStar.insertBefore(newBr2, containerStar.childNodes[3]); /* we add the breakline before the third button */
+
+			/* resize the dropdown menu for small screens */
+			var dropdownMenu = document.getElementById("dropdownMenu");
+
+			dropdownMenu.style.width = "200px";
+
+		}
+
+		else {
+			
+			//button.style.color = "green";
+
 		}
 	}
 
+	var media = window.matchMedia("(max-width: 600px)"); /* media query */
+	
+	addBr(media); /* apply the function with the media query */
+	
+	media.addListener(addBr);
 
 </script>
