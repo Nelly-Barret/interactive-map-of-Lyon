@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="fed8780f-f301-4ac6-996e-0b69ff54c569" name="Default" comment="" />
+=======
+    <list default="true" id="fed8780f-f301-4ac6-996e-0b69ff54c569" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+>>>>>>> Stashed changes
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -17,8 +23,13 @@
       <file leaf-file-name="map.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="-340">
               <caret line="152" column="24" lean-forward="true" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
+=======
+            <state relative-caret-position="613">
+              <caret line="751" column="6" lean-forward="false" selection-start-line="751" selection-start-column="6" selection-end-line="751" selection-end-column="6" />
+>>>>>>> Stashed changes
               <folding>
                 <marker date="1517904581769" expanded="true" signature="11859:11877" ph="..." />
               </folding>
@@ -36,6 +47,19 @@
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
+=======
+      <file leaf-file-name="map.js" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/LIFPROJET/js/map.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> Stashed changes
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
@@ -174,13 +198,22 @@
       <workItem from="1517405405492" duration="906000" />
       <workItem from="1517477158335" duration="9000" />
       <workItem from="1517477202876" duration="7505000" />
+<<<<<<< Updated upstream
       <workItem from="1517576564135" duration="14747000" />
       <workItem from="1517898923079" duration="5675000" />
+=======
+      <workItem from="1517576564135" duration="14882000" />
+      <workItem from="1517899851891" duration="215000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="40000000" />
+=======
+    <option name="totallyTimeSpent" value="34675000" />
+>>>>>>> Stashed changes
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -221,6 +254,32 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11265">
+          <caret line="751" column="6" lean-forward="false" selection-start-line="751" selection-start-column="6" selection-end-line="751" selection-end-column="6" />
+          <folding>
+            <marker date="1517827736456" expanded="true" signature="11443:11461" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -333,6 +392,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-340">
@@ -343,6 +403,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -351,6 +413,27 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/LIFPROJET/js/map.js" />
+=======
+    <entry file="file://$USER_HOME$/.bitnami/stackman/machines/xampp/volumes/root/htdocs/LIFPROJET/js/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="751" column="6" lean-forward="false" selection-start-line="751" selection-start-column="6" selection-end-line="751" selection-end-column="6" />
+          <folding>
+            <marker date="1517827736456" expanded="true" signature="11443:11461" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
   </component>
 </project>
