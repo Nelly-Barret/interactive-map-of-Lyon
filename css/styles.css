@@ -75,6 +75,19 @@ nav button {
 }
 
 
+/* margin for slider's text */
+#aroundMe {
+
+	margin-right: 21px;
+
+}
+
+#openedNow {
+
+	margin-right: 10px;
+
+}
+
 /*******************************************************************/
 /* filters */
 
@@ -187,7 +200,75 @@ input:checked + .slider:before {
 
 	text-align: center;
 
+	width: 60px;
+
+	height: 40px;
+
 }
+
+
+/*******************************************************************/
+/* popup */
+
+.mapboxgl-popup-content {
+
+	background-color: #000000 !important;
+
+	opacity: 0.8;
+
+	margin: 0px;
+
+	padding: 0px;
+
+	font-size: 20px;
+
+}
+
+.title {
+
+	color: #FDF5E6; /* OldLace */
+
+	text-align: center;
+
+	font-size: 20px;
+
+	margin: 0px;
+
+	padding: 0px;
+
+}
+
+.textPopup {
+
+	font-size: 17px;
+
+	color: #FDF5E6 !important; /* OldLace */
+
+	font-family: "Lucida Sans Unicode";
+
+}
+
+.linkPopup {
+
+	font-size: 17px;
+
+	font-family: "Lucida Sans Unicode";
+
+}
+
+/* the anchor */
+
+div[class^='.mapboxgl-popup-anchor-']{
+
+	background-color: red;
+
+}
+/*
+.mapboxgl-popup-tip {
+
+	color: red;
+
+}*/
 
 
 /*******************************************************************/
@@ -204,12 +285,5 @@ input:checked + .slider:before {
 	margin: 0px;
 
 	padding: 0px;
-
-}
-
-/*******************************************************************/
-/* media queries */
-
-@media screen and(max-width: 500px) {
 
 }
