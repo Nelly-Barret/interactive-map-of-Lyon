@@ -37,7 +37,9 @@ var requestingInterval;     // Interval for requests
 //############################################################//
 //Main
 
-init()
+init();
+
+fetchAllPlaces( 250 );
 
 //############################################################//
 //Functions
@@ -248,6 +250,8 @@ function callbackBars( results, status ) {
     }
 
 }
+
+
 
 function callbackRestaurants(results, status) {
 
@@ -548,6 +552,165 @@ function checkIfPlaceIsRestaurant(place) {
     }
 
     return false;
+
+}
+
+// Function that crawls over Lyon to fetch sectors
+
+function fetchAllPlaces( timeInterval ) {
+
+    barsRestaurants = "[";
+
+    bars = "[";
+
+    restaurants = "[";
+
+    counter = 0;
+
+    var baseCoordinates = {
+
+        lat : 45.788347,
+
+        lng : 4.791173
+
+    };
+
+    var coordinates = {
+
+        lat : 45.788347,
+
+        lng : 4.791173
+
+    };
+
+    var interval = setInterval( function () {
+
+                var location = new google.maps.LatLng( coordinates.lat.toFixed(6), coordinates.lng.toFixed(6) );
+
+                var request = {
+
+                    location : location,
+
+                    types : ["bar", "restaurant"], // Deprecated
+
+                    radius : 150
+
+                };
+
+                // test marker
+
+                var marker = new  mapboxgl.Marker().setLngLat([coordinates.lng, coordinates.lat]).addTo(map);
+
+               // console.log("fetch with lat: " + coordinates.lat.toFixed(6) + " and lng: "+ coordinates.lng.toFixed(6) );
+
+                googlePlacesAPIService.nearbySearch( request, fetchCallBack );
+
+                if( coordinates.lat <= 45.732777 )
+                {
+
+                    clearInterval(interval);
+
+                }
+
+                if( coordinates.lng > 4.871854 )
+                {
+
+                    coordinates.lng = baseCoordinates.lng;
+
+                    coordinates.lat -= 0.003528;
+
+                } else {
+
+                    coordinates.lng += 0.005120;
+
+                }
+
+            }, timeInterval );
+
+    setTimeout( function () {
+
+        barsRestaurants = barsRestaurants.slice(0, barsRestaurants.length - 1) + "]";
+
+        bars = bars.slice(0, bars.length - 1) + "]";
+
+        restaurants = restaurants.slice(0, restaurants.length - 1) + "]";
+
+        console.log("All data retrieved");
+
+    }, timeInterval * 280 );
+
+}
+
+function fetchCallBack( results, status )
+{
+
+    if( status == google.maps.places.PlacesServiceStatus.OK )
+    {
+
+        counter += results.length;
+
+        console.log(results.length);
+
+        console.log(results);
+
+        for (var i = 0; i < results.length ; i++) {
+
+            var actualPlace = results[i];
+
+            placeInformations = {
+
+                "id" : actualPlace['place_id'],
+
+                "coordinates" : actualPlace['geometry']['location'],
+
+                "adress" : actualPlace['vicinity'],
+
+                "rating" : actualPlace['rating'],
+
+                "opened" : null,
+
+                "name" : actualPlace ['name'],
+
+                "type" : null,
+
+            };
+
+            if( actualPlace['opening_hours'] )
+                placeInformations.opened = actualPlace['opening_hours']['open_now'];
+
+            var isBar = checkIfPlaceIsBar(actualPlace);
+
+            var isRestaurant = checkIfPlaceIsRestaurant(actualPlace);
+
+            if( isBar && isRestaurant)
+            {
+
+                placeInformations.type = "Bar-restaurant";
+
+            }
+            else if ( isBar )
+            {
+
+                placeInformations.type = "Bar";
+
+            }
+            else if ( isRestaurant )
+            {
+
+                placeInformations.type = "Restaurant";
+
+            }
+
+            if (isBar && isRestaurant)
+                barsRestaurants += JSON.stringify(placeInformations) + ",";
+            else if (isBar)
+                bars += JSON.stringify(placeInformations) + ",";
+            else
+                restaurants += JSON.stringify(placeInformations) + ",";
+
+        }
+
+    }
 
 }
 
