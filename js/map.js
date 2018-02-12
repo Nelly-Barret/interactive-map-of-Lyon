@@ -53,10 +53,10 @@ var mapGridBounds = {
 
 init();
 
-//fetchAllPlaces( 50 );
+fetchAllPlaces( 150 );
 
 //############################################################//
-//Functions
+// Init function : set base user's coordinates, create the map, track user's position
 
 function init(){
 
@@ -120,6 +120,7 @@ function init(){
 
 }
 
+//############################################################//
 // getUserLocation : retrieves the user's location and watch location changes
 
 function getUserLocation()
@@ -134,6 +135,7 @@ function getUserLocation()
 
 }
 
+//############################################################//
 // setUserCoordinates : fix the userCoordinates properties, center the map on the user's location and update the marker
 
 function setUserCoordinates( position ) {
@@ -148,17 +150,12 @@ function setUserCoordinates( position ) {
 
     var location = new google.maps.LatLng( userCoordinates.userLatitude, userCoordinates.userLongitude );
 
-    if( navigator.onLine ){
-
-        getPlaces( location, null, null, 3, 150, searchOptions);
-
-    } else {
-
-        getPlacesOffline( location, null, null, 3, 150, searchOptions);
-
-    }
+    getPlacesOffline( location, 4, 4, searchOptions );
 
 }
+
+//############################################################//
+// Online functions
 
 function getPlaces( location, price, opened, rating, radius, type )
 {
@@ -224,6 +221,7 @@ function getPlaces( location, price, opened, rating, radius, type )
 
 }
 
+//############################################################//
 // Callbacks
 
 function callbackBars( results, status ) {
@@ -415,14 +413,56 @@ function callbackPlaces( results, status )
 
 }
 
-// Map related functions
+//############################################################//
+// Display related functions
 
-function displayPlaces( bars, restaurants )
+function displayPlaces( bars, restaurants, barsRestaurants )
 {
 
     displayBars( bars );
 
     displayRestaurant( restaurants );
+
+    displayBarRestaurant( barsRestaurants );
+
+}
+
+function displayBarRestaurant( barsRestaurants ) {
+
+    var barRestaurantsArray = JSON.parse( barsRestaurants );
+
+    for( var i = 0; i < barRestaurantsArray.length; i++)
+    {
+
+        var actualRestaurant = barRestaurantsArray[i];
+
+        var marker = new  mapboxgl.Marker().setLngLat(JSON.parse(JSON.stringify(actualRestaurant['coordinates'])));
+
+        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
+
+        var popupOffsets = {
+            'top': [0, 0],
+            'top-left': [0,0],
+            'top-right': [0,0],
+            'bottom': [0, -markerHeight],
+            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+            'left': [markerRadius, (markerHeight - markerRadius) * -1],
+            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+        };
+
+        var popup = new mapboxgl.Popup({offset:popupOffsets})
+            .setLngLat(actualRestaurant['coordinates'])
+            .setHTML(createMarkerPopupHTML(actualRestaurant))
+            .addTo(map);
+
+        marker.setPopup( popup );
+
+        locationsMarkers.push( marker );
+
+        marker.addTo( map );
+
+    }
 
 }
 
@@ -547,6 +587,7 @@ function clearMap()
 
 }
 
+//############################################################//
 // Tests functions
 
 function checkIfPlaceIsBar(place) {
@@ -576,7 +617,10 @@ function checkIfPlaceIsRestaurant(place) {
     return false;
 
 }
+//############################################################//
+// Offline functions
 
+//############################################################//
 // Function that crawls over Lyon to fetch sectors
 
 function fetchAllPlaces( timeInterval ) {
@@ -659,9 +703,126 @@ function fetchAllPlaces( timeInterval ) {
 
         console.log("All data retrieved");
 
+        getPlacesOffline( location, 4, 4, searchOptions );
+
     }, timeInterval * 280 );
 
 }
+
+//############################################################//
+// getPlacesOffline
+
+function getPlacesOffline( location, price, rating, type ) {
+
+    console.log("Displaying places...");
+
+    var barJSON = JSON.parse( bars );
+
+    var barsToDisplay = "";
+
+
+    var restaurantsJSON = JSON.parse( restaurants );
+
+    var restaurantsToDisplay = "";
+
+
+    var barsRestaurantsJSON = JSON.parse( barsRestaurants );
+
+    var barsRestaurantsToDisplay = "";
+
+
+    switch ( type ) {
+
+        case 0:
+
+            console.log( "bars avant " + barJSON.length);
+
+            barJSON = barJSON.filter( function (value) {
+
+                return filterFunction( value, location, price, rating );
+
+            })
+
+            console.log( "bars after " + barJSON.length);
+
+            if (barJSON.length != 0)
+                displayBars( JSON.stringify( barJSON ) );
+
+            console.log( "restaurants before " + restaurantsJSON.length );
+
+            restaurantsJSON = restaurantsJSON.filter( function (value) {
+
+                return filterFunction( value, location, price, rating );
+
+            });
+
+            console.log( "restaurants after " + restaurantsJSON.length );
+
+            if (restaurantsJSON.length != 0)
+                displayRestaurant( JSON.stringify(restaurantsJSON) );
+
+            console.log( " bar restaurants before " + barsRestaurantsJSON.length );
+
+            barsRestaurantsJSON = barsRestaurantsJSON.filter( function (value) {
+
+                return filterFunction( value, location, price, rating );
+
+            });
+
+            console.log( " bar restaurant after" + barsRestaurantsJSON.length );
+
+            if (barsRestaurantsJSON.length != 0)
+                displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ));
+
+            break;
+
+        case 1:
+
+            barJSON.filter( function (value) {
+
+                return filterFunction( value, location, price, rating );
+
+            });
+
+            displayPlaces( JSON.stringify( barJSON ) );
+
+            break;
+
+        case 2:
+
+            restaurantsJSON.filter( function (value) {
+
+                return filterFunction( value, location, price, rating );
+
+            });
+
+            displayPlaces( JSON.stringify( restaurantsJSON ) );
+
+            break;
+
+        default:
+
+            break;
+
+    }
+
+}
+
+//############################################################//
+// Filter functions
+
+function filterFunction( value, location, price, rating ) {
+
+    var trueLatitude = Math.abs( value.coordinates.lat - location.lat ) <= latVariance;
+
+    var trueLongitude = Math.abs( value.coordinates.lng - location.lng ) <= lngVariance;
+
+    return trueLatitude && trueLongitude;
+
+}
+
+//############################################################//
+// Offline callbacks
 
 function fetchCallBack( results, status )
 {
