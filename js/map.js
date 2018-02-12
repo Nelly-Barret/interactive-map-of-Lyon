@@ -32,14 +32,28 @@ var requestItemsNumber;     // Number of items requested
 
 var counter;                // Simple counter for tasks
 
-var requestingInterval;     // Interval for requests
+var latVariance = 0.003528; // Latitude difference to get to an other sector
+
+var lngVariance = 0.005120; // Longitude difference to get to an other sector
+
+var mapGridBounds = {
+
+    topLatitude : 45.788347,
+
+    bottomLatitude : 45.732777,
+
+    leftLongitute : 4.791173,
+
+    rightLongitude : 4.871854
+
+};
 
 //############################################################//
 //Main
 
 init();
 
-fetchAllPlaces( 250 );
+//fetchAllPlaces( 50 );
 
 //############################################################//
 //Functions
@@ -134,7 +148,15 @@ function setUserCoordinates( position ) {
 
     var location = new google.maps.LatLng( userCoordinates.userLatitude, userCoordinates.userLongitude );
 
-    getPlaces( location, null, null, 3, 150, searchOptions);
+    if( navigator.onLine ){
+
+        getPlaces( location, null, null, 3, 150, searchOptions);
+
+    } else {
+
+        getPlacesOffline( location, null, null, 3, 150, searchOptions);
+
+    }
 
 }
 
@@ -599,29 +621,29 @@ function fetchAllPlaces( timeInterval ) {
 
                 // test marker
 
-                var marker = new  mapboxgl.Marker().setLngLat([coordinates.lng, coordinates.lat]).addTo(map);
+                // var marker = new  mapboxgl.Marker().setLngLat([coordinates.lng, coordinates.lat]).addTo(map);
 
                // console.log("fetch with lat: " + coordinates.lat.toFixed(6) + " and lng: "+ coordinates.lng.toFixed(6) );
 
                 googlePlacesAPIService.nearbySearch( request, fetchCallBack );
 
-                if( coordinates.lat <= 45.732777 )
+                if( coordinates.lat <= mapGridBounds.bottomLatitude )
                 {
 
                     clearInterval(interval);
 
                 }
 
-                if( coordinates.lng > 4.871854 )
+                if( coordinates.lng > mapGridBounds.rightLongitude )
                 {
 
                     coordinates.lng = baseCoordinates.lng;
 
-                    coordinates.lat -= 0.003528;
+                    coordinates.lat -= latVariance;
 
                 } else {
 
-                    coordinates.lng += 0.005120;
+                    coordinates.lng += lngVariance;
 
                 }
 
