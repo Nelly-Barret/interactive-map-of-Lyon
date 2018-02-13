@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-xl navbar-light bg-light" id="navMenu" role="navigation">
+<!-- expand-* works for all screen's size -->
+<nav class="navbar navbar-expand-* navbar-light bg-light" id="navMenu" role="navigation">
 	<!-- the button is available if it's a mobile size -->
 	<button class="navbar-toggler" type="button" id="togglerButton" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -16,59 +17,53 @@
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Filters
 					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownFilters">
+					<div id="dropdownMenu" class="dropdown-menu" aria-labelledby="dropdownFilters">
 						<!-- filters -->
-						<a class="dropdown-item">Around me</a>
-						<a class="dropdown-item" class="disableSelection">Rating
-							<div class="container">
+						<a class="dropdown-item smallLink">
+							<div>
+								<p id="aroundMe" class="inlineBlock movedRight">Around me</p>
+								<label class="switch">
+									<input type="checkbox">
+									<span class="slider"></span>
+								</label>
+							</div>
+						</a>
+
+						<a class="dropdown-item smallLink">
+							<div>
+								<p id="openedNow" class="inlineBlock">Opened now</p>
+								<label class="switch">
+									<input type="checkbox">
+									<span class="slider"></span>
+								</label>
+							</div>
+						</a>
+
+						<!--<a class="dropdown-item">Rating
+							<div class="container alignLeft">
 								<div class="row">
 									<div class="col-lg-12">
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
+										<!-- we couldn't have breaklines between buttons => childnodes returns #text --
+										<div class="starContainer" id="starContainer"><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" class="btnStar btn"><span class="fa fa-star"></span></button></div>
 									</div>
 								</div>
 							</div>
-						</a>
+						</a>-->
+
 						<a class="dropdown-item">Price
-							<div class="container">
+							<div class="container alignLeft">
 								<!-- we create a new row which takes all the place to display the euro signs -->
 								<div class="row">
 									<div class="col-lg-12">
-										<div class="currencyContainer">
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-											</button>
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-											</button>
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-											</button>
-											<button type="btn" class="btnPrice btn" onclick="colorUncolor(this)">
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-												<i class="fa fa-euro"></i>
-											</button>
-										</div>
+										<!-- we couldn't have breaklines between buttons => childnodes returns #text -->
+										<div class="currencyContainer" id="currencyContainer"><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="btnPriceBr" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button></div>
 									</div>
 								</div>
 							</div>
 						</a>
+
 						<a class="dropdown-item">
-							<p class="inlineBlock">Opened now</p>
-							<input type="checkbox" checked data-toggle="toggle" data-onstyle="success">
-						</a>
-						<a>
-							<button class="btn btn-success" id="go">Go</button>
+							<button class="btn btn-success alignLeft" id="go">Go</button>
 						</a>
 					</div>
 				</div>
@@ -106,38 +101,114 @@
 </div>
 
 <script type="text/javascript">
-	var numberClick = 0;
 	
+	var numberClick = 0;
+
 	$(document).ready(function() {
-		
+
+		console.log($(window).width());
+
 	});
 
 	/* for all the items of the filters */
 	$(".dropdown-item, .btnPrice").on('click', function (e) {
-	  
-	  e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
+		
+		e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
 
 	});
 
-	function colorUncolor(element)
-	{
 
-		numberClick = numberClick + 1;
+	/* color and un-color price buttons when clicking */
+	$(".btnPrice, .btnStar").on('click', function() {
 
-		if(numberClick%2 == 0) 
+		if($(this).css("background-color") === 'rgb(221, 221, 221)') /* grey */
 		{
-		
-			element.style.backgroundColor = "#DDDDDD";
-		
+
+			$(this).css("background-color", "rgb(0, 128, 0)");
+
 		}
 
-		else 
+		else if($(this).css("background-color") === 'rgb(0, 128, 0)') /* green */
 		{
+
+			$(this).css("background-color", "rgb(221, 221, 221)");
+
+		}
+
+	});
+
+
+	/* add a br between price buttons when the screen is too small */
+	/*function addBr(mediaQuery) {
 		
-			element.style.backgroundColor = "green";
-		
+		if(mediaQuery.matches) {
+			
+			var newBr1 = document.createElement("br"); /* we create a new breakline *
+
+			var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same twice *
+			
+			var containerPrice = document.getElementById("currencyContainer");
+
+			//var containerStar = document.getElementById("starContainer");
+
+			containerPrice.insertBefore(newBr1, containerPrice.childNodes[2]); /* we add the breakline before the third button for prices */
+
+			//containerStar.insertBefore(newBr2, containerStar.childNodes[3]); /* we add the breakline before the third button */
+
+			/* resize the dropdown menu for small screens *
+			var dropdownMenu = document.getElementById("dropdownMenu");
+
+			dropdownMenu.style.width = "200px";
+
+		}
+
+		else {
+			
+			//button.style.color = "green";
+
 		}
 	}
 
+	var media = window.matchMedia("(max-width: 600px)"); /* media query *
+	
+	addBr(media); /* apply the function with the media query *
+	
+	media.addListener(addBr);*/
+
+	$(window).resize(function() {
+
+		console.log($("currencyContainer:has(br)").length);
+
+		//the br doesn't exist and the window is small
+		if($("#br1").length == 0 && window.matchMedia("(max-width: 500px)").matches) {
+
+			var newBr1 = document.createElement("br"); /* we create a new breakline */
+
+			newBr1.setAttribute("id", "br1");
+			
+			var containerPrice = document.getElementById("currencyContainer");
+
+			containerPrice.insertBefore(newBr1, containerPrice.childNodes[2]); /* we add the breakline before the third button for prices */
+
+			/* resize the dropdown menu for small screens */
+			var dropdownMenu = document.getElementById("dropdownMenu");
+
+			dropdownMenu.style.width = "200px";
+
+		}
+
+		//the br exists and the window is large
+		else if($("#br1").length != 0 && window.matchMedia("(min-width: 501px)").matches) {
+
+			document.getElementById("br1").remove();
+
+			/* resize the dropdown menu for small screens */
+			var dropdownMenu = document.getElementById("dropdownMenu");
+
+			dropdownMenu.style.width = "350px";
+
+		}
+
+	});
 
 </script>

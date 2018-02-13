@@ -568,7 +568,7 @@ function createMarkerPopupHTML(place)
     var html =
         "<h5>" + place.name + "</h5>"
         + "<br><a style='text-align: center'>" + place.type + "</a>"
-        + "<br><a href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
+        + "<br><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
 
     if( place.opened != null )
         html += "<br><a>Actuellement : " + state + "</a>";
