@@ -48,12 +48,16 @@ var mapGridBounds = {
 
 };
 
+var numberOfItemsOnLatitude = Math.round( ( mapGridBounds.topLatitude - mapGridBounds.bottomLatitude ) / latVariance );
+
+var numberOfItemsOnLongitude = Math.round( ( mapGridBounds.rightLongitude - mapGridBounds.leftLongitute ) / lngVariance );
+
 //############################################################//
 //Main
 
 init();
 
-//fetchAllPlaces( 150 );
+fetchAllPlaces( 150 );
 
 //############################################################//
 // Init function : set base user's coordinates, create the map, track user's position
@@ -80,7 +84,7 @@ function init(){
 
         center: [ userCoordinates.userLongitude, userCoordinates.userLatitude ],
 
-        zoom: 16,
+        zoom: 13,
 
         style: 'mapbox://styles/mapbox/streets-v9'
 
@@ -118,10 +122,21 @@ function init(){
 
     var location = new mapboxgl.LngLat( userCoordinates.userLongitude, userCoordinates.userLatitude );
 
-    setUserCoordinates( location );
+    var coords = {
 
-    getPlacesOffline( location, null, null, searchOptions );
+        latitude : location.lat,
 
+        longitude : location.lng
+
+    };
+
+    var pos = {
+
+        coords : coords
+
+    };
+
+    setUserCoordinates( pos );
 
     //googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
@@ -132,6 +147,8 @@ function init(){
 
 function getUserLocation()
 {
+
+    map.setCenter([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
     if( navigator.geolocation )
     {
@@ -155,9 +172,9 @@ function setUserCoordinates( position ) {
 
     userPositionMarker.setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
-  //  var location = new google.maps.LatLng( userCoordinates.userLatitude, userCoordinates.userLongitude );
+    var location = new mapboxgl.LngLat( userCoordinates.userLongitude, userCoordinates.userLatitude );
 
-   // getPlacesOffline( location, 4, 4, searchOptions );
+    getPlacesOffline( location, 4, 4, searchOptions );
 
 }
 
@@ -632,87 +649,91 @@ function checkIfPlaceIsRestaurant(place) {
 
 function fetchAllPlaces( timeInterval ) {
 
-    barsRestaurants = "[";
+    if (barsRestaurants.length === 0 || restaurants.length === 0 || bars.length === 0) {
 
-    bars = "[";
+        barsRestaurants = "[";
 
-    restaurants = "[";
+        bars = "[";
 
-    counter = 0;
+        restaurants = "[";
 
-    var baseCoordinates = {
+        counter = 0;
 
-        lat : 45.788347,
+        var baseCoordinates = {
 
-        lng : 4.791173
+            lat: 45.788347,
 
-    };
+            lng: 4.791173
 
-    var coordinates = {
+        };
 
-        lat : 45.788347,
+        var coordinates = {
 
-        lng : 4.791173
+            lat: 45.788347,
 
-    };
+            lng: 4.791173
 
-    var interval = setInterval( function () {
+        };
 
-                var location = new google.maps.LatLng( coordinates.lat.toFixed(6), coordinates.lng.toFixed(6) );
+        var interval = setInterval(function () {
 
-                var request = {
+            var location = new mapboxgl.LngLat( coordinates.lng.toFixed(6), coordinates.lat.toFixed(6) );
 
-                    location : location,
+            var request = {
 
-                    types : ["bar", "restaurant"], // Deprecated
+                location: location,
 
-                    radius : 150
+                types: ["bar", "restaurant"], // Deprecated
 
-                };
+                radius: 150
 
-                // test marker
+            };
 
-                // var marker = new  mapboxgl.Marker().setLngLat([coordinates.lng, coordinates.lat]).addTo(map);
+            // test marker
 
-               // console.log("fetch with lat: " + coordinates.lat.toFixed(6) + " and lng: "+ coordinates.lng.toFixed(6) );
+            // var marker = new  mapboxgl.Marker().setLngLat( location ).addTo(map);
 
-                googlePlacesAPIService.nearbySearch( request, fetchCallBack );
+            // console.log("fetch with lat: " + coordinates.lat.toFixed(6) + " and lng: "+ coordinates.lng.toFixed(6) );
 
-                if( coordinates.lat <= mapGridBounds.bottomLatitude )
-                {
+            googlePlacesAPIService.nearbySearch( request, fetchCallBack );
 
-                    clearInterval(interval);
+            if (coordinates.lat <= mapGridBounds.bottomLatitude) {
 
-                }
+                clearInterval(interval);
 
-                if( coordinates.lng > mapGridBounds.rightLongitude )
-                {
+            }
 
-                    coordinates.lng = baseCoordinates.lng;
+            if (coordinates.lng > mapGridBounds.rightLongitude) {
 
-                    coordinates.lat -= latVariance;
+                coordinates.lng = baseCoordinates.lng;
 
-                } else {
+                coordinates.lat -= latVariance;
 
-                    coordinates.lng += lngVariance;
+            } else {
 
-                }
+                coordinates.lng += lngVariance;
 
-            }, timeInterval );
+            }
 
-    setTimeout( function () {
+        }, timeInterval);
 
-        barsRestaurants = barsRestaurants.slice(0, barsRestaurants.length - 1) + "]";
+        setTimeout(function () {
 
-        bars = bars.slice(0, bars.length - 1) + "]";
+            barsRestaurants = barsRestaurants.slice(0, barsRestaurants.length - 1) + "]";
 
-        restaurants = restaurants.slice(0, restaurants.length - 1) + "]";
+            bars = bars.slice(0, bars.length - 1) + "]";
 
-        console.log("All data retrieved");
+            restaurants = restaurants.slice(0, restaurants.length - 1) + "]";
 
-        getPlacesOffline( location, 4, 4, searchOptions );
+            console.log("All data retrieved");
 
-    }, timeInterval * 280 );
+            var position = new mapboxgl.LngLat(userCoordinates.userLongitude, userCoordinates.userLatitude);
+
+            getPlacesOffline(position, 4, 4, searchOptions);
+
+        }, timeInterval * (numberOfItemsOnLatitude * numberOfItemsOnLongitude) + 1000);
+
+    }
 
 }
 
@@ -725,61 +746,45 @@ function getPlacesOffline( location, price, rating, type ) {
 
     var barJSON = JSON.parse( bars );
 
-    var barsToDisplay = "";
-
-
     var restaurantsJSON = JSON.parse( restaurants );
 
-    var restaurantsToDisplay = "";
-
-
     var barsRestaurantsJSON = JSON.parse( barsRestaurants );
-
-    var barsRestaurantsToDisplay = "";
-
 
     switch ( type ) {
 
         case 0:
 
-            console.log( "bars avant " + barJSON.length);
-
+            //
             barJSON = barJSON.filter( function (value) {
 
                 return filterFunction( value, location, price, rating );
 
-            })
-
-            console.log( "bars after " + barJSON.length);
+            });
 
             if (barJSON.length != 0)
                 displayBars( JSON.stringify( barJSON ) );
 
-            console.log( "restaurants before " + restaurantsJSON.length );
-
+            //
             restaurantsJSON = restaurantsJSON.filter( function (value) {
 
                 return filterFunction( value, location, price, rating );
 
             });
 
-            console.log( "restaurants after " + restaurantsJSON.length );
-
             if (restaurantsJSON.length != 0)
                 displayRestaurant( JSON.stringify(restaurantsJSON) );
 
-            console.log( " bar restaurants before " + barsRestaurantsJSON.length );
-
+            //
             barsRestaurantsJSON = barsRestaurantsJSON.filter( function (value) {
 
                 return filterFunction( value, location, price, rating );
 
             });
 
-            console.log( " bar restaurant after" + barsRestaurantsJSON.length );
-
             if (barsRestaurantsJSON.length != 0)
-                displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ));
+                displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ) );
+
+            console.log( "Bars : " + barJSON.length + " restaurants : " + restaurantsJSON.length + " bar-restaurant : " + barsRestaurantsJSON.length );
 
             break;
 
@@ -820,11 +825,9 @@ function getPlacesOffline( location, price, rating, type ) {
 
 function filterFunction( value, location, price, rating ) {
 
-    console.log(value.coordinates.lat);
+    var trueLatitude = Math.abs( location.lat - value.coordinates.lat ) <= latVariance/2;
 
-    var trueLatitude = Math.abs( value.coordinates.lat - location.lat ) <= latVariance;
-
-    var trueLongitude = Math.abs( value.coordinates.lng - location.lng ) <= lngVariance;
+    var trueLongitude = Math.abs( location.lng - value.coordinates.lng ) <= lngVariance/2;
 
     return trueLatitude && trueLongitude;
 
