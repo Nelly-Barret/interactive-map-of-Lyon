@@ -69,7 +69,7 @@ init();
 
 //displayPlaces( bars, restaurants, barsRestaurants );
 
-//generateGeoJSON();
+generateGeoJSON();
 
 //getAllPlaceIDs();
 
@@ -134,9 +134,9 @@ function init(){
                     ["get", "point_count"],
                     "#51bbd6",
                     100,
-                    "#f1f075",
+                    "#e9f154",
                     750,
-                    "#f28cb1"
+                    "#f25525"
                 ],
                 "circle-radius": [
                     "step",
@@ -169,11 +169,57 @@ function init(){
             filter: ["!has", "point_count"],
             paint: {
                 "circle-color": "#11b4da",
-                "circle-radius": 4,
+                "circle-radius": 8,
                 "circle-stroke-width": 1,
                 "circle-stroke-color": "#fff"
             }
         });
+
+    });
+    
+    map.on('click', function ( element ) {
+
+        var features = map.queryRenderedFeatures(element.point, {
+            layers: ['unclustered-point'] // replace this with the name of the layer
+        });
+
+        if (!features.length) {
+            return;
+        }
+
+        var feature = features[0];
+
+        console.log(feature);
+
+        var place = {
+
+            "id" : feature.properties.id,
+
+            "coordinates" : feature.properties.id,
+
+            "adress" : feature.properties.adress,
+
+            "rating" : feature.properties.rating,
+
+            "opened" : feature.properties.opened,
+
+            "name" : feature.properties.name,
+
+            "type" : feature.properties.type,
+
+            "types" : feature.properties.types,
+
+            "icon" : feature.properties.icon,
+
+            "opening_hours" : null
+
+        }
+
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML(createMarkerPopupHTML(place))
+            .setLngLat(feature.geometry.coordinates)
+            .addTo(map);
 
     });
 
@@ -520,7 +566,7 @@ function callbackPlaces( results, status )
 
     restaurants += "]";
 
-    displayPlaces( bars, restaurants );
+   // displayPlaces( bars, restaurants );
 
 }
 
@@ -529,12 +575,12 @@ function callbackPlaces( results, status )
 
 function displayPlaces( bars, restaurants, barsRestaurants )
 {
+//REWORK TO DO WITH LAYER
+   // displayBars( bars );
 
-    displayBars( bars );
+    //displayRestaurant( restaurants );
 
-    displayRestaurant( restaurants );
-
-    displayBarRestaurant( barsRestaurants );
+    //displayBarRestaurant( barsRestaurants );
 
 }
 
@@ -850,7 +896,7 @@ function getPlacesOffline( location, price, rating, type ) {
             });
 
             if (barJSON.length != 0)
-                displayBars( JSON.stringify( barJSON ) );
+                //displayBars( JSON.stringify( barJSON ) );
 
             //
             restaurantsJSON = restaurantsJSON.filter( function (value) {
@@ -860,7 +906,7 @@ function getPlacesOffline( location, price, rating, type ) {
             });
 
             if (restaurantsJSON.length != 0)
-                displayRestaurant( JSON.stringify(restaurantsJSON) );
+                //displayRestaurant( JSON.stringify(restaurantsJSON) );
 
             //
             barsRestaurantsJSON = barsRestaurantsJSON.filter( function (value) {
@@ -870,7 +916,7 @@ function getPlacesOffline( location, price, rating, type ) {
             });
 
             if (barsRestaurantsJSON.length != 0)
-                displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ) );
+               // displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ) );
 
             console.log( "Bars : " + barJSON.length + " restaurants : " + restaurantsJSON.length + " bar-restaurant : " + barsRestaurantsJSON.length );
 
@@ -884,7 +930,7 @@ function getPlacesOffline( location, price, rating, type ) {
 
             });
 
-            displayPlaces( JSON.stringify( barJSON ) );
+           // displayPlaces( JSON.stringify( barJSON ) );
 
             break;
 
@@ -896,7 +942,7 @@ function getPlacesOffline( location, price, rating, type ) {
 
             });
 
-            displayPlaces( JSON.stringify( restaurantsJSON ) );
+           // displayPlaces( JSON.stringify( restaurantsJSON ) );
 
             break;
 
@@ -1222,7 +1268,19 @@ function generateGeoJSON(){
 
         "properties": {
 
-            "name": null
+            "id" : null,
+
+            "name": null,
+
+            "type" : null,
+
+            "adress" : null,
+
+            "rating" : null,
+
+            "types" : null,
+
+            "icon" : null
 
         }
 
@@ -1233,6 +1291,20 @@ function generateGeoJSON(){
         geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
 
         geoJSONItem.geometry.name = parsedBars[i]["name"];
+
+        geoJSONItem.properties.id = parsedBars[i].id;
+
+        geoJSONItem.properties.name = parsedBars[i].name;
+
+        geoJSONItem.properties.type = parsedBars[i].type;
+
+        geoJSONItem.properties.types = parsedBars[i].types;
+
+        geoJSONItem.properties.adress = parsedBars[i].adress;
+
+        geoJSONItem.properties.rating = parsedBars[i].rating;
+
+        geoJSONItem.properties.icon = "Assets/barIcon.png";
 
         geoJSONString += JSON.stringify( geoJSONItem );
 
@@ -1250,6 +1322,20 @@ function generateGeoJSON(){
 
         geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
 
+        geoJSONItem.properties.id = parsedBarRestaurants[i].id;
+
+        geoJSONItem.properties.name = parsedBarRestaurants[i].name;
+
+        geoJSONItem.properties.type = parsedBarRestaurants[i].type;
+
+        geoJSONItem.properties.types = parsedBarRestaurants[i].types;
+
+        geoJSONItem.properties.adress = parsedBarRestaurants[i].adress;
+
+        geoJSONItem.properties.rating = parsedBarRestaurants[i].rating;
+
+        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
+
         geoJSONString += JSON.stringify( geoJSONItem );
 
         if( i < parsedBarRestaurants.length - 1 )
@@ -1266,6 +1352,20 @@ function generateGeoJSON(){
 
         geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
 
+        geoJSONItem.properties.id = parsedRestaurants[i].id;
+
+        geoJSONItem.properties.name = parsedRestaurants[i].name;
+
+        geoJSONItem.properties.type = parsedRestaurants[i].type;
+
+        geoJSONItem.properties.types = parsedRestaurants[i].types;
+
+        geoJSONItem.properties.adress = parsedRestaurants[i].adress;
+
+        geoJSONItem.properties.rating = parsedRestaurants[i].rating;
+
+        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
+
         geoJSONString += JSON.stringify( geoJSONItem );
 
         if( i < parsedRestaurants.length - 1 )
@@ -1276,7 +1376,8 @@ function generateGeoJSON(){
 
     geoJSONString += ']}';
 
-    console.log(geoJSONString);
+   //DEBUG DISPLAY
+   // console.log(geoJSONString);
 
 }
 
