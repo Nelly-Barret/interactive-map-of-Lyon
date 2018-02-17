@@ -64,6 +64,8 @@ nav button {
 
 	width: 350px;
 
+	hover: none !important;
+
 }
 
 .smallLink {
