@@ -2,7 +2,7 @@
 
 //TO DO:
 // - Update JSON sur localisation
-// - Clusters
+// - Clusters  ✔
 // - Update JSON on marker click
 // - Mettre en place icon / photo
 
@@ -69,7 +69,7 @@ init();
 
 //displayPlaces( bars, restaurants, barsRestaurants );
 
-generateGeoJSON();
+//generateGeoJSON();
 
 //getAllPlaceIDs();
 
@@ -189,37 +189,17 @@ function init(){
 
         var feature = features[0];
 
-        console.log(feature);
+        var request = {
 
-        var place = {
+            placeId: feature.properties.id
 
-            "id" : feature.properties.id,
+        };
 
-            "coordinates" : feature.properties.id,
+        googlePlacesAPIService.getDetails( request, function (result, status) {
 
-            "adress" : feature.properties.adress,
+            getDetailsCallback(result, status, features);
 
-            "rating" : feature.properties.rating,
-
-            "opened" : feature.properties.opened,
-
-            "name" : feature.properties.name,
-
-            "type" : feature.properties.type,
-
-            "types" : feature.properties.types,
-
-            "icon" : feature.properties.icon,
-
-            "opening_hours" : null
-
-        }
-
-        var popup = new mapboxgl.Popup({ offset: [0, -15] })
-            .setLngLat(feature.geometry.coordinates)
-            .setHTML(createMarkerPopupHTML(place))
-            .setLngLat(feature.geometry.coordinates)
-            .addTo(map);
+        } );
 
     });
 
@@ -727,6 +707,12 @@ function createMarkerPopupHTML(place)
     if( place.rating != null )
         html += "<br><a>Note : " + place.rating + "/5</a>";
 
+    if( place.website != null )
+        html += "<br><a>Site web : " + place.website +"</a>";
+
+    if( place.phone != null )
+        html += "<br><a>Tèl : " + place.phone + "</a>";
+
     return html;
 
 }
@@ -1149,11 +1135,11 @@ function closeJSONCallback(value)
 
 }
 
-function getDetailsCallback( result, status ) {
+function getDetailsCallback( result, status, features ) {
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-        console.log("test");
+        console.log("callback");
 
         var actualPlace = result;
 
@@ -1167,11 +1153,17 @@ function getDetailsCallback( result, status ) {
 
             "rating" : actualPlace['rating'],
 
-            "opened" : "unknown",
+            "opened" : null,
 
             "name" : actualPlace ['name'],
 
-            "type" : 'bar',
+            "type" : null,
+
+            "types" : actualPlace['types'],
+
+            "icon" : actualPlace['icon'],
+
+            "opening_hours" : null,
 
             "website" : actualPlace['website'],
 
@@ -1191,15 +1183,11 @@ function getDetailsCallback( result, status ) {
 
             placeInformations.type = "Bar-restaurant";
 
-            barsRestaurants += JSON.stringify(placeInformations);
-
         }
         else if ( isBar )
         {
 
             placeInformations.type = "Bar";
-
-            bars += JSON.stringify(placeInformations);
 
         }
         else if ( isRestaurant )
@@ -1207,11 +1195,17 @@ function getDetailsCallback( result, status ) {
 
             placeInformations.type = "Restaurant";
 
-            restaurants += JSON.stringify(placeInformations);
-
         }
 
-        closeJSONCallback(1);
+        features[0].properties = placeInformations;
+
+        //map.getSource('places').setData(features[0]);
+
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(features[0].geometry.coordinates)
+            .setHTML(createMarkerPopupHTML(placeInformations))
+            .setLngLat(features[0].geometry.coordinates)
+            .addTo(map);
 
     }
 
@@ -1382,7 +1376,7 @@ function generateGeoJSON(){
 }
 
 // Location button by mapbox
-
+/*
 map.addControl( new mapboxgl.GeolocateControl ({
 
     positionOptions: {
@@ -1393,6 +1387,6 @@ map.addControl( new mapboxgl.GeolocateControl ({
 
     trackUserLocation: true
 
-}));
+}));*/
 
 // JSONS
