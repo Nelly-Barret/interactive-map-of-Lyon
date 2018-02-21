@@ -92,6 +92,38 @@ function init(){
 
 // Mapbox generation with API key authentication
 
+    map = mapInitialisation(userCoordinates);
+
+    map.on('click', function ( element ) {
+
+        var features = map.queryRenderedFeatures(element.point, {
+            layers: ['unclustered-point'] // replace this with the name of the layer
+        });
+
+        if (!features.length) {
+            return;
+        }
+
+        var feature = features[0];
+
+        var request = {
+
+            placeId: feature.properties.id
+
+        };
+
+        googlePlacesAPIService.getDetails( request, function (result, status) {
+
+            getDetailsCallback(result, status, features);
+
+        } );
+
+    });
+
+}
+
+function mapInitialisation(userCoordinates) {
+
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
 
     map = new mapboxgl.Map({
@@ -105,6 +137,24 @@ function init(){
         style: 'mapbox://styles/mapbox/streets-v9'
 
     });
+
+    map.addControl(new mapboxgl.GeolocateControl({
+
+        positionOptions: {
+
+            enableHighAccuracy: true
+
+        },
+
+        trackUserLocation: true
+
+    }));
+
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
+
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();
 
     map.on('load', function () {
 
@@ -175,31 +225,33 @@ function init(){
             }
         });
 
-    });
-    
-    map.on('click', function ( element ) {
+        map.addLayer({
 
-        var features = map.queryRenderedFeatures(element.point, {
-            layers: ['unclustered-point'] // replace this with the name of the layer
+            id: "placeSymbol",
+
+            type: "symbol",
+
+            source: "places",
+
+            layout: {
+
+                "text-field": "{name}",
+
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+
+                "text-offset": [0, 0.6],
+
+                "text-anchor": "top"
+            },
+
+            paint: {
+
+                "text-halo-color" : "rgba(0,0,0,0)"
+
+            }
+
+
         });
-
-        if (!features.length) {
-            return;
-        }
-
-        var feature = features[0];
-
-        var request = {
-
-            placeId: feature.properties.id
-
-        };
-
-        googlePlacesAPIService.getDetails( request, function (result, status) {
-
-            getDetailsCallback(result, status, features);
-
-        } );
 
     });
 
@@ -252,6 +304,8 @@ function init(){
     setUserCoordinates( pos );
 
     googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
+
+    return map;
 
 }
 
@@ -708,7 +762,7 @@ function createMarkerPopupHTML(place)
         html += "<br><a>Note : " + place.rating + "/5</a>";
 
     if( place.website != null )
-        html += "<br><a target="_blank" href='" + place.website + "'> Site web </a>";
+        html += "<br><a target=\"_blank\" href='" + place.website + "'> Site web </a>";
 
     if( place.phone != null )
         html += "<br><a>Tèl : " + place.phone + "</a>";
@@ -1202,7 +1256,7 @@ function getDetailsCallback( result, status, features ) {
 
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
             .setLngLat(features[0].geometry.coordinates)
-            .setHTML(createMarkerPopupHTML(placeInformations))
+            .setHTML( createMarkerPopupHTML(placeInformations))
             .setLngLat(features[0].geometry.coordinates)
             .addTo(map);
 
