@@ -226,7 +226,7 @@ function init(){
 
     var popup = new mapboxgl.Popup({offset:popupOffsets})
         .setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
-        .setHTML("<h3>Vous êtes ici</h3>")
+        .setHTML("<h3 id='youAreHere' >You are here</h3>")
         .addTo(map);
 
     userPositionMarker.setPopup( popup );
@@ -874,7 +874,6 @@ function getPlacesOffline( location, price, rating, type ) {
 
         case 0:
 
-            //
             barJSON = barJSON.filter( function (value) {
 
                 return filterFunction( value, location, price, rating );

@@ -1,0 +1,134 @@
+<!-- expand-* works for all screen's size -->
+<nav class="navbar navbar-expand-* navbar-light bg-light" id="navMenu" role="navigation">
+    <!-- the button is available if it's a mobile size -->
+    <button class="navbar-toggler" type="button" id="togglerButton" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <button class="btn btn-secondary" href="" id="home">Home</button>
+            </li>
+
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filters
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu" aria-labelledby="dropdownFilters">
+                        <!-- filters -->
+                        <a class="dropdown-item">Type
+                            <div class="container alignLeft">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id="typeContainer"><button type="button" class="btn btnType">Restaurant</button><button type="button" class="btn btnType">Bar</button><button type="button" class="btn btnType">Bar-Restaurant</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="dropdown-item">Price
+                            <div class="container alignLeft">
+                                <!-- we create a new row which takes all the place to display the euro signs -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- we couldn't have breaklines between buttons => childnodes returns #text -->
+                                        <div id="currencyContainer"><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="btnPriceBr" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="dropdown-item">Rating
+                            <div class="container alignLeft">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- we couldn't have breaklines between buttons => childnodes returns #text -->
+                                        <div class="starContainer" id="starContainer"><button type="btn" id="1" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="2" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="3" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="4" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="5" class="btnStar btn"><span class="fa fa-star"></span></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="dropdown-item smallLink">
+                            <div>
+                                <p id="aroundMe" class="inlineBlock movedRight">Around me</p>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </a>
+
+                        <a class="dropdown-item smallLink">
+                            <div>
+                                <p id="openedNow" class="inlineBlock">Opened now</p>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </a>
+
+                        <div class="inlineBlock">
+                            <a class="dropdown-item">
+                                <button class="btn btn-success alignLeft inlineBlock" id="go">Go</button>
+                            </a>
+
+                            <a class="dropdown-item">
+                                <button class="btn btn-danger inlineBlock" id="resetFilters"><i class="fa fa-trash-o"></i></button>
+                            </a>
+                        </div>
+
+                        <!--
+                        <a class="dropdown-item smallLink">
+                            <div class="form-group row">
+                                <label id="type" for="selectionType" class="inlineBlock movedRight">Type</label>
+                                <div>
+                                    <select class="form-control" id="selectionType">
+                                        <option value="2">Restaurant</option>
+                                        <option value="1">Bar</option>
+                                        <option value="0">Bar-Restaurant</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </a>
+                        -->
+                    </div>
+                </div>
+            </li>
+
+            <!-- search box -->
+            <li class="nav-item">
+                <!-- data-target argument call the part of the code for displaying the modal -->
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSearch">
+                    Search <i class="fa fa-search"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- modal for search -->
+<div class="modal fade" id="modalSearch" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+            </div>
+
+            <div class="modal-body">
+                <input class="form-control mr-sm-2" type="search" placeholder="Type here your search..." aria-label="Search">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">Search</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/animations.js"></script>
