@@ -85,6 +85,8 @@ nav button {
 
 	border-radius: 50px !important;
 
+	hover: none !important;
+
 }
 
 .smallLink {
