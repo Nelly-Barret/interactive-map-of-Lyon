@@ -29,16 +29,15 @@
     <!-- our CSS -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-
     <!-- Mapbox -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
-
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
-
 
     <!-- Google Places -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPv7VFQeI_dNWfE-Y8IXIywMzEzSkNd28&libraries=places"></script>
-</head>
+
+
+  </head>
 
 <body class="container-fluid">
 <?php include("static/navbar.php"); ?>
