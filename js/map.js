@@ -109,7 +109,7 @@ function init(){
 
     var popup = new mapboxgl.Popup({offset:popupOffsets})
         .setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
-        .setHTML("<h3>Vous êtes ici</h3>")
+        .setHTML("<h3 id='youAreHere' >You are here</h3>")
         .addTo(map);
 
     userPositionMarker.setPopup( popup );
@@ -742,7 +742,7 @@ function getPlacesOffline( location, price, rating, type ) {
 
         case 0:
 
-            console.log( "bars avant " + barJSON.length);
+            console.log( "bars before " + barJSON.length);
 
             barJSON = barJSON.filter( function (value) {
 
@@ -768,7 +768,7 @@ function getPlacesOffline( location, price, rating, type ) {
             if (restaurantsJSON.length != 0)
                 displayRestaurant( JSON.stringify(restaurantsJSON) );
 
-            console.log( " bar restaurants before " + barsRestaurantsJSON.length );
+            console.log( "bar restaurants before " + barsRestaurantsJSON.length );
 
             barsRestaurantsJSON = barsRestaurantsJSON.filter( function (value) {
 
@@ -776,7 +776,7 @@ function getPlacesOffline( location, price, rating, type ) {
 
             });
 
-            console.log( " bar restaurant after" + barsRestaurantsJSON.length );
+            console.log( "bar restaurant after" + barsRestaurantsJSON.length );
 
             if (barsRestaurantsJSON.length != 0)
                 displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ));
