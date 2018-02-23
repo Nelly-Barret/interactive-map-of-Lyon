@@ -685,31 +685,40 @@ function displayBars(bars)
 function createMarkerPopupHTML(place)
 {
  
-	var state = "fermé"
+	var state = "closed"
  
 	if (place.opened)
 	{
  
-		state = "ouvert"
+		state = "opened"
  
 	}
  
 	var html =
-		"<h5>" + place.name + "</h5>"
-		+ "<br><a style='text-align: center'>" + place.type + "</a>"
-		+ "<br><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
+		"<p id='popupTitle'>" + place.name + "</p>"
+		+ "<br><a id='popupType'>" + place.type + "</a>"
+		+ "<br><a id='popupAddress' target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
  
 	if( place.opened != null )
-		html += "<br><a>Actuellement : " + state + "</a>";
+		html += "<br><p id='popupOpen'>Now: " + state + "</p>";
  
 	if( place.rating != null )
-		html += "<br><a>Note : " + place.rating + "/5</a>";
- 
+		html += "<br><p id='popupRating'>Rating: "
+		/*+ "<div class='rating-box'>"
+		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
+		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
+		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
+		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
+		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
+		+ "</div></p>";*/
+
+	+"<span class='stars'>" + place.rating + "</span>"
+
 	if( place.website != null )
-		html += "<br><a target=\"_blank\" href=\"" + place.website + "\"> Site web </a>";
+		html += "<br><a id='popupWebsite' target=\"_blank\" href=\"" + place.website + "\"> Website </a>";
  
 	if( place.phone != null )
-		html += "<br><a>Tèl : " + place.phone + "</a>";
+		html += "<br><p id='popupPhone'>Phone: " + place.phone + "</p>";
  
 	return html;
  

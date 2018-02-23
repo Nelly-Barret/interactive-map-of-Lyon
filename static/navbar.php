@@ -73,7 +73,7 @@
 
                         <a class="dropdown-item">
                             <button class="btn btn-success" id="go">Go</button>
-                            <button class="btn btn-danger" id="resetFilters"><i class="fa fa-trash-o"></i></button>
+                            <button class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button>
                         </a>
                     </div>
                 </div>

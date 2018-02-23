@@ -1,3 +1,4 @@
+/* element1, element2 : selects element1 and element2 */
 /* element1 element2 : selects all descendants (children, grandchildren...) which are element2 => descendant combinator */
 /* element1>element2 : select (only) children which are element2 => child combinator */
 
@@ -17,13 +18,13 @@ html {
 
 body {
 
+	background-color: white;
+
 	height: 100%;
 
 	margin: 0; /* no unit when it's 0 */
 
 	padding: 0;
-
-	background-color: white;
 
 }
 
@@ -33,13 +34,13 @@ body {
 
 #navMenu {
 
-	z-index: 100;
-
-	position: absolute; /* we use absolute position in order to fix the navbar in the top-left corner */
+	background: none !important; /* !important to override Bootstrap's styles */
 
 	margin: 0;
 
-	background: none !important; /* !important to override Bootstrap's styles */
+	position: absolute; /* we use absolute position in order to fix the navbar in the top-left corner */
+
+	z-index: 100;
 
 }
 
@@ -53,25 +54,27 @@ body {
 
 nav button {
 
-	margin-top: 10px;
-
 	margin-bottom: 0;
+
+	margin-top: 10px;
 
 }
 
 .dropdown-menu {
 
-	margin-top: 0; /* no space between the button "filters" and the dropdown menu */
+	background-color: rgba(0, 0, 0, 0.8);
 
-	margin-left: 10px;
-
-	border-radius: 25px;
-
-	background-color: black;
-
-	opacity: 0.8;
+	border-radius: 10px;
 
 	color: white;
+
+	margin-top: 10px; /* no space between the button "filters" and the dropdown menu */
+
+	margin-left: 0;
+
+	margin-right: 0;
+
+	padding: 20px;
 
 }
 
@@ -79,13 +82,9 @@ nav button {
 
 .dropdown-menu > a:hover {
 
-	background-color: #000000;
-
-	opacity: 1;
+	background-color: rgba(0, 0, 0, 0);
 
 	border-radius: 50px !important;
-
-	hover: none !important;
 
 }
 
@@ -103,15 +102,21 @@ nav button {
 
 /* restaurant / bar / bar-restaurant */
 
-.btnType {
+button {
 
-	width: 110px;
+	opacity: 1 !important;
+
+}
+
+.btnType {
 
 	margin-left: 0;
 
 	margin-right: 8px;
 
 	padding: 0;
+
+	width: 110px;
 
 }
 
@@ -120,13 +125,13 @@ nav button {
 
 .btnPrice {
 
-	width: 70px;
-
 	margin-left: 0;
 
 	margin-right: 10px;
 
 	padding: 0;
+
+	width: 70px;
 
 }
 
@@ -134,13 +139,13 @@ nav button {
 
 .btnStar {
 
-	width: 50px;
-
 	margin-left: 0;
 
 	margin-right: 10px;
 
 	padding: 0;
+
+	width: 50px;
 
 }
 
@@ -162,13 +167,13 @@ nav button {
 
 .switch {
 
-	position: relative;
-
 	display: inline-block;
 
-	width: 40px;
-
 	height: 22px;
+
+	position: relative;
+
+	width: 40px;
 
 }
 
@@ -180,45 +185,45 @@ nav button {
 
 .slider {
 
-	position: absolute;
+	background-color: #ccc;
+
+	border-radius: 20%; /* rounded corners */
 
 	cursor: pointer;
 
-	top: 0;
+	bottom: 0;
 
 	left: 0;
 
+	position: absolute;
+
 	right: 0;
 
-	bottom: 0;
-
-	background-color: #ccc;
+	top: 0;
 
 	transition: .4s;
-
-	border-radius: 20%; /* rounded corners */
 
 }
 
 .slider:before {
 
-	position: absolute;
-
-	content: "";
-	
-	height: 16px;
-	
-	width: 16px;
-	
-	left: 3px;
-	
-	bottom: 3px;
-	
 	background-color: white;
-		
-	transition: .4s;
 
 	border-radius: 20%; /* rounded corners */
+
+	bottom: 3px;
+
+	content: "";
+
+	height: 16px;
+
+	left: 3px;
+
+	position: absolute;
+
+	transition: .4s;
+
+	width: 16px;
 
 }
 
@@ -244,6 +249,8 @@ input:checked + .slider:before {
 
 	padding: 0 15px 0 15px;
 
+	margin-right: 20px;
+
 }
 
 
@@ -254,22 +261,119 @@ input:checked + .slider:before {
 
 	color: #FDF5E6; /* Oldlace */
 
-	font-size: 22px;
+	font-size: 18px;
 
 	text-align: center;
 
 }
 
 
+/*******************************************************************/
+/* rating stars */
+/*
+.rating-box {
+	color: #FFFFFF; /* white *
+	margin: 0;
+	height: 50px;
+	width: 100px;
+}
+
+
+.rating-star{
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	position: relative;
+	display: block;
+	float:left;
+}
+
+.full-star:before {
+	color: #f2b01e; /* yellow *
+	content: "\2605"; /* star symbol *
+	position: absolute;
+	left: 0;
+	overflow: hidden;
+}
+
+.empty-star:before {
+	content: "\2605";
+	position: absolute;
+	left: 0;
+	overflow: hidden;
+}
+
+.half-star:before {
+	color: #f2b01e;
+	content: "\2605";
+	width: 50%;
+	position: absolute;
+	left: 0;
+	overflow: hidden;
+}
+
+.half-star:after {
+	content: '\2605';
+	position: absolute;
+	left: 1.5rem;
+	width: 50%;
+	text-indent: -1.5rem;
+	overflow: hidden;
+}*/
+
+
+span.stars, span.stars span {
+	display: block;
+	background: url("../img/stars.png") 0 -16px repeat-x;
+	width: 80px;
+	height: 16px;
+}
+
+span.stars span {
+	background-position: 0 0;
+}
+
+/*******************************************************************/
 /* popup */
 
-.title {
+/* Using id instead of class, classes don't work */
 
-	color: #FDF5E6; /* Oldlace */
+#popupTitle, #popupType {
 
-	text-align: center;
+	color: #FDF5E6; /* OldLace */
 
-	font-size: 20px;
+	font-family: "Lucida Sans Unicode", Times, serif;
+
+	margin: 0;
+
+	padding: 0;
+
+	text-align: center !important;
+
+}
+
+#popupTitle {
+
+	font-size: 22px;
+
+	font-variant: small-caps;
+
+	text-align: center !important;
+
+}
+
+#popupType {
+
+	font-size: 19px;
+
+}
+
+#popupAddress, #popupOpen, #popupRating, #popupWebsite, #popupPhone {
+
+	font-family: "Lucida Sans Unicode", Times, serif;
+
+	font-size: 15px;
 
 	margin: 0;
 
@@ -277,24 +381,35 @@ input:checked + .slider:before {
 
 }
 
-.textPopup {
+#popupAddress {
 
-	font-size: 17px;
 
-	color: #FDF5E6 !important; /* OldLace */
-
-	font-family: "Lucida Sans Unicode", Times, serif;
 
 }
 
-.linkPopup {
+#popupOpen {
 
-	font-size: 17px;
 
-	font-family: "Lucida Sans Unicode", Times, serif;
 
 }
 
+#popupRating {
+
+
+
+}
+
+#popupWebsite {
+
+
+
+}
+
+#popupPhone {
+
+
+
+}
 
 /* the anchor */
 
@@ -304,13 +419,13 @@ input:checked + .slider:before {
 
 	color: #FFFFFF;
 
-	opacity: 0.8;
+	font-size: 5px !important;
 
 	margin: 0;
 
-	padding: 0;
+	opacity: 0.8;
 
-	font-size: 5px !important;
+	padding: 0;
 
 }
 
