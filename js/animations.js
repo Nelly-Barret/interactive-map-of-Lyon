@@ -15,7 +15,7 @@ function colorButton( button ) {
 
 }
 
-function uncolorButton(button) {
+function uncolorButton( button ) {
 
     button.css( "background-color", "rgb(221, 221, 221)" );
 
@@ -47,7 +47,7 @@ $(".btnType, .btnPrice").on( 'click', function() {
 
 } );
 
-
+/* color and un-color star button when clicking */
 $(".btnStar").on( 'click', function() {
 
    var max = $(this).attr( 'id' );
@@ -59,7 +59,7 @@ $(".btnStar").on( 'click', function() {
 
    }
 
-   /* we must use +max+1 to convert max as an integer (it is considered by JS as a string) */
+   /* we must use +max+1 to convert max as an integer (it's considered by JS as a string) */
    for( var j = +max+1 ; j <= 5 ; j++ ) {
 
        uncolorButton( $("#"+j) );
@@ -69,11 +69,14 @@ $(".btnStar").on( 'click', function() {
 } );
 
 
-/* adding br on price buttons when the window is too small, remove it when it's larger */
+/* adding br on buttons when the window is too small, remove it when it's larger */
 $(window).resize(function() {
 
+    /* we get the dropdown menu to resize it in function of window's size */
+    var dropdownMenu = document.getElementById( "dropdownMenu" );
+
     /* the br doesn't exist and the window is small */
-    if( $("#br1").length == 0 && window.matchMedia( "(max-width: 500px)" ).matches ) {
+    if( $("#br1").length === 0 && window.matchMedia( "(max-width: 500px)" ).matches ) {
 
         var newBr1 = document.createElement( "br" ); /* we create a new breakline */
 
@@ -108,10 +111,7 @@ $(window).resize(function() {
 
         containerStar.insertBefore(newBr4, containerStar.childNodes[3]);
 
-
-        /* resize the dropdown menu for small screens */
-        var dropdownMenu = document.getElementById( "dropdownMenu" );
-
+        /* shrink the dropdown menu */
         dropdownMenu.style.width = "220px";
 
     }
@@ -120,33 +120,31 @@ $(window).resize(function() {
     else if( window.matchMedia( "(min-width: 501px)" ).matches ) {
 
         /* we remove the breaklines if they exist */
-        if( document.getElementById( "br1" ) != undefined ) {
+        if( document.getElementById( "br1" ) !== undefined ) {
 
             document.getElementById( "br1" ).remove();
 
         }
 
-        if( document.getElementById( "br2" ) != undefined ) {
+        if( document.getElementById( "br2" ) !== undefined ) {
 
             document.getElementById( "br2" ).remove();
 
         }
 
-        if( document.getElementById( "br3" ) != undefined ) {
+        if( document.getElementById( "br3" ) !== undefined ) {
 
             document.getElementById( "br3" ).remove();
 
         }
 
-        if( document.getElementById( "br4" ) != undefined ) {
+        if( document.getElementById( "br4" ) !== undefined ) {
 
             document.getElementById( "br4" ).remove();
 
         }
 
-        /* resize the dropdown menu for small screens */
-        var dropdownMenu = document.getElementById( "dropdownMenu" );
-
+        /* expand the dropdown menu */
         dropdownMenu.style.width = "380px";
 
     }
@@ -173,3 +171,25 @@ $("#resetFilters").on( 'click', function() {
     }
 
 } );
+
+
+
+/* rating stars */
+
+$.fn.fillStars = function() {
+    return $(this).each(function() {
+        // Get the value
+        var val = parseFloat($(this).html());
+        // Make sure that the value is in 0 - 5 range, multiply to get width
+        var size = Math.max(0, (Math.min(5, val))) * 16;
+        // Create stars holder
+        var $span = $('<span />').width(size);
+        // Replace the numerical value with stars
+        $(this).html($span);
+    });
+}
+
+$(function() {
+    $('span.fillStars').stars();
+});
+

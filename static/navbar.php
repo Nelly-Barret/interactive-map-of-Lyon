@@ -71,30 +71,10 @@
                             </div>
                         </a>
 
-                        <div class="inlineBlock">
-                            <a class="dropdown-item">
-                                <button class="btn btn-success alignLeft inlineBlock" id="go">Go</button>
-                            </a>
-
-                            <a class="dropdown-item">
-                                <button class="btn btn-danger inlineBlock" id="resetFilters"><i class="fa fa-trash-o"></i></button>
-                            </a>
-                        </div>
-
-                        <!--
-                        <a class="dropdown-item smallLink">
-                            <div class="form-group row">
-                                <label id="type" for="selectionType" class="inlineBlock movedRight">Type</label>
-                                <div>
-                                    <select class="form-control" id="selectionType">
-                                        <option value="2">Restaurant</option>
-                                        <option value="1">Bar</option>
-                                        <option value="0">Bar-Restaurant</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <a class="dropdown-item">
+                            <button class="btn btn-success" id="go">Go</button>
+                            <button class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button>
                         </a>
-                        -->
                     </div>
                 </div>
             </li>
