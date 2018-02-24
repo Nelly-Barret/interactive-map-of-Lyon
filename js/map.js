@@ -91,223 +91,172 @@ function init(){
 	};
 
 // Mapbox generation with API key authentication
+ 
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
+ 
+	map = new mapboxgl.Map({
+ 
+		container: 'map',
+ 
+		center: [ userCoordinates.userLongitude, userCoordinates.userLatitude ],
+ 
+		zoom: 13,
+ 
+		style: 'mapbox://styles/mapbox/streets-v9'
+ 
+	});
 
-    map = mapInitialisation(userCoordinates);
+	map.on('load', function () {
+ 
+		map.addSource("places", {
+			type: "geojson",
+			// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+			// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+			data: "JSON/places.geojson",
+			cluster: true,
+			clusterMaxZoom: 14, // Max zoom to cluster points on
+			clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+		});
 
-    map.on('click', function ( element ) {
+		map.addLayer({
+			id: "clusters",
+			type: "circle",
+			source: "places",
+			filter: ["has", "point_count"],
+			paint: {
+				// Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+				// with three steps to implement three types of circles:
+				//   * Blue, 20px circles when point count is less than 100
+				//   * Yellow, 30px circles when point count is between 100 and 750
+				//   * Pink, 40px circles when point count is greater than or equal to 750
+				"circle-color": [
+					"step",
+					["get", "point_count"],
+					"#51bbd6",
+					100,
+					"#e9f154",
+					750,
+					"#f25525"
+				],
+				"circle-radius": [
+					"step",
+					["get", "point_count"],
+					20,
+					100,
+					30,
+					750,
+					40
+				]
+			}
+		});
 
-        var features = map.queryRenderedFeatures(element.point, {
-            layers: ['unclustered-point'] // replace this with the name of the layer
-        });
+		map.addLayer({
+			id: "cluster-count",
+			type: "symbol",
+			source: "places",
+			filter: ["has", "point_count"],
+			layout: {
+				"text-field": "{point_count_abbreviated}",
+				"text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+				"text-size": 12
+			}
+		});
+ 
+		map.addLayer({
+			id: "unclustered-point",
+			type: "circle",
+			source: "places",
+			filter: ["!has", "point_count"],
+			paint: {
+				"circle-color": "#11b4da",
+				"circle-radius": 8,
+				"circle-stroke-width": 1,
+				"circle-stroke-color": "#fff"
+			}
+		});
+ 
+	});
 
-        if (!features.length) {
-            return;
-        }
-
-        var feature = features[0];
-
-        var request = {
-
-            placeId: feature.properties.id
-
-        };
-
-        googlePlacesAPIService.getDetails( request, function (result, status) {
-
-            getDetailsCallback(result, status, features);
-
-        } );
-
-    });
-
-}
-
-function mapInitialisation(userCoordinates) {
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
-
-    map = new mapboxgl.Map({
-
-        container: 'map',
-
-        center: [ userCoordinates.userLongitude, userCoordinates.userLatitude ],
-
-        zoom: 13,
-
-        style: 'mapbox://styles/mapbox/streets-v9'
-
-    });
-
-    map.addControl(new mapboxgl.GeolocateControl({
-
-        positionOptions: {
-
-            enableHighAccuracy: true
-
-        },
-
-        trackUserLocation: true
-
-    }));
-
-    // disable map rotation using right click + drag
-    map.dragRotate.disable();
-
-    // disable map rotation using touch rotation gesture
-    map.touchZoomRotate.disableRotation();
-
-    map.on('load', function () {
-
-        map.addSource("places", {
-            type: "geojson",
-            // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-            // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-            data: "JSON/places.geojson",
-            cluster: true,
-            clusterMaxZoom: 14, // Max zoom to cluster points on
-            clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
-        });
-
-        map.addLayer({
-            id: "clusters",
-            type: "circle",
-            source: "places",
-            filter: ["has", "point_count"],
-            paint: {
-                // Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-                // with three steps to implement three types of circles:
-                //   * Blue, 20px circles when point count is less than 100
-                //   * Yellow, 30px circles when point count is between 100 and 750
-                //   * Pink, 40px circles when point count is greater than or equal to 750
-                "circle-color": [
-                    "step",
-                    ["get", "point_count"],
-                    "#51bbd6",
-                    100,
-                    "#e9f154",
-                    750,
-                    "#f25525"
-                ],
-                "circle-radius": [
-                    "step",
-                    ["get", "point_count"],
-                    20,
-                    100,
-                    30,
-                    750,
-                    40
-                ]
-            }
-        });
-
-        map.addLayer({
-            id: "cluster-count",
-            type: "symbol",
-            source: "places",
-            filter: ["has", "point_count"],
-            layout: {
-                "text-field": "{point_count_abbreviated}",
-                "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                "text-size": 12
-            }
-        });
-
-        map.addLayer({
-            id: "unclustered-point",
-            type: "circle",
-            source: "places",
-            filter: ["!has", "point_count"],
-            paint: {
-                "circle-color": "#11b4da",
-                "circle-radius": 8,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff"
-            }
-        });
-
-        map.addLayer({
-
-            id: "placeSymbol",
-
-            type: "symbol",
-
-            source: "places",
-
-            layout: {
-
-                "text-field": "{name}",
-
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-
-                "text-offset": [0, 0.6],
-
-                "text-anchor": "top"
-            },
-
-            paint: {
-
-                "text-halo-color" : "rgba(0,0,0,0)"
-
-            }
-
-
-        });
-
-    });
+	map.on('click', function ( element ) {
+ 
+		var features = map.queryRenderedFeatures(element.point, {
+			layers: ['unclustered-point'] // replace this with the name of the layer
+		});
+ 
+		if (!features.length) {
+			return;
+		}
+ 
+		var feature = features[0];
+ 
+		var request = {
+ 
+			placeId: feature.properties.id
+ 
+		};
+ 
+		googlePlacesAPIService.getDetails( request, function (result, status) {
+ 
+			getDetailsCallback(result, status, features);
+ 
+		} );
+ 
+	});
 
 // Update user's location
  
 	getUserLocation();
  
 // Creation of user marker on map
+ 
+	userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
+ 
+	var markerHeight = 50, markerRadius = 10, linearOffset = 25;
+ 
+	var popupOffsets = {
+		'top': [0, 0],
+		'top-left': [0,0],
+		'top-right': [0,0],
+		'bottom': [0, -markerHeight],
+		'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+		'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+		'left': [markerRadius, (markerHeight - markerRadius) * -1],
+		'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+	};
+ 
+	var popup = new mapboxgl.Popup({offset:popupOffsets})
+		.setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
+		.setHTML("<h3>Vous êtes ici</h3>")
+		.addTo(map);
+ 
+	userPositionMarker.setPopup( popup );
+ 
+	userPositionMarker.addTo(map);
 
-    userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
-
-    var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-    var popupOffsets = {
-        'top': [0, 0],
-        'top-left': [0,0],
-        'top-right': [0,0],
-        'bottom': [0, -markerHeight],
-        'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-        'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-        'left': [markerRadius, (markerHeight - markerRadius) * -1],
-        'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-    };
-
-    var popup = new mapboxgl.Popup({offset:popupOffsets})
-        .setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
-        .setHTML("<h3 id='youAreHere' >You are here</h3>")
-        .addTo(map);
-
-    userPositionMarker.setPopup( popup );
-
-    userPositionMarker.addTo(map);
-
-    var location = new mapboxgl.LngLat( userCoordinates.userLongitude, userCoordinates.userLatitude );
-
-    var coords = {
-
-        latitude : location.lat,
-
-        longitude : location.lng
-
-    };
-
-    var pos = {
-
-        coords : coords
-
-    };
-
-    setUserCoordinates( pos );
-
-    googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
-
-    return map;
+	var location = new mapboxgl.LngLat( userCoordinates.userLongitude, userCoordinates.userLatitude );
+ 
+	var coords = {
+ 
+		latitude : location.lat,
+ 
+		longitude : location.lng
+ 
+	};
+ 
+	var pos = {
+ 
+		coords : coords
+ 
+	};
+ 
+	setUserCoordinates( pos );
+ 
+	googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
 
+
+    createGeocoder();
+ 
 }
 
 //############################################################//
@@ -740,40 +689,51 @@ function displayBars(bars)
 function createMarkerPopupHTML(place)
 {
  
-	var state = "closed"
+	var state = "closed";
  
 	if (place.opened)
 	{
  
-		state = "opened"
+		state = "opened";
  
 	}
  
-	var html =
-		"<p id='popupTitle'>" + place.name + "</p>"
-		+ "<br><a id='popupType'>" + place.type + "</a>"
-		+ "<br><a id='popupAddress' target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
+	var html;
+
+	html += "<p id='popupTitle'>" + place.name + "</p>";
+	html += "<br><a id='popupType'>" + place.type + "</a>";
+	html += "<br><a id='popupAddress' target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>";
  
 	if( place.opened != null )
 		html += "<br><p id='popupOpen'>Now: " + state + "</p>";
  
-	if( place.rating != null )
-		html += "<br><p id='popupRating'>Rating: "
-		/*+ "<div class='rating-box'>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "</div></p>";*/
+	if( place.rating != null ) {
+		html += "<br><p id='popupRating'>Rating: ";
 
-	+"<span class='stars'>" + place.rating + "</span>"
+		var i;
+
+		for(i = 1; i < place.rating ; i++) {
+
+			/* add full stars */
+            html += "<i class=\"fa fa-star\"></i>";
+
+		}
+
+		for(var j = i; j <= 5; j++){
+
+			/* add empty stars */
+            html += "<i class=\"fa fa-star-o\"></i>";
+
+		}
+
+		html += "</p>";
+    }
 
 	if( place.website != null )
 		html += "<br><a id='popupWebsite' target=\"_blank\" href=\"" + place.website + "\"> Website </a>";
  
 	if( place.phone != null )
-		html += "<br><p id='popupPhone'>Phone: " + place.phone + "</p>";
+		html += "<br><p id='popupPhone'>Phone: <a href=\"tel:" + place.phone + "\"</a>"+ place.phone + "</p>";
  
 	return html;
  
@@ -1453,824 +1413,72 @@ map.addControl( new mapboxgl.GeolocateControl ({
 }));*/
  
 // JSONS
+
+
+
+function createGeocoder() {
+
+	console.log("begin of geocoder...");
+
+    map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+
+        country: 'fr', /* limit results to France */
+
+		/* bounding box: area defined by two longitudes and two latitudes. */
+		/* standard format: */
+		/* bbox = left,bottom,right,top */
+		/* bbox = min Longitude , min Latitude , max Longitude , max Latitude */
+		bbox: [4.791173, 45.732777, 4.871854, 45.788347]
+
+
+    }));
+
+    // var geocoder = new MapboxGeocoder({
+    //    accessToken: mapboxgl.accessToken,
+    //    bbox: [-77.210763, 38.803367, -76.853675, 39.052643]
+    //});
+
+    //map.addControl(geocoder, 'top-left');
+
+    //var geocoder = mapbox.geocoder('mapbox.places'), map = mapbox.map('map', 'examples.map-h67hf2ic');
+
+    //geocoder.query('Chester, NJ', showMap);
+
+    console.log("end of geocoder...");
+
+}
+
+
+/*
+function showMap(err, data) {
+    // The geocoder can return an area, like a city, or a
+    // point, like an address. Here we handle both cases,
+    // by fitting the map bounds to an area or zooming to a point.
+    if (data.lbounds) {
+        map.fitBounds(data.lbounds);
+    } else if (data.latlng) {
+        map.setView([data.latlng[0], data.latlng[1]], 13);
+    }
+}
+
+*/
+
  
-function displayPlaces( bars, restaurants, barsRestaurants )
-{
-//REWORK TO DO WITH LAYER
-   // displayBars( bars );
 
-    //displayRestaurant( restaurants );
 
-    //displayBarRestaurant( barsRestaurants );
 
-}
 
-function displayBarRestaurant( barsRestaurants ) {
 
-    var barRestaurantsArray = JSON.parse( barsRestaurants );
 
-    for( var i = 0; i < barRestaurantsArray.length; i++)
-    {
 
-        var actualRestaurant = barRestaurantsArray[i];
 
-        var marker = new  mapboxgl.Marker().setLngLat(JSON.parse(JSON.stringify(actualRestaurant['coordinates'])));
 
-        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
 
-        var popupOffsets = {
-            'top': [0, 0],
-            'top-left': [0,0],
-            'top-right': [0,0],
-            'bottom': [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        };
 
-        var popup = new mapboxgl.Popup({offset:popupOffsets})
-            .setLngLat(actualRestaurant['coordinates'])
-            .setHTML(createMarkerPopupHTML(actualRestaurant))
-            .addTo(map);
 
-        marker.setPopup( popup );
 
-        locationsMarkers.push( marker );
 
-        marker.addTo( map );
 
 
-    }
 
-}
-
-function displayRestaurant(restaurants)
-{
-
-    var restaurantsArray = JSON.parse(restaurants);
-
-    for( var i = 0; i < restaurantsArray.length; i++)
-    {
-
-        var actualRestaurant = restaurantsArray[i];
-
-        var marker = new  mapboxgl.Marker().setLngLat(JSON.parse(JSON.stringify(actualRestaurant['coordinates'])));
-
-        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-        var popupOffsets = {
-            'top': [0, 0],
-            'top-left': [0,0],
-            'top-right': [0,0],
-            'bottom': [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        };
-
-        var popup = new mapboxgl.Popup({offset:popupOffsets})
-            .setLngLat(actualRestaurant['coordinates'])
-            .setHTML(createMarkerPopupHTML(actualRestaurant))
-            .addTo(map);
-
-        marker.setPopup( popup );
-
-        locationsMarkers.push( marker );
-
-        marker.addTo( map );
-
-    }
-
-}
-
-function displayBars(bars)
-{
-
-    var barsArray = JSON.parse(bars);
-
-    for( var i = 0; i < barsArray.length; i++)
-    {
-
-        var actualBar = barsArray[i];
-
-        var marker = new  mapboxgl.Marker().setLngLat(JSON.parse(JSON.stringify(actualBar['coordinates'])));
-
-        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-        var popupOffsets = {
-            'top': [0, 0],
-            'top-left': [0,0],
-            'top-right': [0,0],
-            'bottom': [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        };
-
-        var popup = new mapboxgl.Popup({offset:popupOffsets})
-            .setLngLat(actualBar['coordinates'])
-            .setHTML(createMarkerPopupHTML(actualBar))
-            .addTo(map);
-
-        marker.setPopup( popup );
-
-        locationsMarkers.push( marker );
-
-        marker.addTo( map );
-
-    }
-
-}
-
-function createMarkerPopupHTML(place)
-{
-
-    var state = "fermé"
-
-    if (place.opened)
-    {
-
-        state = "ouvert"
-
-    }
-
-    var html =
-        "<h5>" + place.name + "</h5>"
-        + "<br><a style='text-align: center'>" + place.type + "</a>"
-        + "<br><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
-
-    if( place.opened != null )
-        html += "<br><a>Actuellement : " + state + "</a>";
-
-    if( place.rating != null )
-        html += "<br><a>Note : " + place.rating + "/5</a>";
-
-    if( place.website != null )
-        html += "<br><a target=\"_blank\" href='" + place.website + "'> Site web </a>";
-
-    if( place.phone != null )
-        html += "<br><a>Tèl : " + place.phone + "</a>";
-
-    return html;
-
-}
-
-function clearMap()
-{
-
-    for(var i = 0; i < locationsMarkers.length; i++)
-    {
-
-        locationsMarkers[i].remove();
-
-    }
-
-    locationsMarkers = [];
-
-}
-
-//############################################################//
-// Tests functions
-
-function checkIfPlaceIsBar(place) {
-
-    for(var i = 0; i < place.types.length; i++)
-    {
-
-        if ( place.types[i] === "bar" )
-            return true;
-
-    }
-
-    return false;
-
-}
-
-function checkIfPlaceIsRestaurant(place) {
-
-    for(var i = 0; i < place.types.length; i++)
-    {
-
-        if ( place.types[i] === "restaurant" )
-            return true;
-
-    }
-
-    return false;
-
-}
-//############################################################//
-// Offline functions
-
-//############################################################//
-// Function that crawls over Lyon to fetch sectors
-
-function fetchAllPlaces( timeInterval ) {
-
-    //if (barsRestaurants.length === 0 || restaurants.length === 0 || bars.length === 0) {
-
-    barsRestaurants = "[";
-
-    bars = "[";
-
-    restaurants = "[";
-
-    counter = 0;
-
-    var baseCoordinates = {
-
-        lat: 45.788347,
-
-        lng: 4.791173
-
-    };
-
-    var coordinates = {
-
-        lat: 45.788347,
-
-        lng: 4.791173
-
-    };
-
-    var interval = setInterval(function () {
-
-        var location = new mapboxgl.LngLat( coordinates.lng.toFixed(6), coordinates.lat.toFixed(6) );
-
-        var request = {
-
-            location: location,
-
-            types: ["bar", "restaurant"], // Deprecated
-
-            radius: 150
-
-        };
-
-        // test marker
-
-        var marker = new  mapboxgl.Marker().setLngLat( location ).addTo(map);
-
-        // console.log("fetch with lat: " + coordinates.lat.toFixed(6) + " and lng: "+ coordinates.lng.toFixed(6) );
-
-        googlePlacesAPIService.nearbySearch( request, fetchCallBack );
-
-        if (coordinates.lat <= mapGridBounds.bottomLatitude) {
-
-            clearInterval(interval);
-
-        }
-
-        if (coordinates.lng > mapGridBounds.rightLongitude) {
-
-            coordinates.lng = baseCoordinates.lng;
-
-            coordinates.lat -= latVariance;
-
-        } else {
-
-            coordinates.lng += lngVariance;
-
-        }
-
-    }, timeInterval);
-
-    setTimeout(function () {
-
-        barsRestaurants = barsRestaurants.slice(0, barsRestaurants.length - 1) + "]";
-
-        bars = bars.slice(0, bars.length - 1) + "]";
-
-        restaurants = restaurants.slice(0, restaurants.length - 1) + "]";
-
-        console.log("All data retrieved");
-
-        var position = new mapboxgl.LngLat(userCoordinates.userLongitude, userCoordinates.userLatitude);
-
-        getPlacesOffline(position, 4, 4, searchOptions);
-
-    }, timeInterval * (numberOfItemsOnLatitude * numberOfItemsOnLongitude) + 1000);
-
-    //  }
-
-}
-
-//############################################################//
-// getPlacesOffline
-
-function getPlacesOffline( location, price, rating, type ) {
-
-    console.log("Displaying places...");
-
-    var barJSON = JSON.parse( bars );
-
-    var restaurantsJSON = JSON.parse( restaurants );
-
-    var barsRestaurantsJSON = JSON.parse( barsRestaurants );
-
-    switch ( type ) {
-
-        case 0:
-
-            barJSON = barJSON.filter( function (value) {
-
-                return filterFunction( value, location, price, rating );
-
-            });
-
-            if (barJSON.length != 0)
-                //displayBars( JSON.stringify( barJSON ) );
-
-            //
-            restaurantsJSON = restaurantsJSON.filter( function (value) {
-
-                return filterFunction( value, location, price, rating );
-
-            });
-
-            if (restaurantsJSON.length != 0)
-                //displayRestaurant( JSON.stringify(restaurantsJSON) );
-
-            //
-            barsRestaurantsJSON = barsRestaurantsJSON.filter( function (value) {
-
-                return filterFunction( value, location, price, rating );
-
-            });
-
-            if (barsRestaurantsJSON.length != 0)
-               // displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ) );
-
-            console.log( "Bars : " + barJSON.length + " restaurants : " + restaurantsJSON.length + " bar-restaurant : " + barsRestaurantsJSON.length );
-
-            break;
-
-        case 1:
-
-            barJSON.filter( function (value) {
-
-                return filterFunction( value, location, price, rating );
-
-            });
-
-           // displayPlaces( JSON.stringify( barJSON ) );
-
-            break;
-
-        case 2:
-
-            restaurantsJSON.filter( function (value) {
-
-                return filterFunction( value, location, price, rating );
-
-            });
-
-           // displayPlaces( JSON.stringify( restaurantsJSON ) );
-
-            break;
-
-        default:
-
-            break;
-
-    }
-
-}
-
-//############################################################//
-// Filter functions
-
-function filterFunction( value, location, price, rating ) {
-
-    var trueLatitude = Math.abs( location.lat - value.coordinates.lat ) <= latVariance/2;
-
-    var trueLongitude = Math.abs( location.lng - value.coordinates.lng ) <= lngVariance/2;
-
-    return trueLatitude && trueLongitude;
-
-}
-
-//############################################################//
-// Offline callbacks
-
-function fetchCallBack( results, status )
-{
-
-    if( status == google.maps.places.PlacesServiceStatus.OK )
-    {
-
-        console.log(results[0]['opening_hours']['weekday_text']);
-
-        counter += results.length;
-
-        console.log(results.length);
-
-        console.log(results);
-
-        for (var i = 0; i < results.length ; i++) {
-
-            var actualPlace = results[i];
-
-            placeInformations = {
-
-                "id" : actualPlace['place_id'],
-
-                "coordinates" : actualPlace['geometry']['location'],
-
-                "adress" : actualPlace['vicinity'],
-
-                "rating" : actualPlace['rating'],
-
-                "opened" : null,
-
-                "name" : actualPlace ['name'],
-
-                "type" : null,
-
-                "types" : actualPlace['types'],
-
-                "icon" : actualPlace['icon'],
-
-                "opening_hours" : actualPlace['opening_hours']
-
-            };
-
-            if( actualPlace['opening_hours'] )
-                placeInformations.opened = actualPlace['opening_hours']['open_now'];
-
-            var isBar = checkIfPlaceIsBar(actualPlace);
-
-            var isRestaurant = checkIfPlaceIsRestaurant(actualPlace);
-
-            if( isBar && isRestaurant)
-            {
-
-                placeInformations.type = "Bar-restaurant";
-
-            }
-            else if ( isBar )
-            {
-
-                placeInformations.type = "Bar";
-
-            }
-            else if ( isRestaurant )
-            {
-
-                placeInformations.type = "Restaurant";
-
-            }
-
-            if (isBar && isRestaurant)
-                barsRestaurants += JSON.stringify(placeInformations) + ",";
-            else if (isBar)
-                bars += JSON.stringify(placeInformations) + ",";
-            else
-                restaurants += JSON.stringify(placeInformations) + ",";
-
-        }
-
-    }
-
-}
-
-//############################################################//
-
-
-// updateJSONDataFile : update the JSON data file with nearby places
-
-function getAllPlaceIDs() {
-
-    requestItemsNumber = 0;
-
-    counter = 0;
-
-    var location = new google.maps.LatLng( userCoordinates.userLatitude, userCoordinates.userLongitude );
-
-    placesRequest = {
-
-        location : location,
-
-        radius : 2000,
-
-        type : "bar"
-
-    };
-
-    googlePlacesAPIService.radarSearch(placesRequest, callbackPlacesID);
-
-    placesRequest = {
-
-        location : location,
-
-        radius : 2000,
-
-        type : "restaurant"
-
-    };
-
-    googlePlacesAPIService.radarSearch(placesRequest, callbackPlacesID);
-
-}
-
-function callbackPlacesID( results, status, callback) {
-
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-
-        requestItemsNumber += results.length;
-
-        console.log(results.length);
-
-        barsRestaurants = "[";
-
-        bars = "[";
-
-        restaurants = "[";
-
-        for (var i = 0; i < results.length; i++)
-        {
-
-            var coordinates = JSON.stringify(results[i]['geometry']['location']);
-
-            createSimpleMarker( coordinates );
-
-            var detailsRequest = {
-
-                placeId : results[i]["place_id"]
-
-            };
-
-            requestingInterval = setInterval(googlePlacesAPIService.getDetails( detailsRequest, getDetailsCallback ), 1000);
-
-        }
-
-    }
-
-}
-
-var requestingInterval;
-
-function closeJSONCallback(value)
-{
-
-    counter += value;
-
-//    console.log(counter);
-
-    if( counter == requestItemsNumber )
-    {
-
-        window.clearInterval(requestingInterval);
-
-        barsRestaurants += "]";
-
-        bars += "]";
-
-        restaurants += "]";
-
-    }
-
-}
-
-function getDetailsCallback( result, status, features ) {
-
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-
-        console.log("callback");
-
-        var actualPlace = result;
-
-        placeInformations = {
-
-            "id" : actualPlace['place_id'],
-
-            "coordinates" : actualPlace['geometry']['location'],
-
-            "adress" : actualPlace['vicinity'],
-
-            "rating" : actualPlace['rating'],
-
-            "opened" : null,
-
-            "name" : actualPlace ['name'],
-
-            "type" : null,
-
-            "types" : actualPlace['types'],
-
-            "icon" : actualPlace['icon'],
-
-            "opening_hours" : null,
-
-            "website" : actualPlace['website'],
-
-            "phone" : actualPlace['formatted_phone_number']
-
-        };
-
-        if( actualPlace['opening_hours'] )
-            placeInformations.opened = actualPlace['opening_hours']['open_now'];
-
-        var isBar = checkIfPlaceIsBar(actualPlace);
-
-        var isRestaurant = checkIfPlaceIsRestaurant(actualPlace);
-
-        if( isBar && isRestaurant)
-        {
-
-            placeInformations.type = "Bar-restaurant";
-
-        }
-        else if ( isBar )
-        {
-
-            placeInformations.type = "Bar";
-
-        }
-        else if ( isRestaurant )
-        {
-
-            placeInformations.type = "Restaurant";
-
-        }
-
-        features[0].properties = placeInformations;
-
-        //map.getSource('places').setData(features[0]);
-
-        var popup = new mapboxgl.Popup({ offset: [0, -15] })
-            .setLngLat(features[0].geometry.coordinates)
-            .setHTML( createMarkerPopupHTML(placeInformations))
-            .setLngLat(features[0].geometry.coordinates)
-            .addTo(map);
-
-    }
-
-}
-
-function createSimpleMarker( placeCoordinates )
-{
-
-    var marker = new  mapboxgl.Marker().setLngLat(JSON.parse( placeCoordinates ));
-
-    var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-    var popupOffsets = {
-        'top': [0, 0],
-        'top-left': [0,0],
-        'top-right': [0,0],
-        'bottom': [0, -markerHeight],
-        'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-        'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-        'left': [markerRadius, (markerHeight - markerRadius) * -1],
-        'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-    };
-
-
-    //marker.setPopup( popup );
-
-    locationsMarkers.push( marker );
-
-    marker.addTo( map );
-
-}
-
-function generateGeoJSON(){
-
-    var parsedBars = JSON.parse(bars);
-
-    var parsedRestaurants = JSON.parse(restaurants);
-
-    var parsedBarRestaurants = JSON.parse(barsRestaurants);
-
-    var geoJSONString = "{\"type\" : \"FeatureCollection\", \"features\":[";
-
-    var geoJSONItem = {
-
-        "type": "Feature",
-
-        "geometry": {
-
-            "type": "Point",
-
-            "coordinates": [null, null]
-
-        },
-
-        "properties": {
-
-            "id" : null,
-
-            "name": null,
-
-            "type" : null,
-
-            "adress" : null,
-
-            "rating" : null,
-
-            "types" : null,
-
-            "icon" : null
-
-        }
-
-    };
-
-    for( var i = 0 ; i < parsedBars.length ; i++ ) {
-
-        geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
-
-        geoJSONItem.geometry.name = parsedBars[i]["name"];
-
-        geoJSONItem.properties.id = parsedBars[i].id;
-
-        geoJSONItem.properties.name = parsedBars[i].name;
-
-        geoJSONItem.properties.type = parsedBars[i].type;
-
-        geoJSONItem.properties.types = parsedBars[i].types;
-
-        geoJSONItem.properties.adress = parsedBars[i].adress;
-
-        geoJSONItem.properties.rating = parsedBars[i].rating;
-
-        geoJSONItem.properties.icon = "Assets/barIcon.png";
-
-        geoJSONString += JSON.stringify( geoJSONItem );
-
-        if( i < parsedBars.length - 1 )
-
-            geoJSONString +=  ',';
-
-    }
-
-    geoJSONString += ',';
-
-    for( var i = 0 ; i < parsedBarRestaurants.length ; i++ ) {
-
-        geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i]["coordinates"]["lng"], parsedBarRestaurants[i]["coordinates"]["lat"]];
-
-        geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
-
-        geoJSONItem.properties.id = parsedBarRestaurants[i].id;
-
-        geoJSONItem.properties.name = parsedBarRestaurants[i].name;
-
-        geoJSONItem.properties.type = parsedBarRestaurants[i].type;
-
-        geoJSONItem.properties.types = parsedBarRestaurants[i].types;
-
-        geoJSONItem.properties.adress = parsedBarRestaurants[i].adress;
-
-        geoJSONItem.properties.rating = parsedBarRestaurants[i].rating;
-
-        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
-
-        geoJSONString += JSON.stringify( geoJSONItem );
-
-        if( i < parsedBarRestaurants.length - 1 )
-
-            geoJSONString +=  ',';
-
-    }
-
-    geoJSONString += ',';
-
-    for( var i = 0 ; i < parsedRestaurants.length ; i++ ) {
-
-        geoJSONItem.geometry.coordinates = [parsedRestaurants[i]["coordinates"]["lng"], parsedRestaurants[i]["coordinates"]["lat"]];
-
-        geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
-
-        geoJSONItem.properties.id = parsedRestaurants[i].id;
-
-        geoJSONItem.properties.name = parsedRestaurants[i].name;
-
-        geoJSONItem.properties.type = parsedRestaurants[i].type;
-
-        geoJSONItem.properties.types = parsedRestaurants[i].types;
-
-        geoJSONItem.properties.adress = parsedRestaurants[i].adress;
-
-        geoJSONItem.properties.rating = parsedRestaurants[i].rating;
-
-        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
-
-        geoJSONString += JSON.stringify( geoJSONItem );
-
-        if( i < parsedRestaurants.length - 1 )
-
-            geoJSONString +=  ',';
-
-    }
-
-    geoJSONString += ']}';
-
-   //DEBUG DISPLAY
-   // console.log(geoJSONString);
-
-}

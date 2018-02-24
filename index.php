@@ -37,15 +37,22 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPv7VFQeI_dNWfE-Y8IXIywMzEzSkNd28&libraries=places"></script>
 
 
-  </head>
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
+
+    <!-- Turf.js plugin -->
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+</head>
 
 <body class="container-fluid">
-<?php include("static/navbar.php"); ?>
+    <?php include("static/navbar.php"); ?>
 
-<div id="map" style="width: 100%; height: 100%;">
-</div>
+    <div id="map">
+    </div>
 
-<script src="js/map.js"></script>
+    <script src="js/map.js"></script>
 
 </body>
 </html>

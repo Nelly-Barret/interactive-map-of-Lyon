@@ -7,9 +7,9 @@
 
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <button class="btn btn-secondary" href="" id="home">Home</button>
-            </li>
+            </li>-->
 
             <li class="nav-item">
                 <div class="dropdown">
@@ -112,3 +112,5 @@
 
 
 <script src="js/animations.js"></script>
+
+
