@@ -171,3 +171,7 @@ $("#resetFilters").on( 'click', function() {
     }
 
 } );
+
+
+/*$(".geocoder-icon-search").after("Hello");*/
+/*$(".geodcoder-icon-search").append("<i class=\"fa fa-search\">");*/

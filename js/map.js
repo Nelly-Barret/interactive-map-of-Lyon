@@ -224,7 +224,7 @@ function init(){
 		'right': [-markerRadius, (markerHeight - markerRadius) * -1]
 	};
  
-	var popup = new mapboxgl.Popup({offset:popupOffsets})
+	var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
 		.setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
 		.setHTML("<h3>Vous êtes ici</h3>")
 		.addTo(map);
@@ -590,7 +590,7 @@ function displayBarRestaurant( barsRestaurants ) {
 			'right': [-markerRadius, (markerHeight - markerRadius) * -1]
 		};
  
-		var popup = new mapboxgl.Popup({offset:popupOffsets})
+		var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
 			.setLngLat(actualRestaurant['coordinates'])
 			.setHTML(createMarkerPopupHTML(actualRestaurant))
 			.addTo(map);
@@ -631,7 +631,7 @@ function displayRestaurant(restaurants)
 			'right': [-markerRadius, (markerHeight - markerRadius) * -1]
 		};
  
-		var popup = new mapboxgl.Popup({offset:popupOffsets})
+		var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
 			.setLngLat(actualRestaurant['coordinates'])
 			.setHTML(createMarkerPopupHTML(actualRestaurant))
 			.addTo(map);
@@ -671,7 +671,7 @@ function displayBars(bars)
 			'right': [-markerRadius, (markerHeight - markerRadius) * -1]
 		};
  
-		var popup = new mapboxgl.Popup({offset:popupOffsets})
+		var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
 			.setLngLat(actualBar['coordinates'])
 			.setHTML(createMarkerPopupHTML(actualBar))
 			.addTo(map);
@@ -691,14 +691,14 @@ function createMarkerPopupHTML(place)
  
 	var state = "closed";
  
-	if (place.opened)
+	if ( place.opened )
 	{
  
 		state = "opened";
  
 	}
  
-	var html;
+	var html = "";
 
 	html += "<p id='popupTitle'>" + place.name + "</p>";
 	html += "<br><a id='popupType'>" + place.type + "</a>";
@@ -719,7 +719,7 @@ function createMarkerPopupHTML(place)
 
 		}
 
-		for(var j = i; j <= 5; j++){
+		for(var j = i; j <= 5; j++) {
 
 			/* add empty stars */
             html += "<i class=\"fa fa-star-o\"></i>";
@@ -1224,7 +1224,7 @@ function getDetailsCallback( result, status, features ) {
  
 		//map.getSource('places').setData(features[0]);
  
-		var popup = new mapboxgl.Popup({ offset: [0, -15] })
+		var popup = new mapboxgl.Popup({ offset: [0, -15], closeButton: false})
 			.setLngLat(features[0].geometry.coordinates)
 			.setHTML(createMarkerPopupHTML(placeInformations))
 			.setLngLat(features[0].geometry.coordinates)
@@ -1418,8 +1418,6 @@ map.addControl( new mapboxgl.GeolocateControl ({
 
 function createGeocoder() {
 
-	console.log("begin of geocoder...");
-
     map.addControl(new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
 
@@ -1429,23 +1427,10 @@ function createGeocoder() {
 		/* standard format: */
 		/* bbox = left,bottom,right,top */
 		/* bbox = min Longitude , min Latitude , max Longitude , max Latitude */
-		bbox: [4.791173, 45.732777, 4.871854, 45.788347]
+		bbox: [mapGridBounds.leftLongitute, mapGridBounds.bottomLatitude, mapGridBounds.rightLongitude, mapGridBounds.topLatitude]
 
 
     }));
-
-    // var geocoder = new MapboxGeocoder({
-    //    accessToken: mapboxgl.accessToken,
-    //    bbox: [-77.210763, 38.803367, -76.853675, 39.052643]
-    //});
-
-    //map.addControl(geocoder, 'top-left');
-
-    //var geocoder = mapbox.geocoder('mapbox.places'), map = mapbox.map('map', 'examples.map-h67hf2ic');
-
-    //geocoder.query('Chester, NJ', showMap);
-
-    console.log("end of geocoder...");
 
 }
 

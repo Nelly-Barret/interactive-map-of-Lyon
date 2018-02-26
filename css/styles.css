@@ -300,11 +300,13 @@ input:checked + .slider:before {
 
 #popupTitle, #popupType {
 
-	color: #FDF5E6; /* OldLace */
+	color: rgba(253, 245, 230, 1); /* OldLace */
 
 	font-family: "Lucida Sans Unicode", Times, serif;
 
 	margin: 0;
+
+	opacity: 1 !important;
 
 	padding: 0;
 
@@ -336,45 +338,15 @@ input:checked + .slider:before {
 
 	margin: 0;
 
+	opacity: 1 !important;
+
 	padding: 0;
 
 }
 
-#popupAddress {
-
-
-
-}
-
-#popupOpen {
-
-
-
-}
-
-#popupRating {
-
-
-
-}
-
-#popupWebsite {
-
-
-
-}
-
-#popupPhone {
-
-
-
-}
-
-/* the anchor */
-
 .mapboxgl-popup-content {
 
-	background-color: #000000 !important;
+	background-color: rgba(0, 0, 0, 0.8) !important;
 
 	color: #FFFFFF;
 
@@ -382,11 +354,11 @@ input:checked + .slider:before {
 
 	margin: 0;
 
-	opacity: 0.8;
-
 	padding: 0;
 
 }
+
+/* the anchor */
 
 /* getting all the anchors and the tips of popup */
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
@@ -423,20 +395,20 @@ input:checked + .slider:before {
 
 }
 
-
 /* geocoder */
+
 .mapboxgl-ctrl-geocoder {
-	border: 0;
-	border-radius: 0;
-	position: relative;
-	top: 0;
-	width: 800px;
-	margin-top: 0;
+
+	margin-right: 20px !important;
+
+	margin-top: 20px !important;
+
 }
 
-.mapboxgl-ctrl-geocoder > div {
-	min-width: 100%;
-	margin-left: 0;
+.mapboxgl-ctrl-geocoder input[type='text'] {
+
+	background-color: rgba(255, 255, 255, 0.8) !important;
+
 }
 
 
