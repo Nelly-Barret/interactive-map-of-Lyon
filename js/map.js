@@ -33,7 +33,9 @@ var placeInformations;      // Informations about places: contains ID, latitude 
 var JSONSaveFileName = "";  // Name of the JSON data file
  
 var JSONFile;               // File that store JSON data
- 
+
+var geoJSON = "";			// Geojson
+
 var locationsMarkers = [];  // Array with allthe markers
  
 var requestItemsNumber;     // Number of items requested
@@ -97,7 +99,7 @@ function init(){
     map.on('click', function ( element ) {
 
         var features = map.queryRenderedFeatures(element.point, {
-            layers: ['unclustered-point'] // replace this with the name of the layer
+            layers: ['placeSymbol'] // replace this with the name of the layer
         });
 
         if (!features.length) {
@@ -160,11 +162,9 @@ function mapInitialisation(userCoordinates) {
 
         map.addSource("places", {
             type: "geojson",
-            // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-            // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
             data: "JSON/places.geojson",
             cluster: true,
-            clusterMaxZoom: 14, // Max zoom to cluster points on
+            clusterMaxZoom: 17, // Max zoom to cluster points on
             clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
         });
 
@@ -174,11 +174,6 @@ function mapInitialisation(userCoordinates) {
             source: "places",
             filter: ["has", "point_count"],
             paint: {
-                // Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-                // with three steps to implement three types of circles:
-                //   * Blue, 20px circles when point count is less than 100
-                //   * Yellow, 30px circles when point count is between 100 and 750
-                //   * Pink, 40px circles when point count is greater than or equal to 750
                 "circle-color": [
                     "step",
                     ["get", "point_count"],
@@ -212,7 +207,7 @@ function mapInitialisation(userCoordinates) {
             }
         });
 
-        map.addLayer({
+       /* map.addLayer({
             id: "unclustered-point",
             type: "circle",
             source: "places",
@@ -224,6 +219,23 @@ function mapInitialisation(userCoordinates) {
                 "circle-stroke-color": "#fff"
             }
         });
+*/
+        var width = 12; // The image will be 64 pixels square
+        var bytesPerPixel = 4; // Each pixel is represented by 4 bytes: red, green, blue, and alpha.
+        var data = new Uint8Array(width * width * bytesPerPixel);
+
+        for (var x = 0; x < width; x++) {
+            for (var y = 0; y < width; y++) {
+                var offset = (y * width + x) * bytesPerPixel;
+                data[offset + 0] = 12; // red
+                data[offset + 1] = 87; // green
+                data[offset + 2] = 128;             // blue
+                data[offset + 3] = 255;             // alpha
+            }
+        }
+
+        map.addImage('gradient', {width: width, height: width, data: data});
+
 
         map.addLayer({
 
@@ -241,15 +253,19 @@ function mapInitialisation(userCoordinates) {
 
                 "text-offset": [0, 0.6],
 
-                "text-anchor": "top"
+                "text-anchor": "top",
+
+				"icon-image" : "gradient",
+
+				"icon-allow-overlap" : true
+
             },
 
             paint: {
 
-                "text-halo-color" : "rgba(0,0,0,0)"
+                "text-halo-color" : "rgba(0,0,0,1)"
 
             }
-
 
         });
 
@@ -276,7 +292,7 @@ function mapInitialisation(userCoordinates) {
         'right': [-markerRadius, (markerHeight - markerRadius) * -1]
     };
 
-    var popup = new mapboxgl.Popup({offset:popupOffsets})
+    var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
         .setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
         .setHTML("<h3 id='youAreHere' >You are here</h3>")
         .addTo(map);
@@ -1804,8 +1820,6 @@ function getPlacesOffline( location, price, rating, type ) {
             if (barsRestaurantsJSON.length != 0)
                // displayBarRestaurant( JSON.stringify( barsRestaurantsJSON ) );
 
-            console.log( "Bars : " + barJSON.length + " restaurants : " + restaurantsJSON.length + " bar-restaurant : " + barsRestaurantsJSON.length );
-
             break;
 
         case 1:
@@ -2269,6 +2283,12 @@ function generateGeoJSON(){
     }
 
     geoJSONString += ']}';
+
+    geoJSON = geoJSONString;
+
+    map.getSource("places").setData(JSON.parse(geoJSONString));
+
+
 
    //DEBUG DISPLAY
    // console.log(geoJSONString);
