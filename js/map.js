@@ -97,9 +97,24 @@ function init(){
     map = mapInitialisation(userCoordinates);
 
     map.on('click', function ( element ) {
+/*
+        var coordinates = element.features[0].geometry.coordinates.slice();
+        var description = element.features[0].properties.description;
 
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(element.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += element.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+*/
         var features = map.queryRenderedFeatures(element.point, {
-            layers: ['placeSymbol'] // replace this with the name of the layer
+            layers: ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'] // replace this with the name of the layer
         });
 
         if (!features.length) {
@@ -220,7 +235,7 @@ function mapInitialisation(userCoordinates) {
             }
         });
 */
-        var width = 12; // The image will be 64 pixels square
+      /*  var width = 12; // The image will be 64 pixels square
         var bytesPerPixel = 4; // Each pixel is represented by 4 bytes: red, green, blue, and alpha.
         var data = new Uint8Array(width * width * bytesPerPixel);
 
@@ -232,42 +247,80 @@ function mapInitialisation(userCoordinates) {
                 data[offset + 2] = 128;             // blue
                 data[offset + 3] = 255;             // alpha
             }
-        }
+        }*/
 
-        map.addImage('gradient', {width: width, height: width, data: data});
+       // map.addImage('gradient', {width: width, height: width, data: data});
+        map.loadImage('Assets/barIcon.png', function(error, image) {
 
-
-        map.addLayer({
-
-            id: "placeSymbol",
-
-            type: "symbol",
-
-            source: "places",
-
-            layout: {
-
-                "text-field": "{name}",
-
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-
-                "text-offset": [0, 0.6],
-
-                "text-anchor": "top",
-
-				"icon-image" : "gradient",
-
-				"icon-allow-overlap" : true
-
-            },
-
-            paint: {
-
-                "text-halo-color" : "rgba(0,0,0,1)"
-
-            }
+            map.addImage('barIcon', image);
 
         });
+
+		map.addLayer({
+			id: "barPlaceSymbol",
+			type: "symbol",
+			source: "places",
+			filter : ['==', 'type', "Bar"],
+			layout: {
+				"text-field": "{name}",
+				"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+				"text-offset": [0, 0.6],
+				"text-anchor": "top",
+				"icon-image": "barIcon",
+				"icon-size" : 0.3
+			},
+			paint: {
+				"text-halo-color": "rgba(0,0,0,1)"
+			}
+		});
+
+        map.loadImage('Assets/restaurantIcon.png', function(error, image) {
+
+            map.addImage('restaurantIcon', image);
+
+        });
+
+		map.addLayer({
+			id: "restaurantPlaceSymbol",
+			type: "symbol",
+			source: "places",
+			filter : ['==','type', 'Restaurant'],
+			layout: {
+				"text-field": "{name}",
+				"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+				"text-offset": [0, 0.6],
+				"text-anchor": "top",
+				"icon-image": "restaurantIcon",
+				"icon-size" : 0.3
+			},
+			paint: {
+				"text-halo-color": "rgba(0,0,0,1)"
+			}
+		});
+
+        map.loadImage('Assets/cafeIcon.png', function(error, image) {
+
+            map.addImage('barRestaurantIcon', image);
+
+        });
+
+		map.addLayer({
+			id: "barRestaurantPlaceSymbol",
+			type: "symbol",
+			source: "places",
+			filter : ['==', 'type', 'Bar-restaurant'],
+			layout: {
+				"text-field": "{name}",
+				"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+				"text-offset": [0, 0.6],
+				"text-anchor": "top",
+				"icon-image": "barRestaurantIcon",
+				"icon-size" : 0.3
+			},
+			paint: {
+				"text-halo-color": "rgba(0,0,0,1)"
+			}
+		});
 
     });
 
@@ -1217,8 +1270,6 @@ function closeJSONCallback(value)
 function getDetailsCallback( result, status, features ) {
  
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
- 
-		console.log("callback");
  
 		var actualPlace = result;
  
