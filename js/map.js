@@ -181,23 +181,10 @@ function init(){
 
     map = mapInitialisation(userCoordinates);
 
+    // event
+
     map.on('click', function ( element ) {
-/*
-        var coordinates = element.features[0].geometry.coordinates.slice();
-        var description = element.features[0].properties.description;
 
-        // Ensure that if the map is zoomed out such that multiple
-        // copies of the feature are visible, the popup appears
-        // over the copy being pointed to.
-        while (Math.abs(element.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += element.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
-
-        new mapboxgl.Popup()
-            .setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(map);
-*/
         var features = map.queryRenderedFeatures(element.point, {
             layers: ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'] // replace this with the name of the layer
         });
@@ -219,6 +206,23 @@ function init(){
             getDetailsCallback(result, status, features);
 
         } );
+
+    });
+
+    var goButton = document.getElementById("go");
+
+   	goButton.addEventListener("click", function () {
+
+   		var activeLayers = ['restaurantPlaceSymbol', "barPlaceSymbol", "barRestaurantPlaceSymbol"];
+
+        for(var i in activeLayers)
+        {
+
+            map.setFilter( activeLayers[i], ['==', 'rating', 4]);
+
+        }
+
+		//filterMap();
 
     });
 
@@ -352,7 +356,8 @@ function mapInitialisation(userCoordinates) {
 				"text-offset": [0, 0.6],
 				"text-anchor": "top",
 				"icon-image": "barIcon",
-				"icon-size" : 0.3
+				"icon-size" : 0.3,
+				"visibility" : 'visible'
 			},
 			paint: {
 				"text-halo-color": "rgba(0,0,0,1)"
@@ -376,7 +381,8 @@ function mapInitialisation(userCoordinates) {
 				"text-offset": [0, 0.6],
 				"text-anchor": "top",
 				"icon-image": "restaurantIcon",
-				"icon-size" : 0.3
+				"icon-size" : 0.3,
+                "visibility" : 'visible'
 			},
 			paint: {
 				"text-halo-color": "rgba(0,0,0,1)"
@@ -400,7 +406,8 @@ function mapInitialisation(userCoordinates) {
 				"text-offset": [0, 0.6],
 				"text-anchor": "top",
 				"icon-image": "barRestaurantIcon",
-				"icon-size" : 0.3
+				"icon-size" : 0.3,
+                "visibility" : 'visible'
 			},
 			paint: {
 				"text-halo-color": "rgba(0,0,0,1)"
@@ -1366,7 +1373,7 @@ function closeJSONCallback(value)
 function getDetailsCallback( result, status, features ) {
  
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
- 
+
 		var actualPlace = result;
  
 		placeInformations = {
@@ -1740,6 +1747,108 @@ function filterFunction( value, location, price, rating ) {
     var trueLongitude = Math.abs( location.lng - value.coordinates.lng ) <= lngVariance/2;
 
     return trueLatitude && trueLongitude;
+
+}
+
+function filterMap()
+{
+
+	var restaurantButton = document.getElementById("restaurantButton");
+
+	var barButton = document.getElementById("barButton");
+
+	var barRestaurantButton = document.getElementById("barRestaurantButton");
+
+
+	var typeButtons = [restaurantButton, barButton, barRestaurantButton];
+
+
+    var priceButton1 = document.getElementById("priceButton1");
+
+    var priceButton2 = document.getElementById("priceButton2");
+
+    var priceButton3 = document.getElementById("priceButton3");
+
+    var priceButton4 = document.getElementById("priceButton4");
+
+
+    var priceButtons = [priceButton1, priceButton2, priceButton3, priceButton4];
+
+
+    var starButton1 = document.getElementById("starButton1");
+
+    var starButton2 = document.getElementById("starButton2");
+
+    var starButton3 = document.getElementById("starButton3");
+
+    var starButton4 = document.getElementById("starButton4");
+
+    var starButton5 = document.getElementById("starButton5");
+
+
+    var starButtons = [starButton1, starButton2, starButton3, starButton4, starButton5];
+
+
+    var aroundMeButton = document.getElementById("aroundMe");
+
+    var openedNowButton = document.getElementById("openedNow");
+
+
+	var filter = {
+
+		types: [false, false, false],
+
+		price : 0,
+
+		rating : 0,
+
+		aroundMe : aroundMeButton.checked,
+
+		opened : openedNowButton.checked
+
+	};
+
+	for (var i = 0 ; i < typeButtons.length ; i ++) {
+
+        filter.types[i] = typeButtons[i].data('clicked');
+
+    }
+
+	for (var i = 0 ; i < priceButtons.length && priceButtons[i].data('clicked') ; i ++) {
+
+        filter.price++;
+
+    }
+
+    for (var i = 0 ; i < starButtons.length && starButtons[i].data('clicked') ; i ++) {
+
+        filter.rating++;
+
+    }
+
+    var activeLayers = [];
+
+    if(filter.types[0] == false)
+    	map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'none');
+    else
+    	activeLayers.push('restaurantPlaceSymbol');
+
+	if(filter.types[0] == false)
+		map.setLayoutProperty('barPlaceSymbol', 'visibility', 'none');
+	else
+		activeLayers.push('barPlaceSymbol');
+
+	if(filter.types[0] == false)
+		map.setLayoutProperty('barRestaurantSymbol', 'visibility', 'none');
+	else
+		activeLayers.push('barRestaurantSymbol');
+
+	for(var i in activeLayers)
+	{
+
+        map.setFilter( activeLayers[i], ['==', 'rating', filter.rating]);
+
+	}
 
 }
 
