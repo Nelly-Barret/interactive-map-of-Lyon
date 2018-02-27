@@ -1427,8 +1427,9 @@ function createGeocoder() {
 		/* standard format: */
 		/* bbox = left,bottom,right,top */
 		/* bbox = min Longitude , min Latitude , max Longitude , max Latitude */
-		bbox: [mapGridBounds.leftLongitute, mapGridBounds.bottomLatitude, mapGridBounds.rightLongitude, mapGridBounds.topLatitude]
+		bbox: [mapGridBounds.leftLongitute, mapGridBounds.bottomLatitude, mapGridBounds.rightLongitude, mapGridBounds.topLatitude],
 
+		types: "place"
 
     }));
 
@@ -1448,22 +1449,3 @@ function showMap(err, data) {
 }
 
 */
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

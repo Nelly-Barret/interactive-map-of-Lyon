@@ -71,6 +71,10 @@ body {
 
 	background-color: white;
 
+	height: 50px;
+
+	color: black;
+
 }
 
 /* for the navbar's buttons */
@@ -83,7 +87,7 @@ nav button {
 
 }
 
-.dropdown-menu {
+#dropdownMenu {
 
 	background-color: rgba(0, 0, 0, 0.8);
 
@@ -101,11 +105,17 @@ nav button {
 
 /* to remove highlight when hover a link */
 
-.dropdown-menu > a:hover {
+#dropdownMenu > a:hover {
 
 	background-color: rgba(0, 0, 0, 0); /* r g b opacity */
 
 	border-radius: 50px !important;
+
+}
+
+.dropdown-toggle::after {
+
+	display: none !important; /* remove the arrow */
 
 }
 
@@ -290,10 +300,6 @@ input:checked + .slider:before {
 
 
 /*******************************************************************/
-/* rating stars */
-
-
-/*******************************************************************/
 /* popup */
 
 /* Using id instead of class, classes don't work */
@@ -405,9 +411,9 @@ input:checked + .slider:before {
 
 }
 
-.mapboxgl-ctrl-geocoder input[type='text'] {
+.mapboxgl-ctrl-geocoder input[type='text'], .mapboxgl-ctrl-geocoder, .mapboxgl-ctrl {
 
-	background-color: rgba(255, 255, 255, 0.8) !important;
+	background-color: rgba(255, 255, 255, 0.7) !important;
 
 }
 
