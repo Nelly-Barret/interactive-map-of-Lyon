@@ -2,27 +2,27 @@
 <nav class="navbar navbar-expand-* navbar-light bg-light" id="navMenu" role="navigation">
     <!-- the button is available if it's a mobile size -->
     <button class="navbar-toggler" type="button" id="togglerButton" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span>Filters</span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <button class="btn btn-secondary" href="" id="home">Home</button>
-            </li>
+            </li>-->
 
             <li class="nav-item">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--<div class="dropdown">-->
+                    <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filters
-                    </button>
-                    <div class="dropdown-menu" id="dropdownMenu" aria-labelledby="dropdownFilters">
+                    </button>-->
+                    <div class="dropdown-toggle" id="dropdownMenu" aria-labelledby="dropdownFilters" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                         <!-- filters -->
                         <a class="dropdown-item">Type
                             <div class="container alignLeft">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <div id="typeContainer"><button type="button" class="btn btnType">Restaurant</button><button type="button" class="btn btnType">Bar</button><button type="button" class="btn btnType">Bar-Restaurant</button></div>
+                                        <div id="typeContainer"><button id="restaurantButton" type="button" class="btn btnType">Restaurant</button><button id="barButton" type="button" class="btn btnType">Bar</button><button id="barRestaurantButton" type="button" class="btn btnType">Bar-Restaurant</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <!-- we couldn't have breaklines between buttons => childnodes returns #text -->
-                                        <div id="currencyContainer"><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="btnPriceBr" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button></div>
+                                        <div id="currencyContainer"><button id="priceButton1" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i></button><button id="priceButton2" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="priceButton3" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="priceButton4" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button></div>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <!-- we couldn't have breaklines between buttons => childnodes returns #text -->
-                                        <div class="starContainer" id="starContainer"><button type="btn" id="1" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="2" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="3" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="4" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="5" class="btnStar btn"><span class="fa fa-star"></span></button></div>
+                                        <div class="starContainer" id="starContainer"><button type="btn" id="starButton1" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton2" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton3" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton4" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton5" class="btnStar btn"><span class="fa fa-star"></span></button></div>
                                     </div>
                                 </div>
                             </div>
@@ -76,21 +76,21 @@
                             <button class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button>
                         </a>
                     </div>
-                </div>
+                <!--</div>-->
             </li>
 
-            <!-- search box -->
+            <!-- search box --
             <li class="nav-item">
-                <!-- data-target argument call the part of the code for displaying the modal -->
+                <!-- data-target argument call the part of the code for displaying the modal --
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSearch">
                     Search <i class="fa fa-search"></i>
                 </button>
-            </li>
+            </li>-->
         </ul>
     </div>
 </nav>
 
-<!-- modal for search -->
+<!-- modal for search
 <div class="modal fade" id="modalSearch" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -109,6 +109,8 @@
         </div>
     </div>
 </div>
-
+-->
 
 <script src="js/animations.js"></script>
+
+

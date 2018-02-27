@@ -14,6 +14,10 @@ html {
 
 	height: 100%;
 
+	margin: 0 !important;
+
+	padding: 0 !important;
+
 }
 
 body {
@@ -22,12 +26,31 @@ body {
 
 	height: 100%;
 
-	margin: 0; /* no unit when it's 0 */
+	margin: 0 !important; /* no unit when it's 0 */
 
-	padding: 0;
+	padding: 0 !important;
 
 }
 
+#map {
+
+	bottom:0;
+
+	left: 0;
+
+	margin: 0 !important;
+
+	padding:0 !important;
+
+	position:absolute;
+
+	right: 0;
+
+	top:0;
+
+	width:100%;
+
+}
 
 /*******************************************************************/
 /* navbar */
@@ -48,6 +71,10 @@ body {
 
 	background-color: white;
 
+	height: 50px;
+
+	color: black;
+
 }
 
 /* for the navbar's buttons */
@@ -60,7 +87,7 @@ nav button {
 
 }
 
-.dropdown-menu {
+#dropdownMenu {
 
 	background-color: rgba(0, 0, 0, 0.8);
 
@@ -68,23 +95,27 @@ nav button {
 
 	color: white;
 
-	margin-top: 10px; /* no space between the button "filters" and the dropdown menu */
+	margin: 0 0 0 0; /* 10 0 0 0 */
 
-	margin-left: 0;
+	padding-bottom: 20px;
 
-	margin-right: 0;
-
-	padding: 20px;
+	width: 395px;
 
 }
 
 /* to remove highlight when hover a link */
 
-.dropdown-menu > a:hover {
+#dropdownMenu > a:hover {
 
-	background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0); /* r g b opacity */
 
 	border-radius: 50px !important;
+
+}
+
+.dropdown-toggle::after {
+
+	display: none !important; /* remove the arrow */
 
 }
 
@@ -269,83 +300,19 @@ input:checked + .slider:before {
 
 
 /*******************************************************************/
-/* rating stars */
-/*
-.rating-box {
-	color: #FFFFFF; /* white *
-	margin: 0;
-	height: 50px;
-	width: 100px;
-}
-
-
-.rating-star{
-	font-size: 20px;
-	width: 20px;
-	height: 20px;
-	padding: 0;
-	position: relative;
-	display: block;
-	float:left;
-}
-
-.full-star:before {
-	color: #f2b01e; /* yellow *
-	content: "\2605"; /* star symbol *
-	position: absolute;
-	left: 0;
-	overflow: hidden;
-}
-
-.empty-star:before {
-	content: "\2605";
-	position: absolute;
-	left: 0;
-	overflow: hidden;
-}
-
-.half-star:before {
-	color: #f2b01e;
-	content: "\2605";
-	width: 50%;
-	position: absolute;
-	left: 0;
-	overflow: hidden;
-}
-
-.half-star:after {
-	content: '\2605';
-	position: absolute;
-	left: 1.5rem;
-	width: 50%;
-	text-indent: -1.5rem;
-	overflow: hidden;
-}*/
-
-
-span.stars, span.stars span {
-	display: block;
-	background: url("../img/stars.png") 0 -16px repeat-x;
-	width: 80px;
-	height: 16px;
-}
-
-span.stars span {
-	background-position: 0 0;
-}
-
-/*******************************************************************/
 /* popup */
 
 /* Using id instead of class, classes don't work */
 
 #popupTitle, #popupType {
 
-	color: #FDF5E6; /* OldLace */
+	color: rgba(253, 245, 230, 1); /* OldLace */
 
 	font-family: "Lucida Sans Unicode", Times, serif;
 
 	margin: 0;
+
+	opacity: 1 !important;
 
 	padding: 0;
 
@@ -377,45 +344,15 @@ span.stars span {
 
 	margin: 0;
 
+	opacity: 1 !important;
+
 	padding: 0;
 
 }
 
-#popupAddress {
-
-
-
-}
-
-#popupOpen {
-
-
-
-}
-
-#popupRating {
-
-
-
-}
-
-#popupWebsite {
-
-
-
-}
-
-#popupPhone {
-
-
-
-}
-
-/* the anchor */
-
 .mapboxgl-popup-content {
 
-	background-color: #000000 !important;
+	background-color: rgba(0, 0, 0, 0.8) !important;
 
 	color: #FFFFFF;
 
@@ -423,11 +360,11 @@ span.stars span {
 
 	margin: 0;
 
-	opacity: 0.8;
-
 	padding: 0;
 
 }
+
+/* the anchor */
 
 /* getting all the anchors and the tips of popup */
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
@@ -461,6 +398,22 @@ span.stars span {
 	border-left-color: #000000 !important;
 
 	opacity: 0.8;
+
+}
+
+/* geocoder */
+
+.mapboxgl-ctrl-geocoder {
+
+	margin-right: 20px !important;
+
+	margin-top: 20px !important;
+
+}
+
+.mapboxgl-ctrl-geocoder input[type='text'], .mapboxgl-ctrl-geocoder, .mapboxgl-ctrl {
+
+	background-color: rgba(255, 255, 255, 0.7) !important;
 
 }
 

@@ -93,6 +93,91 @@ function init(){
 	};
 
 // Mapbox generation with API key authentication
+ 
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
+ 
+	map = new mapboxgl.Map({
+ 
+		container: 'map',
+ 
+		center: [ userCoordinates.userLongitude, userCoordinates.userLatitude ],
+ 
+		zoom: 13,
+ 
+		style: 'mapbox://styles/mapbox/streets-v9'
+ 
+	});
+
+	map.on('load', function () {
+ 
+		map.addSource("places", {
+			type: "geojson",
+			// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+			// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+			data: "JSON/places.geojson",
+			cluster: true,
+			clusterMaxZoom: 14, // Max zoom to cluster points on
+			clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+		});
+
+		map.addLayer({
+			id: "clusters",
+			type: "circle",
+			source: "places",
+			filter: ["has", "point_count"],
+			paint: {
+				// Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+				// with three steps to implement three types of circles:
+				//   * Blue, 20px circles when point count is less than 100
+				//   * Yellow, 30px circles when point count is between 100 and 750
+				//   * Pink, 40px circles when point count is greater than or equal to 750
+				"circle-color": [
+					"step",
+					["get", "point_count"],
+					"#51bbd6",
+					100,
+					"#e9f154",
+					750,
+					"#f25525"
+				],
+				"circle-radius": [
+					"step",
+					["get", "point_count"],
+					20,
+					100,
+					30,
+					750,
+					40
+				]
+			}
+		});
+
+		map.addLayer({
+			id: "cluster-count",
+			type: "symbol",
+			source: "places",
+			filter: ["has", "point_count"],
+			layout: {
+				"text-field": "{point_count_abbreviated}",
+				"text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+				"text-size": 12
+			}
+		});
+ 
+		map.addLayer({
+			id: "unclustered-point",
+			type: "circle",
+			source: "places",
+			filter: ["!has", "point_count"],
+			paint: {
+				"circle-color": "#11b4da",
+				"circle-radius": 8,
+				"circle-stroke-width": 1,
+				"circle-stroke-color": "#fff"
+			}
+		});
+ 
+	});
 
     map = mapInitialisation(userCoordinates);
 
@@ -329,7 +414,7 @@ function mapInitialisation(userCoordinates) {
 	getUserLocation();
  
 // Creation of user marker on map
-
+ 
     userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
     var markerHeight = 50, markerRadius = 10, linearOffset = 25;
@@ -374,9 +459,9 @@ function mapInitialisation(userCoordinates) {
 
     googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
-    return map;
 
-
+    createGeocoder();
+ 
 }
 
 //############################################################//
@@ -710,7 +795,7 @@ function displayBarRestaurant( barsRestaurants ) {
 			'right': [-markerRadius, (markerHeight - markerRadius) * -1]
 		};
  
-		var popup = new mapboxgl.Popup({offset:popupOffsets})
+		var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
 			.setLngLat(actualRestaurant['coordinates'])
 			.setHTML(createMarkerPopupHTML(actualRestaurant))
 			.addTo(map);
@@ -751,7 +836,7 @@ function displayRestaurant(restaurants)
 			'right': [-markerRadius, (markerHeight - markerRadius) * -1]
 		};
  
-		var popup = new mapboxgl.Popup({offset:popupOffsets})
+		var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
 			.setLngLat(actualRestaurant['coordinates'])
 			.setHTML(createMarkerPopupHTML(actualRestaurant))
 			.addTo(map);
@@ -791,7 +876,7 @@ function displayBars(bars)
 			'right': [-markerRadius, (markerHeight - markerRadius) * -1]
 		};
  
-		var popup = new mapboxgl.Popup({offset:popupOffsets})
+		var popup = new mapboxgl.Popup({offset:popupOffsets, closeButton: false})
 			.setLngLat(actualBar['coordinates'])
 			.setHTML(createMarkerPopupHTML(actualBar))
 			.addTo(map);
@@ -809,40 +894,51 @@ function displayBars(bars)
 function createMarkerPopupHTML(place)
 {
  
-	var state = "closed"
+	var state = "closed";
  
-	if (place.opened)
+	if ( place.opened )
 	{
  
-		state = "opened"
+		state = "opened";
  
 	}
  
-	var html =
-		"<p id='popupTitle'>" + place.name + "</p>"
-		+ "<br><a id='popupType'>" + place.type + "</a>"
-		+ "<br><a id='popupAddress' target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
+	var html = "";
+
+	html += "<p id='popupTitle'>" + place.name + "</p>";
+	html += "<br><a id='popupType'>" + place.type + "</a>";
+	html += "<br><a id='popupAddress' target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>";
  
 	if( place.opened != null )
 		html += "<br><p id='popupOpen'>Now: " + state + "</p>";
  
-	if( place.rating != null )
-		html += "<br><p id='popupRating'>Rating: "
-		/*+ "<div class='rating-box'>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "<span id='" + place.rating + "' class='rating-star full-star'></span>"
-		+ "</div></p>";*/
+	if( place.rating != null ) {
+		html += "<br><p id='popupRating'>Rating: ";
 
-	+"<span class='stars'>" + place.rating + "</span>"
+		var i;
+
+		for(i = 1; i < place.rating ; i++) {
+
+			/* add full stars */
+            html += "<i class=\"fa fa-star\"></i>";
+
+		}
+
+		for(var j = i; j <= 5; j++) {
+
+			/* add empty stars */
+            html += "<i class=\"fa fa-star-o\"></i>";
+
+		}
+
+		html += "</p>";
+    }
 
 	if( place.website != null )
 		html += "<br><a id='popupWebsite' target=\"_blank\" href=\"" + place.website + "\"> Website </a>";
  
 	if( place.phone != null )
-		html += "<br><p id='popupPhone'>Phone: " + place.phone + "</p>";
+		html += "<br><p id='popupPhone'>Phone: <a href=\"tel:" + place.phone + "\"</a>"+ place.phone + "</p>";
  
 	return html;
  
@@ -1331,7 +1427,7 @@ function getDetailsCallback( result, status, features ) {
  
 		//map.getSource('places').setData(features[0]);
  
-		var popup = new mapboxgl.Popup({ offset: [0, -15] })
+		var popup = new mapboxgl.Popup({ offset: [0, -15], closeButton: false})
 			.setLngLat(features[0].geometry.coordinates)
 			.setHTML(createMarkerPopupHTML(placeInformations))
 			.setLngLat(features[0].geometry.coordinates)
@@ -1520,311 +1616,40 @@ map.addControl( new mapboxgl.GeolocateControl ({
 }));*/
  
 // JSONS
- 
-function displayPlaces( bars, restaurants, barsRestaurants )
-{
-//REWORK TO DO WITH LAYER
-   // displayBars( bars );
 
-    //displayRestaurant( restaurants );
 
-    //displayBarRestaurant( barsRestaurants );
+
+function createGeocoder() {
+
+    map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+
+        country: 'fr', /* limit results to France */
+
+		/* bounding box: area defined by two longitudes and two latitudes. */
+		/* standard format: */
+		/* bbox = left,bottom,right,top */
+		/* bbox = min Longitude , min Latitude , max Longitude , max Latitude */
+		bbox: [mapGridBounds.leftLongitute, mapGridBounds.bottomLatitude, mapGridBounds.rightLongitude, mapGridBounds.topLatitude],
+
+		types: "place"
+
+    }));
 
 }
 
-function displayBarRestaurant( barsRestaurants ) {
-
-    var barRestaurantsArray = JSON.parse( barsRestaurants );
-
-    for( var i = 0; i < barRestaurantsArray.length; i++)
-    {
-
-        var actualRestaurant = barRestaurantsArray[i];
-
-        var marker = new  mapboxgl.Marker().setLngLat(JSON.parse(JSON.stringify(actualRestaurant['coordinates'])));
-
-        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-        var popupOffsets = {
-            'top': [0, 0],
-            'top-left': [0,0],
-            'top-right': [0,0],
-            'bottom': [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        };
-
-        var popup = new mapboxgl.Popup({offset:popupOffsets})
-            .setLngLat(actualRestaurant['coordinates'])
-            .setHTML(createMarkerPopupHTML(actualRestaurant))
-            .addTo(map);
-
-        marker.setPopup( popup );
-
-        locationsMarkers.push( marker );
-
-        marker.addTo( map );
 
 
+function showMap(err, data) {
+    // The geocoder can return an area, like a city, or a
+    // point, like an address. Here we handle both cases,
+    // by fitting the map bounds to an area or zooming to a point.
+    if (data.lbounds) {
+        map.fitBounds(data.lbounds);
+    } else if (data.latlng) {
+        map.setView([data.latlng[0], data.latlng[1]], 13);
     }
-
 }
-
-function displayRestaurant(restaurants)
-{
-
-    var restaurantsArray = JSON.parse(restaurants);
-
-    for( var i = 0; i < restaurantsArray.length; i++)
-    {
-
-        var actualRestaurant = restaurantsArray[i];
-
-        var marker = new  mapboxgl.Marker().setLngLat(JSON.parse(JSON.stringify(actualRestaurant['coordinates'])));
-
-        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-        var popupOffsets = {
-            'top': [0, 0],
-            'top-left': [0,0],
-            'top-right': [0,0],
-            'bottom': [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        };
-
-        var popup = new mapboxgl.Popup({offset:popupOffsets})
-            .setLngLat(actualRestaurant['coordinates'])
-            .setHTML(createMarkerPopupHTML(actualRestaurant))
-            .addTo(map);
-
-        marker.setPopup( popup );
-
-        locationsMarkers.push( marker );
-
-        marker.addTo( map );
-
-    }
-
-}
-
-function displayBars(bars)
-{
-
-    var barsArray = JSON.parse(bars);
-
-    for( var i = 0; i < barsArray.length; i++)
-    {
-
-        var actualBar = barsArray[i];
-
-        var marker = new  mapboxgl.Marker().setLngLat(JSON.parse(JSON.stringify(actualBar['coordinates'])));
-
-        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-        var popupOffsets = {
-            'top': [0, 0],
-            'top-left': [0,0],
-            'top-right': [0,0],
-            'bottom': [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        };
-
-        var popup = new mapboxgl.Popup({offset:popupOffsets})
-            .setLngLat(actualBar['coordinates'])
-            .setHTML(createMarkerPopupHTML(actualBar))
-            .addTo(map);
-
-        marker.setPopup( popup );
-
-        locationsMarkers.push( marker );
-
-        marker.addTo( map );
-
-    }
-
-}
-
-function createMarkerPopupHTML(place)
-{
-
-    var state = "fermé"
-
-    if (place.opened)
-    {
-
-        state = "ouvert"
-
-    }
-
-    var html =
-        "<h5>" + place.name + "</h5>"
-        + "<br><a style='text-align: center'>" + place.type + "</a>"
-        + "<br><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>"
-
-    if( place.opened != null )
-        html += "<br><a>Actuellement : " + state + "</a>";
-
-    if( place.rating != null )
-        html += "<br><a>Note : " + place.rating + "/5</a>";
-
-    if( place.website != null )
-        html += "<br><a target=\"_blank\" href='" + place.website + "'> Site web </a>";
-
-    if( place.phone != null )
-        html += "<br><a>Tèl : " + place.phone + "</a>";
-
-    return html;
-
-}
-
-function clearMap()
-{
-
-    for(var i = 0; i < locationsMarkers.length; i++)
-    {
-
-        locationsMarkers[i].remove();
-
-    }
-
-    locationsMarkers = [];
-
-}
-
-//############################################################//
-// Tests functions
-
-function checkIfPlaceIsBar(place) {
-
-    for(var i = 0; i < place.types.length; i++)
-    {
-
-        if ( place.types[i] === "bar" )
-            return true;
-
-    }
-
-    return false;
-
-}
-
-function checkIfPlaceIsRestaurant(place) {
-
-    for(var i = 0; i < place.types.length; i++)
-    {
-
-        if ( place.types[i] === "restaurant" )
-            return true;
-
-    }
-
-    return false;
-
-}
-//############################################################//
-// Offline functions
-
-//############################################################//
-// Function that crawls over Lyon to fetch sectors
-
-function fetchAllPlaces( timeInterval ) {
-
-    //if (barsRestaurants.length === 0 || restaurants.length === 0 || bars.length === 0) {
-
-    barsRestaurants = "[";
-
-    bars = "[";
-
-    restaurants = "[";
-
-    counter = 0;
-
-    var baseCoordinates = {
-
-        lat: 45.788347,
-
-        lng: 4.791173
-
-    };
-
-    var coordinates = {
-
-        lat: 45.788347,
-
-        lng: 4.791173
-
-    };
-
-    var interval = setInterval(function () {
-
-        var location = new mapboxgl.LngLat( coordinates.lng.toFixed(6), coordinates.lat.toFixed(6) );
-
-        var request = {
-
-            location: location,
-
-            types: ["bar", "restaurant"], // Deprecated
-
-            radius: 150
-
-        };
-
-        // test marker
-
-        var marker = new  mapboxgl.Marker().setLngLat( location ).addTo(map);
-
-        // console.log("fetch with lat: " + coordinates.lat.toFixed(6) + " and lng: "+ coordinates.lng.toFixed(6) );
-
-        googlePlacesAPIService.nearbySearch( request, fetchCallBack );
-
-        if (coordinates.lat <= mapGridBounds.bottomLatitude) {
-
-            clearInterval(interval);
-
-        }
-
-        if (coordinates.lng > mapGridBounds.rightLongitude) {
-
-            coordinates.lng = baseCoordinates.lng;
-
-            coordinates.lat -= latVariance;
-
-        } else {
-
-            coordinates.lng += lngVariance;
-
-        }
-
-    }, timeInterval);
-
-    setTimeout(function () {
-
-        barsRestaurants = barsRestaurants.slice(0, barsRestaurants.length - 1) + "]";
-
-        bars = bars.slice(0, bars.length - 1) + "]";
-
-        restaurants = restaurants.slice(0, restaurants.length - 1) + "]";
-
-        console.log("All data retrieved");
-
-        var position = new mapboxgl.LngLat(userCoordinates.userLongitude, userCoordinates.userLatitude);
-
-        getPlacesOffline(position, 4, 4, searchOptions);
-
-    }, timeInterval * (numberOfItemsOnLatitude * numberOfItemsOnLongitude) + 1000);
-
-    //  }
-
-}
-
 //############################################################//
 // getPlacesOffline
 
