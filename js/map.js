@@ -93,95 +93,8 @@ function init(){
 	};
 
 // Mapbox generation with API key authentication
- 
-	mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
- 
-	map = new mapboxgl.Map({
- 
-		container: 'map',
- 
-		center: [ userCoordinates.userLongitude, userCoordinates.userLatitude ],
- 
-		zoom: 13,
- 
-		style: 'mapbox://styles/mapbox/streets-v9'
- 
-	});
-
-	map.on('load', function () {
- 
-		map.addSource("places", {
-			type: "geojson",
-			// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-			// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-			data: "JSON/places.geojson",
-			cluster: true,
-			clusterMaxZoom: 14, // Max zoom to cluster points on
-			clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
-		});
-
-		map.addLayer({
-			id: "clusters",
-			type: "circle",
-			source: "places",
-			filter: ["has", "point_count"],
-			paint: {
-				// Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-				// with three steps to implement three types of circles:
-				//   * Blue, 20px circles when point count is less than 100
-				//   * Yellow, 30px circles when point count is between 100 and 750
-				//   * Pink, 40px circles when point count is greater than or equal to 750
-				"circle-color": [
-					"step",
-					["get", "point_count"],
-					"#51bbd6",
-					100,
-					"#e9f154",
-					750,
-					"#f25525"
-				],
-				"circle-radius": [
-					"step",
-					["get", "point_count"],
-					20,
-					100,
-					30,
-					750,
-					40
-				]
-			}
-		});
-
-		map.addLayer({
-			id: "cluster-count",
-			type: "symbol",
-			source: "places",
-			filter: ["has", "point_count"],
-			layout: {
-				"text-field": "{point_count_abbreviated}",
-				"text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-				"text-size": 12
-			}
-		});
- 
-		map.addLayer({
-			id: "unclustered-point",
-			type: "circle",
-			source: "places",
-			filter: ["!has", "point_count"],
-			paint: {
-				"circle-color": "#11b4da",
-				"circle-radius": 8,
-				"circle-stroke-width": 1,
-				"circle-stroke-color": "#fff"
-			}
-		});
- 
-	});
 
     map = mapInitialisation(userCoordinates);
-
-    // event
 
     map.on('click', function ( element ) {
 
@@ -311,33 +224,6 @@ function mapInitialisation(userCoordinates) {
             }
         });
 
-       /* map.addLayer({
-            id: "unclustered-point",
-            type: "circle",
-            source: "places",
-            filter: ["!has", "point_count"],
-            paint: {
-                "circle-color": "#11b4da",
-                "circle-radius": 8,
-                "circle-stroke-width": 1,
-                "circle-stroke-color": "#fff"
-            }
-        });
-*/
-      /*  var width = 12; // The image will be 64 pixels square
-        var bytesPerPixel = 4; // Each pixel is represented by 4 bytes: red, green, blue, and alpha.
-        var data = new Uint8Array(width * width * bytesPerPixel);
-
-        for (var x = 0; x < width; x++) {
-            for (var y = 0; y < width; y++) {
-                var offset = (y * width + x) * bytesPerPixel;
-                data[offset + 0] = 12; // red
-                data[offset + 1] = 87; // green
-                data[offset + 2] = 128;             // blue
-                data[offset + 3] = 255;             // alpha
-            }
-        }*/
-
        // map.addImage('gradient', {width: width, height: width, data: data});
         map.loadImage('Assets/barIcon.png', function(error, image) {
 
@@ -416,6 +302,7 @@ function mapInitialisation(userCoordinates) {
 
     });
 
+
 // Update user's location
  
 	getUserLocation();
@@ -468,7 +355,7 @@ function mapInitialisation(userCoordinates) {
 
 
     createGeocoder();
- 
+
 }
 
 //############################################################//
@@ -1339,7 +1226,7 @@ function callbackPlacesID( results, status, callback) {
 			};
  
 			requestingInterval = setInterval(googlePlacesAPIService.getDetails( detailsRequest, getDetailsCallback ), 1000);
- 
+
 		}
  
 	}
@@ -1371,7 +1258,7 @@ function closeJSONCallback(value)
 }
 
 function getDetailsCallback( result, status, features ) {
- 
+
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 
 		var actualPlace = result;
@@ -1629,6 +1516,7 @@ map.addControl( new mapboxgl.GeolocateControl ({
 function createGeocoder() {
 
     map.addControl(new MapboxGeocoder({
+
         accessToken: mapboxgl.accessToken,
 
         country: 'fr', /* limit results to France */
