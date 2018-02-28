@@ -77,7 +77,7 @@ init();
 
 googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
-fetchAllPlaceRadar(500);
+fetchAllPlaceRadar(1000);
 
 //############################################################//
 // Init function : set base user's coordinates, create the map, track user's position
@@ -1031,10 +1031,6 @@ function fetchAllPlaceRadar(timeInterval) {
 
         }
 
-        console.log("Fetching zones : " + i + " / 31 ...");
-
-        i++;
-
         var sw = new google.maps.LatLng(bounds.south.toFixed(6), bounds.west.toFixed(6));
 
         var ne = new google.maps.LatLng(bounds.north.toFixed(6), bounds.east.toFixed(6));
@@ -1051,7 +1047,7 @@ function fetchAllPlaceRadar(timeInterval) {
 
         googlePlacesAPIService.radarSearch( placesRequest, function (results, status) {
 
-            radarSquareCallBack(results, status, allPlacesId);
+            radarSquareCallBack(results, status, allPlacesId, i);
 
         } );
 
@@ -1065,7 +1061,7 @@ function fetchAllPlaceRadar(timeInterval) {
 
         googlePlacesAPIService.radarSearch( placesRequest, function (results, status) {
 
-            radarSquareCallBack(results, status, allPlacesId);
+            radarSquareCallBack(results, status, allPlacesId, i);
 
         } );
 
@@ -1108,19 +1104,25 @@ function fetchAllPlaceRadar(timeInterval) {
 
         }
 
+        i++;
+
     }, timeInterval);
 
     setTimeout(function () {
 
         console.log("All data retrieved");
 
-        getDetailsAfterRadar(allPlacesId, 1000);
+        getDetailsAfterRadar(allPlacesId, 2000);
 
     }, timeInterval * 31 + 1000);
 
 }
 
-function radarSquareCallBack(results, status, array) {
+function radarSquareCallBack(results, status, array, i) {
+
+    i--;
+
+    console.log("Fetching zones : " + i + " / 31 ... Status : " + status);
 
     if( status == google.maps.places.PlacesServiceStatus.OK )
     {
@@ -1145,10 +1147,21 @@ function getDetailsAfterRadar(placeIds, timeInterval) {
 
     var interval = setInterval(function () {
 
+        if (i % 100 == 0){
+
+            console.log("Bars : ");
+            console.log(fetchedBars);
+            console.log("Bar Restaurants : ");
+            console.log(fetchedBarRestaurants);
+            console.log("Restaurants : " );
+            console.log(fetchedRestaurants);
+            console.log("Total : " );
+            console.log(fetchedBarRestaurants.length + fetchedBars.length + fetchedRestaurants.length);
+
+        }
+
         if( i > placeIds )
             clearInterval(interval);
-
-        console.log("Progression : " + i + " / " + placeIds.length + " ...");
 
         var detailsRequest = {
 
@@ -1158,7 +1171,7 @@ function getDetailsAfterRadar(placeIds, timeInterval) {
 
         googlePlacesAPIService.getDetails( detailsRequest, function (results, status) {
 
-            getDetailsCallback(results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants);
+            getDetailsCallback(results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants, i, placeIds.length);
 
         });
 
@@ -1972,9 +1985,11 @@ function closeJSONCallback(value)
 
 }
 
-function getDetailsCallback( result, status, bars, restaurants, barRestaurants ) {
+function getDetailsCallback( result, status, bars, restaurants, barRestaurants, state , progression) {
 
-    // console.log(result);
+    state --;
+
+    console.log("Progression : " + state + " / " + progression + " ... Status : " + status);
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
 
