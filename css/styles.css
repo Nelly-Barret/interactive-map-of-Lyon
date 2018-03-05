@@ -50,6 +50,8 @@ body {
 
 	width:100%;
 
+	/* z-index: -1; the map in "underground" */
+
 }
 
 /*******************************************************************/
@@ -57,7 +59,7 @@ body {
 
 #navMenu {
 
-	background: none !important; /* !important to override Bootstrap's styles */
+	background: none !important; 
 
 	margin: 0;
 
@@ -401,7 +403,8 @@ input:checked + .slider:before {
 
 }
 
-/* geocoder */
+/*~
+/* geocoder *
 
 .mapboxgl-ctrl-geocoder {
 
@@ -415,7 +418,23 @@ input:checked + .slider:before {
 
 	background-color: rgba(255, 255, 255, 0.7) !important;
 
+}*/
+
+
+/*******************************************************************/
+
+/* search */
+
+#search {
+
+	/*position: relative;*/
+
+	/*left: 820px; /* add 100px to the left border */
+
+	z-index: 100; /* to display search bar "on" the map */
+
 }
+
 
 
 /*******************************************************************/

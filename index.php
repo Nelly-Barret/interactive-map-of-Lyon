@@ -36,9 +36,6 @@
     <!-- Google Places -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPv7VFQeI_dNWfE-Y8IXIywMzEzSkNd28&libraries=places"></script>
 
-
-
-
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
 
@@ -48,6 +45,7 @@
 
 <body class="container-fluid">
     <?php include("static/navbar.php"); ?>
+    <?php include("static/search.php"); ?>
 
     <div id="map">
     </div>

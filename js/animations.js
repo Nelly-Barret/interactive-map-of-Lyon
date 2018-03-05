@@ -5,6 +5,10 @@ $(".dropdown-item, .btnPrice").on( 'click', function ( e ) {
 
 } );
 
+
+/*******************************************************************/
+
+
 function colorButton( button ) {
 
     button.css( "background-color", "rgb(0, 128, 0)" );
@@ -24,6 +28,10 @@ function uncolorButton( button ) {
     button.data( 'clicked', false );
 
 }
+
+
+/*******************************************************************/
+
 
 /* color and un-color type and price buttons when clicking */
 $(".btnType, .btnPrice").on( 'click', function() {
@@ -71,6 +79,9 @@ $(".btnStar").on( 'click', function() {
     }
 
 } );
+
+
+/*******************************************************************/
 
 
 /* adding br on buttons when the window is too small, remove it when it's larger */
@@ -166,6 +177,9 @@ $(window).resize(function() {
 });
 
 
+/*******************************************************************/
+
+
 /* reset filters */
 $("#resetFilters").on( 'click', function() {
 
@@ -185,4 +199,29 @@ $("#resetFilters").on( 'click', function() {
     }
 
 } );
+
+
+/*******************************************************************/
+
+$(document).ready(function() {
+
+    var leftPx = $(window).width() - 330;
+
+    console.log("leftPx = " + leftPx);
+
+    $("#search").css({top: 0, left: leftPx, position:'absolute'});
+
+});
+
+$(window).resize(function () {
+
+    var leftPx = $(window).width() - 330;
+
+    console.log("leftPx = " + leftPx);
+
+    $("#search").css({top: 0, left: leftPx, position:'absolute'});
+
+});
+
+
 
