@@ -432,11 +432,6 @@ function mapInitialisation(userCoordinates) {
 
 	googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
-
-
-
-	createGeocoder();
-
 	return map;
   
 }
@@ -1313,26 +1308,16 @@ map.addControl( new mapboxgl.GeolocateControl ({
 
 // JSONS
 
-
-
-function createGeocoder() {
-
-	map.addControl(new MapboxGeocoder({
-
-		accessToken: mapboxgl.accessToken,
-
-		country: 'fr', /* limit results to France */
-
-		/* bounding box: area defined by two longitudes and two latitudes. */
-		/* standard format: */
-		/* bbox = left,bottom,right,top */
-		/* bbox = min Longitude , min Latitude , max Longitude , max Latitude */
-		bbox: [mapGridBounds.leftLongitute, mapGridBounds.bottomLatitude, mapGridBounds.rightLongitude, mapGridBounds.topLatitude],
-
-	}));
-
+function showMap(err, data) {
+	// The geocoder can return an area, like a city, or a
+	// point, like an address. Here we handle both cases,
+	// by fitting the map bounds to an area or zooming to a point.
+	if (data.lbounds) {
+		map.fitBounds(data.lbounds);
+	} else if (data.latlng) {
+		map.setView([data.latlng[0], data.latlng[1]], 13);
+	}
 }
-
 //############################################################//
 // getPlacesOffline
 

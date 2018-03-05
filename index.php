@@ -45,6 +45,7 @@
 
 <body class="container-fluid">
     <?php include("static/navbar.php"); ?>
+    <?php include("static/search.php"); ?>
 
     <div id="map">
     </div>
