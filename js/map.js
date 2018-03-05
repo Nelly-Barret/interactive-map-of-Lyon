@@ -374,7 +374,7 @@ function mapInitialisation(userCoordinates) {
 	createGeocoder();
 
 	return map;
-
+  
 }
 
 //############################################################//
