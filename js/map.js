@@ -368,11 +368,6 @@ function mapInitialisation(userCoordinates) {
 
 	googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement('div') );
 
-
-
-
-	createGeocoder();
-
 	return map;
   
 }
@@ -1788,28 +1783,6 @@ map.addControl( new mapboxgl.GeolocateControl ({
 }));*/
 
 // JSONS
-
-
-
-function createGeocoder() {
-
-	map.addControl(new MapboxGeocoder({
-
-		accessToken: mapboxgl.accessToken,
-
-		country: 'fr', /* limit results to France */
-
-		/* bounding box: area defined by two longitudes and two latitudes. */
-		/* standard format: */
-		/* bbox = left,bottom,right,top */
-		/* bbox = min Longitude , min Latitude , max Longitude , max Latitude */
-		bbox: [mapGridBounds.leftLongitute, mapGridBounds.bottomLatitude, mapGridBounds.rightLongitude, mapGridBounds.topLatitude],
-
-	}));
-
-}
-
-
 
 function showMap(err, data) {
 	// The geocoder can return an area, like a city, or a
