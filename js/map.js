@@ -56,7 +56,7 @@ var mapGridBounds = {
 
 init();
 
-cleanGeoJSON();
+//cleanGeoJSON();
 
 
 /*
@@ -257,8 +257,8 @@ function mapInitialisation(userCoordinates) {
 			type: "geojson",
 			data: "JSON/places.geojson",
 			cluster: true,
-			clusterMaxZoom: 15, // Max zoom to cluster points on
-			clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+			clusterMaxZoom: 17, // Max zoom to cluster points on
+			clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
 		});
 
 		map.addLayer({
@@ -464,8 +464,6 @@ function setUserCoordinates( position ) {
 	userCoordinates.userLatitude = position.coords.latitude;
 
 	userCoordinates.userLongitude = position.coords.longitude;
-
-	map.setCenter([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
 	userPositionMarker.setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
@@ -1307,9 +1305,15 @@ function cleanGeoJSON() {
 
         if (xobj.readyState == 4 && xobj.status == "200") {
 
-            var geoPlacesJSON = JSON.parse(xobj.responseText)["feature"];
+            var geoPlacesJSON = JSON.parse(xobj.responseText)["features"];
+
+            console.log(geoPlacesJSON);
 
             var newPlaces = [];
+
+            var ids = [];
+
+            var doublons = 0;
 
             var geoJSONItem = {
 
@@ -1351,13 +1355,19 @@ function cleanGeoJSON() {
 
             };
 
-            for(geoJSONItem in geoPlacesJSON) {
+            for(var i in geoPlacesJSON) {
 
-            	console.log(geoJSONItem)
+            	geoJSONItem = geoPlacesJSON[i];
 
-            	if(newPlaces.indexOf(JSON.stringify(geoJSONItem)) == -1) {
+            	if(ids.indexOf(geoJSONItem.properties.id) == -1) {
 
-            		newPlaces.push(JSON.stringify(geoJSONItem) + ",");
+            		newPlaces.push(geoJSONItem);
+
+            		ids.push(geoJSONItem.properties.id);
+
+				} else {
+
+            		doublons ++;
 
 				}
 
