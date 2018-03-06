@@ -56,6 +56,8 @@ var mapGridBounds = {
 
 init();
 
+cleanGeoJSON();
+
 
 /*
 var nb = 0;
@@ -225,9 +227,9 @@ function mapInitialisation(userCoordinates) {
 
 		center: [ userCoordinates.userLongitude, userCoordinates.userLatitude ],
 
-		zoom: 11,
+		zoom: 13,
 
-		style: 'mapbox://styles/mapbox/streets-v9'
+		style: 'mapbox://styles/mapbox/basic-v9'
 
 	});
 
@@ -318,7 +320,8 @@ function mapInitialisation(userCoordinates) {
                 "icon-size" : 0.3,
                 "visibility" : 'visible',
                 "icon-allow-overlap" : true,
-                "text-allow-overlap" : true
+                "text-allow-overlap" : true,
+
             },
             paint: {
                 "text-halo-color": "rgba(0,0,0,1)"
@@ -1289,6 +1292,84 @@ function generateGeoJSON(){
 
     //DEBUG DISPLAY
     console.log(geoJSONString);
+
+}
+
+function cleanGeoJSON() {
+
+    var xobj = new XMLHttpRequest();
+
+    xobj.overrideMimeType("application/json");
+
+    xobj.open('GET', 'JSON/places.geojson', true);
+
+    xobj.onreadystatechange = function () {
+
+        if (xobj.readyState == 4 && xobj.status == "200") {
+
+            var geoPlacesJSON = JSON.parse(xobj.responseText)["feature"];
+
+            var newPlaces = [];
+
+            var geoJSONItem = {
+
+                "type": "Feature",
+
+                "geometry": {
+
+                    "type": "Point",
+
+                    "coordinates": [null, null]
+
+                },
+
+                "properties": {
+
+                    "adress" : null,
+
+                    "icon" : null,
+
+                    "id" : null,
+
+                    "name": null,
+
+                    "opened" : null,
+
+                    "rating" : null,
+
+                    "type" : null,
+
+                    "types" : null,
+
+                    "website" : null,
+
+                    "weekday_text" : null,
+
+                    "phone" : null
+
+                }
+
+            };
+
+            for(geoJSONItem in geoPlacesJSON) {
+
+            	console.log(geoJSONItem)
+
+            	if(newPlaces.indexOf(JSON.stringify(geoJSONItem)) == -1) {
+
+            		newPlaces.push(JSON.stringify(geoJSONItem) + ",");
+
+				}
+
+			}
+
+			console.log(JSON.stringify(newPlaces));
+
+        }
+
+    };
+
+    xobj.send(null);
 
 }
 
