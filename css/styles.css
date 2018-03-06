@@ -50,7 +50,7 @@ body {
 
 	width:100%;
 
-	/* z-index: -1; the map in "underground" */
+	/* z-index: -1;  /* the map in "underground" */ /* DON'T USE IT ! */
 
 }
 
@@ -59,7 +59,7 @@ body {
 
 #navMenu {
 
-	background: none !important; 
+	background: none !important;
 
 	margin: 0;
 
@@ -338,7 +338,7 @@ input:checked + .slider:before {
 
 }
 
-#popupAddress, #popupOpen, #popupRating, #popupWebsite, #popupPhone {
+#popupAddress, #popupOpen, #popupRating, #popupWebsite, #popupPhone, #popupWeekday {
 
 	font-family: "Lucida Sans Unicode", Times, serif;
 
@@ -351,6 +351,54 @@ input:checked + .slider:before {
 	padding: 0;
 
 }
+
+#popupWeekday {
+
+	color: red;
+
+}
+
+.day {
+
+	font-family: "Lucida Sans Unicode", Times, serif;
+
+	font-size: 15px;
+
+	margin: 0;
+
+	opacity: 1 !important;
+
+	padding: 0;
+
+}
+
+#day1 {
+
+	font-family: "Lucida Sans Unicode", Times, serif;
+
+	font-size: 15px;
+
+	margin: 0;
+
+	opacity: 1 !important;
+
+	padding: 0;
+
+}
+
+ul {
+
+	list-style-image: none !important;
+}
+
+#dayImage {
+
+	width : 24px;
+
+	height : 24px;
+
+}
+
 
 .mapboxgl-popup-content {
 
@@ -420,6 +468,13 @@ input:checked + .slider:before {
 
 }*/
 
+/* Geocontroler */
+.mapboxgl-ctrl-group > button{
+
+	top: 10px !important;
+
+}
+
 
 /*******************************************************************/
 
@@ -433,8 +488,9 @@ input:checked + .slider:before {
 
 	z-index: 100; /* to display search bar "on" the map */
 
-}
+	top: 10px !important;
 
+}
 
 
 /*******************************************************************/

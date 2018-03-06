@@ -558,7 +558,7 @@ function createMarkerPopupHTML(place) {
 		html += "<br><a id='popupWebsite' target=\"_blank\" href=\"" + place.website + "\"> Website </a>";
 
 	if( place.phone != null )
-		html += "<br><p id='popupPhone'>Phone: <a href=\"tel:" + place.phone + "\"></a>"+ place.phone + "</p>";
+		html += "<br><p id='popupPhone'>Phone: <a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
 
 	if( place.weekday_text != null ) {
 
@@ -572,8 +572,8 @@ function createMarkerPopupHTML(place) {
 
             for (var i = 0; i < days.length; i++) {
 
-                html += "<li>" + JSON.stringify(days[i]) + "</li>\n";
-
+                html += "<li>" + " <image id='dayImage' src=\"Assets/clock.png\"></image> " + JSON.stringify(days[i]) + "</li>\n";
+//li class='day' id='day"+i+"'
             }
 
             html += "</ul>";
