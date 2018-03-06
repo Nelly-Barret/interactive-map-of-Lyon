@@ -529,33 +529,31 @@ function createMarkerPopupHTML(place) {
 	var html = "";
 
 	html += "<p id='popupTitle'>" + place.name + "</p>";
-	html += "<br><a id='popupType'>" + place.type + "</a>";
+	html += "<br><p id='popupType'>" + place.type + "</p>";
+
+    if( place.rating != null ) {
+        html += "<br><p id='popupRating'>";
+
+        var i;
+
+        for(i = 1; i < place.rating ; i++) {
+
+            /* add full stars */
+            html += "<i class=\"fa fa-star\"></i>";
+
+        }
+
+        for(var j = i; j <= 5; j++) {
+
+            /* add empty stars */
+            html += "<i class=\"fa fa-star-o\"></i>";
+
+        }
+
+        html += "</p>";
+    }
+
 	html += "<br><a id='popupAddress' target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>";
-
-	if( place.opened != null )
-		html += "<br><p id='popupOpen'>Now: " + state + "</p>";
-
-	if( place.rating != null ) {
-		html += "<br><p id='popupRating'>Rating: ";
-
-		var i;
-
-		for(i = 1; i < place.rating ; i++) {
-
-			/* add full stars */
-			html += "<i class=\"fa fa-star\"></i>";
-
-		}
-
-		for(var j = i; j <= 5; j++) {
-
-			/* add empty stars */
-			html += "<i class=\"fa fa-star-o\"></i>";
-
-		}
-
-		html += "</p>";
-	}
 
 	if( place.website != null )
 		html += "<br><a id='popupWebsite' target=\"_blank\" href=\"" + place.website + "\"> Website </a>";
@@ -569,17 +567,37 @@ function createMarkerPopupHTML(place) {
 
         if (days != null) {
 
-            html += "<br><p id='popupWeekday'>Opening-hours : </p>";
+        	/* creating a object Date to get the current day */
+            var d = new Date();
+            var day = d.getDay();
+            console.log(day);
 
-            html += "<ul>\n";
+            html += "<br><p id='popupWeekday'>";
 
-            for (var i = 0; i < days.length; i++) {
+            // i begins at 1 (monday) because getDay() begins at sunday
+            for (var i = 1; i < days.length-1; i++) {
 
-                html += "<li>" + " <image id='dayImage' src=\"Assets/clock.png\"></image> " + JSON.stringify(days[i]) + "</li>\n";
-//li class='day' id='day"+i+"'
+            	var str;
+
+				if( day === i ) { //monday -> saturday
+
+					str = days[i-1];
+					//str.indexOf(': ')+2 => starts after ': '
+					html += "<p class='day'>" + " <image id='dayImage' src=\"Assets/clock.png\"></image>Today: " +str.substring(str.indexOf(': ')+2, str.length) + "</p>\n";
+
+				}
+
+				if ( day == 7 ) { //sunday
+
+                    str = days[i-1];
+
+                    html += "<p class='day'>" + " <image id='dayImage' src=\"Assets/clock.png\"></image>Today: " +str.substring(str.indexOf(': ')+2, str.length) + "</p>\n";
+
+				}
+
             }
 
-            html += "</ul>";
+            html += "</p>";
 
         }
 

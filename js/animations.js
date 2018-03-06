@@ -183,7 +183,6 @@ $(window).resize(function() {
 
     }
 
-
     else if( window.matchMedia( "(min-width: 800px)" ).matches ) {
 
         leftPx = $(window).width() - 330;
@@ -232,3 +231,5 @@ $(document).ready(function() {
     $("#search").css({top: 0, left: leftPx, position:'absolute'});
 
 });
+
+
