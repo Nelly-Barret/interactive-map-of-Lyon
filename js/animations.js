@@ -168,9 +168,29 @@ $(window).resize(function() {
 
     /* MOVE SEARCH */
 
-    if( window.matchMedia( "(max-width: 840px)" ).matches ) {
+    var leftPx = 0;
+
+    /* delete navbar ? */
+    if( window.matchMedia( "(min-width: 0px) and (max-width: 800px)" ).matches ) {
+
+        console.log( "too small..." );
+
+        leftPx = $(window).width() - 330;
+
+        console.log("leftPx = " + leftPx);
+
+        $("#search").css({ left: leftPx, position:'absolute' });
+
+    }
 
 
+    else if( window.matchMedia( "(min-width: 800px)" ).matches ) {
+
+        leftPx = $(window).width() - 330;
+
+        console.log("leftPx = " + leftPx);
+
+        $("#search").css({ left: leftPx, position:'absolute' });
 
     }
 
@@ -212,16 +232,3 @@ $(document).ready(function() {
     $("#search").css({top: 0, left: leftPx, position:'absolute'});
 
 });
-
-$(window).resize(function () {
-
-    var leftPx = $(window).width() - 330;
-
-    console.log("leftPx = " + leftPx);
-
-    $("#search").css({top: 0, left: leftPx, position:'absolute'});
-
-});
-
-
-
