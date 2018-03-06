@@ -527,10 +527,10 @@ function createMarkerPopupHTML( place ) {
 	var html = "";
 
 	html += "<p id='popupTitle'>" + place.name + "</p>";
-	html += "<br><p id='popupType'>" + place.type + "</p>";
+	html += "<p id='popupType'>" + place.type + "</p>";
 
 	if( place.rating != null ) {
-		html += "<br><p id='popupRating'>";
+		html += "<p id='popupRating'>";
 
 		var i;
 
@@ -551,13 +551,13 @@ function createMarkerPopupHTML( place ) {
 		html += "</p>";
 	}
 
-	html += "<br><a id='popupAddress' target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a>";
+	html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a></p>";
 
 	if( place.website != null )
-		html += "<br><a id='popupWebsite' target=\"_blank\" href=\"" + place.website + "\"> Website </a>";
+		html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.website + "\">Website</a></p>";
 
 	if( place.phone != null )
-		html += "<br><p id='popupPhone'>Phone: <a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
+		html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
 
 	if( place.weekday_text != null ) {
 
@@ -568,7 +568,6 @@ function createMarkerPopupHTML( place ) {
 			/* creating a object Date to get the current day */
 			var d = new Date();
 			var day = d.getDay();
-			console.log( day );
 
 			html += "<br><p id='popupWeekday'>";
 
@@ -581,7 +580,8 @@ function createMarkerPopupHTML( place ) {
 
 					str = days[i-1];
 					//str.indexOf( ': ' )+2 => starts after ': '
-					html += "<p class='day'>" + " <image id='dayImage' src=\"Assets/clock.png\"></image>Today: " +str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
+					//~ <image id='dayImage' src="Assets/clock.png"></image>
+					html += "<p class='day'>" + " <i class='fa fa-clock-o'></i>Today: " +str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
 
 				}
 
@@ -589,7 +589,7 @@ function createMarkerPopupHTML( place ) {
 
 					str = days[i-1];
 
-					html += "<p class='day'>" + " <image id='dayImage' src=\"Assets/clock.png\"></image>Today: " +str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
+					html += "<p class='day'>" + " <i class='fa fa-clock-o'></i>Today: " +str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
 
 				}
 

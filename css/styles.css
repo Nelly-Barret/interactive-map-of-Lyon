@@ -316,7 +316,7 @@ input:checked + .slider:before {
 
 	opacity: 1 !important;
 
-	padding: 0;
+	padding-top: 10px !important;
 
 	text-align: center !important;
 
@@ -338,21 +338,17 @@ input:checked + .slider:before {
 
 	font-style: oblique;
 
-	line-height: 0.8;
-
-	margin: 0 !important;
-
-	padding: 0;
-
 }
 
 #popupRating {
 
-	line-height: 0.8;
+	line-height: 0.8 !important;
 
-	margin: 0 !important;
+	margin: 0;
 
 	text-align: center;
+
+	padding-top: 10px !important;
 
 }
 
@@ -362,7 +358,7 @@ input:checked + .slider:before {
 
 	font-size: 19px;
 
-	margin: 0 !important;
+	margin: 0;
 
 	opacity: 1 !important;
 
@@ -374,23 +370,20 @@ input:checked + .slider:before {
 
 	font-size: 19px;
 
-	margin: 0;
-
 	opacity: 1 !important;
 
-	padding: 0;
-
-}
-
-#dayImage {
-
-	width : 24px;
-
-	height : 24px;
-
 }
 
 
+/* fonts awesome */
+.fa-street-view, .fa-at, .fa-phone, .fa-clock-o {
+
+	padding-right: 10px !important;
+
+}
+
+
+/* popup design */
 .mapboxgl-popup-content {
 
 	background-color: rgba(0, 0, 0, 0.8) !important;
