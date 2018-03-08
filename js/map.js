@@ -72,15 +72,18 @@ function callback() {
 
 	nb ++;
 
-	if( nb === 3 )
-		generateGeoJSON();
+	if ( nb === 3 ) {
+
+        generateGeoJSON();
+
+	}
 
 }
 
 //googlePlacesAPIService = new google.maps.places.PlacesService( document.createElement( 'div' ) );
 
 /*
-if( allPlacesId.length === 0 ) {
+if ( allPlacesId.length === 0 ) {
 
 	fetchAllPlaceRadar( 1000 );
 
@@ -166,7 +169,7 @@ function loadBarsRestaurantsJSON( callback ) {
 //############################################################//
 // Init function : set base user's coordinates, create the map, track user's position
 
-function init(){
+function init() {
 
 // Initialisation of user's location with coordinates of Lyon near Bellecour
 
@@ -189,7 +192,9 @@ function init(){
 		} );
 
 		if ( !features.length ) {
+
 			return;
+
 		}
 
 		var feature = features[0];
@@ -204,7 +209,7 @@ function init(){
 
 		var activeLayers = ['restaurantPlaceSymbol', "barPlaceSymbol", "barRestaurantPlaceSymbol"];
 
-		for( var i in activeLayers )
+		for ( var i in activeLayers )
 		{
 
 			//map.setFilter( activeLayers[i], ['==', 'rating', 4] );
@@ -447,8 +452,7 @@ function getUserLocation()
 
 	map.setCenter( [userCoordinates.userLongitude, userCoordinates.userLatitude] );
 
-	if( navigator.geolocation )
-	{
+	if ( navigator.geolocation ) {
 
 		navigator.geolocation.watchPosition( setUserCoordinates );
 
@@ -515,8 +519,7 @@ function createMarkerPopupHTML( place ) {
 
 	var state = "closed";
 
-	if ( place.opened )
-	{
+	if ( place.opened ) {
 
 		state = "opened";
 
@@ -527,19 +530,20 @@ function createMarkerPopupHTML( place ) {
 	html += "<p id='popupTitle'>" + place.name + "</p>";
 	html += "<p id='popupType'>" + place.type + "</p>";
 
-	if( place.rating != null ) {
+	if ( place.rating != null ) {
+
 		html += "<p id='popupRating'>";
 
 		var i;
 
-		for( i = 1 ; i < place.rating ; i++ ) {
+		for ( i = 1 ; i < place.rating ; i++ ) {
 
 			/* add full stars */
 			html += "<i class=\"fa fa-star\"></i>";
 
 		}
 
-		for( var j = i ; j <= 5 ; j++ ) {
+		for ( var j = i ; j <= 5 ; j++ ) {
 
 			/* add empty stars */
 			html += "<i class=\"fa fa-star-o\"></i>";
@@ -551,13 +555,19 @@ function createMarkerPopupHTML( place ) {
 
 	html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a></p>";
 
-	if( place.website != null )
+	if ( place.website != null ) {
+
 		html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.website + "\">Website</a></p>";
 
-	if( place.phone != null )
-		html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
+    }
 
-	if( place.weekday_text != null ) {
+	if ( place.phone != null ) {
+
+        html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
+
+	}
+
+	if ( place.weekday_text != null ) {
 
 		var days = JSON.parse( place.weekday_text );
 
@@ -583,22 +593,30 @@ function createMarkerPopupHTML( place ) {
 			// 6 Saturday		Sunday
 
 			str = days[day];
-			//str.indexOf( ': ' )+2 => starts after ': '
 
-			if( day === 0 ) {
+			if ( day === 0 ) {
 
 				str = days[6];
 
-            }
-
-            else {
+            } else {
 
 				str = days[day-1];
 
             }
 
-
+            //str.indexOf( ': ' )+2 => starts after ': '
             html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
+			/*html += "<p class='day'>";
+
+            if ( place.opened ) {
+
+                html += "Opened";
+
+            } else {
+
+            	html += "Closed";
+
+			}*/
 
 			html += "</p>";
 
@@ -615,11 +633,14 @@ function createMarkerPopupHTML( place ) {
 
 function checkIfPlaceIsBar( place ) {
 
-	for( var i = 0 ; i < place.types.length ; i++ )
+	for ( var i = 0 ; i < place.types.length ; i++ )
 	{
 
-		if ( place.types[i] === "bar" )
+		if ( place.types[i] === "bar" ) {
+
 			return true;
+
+		}
 
 	}
 
@@ -629,11 +650,14 @@ function checkIfPlaceIsBar( place ) {
 
 function checkIfPlaceIsRestaurant( place ) {
 
-	for( var i = 0 ; i < place.types.length ; i++ )
+	for ( var i = 0 ; i < place.types.length ; i++ )
 	{
 
-		if ( place.types[i] === "restaurant" )
+		if ( place.types[i] === "restaurant" ) {
+
 			return true;
+
+		}
 
 	}
 
@@ -787,12 +811,11 @@ function radarSquareCallBack( results, status, array, i ) {
 
 	console.log( "Fetching zones : " + i + " / 31 ... Status : " + status );
 
-	if( status === google.maps.places.PlacesServiceStatus.OK )
-	{
+	if ( status === google.maps.places.PlacesServiceStatus.OK ) {
 
 		// console.log( results );
 
-		for( var i = 0 ; i < results.length ; i++ ) {
+		for ( var i = 0 ; i < results.length ; i++ ) {
 
 			array.push( results[i]["place_id"] );
 
@@ -810,7 +833,7 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
 	var interval = setInterval( function () {
 
-		if ( i % 100 === 0 ){
+		if ( i % 100 === 0 ) {
 
 			console.log( "Bars : " );
 			console.log( fetchedBars );
@@ -823,16 +846,16 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
 		}
 
-		if( i >= placeIds.length ) {
+		if ( i >= placeIds.length ) {
 
 
 			clearInterval( interval );
 
-			for( var j = 0 ; j < fetchedBars.length ; j ++ ) {
+			for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
 
 				barsString += JSON.stringify( fetchedBars[j] );
 
-				if( j !== fetchedBars.length - 1 ) {
+				if ( j !== fetchedBars.length - 1 ) {
 
 					barsString += ",";
 
@@ -840,11 +863,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
 			}
 
-			for( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
+			for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
 
 				restaurantsString += JSON.stringify( fetchedRestaurants[j] );
 
-				if( j !== fetchedRestaurants.length - 1 ) {
+				if ( j !== fetchedRestaurants.length - 1 ) {
 
 					restaurantsString += ",";
 
@@ -852,11 +875,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
 			}
 
-			for( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
+			for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
 
 				barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
 
-				if( j !== fetchedBarRestaurants.length - 1 ) {
+				if ( j !== fetchedBarRestaurants.length - 1 ) {
 
 					barsRestaurantsString += ",";
 
@@ -876,17 +899,17 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
 		googlePlacesAPIService.getDetails( detailsRequest, function ( results, status ) {
 
-			if( status === "OVER_QUERY_LIMIT" ) {
+			if ( status === "OVER_QUERY_LIMIT" ) {
 
 				console.log( "State " + i + ", interruption" );
 
 				clearInterval( interval );
 
-				for( var j = 0 ; j < fetchedBars.length ; j ++ ) {
+				for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
 
 					barsString += JSON.stringify( fetchedBars[j] );
 
-					if( j !== fetchedBars.length - 1 ) {
+					if ( j !== fetchedBars.length - 1 ) {
 
 						barsString += ",";
 
@@ -894,11 +917,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
 				}
 
-				for( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
+				for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
 
 					restaurantsString += JSON.stringify( fetchedRestaurants[j] );
 
-					if( j !== fetchedRestaurants.length - 1 ) {
+					if ( j !== fetchedRestaurants.length - 1 ) {
 
 						restaurantsString += ",";
 
@@ -906,11 +929,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
 				}
 
-				for( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
+				for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
 
 					barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
 
-					if( j !== fetchedBarRestaurants.length - 1 ) {
+					if ( j !== fetchedBarRestaurants.length - 1 ) {
 
 						barsRestaurantsString += ",";
 
@@ -961,8 +984,7 @@ function filterFunction( value, location, price, rating ) {
 function fetchCallBack( results, status )
 {
 
-	if( status === google.maps.places.PlacesServiceStatus.OK )
-	{
+	if ( status === google.maps.places.PlacesServiceStatus.OK ) {
 
 		//   console.log( results[0]['opening_hours']['weekday_text'] );
 
@@ -1000,38 +1022,43 @@ function fetchCallBack( results, status )
 
 			};
 
-			if( actualPlace['opening_hours'] )
+			if ( actualPlace['opening_hours'] ) {
+
 				placeInformations.opened = actualPlace['opening_hours']['open_now'];
+
+            }
 
 			var isBar = checkIfPlaceIsBar( actualPlace );
 
 			var isRestaurant = checkIfPlaceIsRestaurant( actualPlace );
 
-			if( isBar && isRestaurant )
-			{
+			if ( isBar && isRestaurant ) {
 
 				placeInformations.type = "Bar-restaurant";
 
-			}
-			else if ( isBar )
-			{
+			} else if ( isBar ) {
 
 				placeInformations.type = "Bar";
 
-			}
-			else if ( isRestaurant )
-			{
+			} else if ( isRestaurant ) {
 
 				placeInformations.type = "Restaurant";
 
 			}
 
-			if ( isBar && isRestaurant )
+			if ( isBar && isRestaurant ) {
+
 				barsRestaurants += JSON.stringify( placeInformations ) + ",";
-			else if ( isBar )
+
+            } else if ( isBar ) {
+
 				bars += JSON.stringify( placeInformations ) + ",";
-			else
+
+            } else {
+
 				restaurants += JSON.stringify( placeInformations ) + ",";
+
+            }
 
 		}
 
@@ -1113,7 +1140,7 @@ function callbackPlacesID( results, status, callback ) {
 
 }
 
-function generateGeoJSON(){
+function generateGeoJSON() {
 
 	var parsedBars = JSON.parse( bars );
 
@@ -1163,7 +1190,7 @@ function generateGeoJSON(){
 
 	};
 
-	for( var i = 0 ; i < parsedBars.length ; i++ ) {
+	for ( var i = 0 ; i < parsedBars.length ; i++ ) {
 
 		geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
 
@@ -1183,19 +1210,19 @@ function generateGeoJSON(){
 
 		geoJSONItem.properties.icon = "Assets/barIcon.png";
 
-		if( parsedBars[i].phone != null ) {
+		if ( parsedBars[i].phone != null ) {
 
 			geoJSONItem.properties.phone = parsedBars[i].phone;
 
 		}
 
-		if( parsedBars[i]["weekday_text"] != null ) {
+		if ( parsedBars[i]["weekday_text"] != null ) {
 
 			geoJSONItem.properties.weekday_text = parsedBars[i].weekday_text;
 
 		}
 
-		if( parsedBars[i].website != null ) {
+		if ( parsedBars[i].website != null ) {
 
 			geoJSONItem.properties.website = parsedBars[i].website;
 
@@ -1203,15 +1230,16 @@ function generateGeoJSON(){
 
 		geoJSONString += JSON.stringify( geoJSONItem );
 
-		if( i < parsedBars.length - 1 )
+		if ( i < parsedBars.length - 1 ) {
 
-			geoJSONString +=  ',';
+            geoJSONString +=  ',';
 
+		}
 	}
 
 	geoJSONString += ',';
 
-	for( var i = 0 ; i < parsedBarRestaurants.length ; i++ ) {
+	for ( var i = 0 ; i < parsedBarRestaurants.length ; i++ ) {
 
 		geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i]["coordinates"]["lng"], parsedBarRestaurants[i]["coordinates"]["lat"]];
 
@@ -1235,33 +1263,35 @@ function generateGeoJSON(){
 
 		geoJSONString += JSON.stringify( geoJSONItem );
 
-		if( parsedBarRestaurants[i].phone != null ) {
+		if ( parsedBarRestaurants[i].phone != null ) {
 
 			geoJSONItem.properties.phone = parsedBarRestaurants[i].phone;
 
 		}
 
-		if( parsedBarRestaurants[i]["weekday_text"] != null ) {
+		if ( parsedBarRestaurants[i]["weekday_text"] != null ) {
 
 			geoJSONItem.properties.weekday_text = parsedBarRestaurants[i].weekday_text;
 
 		}
 
-		if( parsedBarRestaurants[i].website != null ) {
+		if ( parsedBarRestaurants[i].website != null ) {
 
 			geoJSONItem.properties.website = parsedBarRestaurants[i].website;
 
 		}
 
-		if( i < parsedBarRestaurants.length - 1 )
+		if ( i < parsedBarRestaurants.length - 1 ) {
 
-			geoJSONString +=  ',';
+            geoJSONString +=  ',';
+
+		}
 
 	}
 
 	geoJSONString += ',';
 
-	for( var i = 0 ; i < parsedRestaurants.length ; i++ ) {
+	for ( var i = 0 ; i < parsedRestaurants.length ; i++ ) {
 
 		geoJSONItem.geometry.coordinates = [parsedRestaurants[i]["coordinates"]["lng"], parsedRestaurants[i]["coordinates"]["lat"]];
 
@@ -1285,27 +1315,29 @@ function generateGeoJSON(){
 
 		geoJSONString += JSON.stringify( geoJSONItem );
 
-		if( parsedRestaurants[i].phone != null ) {
+		if ( parsedRestaurants[i].phone != null ) {
 
 			geoJSONItem.properties.phone = parsedRestaurants[i].phone;
 
 		}
 
-		if( parsedRestaurants[i]["weekday_text"] != null ) {
+		if ( parsedRestaurants[i]["weekday_text"] != null ) {
 
 			geoJSONItem.properties.weekday_text = parsedRestaurants[i].weekday_text;
 
 		}
 
-		if( parsedRestaurants[i].website != null ) {
+		if ( parsedRestaurants[i].website != null ) {
 
 			geoJSONItem.properties.website = parsedRestaurants[i].website;
 
 		}
 
-		if( i < parsedRestaurants.length - 1 )
+		if ( i < parsedRestaurants.length - 1 ) {
 
-			geoJSONString +=  ',';
+            geoJSONString +=  ',';
+
+		}
 
 	}
 
@@ -1378,11 +1410,11 @@ function cleanGeoJSON() {
 
 			};
 
-			for( var i in geoPlacesJSON ) {
+			for ( var i in geoPlacesJSON ) {
 
 				geoJSONItem = geoPlacesJSON[i];
 
-				if( ids.indexOf( geoJSONItem.properties.id ) === -1 ) {
+				if ( ids.indexOf( geoJSONItem.properties.id ) === -1 ) {
 
 					newPlaces.push( geoJSONItem );
 
@@ -1427,9 +1459,13 @@ function showMap( err, data ) {
 	// point, like an address. Here we handle both cases,
 	// by fitting the map bounds to an area or zooming to a point.
 	if ( data.lbounds ) {
+
 		map.fitBounds( data.lbounds );
+
 	} else if ( data.latlng ) {
+
 		map.setView( [data.latlng[0], data.latlng[1]], 13 );
+
 	}
 }
 //############################################################//
@@ -1514,23 +1550,37 @@ function filterMap() {
 
 	var activeLayers = [];
 
-	if( filter.types[0] === false )
-		map.setLayoutProperty( 'restaurantPlaceSymbol', 'visibility', 'none' );
-	else
-		activeLayers.push( 'restaurantPlaceSymbol' );
+	if ( filter.types[0] === false ) {
 
-	if( filter.types[0] === false )
-		map.setLayoutProperty( 'barPlaceSymbol', 'visibility', 'none' );
-	else
-		activeLayers.push( 'barPlaceSymbol' );
+        map.setLayoutProperty( 'restaurantPlaceSymbol', 'visibility', 'none' );
 
-	if( filter.types[0] === false )
-		map.setLayoutProperty( 'barRestaurantPlaceSymbol', 'visibility', 'none' );
-	else
-		activeLayers.push( 'barRestaurantPlaceSymbol' );
+	} else {
 
-	for( var i in activeLayers )
-	{
+        activeLayers.push( 'restaurantPlaceSymbol' );
+
+	}
+
+	if ( filter.types[0] === false ) {
+
+        map.setLayoutProperty( 'barPlaceSymbol', 'visibility', 'none' );
+
+	} else {
+
+        activeLayers.push( 'barPlaceSymbol' );
+
+	}
+
+	if ( filter.types[0] === false ) {
+
+        map.setLayoutProperty( 'barRestaurantPlaceSymbol', 'visibility', 'none' );
+
+	} else {
+
+        activeLayers.push( 'barRestaurantPlaceSymbol' );
+
+	}
+
+	for ( var i in activeLayers ) {
 
 		map.setFilter( activeLayers[i], ['==', 'rating', filter.rating] );
 
@@ -1543,8 +1593,7 @@ function filterMap() {
 
 function fetchCallBack( results, status ) {
 
-	if( status === google.maps.places.PlacesServiceStatus.OK )
-	{
+	if ( status === google.maps.places.PlacesServiceStatus.OK ) {
 
 		//  console.log( results[0]['opening_hours']['weekday_text'] );
 
@@ -1582,38 +1631,43 @@ function fetchCallBack( results, status ) {
 
 			};
 
-			if( actualPlace['opening_hours'] )
-				placeInformations.opened = actualPlace['opening_hours']['open_now'];
+			if ( actualPlace['opening_hours'] ) {
+
+                placeInformations.opened = actualPlace['opening_hours']['open_now'];
+
+			}
 
 			var isBar = checkIfPlaceIsBar( actualPlace );
 
 			var isRestaurant = checkIfPlaceIsRestaurant( actualPlace );
 
-			if( isBar && isRestaurant )
-			{
+			if ( isBar && isRestaurant ) {
 
 				placeInformations.type = "Bar-restaurant";
 
-			}
-			else if ( isBar )
-			{
+			} else if ( isBar ) {
 
 				placeInformations.type = "Bar";
 
-			}
-			else if ( isRestaurant )
-			{
+			} else if ( isRestaurant ) {
 
 				placeInformations.type = "Restaurant";
 
 			}
 
-			if ( isBar && isRestaurant )
-				barsRestaurants += JSON.stringify( placeInformations ) + ",";
-			else if ( isBar )
-				bars += JSON.stringify( placeInformations ) + ",";
-			else
-				restaurants += JSON.stringify( placeInformations ) + ",";
+			if ( isBar && isRestaurant ) {
+
+                barsRestaurants += JSON.stringify( placeInformations ) + ",";
+
+			} else if ( isBar ) {
+
+                bars += JSON.stringify( placeInformations ) + ",";
+
+			} else {
+
+                restaurants += JSON.stringify( placeInformations ) + ",";
+
+			}
 
 		}
 
@@ -1663,7 +1717,7 @@ function getDetailsCallback( result, status, bars, restaurants, barRestaurants, 
 
 		};
 
-		if( actualPlace['opening_hours'] ) {
+		if ( actualPlace['opening_hours'] ) {
 
 			placeInformations.opened = actualPlace['opening_hours']['open_now'];
 
@@ -1675,24 +1729,19 @@ function getDetailsCallback( result, status, bars, restaurants, barRestaurants, 
 
 		var isRestaurant = checkIfPlaceIsRestaurant( actualPlace );
 
-		if( isBar && isRestaurant )
-		{
+		if ( isBar && isRestaurant ) {
 
 			placeInformations.type = "Bar-restaurant";
 
 			barRestaurants.push( placeInformations );
 
-		}
-		else if ( isBar )
-		{
+		} else if ( isBar ) {
 
 			placeInformations.type = "Bar";
 
 			bars.push( placeInformations );
 
-		}
-		else if ( isRestaurant )
-		{
+		} else if ( isRestaurant ) {
 
 			placeInformations.type = "Restaurant";
 

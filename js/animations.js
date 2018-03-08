@@ -193,6 +193,19 @@ $(window).resize(function() {
 
     }
 
+
+    /*******************************************************************/
+
+    /* MOBILE VERSION */
+
+    if( window.matchMedia( "(max-width: 768px)" ).matches ) {
+
+
+
+    }
+
+
+
 });
 
 
