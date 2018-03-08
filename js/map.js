@@ -503,8 +503,6 @@ function createPopupForSymbol( feature ) {
 
 	placeInformations = feature.properties;
 
-	console.log( placeInformations );
-
 	new mapboxgl.Popup( { offset: [0, -15] } )
 		.setLngLat( feature.geometry.coordinates )
 		.setHTML( createMarkerPopupHTML( placeInformations ) )
@@ -569,31 +567,38 @@ function createMarkerPopupHTML( place ) {
 			var d = new Date();
 			var day = d.getDay();
 
+			console.log("day = " + day);
+
 			html += "<br><p id='popupWeekday'>";
 
-			// i begins at 1 (monday) because getDay() begins at sunday
-			for ( var i = 1 ; i < days.length-1 ; i++ ) {
 
-				var str;
+			//In JavaScript, the first day of the week (0) means Sunday
+			// getDay()			days[]
+			// 0 Sunday			Monday
+			// 1 Monday			Tuesday
+			// 2 Tuesday		Wednesday
+			// 3 Wednesday		Thursday
+			// 4 Thursday		Friday
+			// 5 Friday			Saturday
+			// 6 Saturday		Sunday
 
-				if( day === i ) { //monday -> saturday
+			str = days[day];
+			//str.indexOf( ': ' )+2 => starts after ': '
 
-					str = days[i-1];
-					//str.indexOf( ': ' )+2 => starts after ': '
-					//~ <image id='dayImage' src="Assets/clock.png"></image>
-					html += "<p class='day'>" + " <i class='fa fa-clock-o'></i>Today: " +str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
+			if( day === 0 ) {
 
-				}
+				str = days[6];
 
-				if ( day === 7 ) { //sunday
+            }
 
-					str = days[i-1];
+            else {
 
-					html += "<p class='day'>" + " <i class='fa fa-clock-o'></i>Today: " +str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
+				str = days[day-1];
 
-				}
+            }
 
-			}
+
+            html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring( str.indexOf( ': ' )+2, str.length ) + "</p>\n";
 
 			html += "</p>";
 
