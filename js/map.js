@@ -42,7 +42,6 @@ var mapGridBounds = {
 //######################################################################################################################
 //########## GENERAL INITIALISATION AND MAP INITIALISATION #############################################################
 //######################################################################################################################
-{
 
     var userPositionMarker;     // Marker associated with user's location
 
@@ -84,19 +83,11 @@ var mapGridBounds = {
 
         var goButton = document.getElementById("go");
 
-        goButton.addEventListener("click", function () {
+        goButton.addEventListener("click", filterMap);
 
-            var activeLayers = ['restaurantPlaceSymbol', "barPlaceSymbol", "barRestaurantPlaceSymbol"];
+        var resetButton = document.getElementById("resetFilters");
 
-            for (var i in activeLayers) {
-
-                //map.setFilter( activeLayers[i], ['==', 'rating', 4] );
-
-                filterMap();
-
-            }
-
-        });
+        resetButton.addEventListener("click", resetFilter);
 
     }
 
@@ -204,8 +195,8 @@ var mapGridBounds = {
                     "icon-image": "barIcon",
                     "icon-size": 0.3,
                     "visibility": 'visible',
-                    "icon-allow-overlap": true,
-                    "text-allow-overlap": true
+                    "icon-allow-overlap": false,
+                    "text-allow-overlap": false
 
                 },
                 paint: {
@@ -232,8 +223,8 @@ var mapGridBounds = {
                     "icon-image": "restaurantIcon",
                     "icon-size": 0.3,
                     "visibility": 'visible',
-                    "icon-allow-overlap": true,
-                    "text-allow-overlap": true
+                    "icon-allow-overlap": false,
+                    "text-allow-overlap": false
                 },
                 paint: {
                     "text-halo-color": "rgba(0,0,0,1)"
@@ -259,8 +250,8 @@ var mapGridBounds = {
                     "icon-image": "barRestaurantIcon",
                     "icon-size": 0.3,
                     "visibility": 'visible',
-                    "icon-allow-overlap": true,
-                    "text-allow-overlap": true
+                    "icon-allow-overlap": false,
+                    "text-allow-overlap": false
                 },
                 paint: {
                     "text-halo-color": "rgba(0,0,0,1)"
@@ -350,12 +341,10 @@ var mapGridBounds = {
 
     }
 
-}
 
 //######################################################################################################################
 //##################### DISPLAY RELATED METHODS ########################################################################
 //######################################################################################################################
-{
 
     function createPopupForSymbol(feature) {
 
@@ -527,12 +516,10 @@ var mapGridBounds = {
         }
     }
 
-}
 
 //######################################################################################################################
 //############ JSON FILES LOADER AND GEOJSON GENERATION ################################################################
 //######################################################################################################################
-{
 
     function filterMap() {
 
@@ -581,9 +568,9 @@ var mapGridBounds = {
 
             types: [false, false, false],
 
-            price: 0,
+            price: null,
 
-            rating: 0,
+            rating: null,
 
             aroundMe: aroundMeButton.checked,
 
@@ -601,15 +588,23 @@ var mapGridBounds = {
 
         for (i = 0; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
 
-            filter.price++;
+            filter = i + 1;
 
         }
 
         for (i = 0; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
 
-            filter.rating++;
+            filter = i + 1;
 
         }
+
+        filterFunction(filter);
+
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    function filterFunction(filter) {
 
         var activeLayers = [];
 
@@ -623,7 +618,7 @@ var mapGridBounds = {
 
         }
 
-        if (filter.types[0] === false) {
+        if (filter.types[1] === false) {
 
             map.setLayoutProperty('barPlaceSymbol', 'visibility', 'none');
 
@@ -633,7 +628,7 @@ var mapGridBounds = {
 
         }
 
-        if (filter.types[0] === false) {
+        if (filter.types[2] === false) {
 
             map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'none');
 
@@ -643,32 +638,45 @@ var mapGridBounds = {
 
         }
 
+        if ( filter.rating != null ) {
+
+			for (var i in activeLayers) {
+
+				map.setFilter(activeLayers[i], ['==', 'rating', filter.rating]);
+
+			}
+
+        }
+
+        if ( filter.price != null ) {
+
+            for (var i in activeLayers) {
+
+                map.setFilter(activeLayers[i], ['==', 'price', filter.price]);
+
+            }
+
+		}
+
+    }
+
+    function resetFilter() {
+
+       	var activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
+
+       	var filters = ["Bar", "Restaurant", "Bar-restaurant"];
+
         for (var i in activeLayers) {
 
-            map.setFilter(activeLayers[i], ['==', 'rating', filter.rating]);
+            map.setFilter(activeLayers[i], ['==', 'type', filters[i]]);
 
         }
 
     }
 
-//----------------------------------------------------------------------------------------------------------------------
-
-    function filterFunction(value, location, price, rating) {
-
-        var trueLatitude = Math.abs(location.lat - value.coordinates.lat) <= latVariance / 2;
-
-        var trueLongitude = Math.abs(location.lng - value.coordinates.lng) <= lngVariance / 2;
-
-        return trueLatitude && trueLongitude;
-
-    }
-
-}
-
 //######################################################################################################################
 //############### DATA RETRIEVER AND JSON'S CREATION ###################################################################
 //######################################################################################################################
-{
 
     var fetchedBars = [];
 
@@ -1098,12 +1106,10 @@ var mapGridBounds = {
 
     }
 
-}
 
 //######################################################################################################################
 //############ JSON FILES LOADER AND GEOJSON GENERATION ################################################################
 //######################################################################################################################
-{
 
     var loadedBarsString = "";
 
@@ -1586,9 +1592,6 @@ var mapGridBounds = {
 		console.log(JSON.stringify(newPlaces));
 
     }
-
-}
-
 
 
 //######################################################################################################################
