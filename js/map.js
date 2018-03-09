@@ -566,6 +566,8 @@ var mapGridBounds = {
 
         var filter = {
 
+        	filteringTypes : false,
+
             types: [null, null, null],
 
             price: null,
@@ -584,17 +586,25 @@ var mapGridBounds = {
 
         for (i = 0; i < typeButtons.length; i++) {
 
-         	filter.types[i] = $(typeButtons[i]).data().clicked;
+        	var clicked = $(typeButtons[i]).data().clicked;
+
+         	filter.types[i] = clicked;
+
+         	if( clicked ) {
+
+         		filter.filteringTypes = true;
+
+			}
 
         }
 
-        for (i = 0; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
+        for (i = 1; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
 
             filter.price = i + 1;
 
         }
 
-        for (i = 0; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
+        for (i = 1; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
 
             filter.rating = i + 1;
 
@@ -614,47 +624,57 @@ var mapGridBounds = {
 
         var activeLayers = [];
 
-        if (filter.types[0] === false) {
+        if( filter.filteringTypes ) {
 
-            map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'none');
+            if (filter.types[0] === false) {
+
+                map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'none');
+
+            } else {
+
+                activeLayers.push('restaurantPlaceSymbol');
+
+                map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'visible');
+
+            }
+
+            if (filter.types[1] === false) {
+
+                map.setLayoutProperty('barPlaceSymbol', 'visibility', 'none');
+
+            } else {
+
+                activeLayers.push('barPlaceSymbol');
+
+                map.setLayoutProperty('barPlaceSymbol', 'visibility', 'visible');
+
+            }
+
+            if (filter.types[2] === false) {
+
+                map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'none');
+
+            } else {
+
+                activeLayers.push('barRestaurantPlaceSymbol');
+
+                map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'visible');
+
+            }
 
         } else {
 
-            activeLayers.push('restaurantPlaceSymbol');
+        	activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
 
-            map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'visible');
-
-        }
-
-        if (filter.types[1] === false) {
-
-            map.setLayoutProperty('barPlaceSymbol', 'visibility', 'none');
-
-        } else {
-
-            activeLayers.push('barPlaceSymbol');
-
-            map.setLayoutProperty('barPlaceSymbol', 'visibility', 'visible');
-
-        }
-
-        if (filter.types[2] === false) {
-
-            map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'none');
-
-        } else {
-
-            activeLayers.push('barRestaurantPlaceSymbol');
-
-            map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'visible');
-
-        }
+		}
 
         if ( filter.rating != null ) {
 
 			for (var i in activeLayers) {
 
 				map.setFilter(activeLayers[i], ['==', 'rating', filter.rating]);
+
+				console.log(filter.rating);
 
 			}
 
@@ -1135,7 +1155,19 @@ var mapGridBounds = {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function loadBarsJSON(callback) {
+	function loadAllJSON() {
+
+		loadBarsJSON();
+
+		loadRestaurantsJSON();
+
+		loadBarsRestaurantsJSON();
+
+	}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    function loadBarsJSON() {
 
         var xobj = new XMLHttpRequest();
 
@@ -1163,7 +1195,7 @@ var mapGridBounds = {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function loadRestaurantsJSON(callback) {
+    function loadRestaurantsJSON() {
 
         var xobj = new XMLHttpRequest();
 
@@ -1189,7 +1221,7 @@ var mapGridBounds = {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function loadBarsRestaurantsJSON(callback) {
+    function loadBarsRestaurantsJSON() {
 
         var xobj = new XMLHttpRequest();
 
@@ -1295,7 +1327,7 @@ var mapGridBounds = {
 
             geoJSONItem.properties.adress = parsedBars[i].adress;
 
-            geoJSONItem.properties.rating = parsedBars[i].rating;
+            geoJSONItem.properties.rating = Math.floor(parsedBars[i].rating);
 
             geoJSONItem.properties.icon = "Assets/barIcon.png";
 
@@ -1346,7 +1378,7 @@ var mapGridBounds = {
 
             geoJSONItem.properties.adress = parsedBarRestaurants[i].adress;
 
-            geoJSONItem.properties.rating = parsedBarRestaurants[i].rating;
+            geoJSONItem.properties.rating = Math.floor(parsedBarRestaurants[i].rating);
 
             geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
 
@@ -1398,7 +1430,7 @@ var mapGridBounds = {
 
             geoJSONItem.properties.adress = parsedRestaurants[i].adress;
 
-            geoJSONItem.properties.rating = parsedRestaurants[i].rating;
+            geoJSONItem.properties.rating = Math.floor(parsedRestaurants[i].rating);
 
             geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
 
