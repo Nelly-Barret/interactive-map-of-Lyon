@@ -1,31 +1,31 @@
 /* for all the items of the filters */
-$(".dropdown-item, .btnPrice").on( 'click', function ( e ) {
+$(".dropdown-item, .btnPrice").on('click', function (e) {
 
     e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
 
-} );
+});
 
 
 /*******************************************************************/
 
 
-function colorButton( button ) {
+function colorButton(button) {
 
-    button.css( "background-color", "rgb(0, 128, 0)" );
+    button.css("background-color", "rgb(0, 128, 0)");
 
-    button.css( "color", "white" );
+    button.css("color", "white");
 
-    button.data( 'clicked', true );
+    button.data('clicked', true);
 
 }
 
-function uncolorButton( button ) {
+function uncolorButton(button) {
 
-    button.css( "background-color", "rgb(221, 221, 221)" );
+    button.css("background-color", "rgb(221, 221, 221)");
 
-    button.css( "color", "black" );
+    button.css("color", "black");
 
-    button.data( 'clicked', false );
+    button.data('clicked', false);
 
 }
 
@@ -34,13 +34,13 @@ function uncolorButton( button ) {
 
 
 /* color and un-color type and price buttons when clicking */
-$(".btnType, .btnPrice").on( 'click', function() {
+$(".btnType, .btnPrice").on('click', function() {
 
     /* it's green -> to grey */
 
-    if( $(this).data( 'clicked' ) ) {
+    if($(this).data('clicked')) {
 
-        uncolorButton( $(this) );
+        uncolorButton($(this));
 
     }
 
@@ -49,36 +49,36 @@ $(".btnType, .btnPrice").on( 'click', function() {
 
     else {
 
-        colorButton( $(this) );
+        colorButton($(this));
 
     }
 
-} );
+});
 
 /* color and un-color star button when clicking */
-$(".btnStar").on( 'click', function() {
+$(".btnStar").on('click', function() {
 
-    var id = $(this).attr( 'id' );
+    var id = $(this).attr('id');
 
 
     var max = id.substring(10, 11); /* get the number */
 
 
     /* we color the buttons between 1 and max and uncolor between max+1 and 5 */
-    for( var i = 1 ; i <= max ; i++ ) {
+    for(var i = 1 ; i <= max ; i++) {
 
-       colorButton( $("#starButton"+i) );
+       colorButton($("#starButton"+i));
 
     }
 
     /* we must use +max+1 to convert max as an integer (it's considered by JS as a string) */
-    for( var j = +max+1 ; j <= 5 ; j++ ) {
+    for(var j = +max+1 ; j <= 5 ; j++) {
 
-       uncolorButton( $("#starButton"+j) );
+       uncolorButton($("#starButton"+j));
 
     }
 
-} );
+});
 
 
 /*******************************************************************/
@@ -90,33 +90,33 @@ $(window).resize(function() {
     /* ADDING BR */
 
     /* we get the dropdown menu to resize it in function of window's size */
-    var dropdownMenu = document.getElementById( "dropdownMenu" );
+    var dropdownMenu = document.getElementById("dropdownMenu");
 
     /* the br doesn't exist and the window is small */
-    if( $("#br1").length === 0 && window.matchMedia( "(max-width: 500px)" ).matches ) {
+    if($("#br1").length === 0 && window.matchMedia("(max-width: 500px)").matches) {
 
-        var newBr1 = document.createElement( "br" ); /* we create a new breakline */
+        var newBr1 = document.createElement("br"); /* we create a new breakline */
 
-        var newBr2 = document.createElement( "br" ); /* we create another breaklines because we can't use the same many times */
+        var newBr2 = document.createElement("br"); /* we create another breaklines because we can't use the same many times */
 
-        var newBr3 = document.createElement( "br" );
+        var newBr3 = document.createElement("br");
 
-        var newBr4 = document.createElement( "br" );
+        var newBr4 = document.createElement("br");
 
-        newBr1.setAttribute( "id", "br1" );
+        newBr1.setAttribute("id", "br1");
 
-        newBr2.setAttribute( "id", "br2" );
+        newBr2.setAttribute("id", "br2");
 
-        newBr3.setAttribute( "id", "br3" );
+        newBr3.setAttribute("id", "br3");
 
-        newBr4.setAttribute( "id", "br4" );
+        newBr4.setAttribute("id", "br4");
 
 
-        var containerType = document.getElementById( "typeContainer" );
+        var containerType = document.getElementById("typeContainer");
 
-        var containerPrice = document.getElementById( "currencyContainer" );
+        var containerPrice = document.getElementById("currencyContainer");
 
-        var containerStar = document.getElementById( "starContainer" );
+        var containerStar = document.getElementById("starContainer");
 
 
         /* we add the breaklines to the DOM via inserting them */
@@ -134,30 +134,30 @@ $(window).resize(function() {
     }
 
     //the br exists and the window is large
-    else if( window.matchMedia( "(min-width: 501px)" ).matches ) {
+    else if(window.matchMedia("(min-width: 501px)").matches) {
 
         /* we remove the breaklines if they exist */
-        if( document.getElementById( "br1" ) !== undefined && document.getElementById( "br1" ) !== null ) {
+        if(document.getElementById("br1") !== undefined && document.getElementById("br1") !== null) {
 
-            document.getElementById( "br1" ).remove();
-
-        }
-
-        if( document.getElementById( "br2" ) !== undefined && document.getElementById( "br2" ) !== null ) {
-
-            document.getElementById( "br2" ).remove();
+            document.getElementById("br1").remove();
 
         }
 
-        if( document.getElementById( "br3" ) !== undefined && document.getElementById( "br3" ) !== null ) {
+        if(document.getElementById("br2") !== undefined && document.getElementById("br2") !== null) {
 
-            document.getElementById( "br3" ).remove();
+            document.getElementById("br2").remove();
 
         }
 
-        if( document.getElementById( "br4" ) !== undefined && document.getElementById( "br4" ) !== null ) {
+        if(document.getElementById("br3") !== undefined && document.getElementById("br3") !== null) {
 
-            document.getElementById( "br4" ).remove();
+            document.getElementById("br3").remove();
+
+        }
+
+        if(document.getElementById("br4") !== undefined && document.getElementById("br4") !== null) {
+
+            document.getElementById("br4").remove();
 
         }
 
@@ -171,19 +171,9 @@ $(window).resize(function() {
     var leftPx = 0;
 
     /* delete navbar ? */
-    if( window.matchMedia( "(min-width: 0px) and (max-width: 800px)" ).matches ) {
+    if(window.matchMedia("(min-width: 0px) and (max-width: 800px)").matches) {
 
-        console.log( "too small..." );
-
-        leftPx = $(window).width() - 330;
-
-        console.log("leftPx = " + leftPx);
-
-        $("#search").css({ left: leftPx, position:'absolute' });
-
-    }
-
-    else if( window.matchMedia( "(min-width: 800px)" ).matches ) {
+        console.log("too small...");
 
         leftPx = $(window).width() - 330;
 
@@ -193,18 +183,15 @@ $(window).resize(function() {
 
     }
 
+    else if(window.matchMedia("(min-width: 800px)").matches) {
 
-    /*******************************************************************/
+        leftPx = $(window).width() - 330;
 
-    /* MOBILE VERSION */
+        console.log("leftPx = " + leftPx);
 
-    if( window.matchMedia( "(max-width: 768px)" ).matches ) {
-
-
+        $("#search").css({ left: leftPx, position:'absolute' });
 
     }
-
-
 
 });
 
@@ -213,24 +200,24 @@ $(window).resize(function() {
 
 
 /* reset filters */
-$("#resetFilters").on( 'click', function() {
+$("#resetFilters").on('click', function() {
 
     /* reset the type buttons to grey */
-    $(".btnType, .btnPrice, .btnStar").each( function() {
+    $(".btnType, .btnPrice, .btnStar").each(function() {
 
-        uncolorButton( $(this) );
+        uncolorButton($(this));
 
-    } );
+    });
 
     /* uncheck the checkboxes */
     /* .attr() is deprecated for properties ; use the new .prop() function instead */
-    if( $("input").prop( 'checked', true ) ) {
+    if($("input").prop('checked', true)) {
 
-        $("input").prop( 'checked', false );
+        $("input").prop('checked', false);
 
     }
 
-} );
+});
 
 
 /*******************************************************************/
@@ -243,12 +230,13 @@ $(document).ready(function() {
 
     $("#search").css({top: 0, left: leftPx, position:'absolute'});
 
-    $(".btnType, .btnPrice, .btnStar").each( function() {
+    $(".btnType, .btnPrice, .btnStar").each(function() {
 
         $(this).data('clicked', false);
 
     });
 
 });
+
 
 

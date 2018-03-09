@@ -31,7 +31,7 @@
                         <a class="dropdown-item">Price
                             <div class="container alignLeft">
                                 <!-- we create a new row which takes all the place to display the euro signs -->
-                                <div class="row">
+                                <div class="row-fluid">
                                     <div class="col-lg-12">
                                         <!-- we couldn't have breaklines between buttons => childnodes returns #text -->
                                         <div id="currencyContainer"><button id="priceButton1" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i></button><button id="priceButton2" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="priceButton3" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="priceButton4" type="btn" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button></div>
@@ -42,12 +42,10 @@
 
                         <a class="dropdown-item">Rating
                             <div class="container alignLeft">
-                                <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 row-fluid">
                                         <!-- we couldn't have breaklines between buttons => childnodes returns #text -->
                                         <div class="starContainer" id="starContainer"><button type="btn" id="starButton1" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton2" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton3" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton4" class="btnStar btn"><span class="fa fa-star"></span></button><button type="btn" id="starButton5" class="btnStar btn"><span class="fa fa-star"></span></button></div>
                                     </div>
-                                </div>
                             </div>
                         </a>
 
