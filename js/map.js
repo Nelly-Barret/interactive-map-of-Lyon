@@ -89,6 +89,16 @@ var mapGridBounds = {
 
         resetButton.addEventListener("click", resetFilter);
 
+        var searchButton = document.getElementById("searchButton");
+
+        searchButton.addEventListener("click", function () {
+
+            var searchText = document.getElementById("textSearch").value;
+
+            filterSearch(searchText);
+
+        });
+
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -683,6 +693,24 @@ var mapGridBounds = {
             map.setFilter(activeLayers[i], ['==', 'type', filters[i]]);
 
             map.setLayoutProperty(activeLayers[i], 'visibility', 'visible');
+
+        }
+
+    }
+
+    function filterSearch(searchString) {
+
+        resetFilter();
+
+        var activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
+
+        if (searchString != null) {
+
+            for (var i in activeLayers) {
+
+                map.setFilter(activeLayers[i], ['contains', 'name', searchString]); //['==', 'name', searchString]
+
+            }
 
         }
 
