@@ -417,14 +417,14 @@ var mapGridBounds = {
 
             var i;
 
-            for (i = 1; i < place.rating; i++) {
+            for (i = 0; i < place.rating; i++) {
 
                 /* add full stars */
                 html += "<i class=\"fa fa-star\"></i>";
 
             }
 
-            for (var j = i; j <= 5; j++) {
+            for (var j = i; j < 5; j++) {
 
                 /* add empty stars */
                 html += "<i class=\"fa fa-star-o\"></i>";
