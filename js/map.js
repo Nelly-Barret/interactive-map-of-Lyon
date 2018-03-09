@@ -132,9 +132,9 @@ var mapGridBounds = {
             map.addSource("places", {
                 type: "geojson",
                 data: "JSON/places.geojson",
-                cluster: true,
-                clusterMaxZoom: 17, // Max zoom to cluster points on
-                clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
+               // cluster: true,
+                //clusterMaxZoom: 17, // Max zoom to cluster points on
+                //clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
             });
 
             map.addLayer({
@@ -195,8 +195,8 @@ var mapGridBounds = {
                     "icon-image": "barIcon",
                     "icon-size": 0.3,
                     "visibility": 'visible',
-                    "icon-allow-overlap": false,
-                    "text-allow-overlap": false
+                    "icon-allow-overlap": true,
+                    "text-allow-overlap": true
 
                 },
                 paint: {
@@ -223,8 +223,8 @@ var mapGridBounds = {
                     "icon-image": "restaurantIcon",
                     "icon-size": 0.3,
                     "visibility": 'visible',
-                    "icon-allow-overlap": false,
-                    "text-allow-overlap": false
+                    "icon-allow-overlap": true,
+                    "text-allow-overlap": true
                 },
                 paint: {
                     "text-halo-color": "rgba(0,0,0,1)"
@@ -250,8 +250,8 @@ var mapGridBounds = {
                     "icon-image": "barRestaurantIcon",
                     "icon-size": 0.3,
                     "visibility": 'visible',
-                    "icon-allow-overlap": false,
-                    "text-allow-overlap": false
+                    "icon-allow-overlap": true,
+                    "text-allow-overlap": true
                 },
                 paint: {
                     "text-halo-color": "rgba(0,0,0,1)"
@@ -518,7 +518,7 @@ var mapGridBounds = {
 
 
 //######################################################################################################################
-//############ JSON FILES LOADER AND GEOJSON GENERATION ################################################################
+//############ FILTER ACTIONS ON MAP ###################################################################################
 //######################################################################################################################
 
     function filterMap() {
@@ -566,37 +566,41 @@ var mapGridBounds = {
 
         var filter = {
 
-            types: [false, false, false],
+            types: [null, null, null],
 
             price: null,
 
             rating: null,
 
-            aroundMe: aroundMeButton.checked,
+            aroundMe: null,
 
-            opened: openedNowButton.checked
+            opened: null
 
         };
+
+        console.log(filter);
 
         var i;
 
         for (i = 0; i < typeButtons.length; i++) {
 
-            filter.types[i] = $(typeButtons[i]).data().clicked;
+         	filter.types[i] = $(typeButtons[i]).data().clicked;
 
         }
 
         for (i = 0; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
 
-            filter = i + 1;
+            filter.price = i + 1;
 
         }
 
         for (i = 0; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
 
-            filter = i + 1;
+            filter.rating = i + 1;
 
         }
+
+		console.log(filter);
 
         filterFunction(filter);
 
@@ -605,6 +609,8 @@ var mapGridBounds = {
 //----------------------------------------------------------------------------------------------------------------------
 
     function filterFunction(filter) {
+
+    	console.log(JSON.stringify(filter));
 
         var activeLayers = [];
 
@@ -616,6 +622,8 @@ var mapGridBounds = {
 
             activeLayers.push('restaurantPlaceSymbol');
 
+            map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'visible');
+
         }
 
         if (filter.types[1] === false) {
@@ -626,6 +634,8 @@ var mapGridBounds = {
 
             activeLayers.push('barPlaceSymbol');
 
+            map.setLayoutProperty('barPlaceSymbol', 'visibility', 'visible');
+
         }
 
         if (filter.types[2] === false) {
@@ -635,6 +645,8 @@ var mapGridBounds = {
         } else {
 
             activeLayers.push('barRestaurantPlaceSymbol');
+
+            map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'visible');
 
         }
 
@@ -669,6 +681,8 @@ var mapGridBounds = {
         for (var i in activeLayers) {
 
             map.setFilter(activeLayers[i], ['==', 'type', filters[i]]);
+
+            map.setLayoutProperty(activeLayers[i], 'visibility', 'visible');
 
         }
 

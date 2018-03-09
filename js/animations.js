@@ -243,6 +243,12 @@ $(document).ready(function() {
 
     $("#search").css({top: 0, left: leftPx, position:'absolute'});
 
+    $(".btnType, .btnPrice, .btnStar").each( function() {
+
+        $(this).data('clicked', false);
+
+    });
+
 });
 
 
