@@ -15,7 +15,7 @@
 
                         <div class="form-check checkbox-slider--b">
                             <label>
-                                <input type="checkbox"><span>Around me</span>
+                                <input type="checkbox" id="aroundMe"><span>Around me</span>
                             </label>
                         </div>
 
@@ -23,17 +23,17 @@
                     <div class="dropdown-item">
                         <div class="form-check checkbox-slider--b">
                             <label>
-                                <input type="checkbox"><span>Opened now</span>
+                                <input type="checkbox" id="openedNow"><span>Opened now</span>
                             </label>
                         </div></div>
                     <div class="dropdown-item"><button type="button" class="btn btn-success" id="go">Go</button><button type="button" class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button></div>
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button type="button" class="btn btn-outline-success my-2 my-sm-0">Search</button>
-        </form>
+        <div class="inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="textSearch">
+            <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="searchButton">Search</button>
+        </div>
     </div>
 </nav>
 

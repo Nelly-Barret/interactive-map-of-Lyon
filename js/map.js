@@ -464,15 +464,9 @@ function createMarkerPopupHTML(place) {
 
                 html += "<br><p id='popupWeekday'>";
 
-                //In JavaScript, the first day of the week (0) means Sunday
-                // getDay()			days[]
-                // 0 Sunday			Monday
-                // 1 Monday			Tuesday
-                // 2 Tuesday		Wednesday
-                // 3 Wednesday		Thursday
-                // 4 Thursday		Friday
-                // 5 Friday			Saturday
-                // 6 Saturday		Sunday
+            var d = new Date();
+
+            var day = d.getDay();
 
             //In JavaScript, the first day of the week (0) means Sunday
             // getDay()			days[]
@@ -484,7 +478,7 @@ function createMarkerPopupHTML(place) {
             // 5 Friday			Saturday
             // 6 Saturday		Sunday
 
-            str = days[day];
+            var str = days[day];
 
             if (day === 0) {
 
@@ -618,7 +612,13 @@ function filterMap() {
 
         console.log(filter.rating);
 
-		console.log(filter);
+        console.log(filter);
+
+    }
+
+    filter.aroundMe = aroundMeButton.checked;
+
+    filter.opened = openedNowButton.checked;
 
     console.log(filter);
 
@@ -1676,7 +1676,6 @@ function cleanGeoJSON(geoJSONString) {
     console.log(JSON.stringify(newPlaces));
 
 }
-
 
 //######################################################################################################################
 //#### COPYRIGHTS @ NELLY BARRET & LOUIS LE BRUN - LIFPROJET 2018 ######################################################
