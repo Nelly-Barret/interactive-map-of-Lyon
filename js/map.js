@@ -43,422 +43,424 @@ var mapGridBounds = {
 //########## GENERAL INITIALISATION AND MAP INITIALISATION #############################################################
 //######################################################################################################################
 
-    var userPositionMarker;     // Marker associated with user's location
+var userPositionMarker;     // Marker associated with user's location
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function init() {
+function init() {
 
-		// Initialisation of user's location with coordinates of Lyon near Bellecour
+    // Initialisation of user's location with coordinates of Lyon near Bellecour
 
-        userCoordinates = {
+    userCoordinates = {
 
-            userLatitude: 45.75717800533178,
+        userLatitude: 45.75717800533178,
 
-            userLongitude: 4.83480298193669
+        userLongitude: 4.83480298193669
 
-        };
+    };
 
-		// Mapbox generation with API key authentication
+    // Mapbox generation with API key authentication
 
-        map = mapInitialisation(userCoordinates);
+    map = mapInitialisation(userCoordinates);
 
-        map.on('click', function (element) {
+    map.on('click', function (element) {
 
-            var features = map.queryRenderedFeatures(element.point, {
-                layers: ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'] // replace this with the name of the layer
-            });
-
-            if (!features.length) {
-
-                return;
-
-            }
-
-            var feature = features[0];
-
-            createPopupForSymbol(feature);
-
+        var features = map.queryRenderedFeatures(element.point, {
+            layers: ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'] // replace this with the name of the layer
         });
 
-        var goButton = document.getElementById("go");
+        if (!features.length) {
 
-        goButton.addEventListener("click", filterMap);
-
-        var resetButton = document.getElementById("resetFilters");
-
-        resetButton.addEventListener("click", resetFilter);
-
-        var searchButton = document.getElementById("searchButton");
-
-        searchButton.addEventListener("click", function () {
-
-            var searchText = document.getElementById("textSearch").value;
-
-            filterSearch(searchText);
-
-        });
-
-    }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    function mapInitialisation(userCoordinates) {
-
-        mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
-
-        map = new mapboxgl.Map({
-
-            container: 'map',
-
-            center: [userCoordinates.userLongitude, userCoordinates.userLatitude],
-
-            zoom: 13,
-
-            style: 'mapbox://styles/mapbox/basic-v9'
-
-        });
-
-        map.addControl(new mapboxgl.GeolocateControl({
-
-            positionOptions: {
-
-                enableHighAccuracy: true
-
-            },
-
-            trackUserLocation: true
-
-        }));
-
-        // disable map rotation using right click + drag
-        map.dragRotate.disable();
-
-        // disable map rotation using touch rotation gesture
-        map.touchZoomRotate.disableRotation();
-
-        map.on('load', function () {
-
-            map.addSource("places", {
-                type: "geojson",
-                data: "JSON/places.geojson",
-               // cluster: true,
-                //clusterMaxZoom: 17, // Max zoom to cluster points on
-                //clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
-            });
-
-            map.addLayer({
-                id: "clusters",
-                type: "circle",
-                source: "places",
-                filter: ["has", "point_count"],
-                paint: {
-                    "circle-color": [
-                        "step",
-                        ["get", "point_count"],
-                        "#51bbd6",
-                        100,
-                        "#e9f154",
-                        750,
-                        "#f25525"
-                    ],
-                    "circle-radius": [
-                        "step",
-                        ["get", "point_count"],
-                        20,
-                        100,
-                        30,
-                        750,
-                        40
-                    ]
-                }
-            });
-
-            map.addLayer({
-                id: "cluster-count",
-                type: "symbol",
-                source: "places",
-                filter: ["has", "point_count"],
-                layout: {
-                    "text-field": "{point_count_abbreviated}",
-                    "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 12
-                }
-            });
-
-            map.loadImage('Assets/barIcon.png', function (error, image) {
-
-                map.addImage('barIcon', image);
-
-            });
-
-            map.addLayer({
-                id: "barPlaceSymbol",
-                type: "symbol",
-                source: "places",
-                filter: ['==', 'type', "Bar"],
-                layout: {
-                    "text-field": "{name}",
-                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                    "text-offset": [0, 0.6],
-                    "text-anchor": "top",
-                    "icon-image": "barIcon",
-                    "icon-size": 0.3,
-                    "visibility": 'visible',
-                    "icon-allow-overlap": true,
-                    "text-allow-overlap": true
-
-                },
-                paint: {
-                    "text-halo-color": "rgba(0,0,0,1)"
-                }
-            });
-
-            map.loadImage('Assets/restaurantIcon.png', function (error, image) {
-
-                map.addImage('restaurantIcon', image);
-
-            });
-
-            map.addLayer({
-                id: "restaurantPlaceSymbol",
-                type: "symbol",
-                source: "places",
-                filter: ['==', 'type', 'Restaurant'],
-                layout: {
-                    "text-field": "{name}",
-                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                    "text-offset": [0, 0.6],
-                    "text-anchor": "top",
-                    "icon-image": "restaurantIcon",
-                    "icon-size": 0.3,
-                    "visibility": 'visible',
-                    "icon-allow-overlap": true,
-                    "text-allow-overlap": true
-                },
-                paint: {
-                    "text-halo-color": "rgba(0,0,0,1)"
-                }
-            });
-
-            map.loadImage('Assets/cafeIcon.png', function (error, image) {
-
-                map.addImage('barRestaurantIcon', image);
-
-            });
-
-            map.addLayer({
-                id: "barRestaurantPlaceSymbol",
-                type: "symbol",
-                source: "places",
-                filter: ['==', 'type', 'Bar-restaurant'],
-                layout: {
-                    "text-field": "{name}",
-                    "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                    "text-offset": [0, 0.6],
-                    "text-anchor": "top",
-                    "icon-image": "barRestaurantIcon",
-                    "icon-size": 0.3,
-                    "visibility": 'visible',
-                    "icon-allow-overlap": true,
-                    "text-allow-overlap": true
-                },
-                paint: {
-                    "text-halo-color": "rgba(0,0,0,1)"
-                }
-            });
-
-        });
-
-
-		// Update user's location
-
-        getUserLocation();
-
-		// Creation of user marker on map
-
-        userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
-
-        var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-
-        var popupOffsets = {
-            'top': [0, 0],
-            'top-left': [0, 0],
-            'top-right': [0, 0],
-            'bottom': [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-            'left': [markerRadius, (markerHeight - markerRadius) * -1],
-            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-        };
-
-        var popup = new mapboxgl.Popup({offset: popupOffsets, closeButton: false})
-            .setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
-            .setHTML("<h3 id='youAreHere' >You are here</h3>")
-            .addTo(map);
-
-        userPositionMarker.setPopup(popup);
-
-        userPositionMarker.addTo(map);
-
-        var location = new mapboxgl.LngLat(userCoordinates.userLongitude, userCoordinates.userLatitude);
-
-        var coords = {
-
-            latitude: location.lat,
-
-            longitude: location.lng
-
-        };
-
-        var pos = {
-
-            coords: coords
-
-        };
-
-        setUserCoordinates(pos);
-
-        googlePlacesAPIService = new google.maps.places.PlacesService(document.createElement('div'));
-
-        return map;
-
-    }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    function getUserLocation() {
-
-        map.setCenter([userCoordinates.userLongitude, userCoordinates.userLatitude]);
-
-        if (navigator.geolocation) {
-
-            navigator.geolocation.watchPosition(setUserCoordinates);
+            return;
 
         }
 
-    }
+        var feature = features[0];
+
+        createPopupForSymbol(feature);
+
+    });
+
+    var goButton = document.getElementById("go");
+
+    goButton.addEventListener("click", filterMap);
+
+    var resetButton = document.getElementById("resetFilters");
+
+    resetButton.addEventListener("click", resetFilter);
+
+    var searchTextfield = document.getElementById("textSearch");
+
+    searchTextfield.addEventListener("onsearch", function () {
+
+        filterSearch(searchTextfield.value);
+
+    });
+
+    var searchButton = document.getElementById("searchButton");
+
+    searchButton.addEventListener("click", function () {
+
+        filterSearch(searchTextfield.value);
+
+    });
+
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function setUserCoordinates(position) {
+function mapInitialisation(userCoordinates) {
 
-        userCoordinates.userLatitude = position.coords.latitude;
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
 
-        userCoordinates.userLongitude = position.coords.longitude;
+    map = new mapboxgl.Map({
 
-        userPositionMarker.setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
+        container: 'map',
+
+        center: [userCoordinates.userLongitude, userCoordinates.userLatitude],
+
+        zoom: 13,
+
+        style: 'mapbox://styles/mapbox/basic-v9'
+
+    });
+
+    map.addControl(new mapboxgl.GeolocateControl({
+
+        positionOptions: {
+
+            enableHighAccuracy: true
+
+        },
+
+        trackUserLocation: true
+
+    }));
+
+    // disable map rotation using right click + drag
+    map.dragRotate.disable();
+
+    // disable map rotation using touch rotation gesture
+    map.touchZoomRotate.disableRotation();
+
+    map.on('load', function () {
+
+        map.addSource("places", {
+            type: "geojson",
+            data: "JSON/places.geojson",
+            // cluster: true,
+            //clusterMaxZoom: 17, // Max zoom to cluster points on
+            //clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
+        });
+
+        map.addLayer({
+            id: "clusters",
+            type: "circle",
+            source: "places",
+            filter: ["has", "point_count"],
+            paint: {
+                "circle-color": [
+                    "step",
+                    ["get", "point_count"],
+                    "#51bbd6",
+                    100,
+                    "#e9f154",
+                    750,
+                    "#f25525"
+                ],
+                "circle-radius": [
+                    "step",
+                    ["get", "point_count"],
+                    20,
+                    100,
+                    30,
+                    750,
+                    40
+                ]
+            }
+        });
+
+        map.addLayer({
+            id: "cluster-count",
+            type: "symbol",
+            source: "places",
+            filter: ["has", "point_count"],
+            layout: {
+                "text-field": "{point_count_abbreviated}",
+                "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                "text-size": 12
+            }
+        });
+
+        map.loadImage('Assets/barIcon.png', function (error, image) {
+
+            map.addImage('barIcon', image);
+
+        });
+
+        map.addLayer({
+            id: "barPlaceSymbol",
+            type: "symbol",
+            source: "places",
+            filter: ['==', 'type', "Bar"],
+            layout: {
+                "text-field": "{name}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [0, 0.6],
+                "text-anchor": "top",
+                "icon-image": "barIcon",
+                "icon-size": 0.3,
+                "visibility": 'visible',
+                "icon-allow-overlap": true,
+                "text-allow-overlap": true
+
+            },
+            paint: {
+                "text-halo-color": "rgba(0,0,0,1)"
+            }
+        });
+
+        map.loadImage('Assets/restaurantIcon.png', function (error, image) {
+
+            map.addImage('restaurantIcon', image);
+
+        });
+
+        map.addLayer({
+            id: "restaurantPlaceSymbol",
+            type: "symbol",
+            source: "places",
+            filter: ['==', 'type', 'Restaurant'],
+            layout: {
+                "text-field": "{name}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [0, 0.6],
+                "text-anchor": "top",
+                "icon-image": "restaurantIcon",
+                "icon-size": 0.3,
+                "visibility": 'visible',
+                "icon-allow-overlap": true,
+                "text-allow-overlap": true
+            },
+            paint: {
+                "text-halo-color": "rgba(0,0,0,1)"
+            }
+        });
+
+        map.loadImage('Assets/cafeIcon.png', function (error, image) {
+
+            map.addImage('barRestaurantIcon', image);
+
+        });
+
+        map.addLayer({
+            id: "barRestaurantPlaceSymbol",
+            type: "symbol",
+            source: "places",
+            filter: ['==', 'type', 'Bar-restaurant'],
+            layout: {
+                "text-field": "{name}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [0, 0.6],
+                "text-anchor": "top",
+                "icon-image": "barRestaurantIcon",
+                "icon-size": 0.3,
+                "visibility": 'visible',
+                "icon-allow-overlap": true,
+                "text-allow-overlap": true
+            },
+            paint: {
+                "text-halo-color": "rgba(0,0,0,1)"
+            }
+        });
+
+    });
+
+
+    // Update user's location
+
+    getUserLocation();
+
+    // Creation of user marker on map
+
+    userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
+
+    var markerHeight = 50, markerRadius = 10, linearOffset = 25;
+
+    var popupOffsets = {
+        'top': [0, 0],
+        'top-left': [0, 0],
+        'top-right': [0, 0],
+        'bottom': [0, -markerHeight],
+        'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+        'left': [markerRadius, (markerHeight - markerRadius) * -1],
+        'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+    };
+
+    var popup = new mapboxgl.Popup({offset: popupOffsets, closeButton: false})
+        .setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude])
+        .setHTML("<h3 id='youAreHere' >You are here</h3>")
+        .addTo(map);
+
+    userPositionMarker.setPopup(popup);
+
+    userPositionMarker.addTo(map);
+
+    var location = new mapboxgl.LngLat(userCoordinates.userLongitude, userCoordinates.userLatitude);
+
+    var coords = {
+
+        latitude: location.lat,
+
+        longitude: location.lng
+
+    };
+
+    var pos = {
+
+        coords: coords
+
+    };
+
+    setUserCoordinates(pos);
+
+    googlePlacesAPIService = new google.maps.places.PlacesService(document.createElement('div'));
+
+    return map;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function getUserLocation() {
+
+    map.setCenter([userCoordinates.userLongitude, userCoordinates.userLatitude]);
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.watchPosition(setUserCoordinates);
 
     }
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function setUserCoordinates(position) {
+
+    userCoordinates.userLatitude = position.coords.latitude;
+
+    userCoordinates.userLongitude = position.coords.longitude;
+
+    userPositionMarker.setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
+
+}
 
 
 //######################################################################################################################
 //##################### DISPLAY RELATED METHODS ########################################################################
 //######################################################################################################################
 
-    function createPopupForSymbol(feature) {
+function createPopupForSymbol(feature) {
 
-        placeInformations = {
+    placeInformations = {
 
-            "adress": null,
+        "adress": null,
 
-            "icon": null,
+        "icon": null,
 
-            "id": null,
+        "id": null,
 
-            "name": null,
+        "name": null,
 
-            "opened": null,
+        "opened": null,
 
-            "phone": null,
+        "phone": null,
 
-            "rating": null,
+        "rating": null,
 
-            "type": null,
+        "type": null,
 
-            "types": null,
+        "types": null,
 
-            "weekday_text": null,
+        "weekday_text": null,
 
-            "website": null
+        "website": null
 
-        };
+    };
 
-        placeInformations = feature.properties;
+    placeInformations = feature.properties;
 
-        new mapboxgl.Popup({offset: [0, -15]})
-            .setLngLat(feature.geometry.coordinates)
-            .setHTML(createMarkerPopupHTML(placeInformations))
-            .setLngLat(feature.geometry.coordinates)
-            .addTo(map);
+    new mapboxgl.Popup({offset: [0, -15]})
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(createMarkerPopupHTML(placeInformations))
+        .setLngLat(feature.geometry.coordinates)
+        .addTo(map);
 
-    }
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function createMarkerPopupHTML(place) {
+function createMarkerPopupHTML(place) {
 
-        var state = "closed";
+    var state = "closed";
 
-        if (place.opened) {
+    if (place.opened) {
 
-            state = "opened";
+        state = "opened";
 
-        }
+    }
 
-        var html = "";
+    var html = "";
 
-        html += "<p id='popupTitle'>" + place.name + "</p>";
-        html += "<p id='popupType'>" + place.type + "</p>";
+    html += "<p id='popupTitle'>" + place.name + "</p>";
+    html += "<p id='popupType'>" + place.type + "</p>";
 
-        if (place.rating != null) {
+    if (place.rating != null) {
 
             console.log("rating=" + place.rating);
 
             html += "<p id='popupRating'>";
 
-            var i;
+        var i;
 
-            for (i = 0; i < place.rating; i++) {
+        for (i = 0; i < place.rating; i++) {
 
-                /* add full stars */
-                html += "<i class=\"fa fa-star\"></i>";
-
-            }
-
-            for (var j = i; j < 5; j++) {
-
-                /* add empty stars */
-                html += "<i class=\"fa fa-star-o\"></i>";
-
-            }
-
-            html += "</p>";
-        }
-
-        html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a></p>";
-
-        if (place.website != null) {
-
-            html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.website + "\">Website</a></p>";
+            /* add full stars */
+            html += "<i class=\"fa fa-star\"></i>";
 
         }
 
-        if (place.phone != null) {
+        for (var j = i; j < 5; j++) {
 
-            html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
+            /* add empty stars */
+            html += "<i class=\"fa fa-star-o\"></i>";
 
         }
 
-        if (place.weekday_text != null) {
+        html += "</p>";
+    }
 
-            var days = JSON.parse(place.weekday_text);
+    html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a></p>";
 
-            if (days != null) {
+    if (place.website != null) {
 
-                /* creating a object Date to get the current day */
-                var d = new Date();
-                var day = d.getDay();
+        html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.website + "\">Website</a></p>";
+
+    }
+
+    if (place.phone != null) {
+
+        html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
+
+    }
+
+    if (place.weekday_text != null) {
+
+        var days = JSON.parse(place.weekday_text);
+
+        if (days != null) {
 
                 html += "<br><p id='popupWeekday'>";
 
@@ -472,17 +474,25 @@ var mapGridBounds = {
                 // 5 Friday			Saturday
                 // 6 Saturday		Sunday
 
-                str = days[day];
+            //In JavaScript, the first day of the week (0) means Sunday
+            // getDay()			days[]
+            // 0 Sunday			Monday
+            // 1 Monday			Tuesday
+            // 2 Tuesday		Wednesday
+            // 3 Wednesday		Thursday
+            // 4 Thursday		Friday
+            // 5 Friday			Saturday
+            // 6 Saturday		Sunday
 
-                if (day === 0) {
+            str = days[day];
 
-                    str = days[6];
+            if (day === 0) {
 
-                } else {
+                str = days[6];
 
-                    str = days[day - 1];
+            } else {
 
-                }
+                str = days[day - 1];
 
                 //str.indexOf( ': ' )+2 => starts after ': '
                 html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>\n";
@@ -491,238 +501,250 @@ var mapGridBounds = {
 
         }
 
-        return html;
-
     }
+
+    return html;
+
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function showMap(err, data) {
-        // The geocoder can return an area, like a city, or a
-        // point, like an address. Here we handle both cases,
-        // by fitting the map bounds to an area or zooming to a point.
-        if (data.lbounds) {
+function showMap(err, data) {
+    // The geocoder can return an area, like a city, or a
+    // point, like an address. Here we handle both cases,
+    // by fitting the map bounds to an area or zooming to a point.
+    if (data.lbounds) {
 
-            map.fitBounds(data.lbounds);
+        map.fitBounds(data.lbounds);
 
-        } else if (data.latlng) {
+    } else if (data.latlng) {
 
-            map.setView([data.latlng[0], data.latlng[1]], 13);
+        map.setView([data.latlng[0], data.latlng[1]], 13);
 
-        }
     }
+}
 
 
 //######################################################################################################################
 //############ FILTER ACTIONS ON MAP ###################################################################################
 //######################################################################################################################
 
-    function filterMap() {
+function filterMap() {
 
-        var restaurantButton = document.getElementById("restaurantButton");
+    var restaurantButton = document.getElementById("restaurantButton");
 
-        var barButton = document.getElementById("barButton");
+    var barButton = document.getElementById("barButton");
 
-        var barRestaurantButton = document.getElementById("barRestaurantButton");
-
-
-        var typeButtons = [restaurantButton, barButton, barRestaurantButton];
+    var barRestaurantButton = document.getElementById("barRestaurantButton");
 
 
-        var priceButton1 = document.getElementById("priceButton1");
-
-        var priceButton2 = document.getElementById("priceButton2");
-
-        var priceButton3 = document.getElementById("priceButton3");
-
-        var priceButton4 = document.getElementById("priceButton4");
+    var typeButtons = [restaurantButton, barButton, barRestaurantButton];
 
 
-        var priceButtons = [priceButton1, priceButton2, priceButton3, priceButton4];
+    var priceButton1 = document.getElementById("priceButton1");
+
+    var priceButton2 = document.getElementById("priceButton2");
+
+    var priceButton3 = document.getElementById("priceButton3");
+
+    var priceButton4 = document.getElementById("priceButton4");
 
 
-        var starButton1 = document.getElementById("starButton1");
-
-        var starButton2 = document.getElementById("starButton2");
-
-        var starButton3 = document.getElementById("starButton3");
-
-        var starButton4 = document.getElementById("starButton4");
-
-        var starButton5 = document.getElementById("starButton5");
+    var priceButtons = [priceButton1, priceButton2, priceButton3, priceButton4];
 
 
-        var starButtons = [starButton1, starButton2, starButton3, starButton4, starButton5];
+    var starButton1 = document.getElementById("starButton1");
+
+    var starButton2 = document.getElementById("starButton2");
+
+    var starButton3 = document.getElementById("starButton3");
+
+    var starButton4 = document.getElementById("starButton4");
+
+    var starButton5 = document.getElementById("starButton5");
 
 
-        var aroundMeButton = document.getElementById("aroundMe");
-
-        var openedNowButton = document.getElementById("openedNow");
+    var starButtons = [starButton1, starButton2, starButton3, starButton4, starButton5];
 
 
-        var filter = {
+    var aroundMeButton = document.getElementById("aroundMe");
 
-        	filteringTypes : false,
+    var openedNowButton = document.getElementById("openedNow");
 
-            types: [null, null, null],
 
-            price: null,
+    var filter = {
 
-            rating: null,
+        filteringTypes : false,
 
-            aroundMe: null,
+        types: [null, null, null],
 
-            opened: null
+        price: null,
 
-        };
+        rating: null,
 
-        console.log(filter);
+        aroundMe: null,
 
-        var i;
+        opened: null
 
-        for (i = 0; i < typeButtons.length; i++) {
+    };
 
-        	var clicked = $(typeButtons[i]).data().clicked;
+    console.log(filter);
 
-         	filter.types[i] = clicked;
+    var i;
 
-         	if( clicked ) {
+    for (i = 0; i < typeButtons.length; i++) {
 
-         		filter.filteringTypes = true;
+        var clicked = $(typeButtons[i]).data().clicked;
 
-			}
+        filter.types[i] = clicked;
+
+        if( clicked ) {
+
+            filter.filteringTypes = true;
 
         }
 
-        for (i = 1; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
+    }
 
-            filter.price = i + 1;
+    for (i = 1; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
 
-        }
+        filter.price = i + 1;
 
-        for (i = 1; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
+    }
 
-            filter.rating = i + 1;
+    for (i = 1; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
 
-        }
+        filter.rating = i + 1;
 
         console.log(filter.rating);
 
 		console.log(filter);
 
-        filterFunction(filter);
+    console.log(filter);
 
-    }
+    filterFunction(filter);
+
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function filterFunction(filter) {
+function filterFunction(filter) {
 
-    	console.log(JSON.stringify(filter));
+    console.log(JSON.stringify(filter));
 
-        var activeLayers = [];
+    var activeLayers = [];
 
-        if( filter.filteringTypes ) {
+    if( filter.filteringTypes ) {
 
-            if (filter.types[0] === false) {
+        if (filter.types[0] === false) {
 
-                map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'none');
-
-            } else {
-
-                activeLayers.push('restaurantPlaceSymbol');
-
-                map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'visible');
-
-            }
-
-            if (filter.types[1] === false) {
-
-                map.setLayoutProperty('barPlaceSymbol', 'visibility', 'none');
-
-            } else {
-
-                activeLayers.push('barPlaceSymbol');
-
-                map.setLayoutProperty('barPlaceSymbol', 'visibility', 'visible');
-
-            }
-
-            if (filter.types[2] === false) {
-
-                map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'none');
-
-            } else {
-
-                activeLayers.push('barRestaurantPlaceSymbol');
-
-                map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'visible');
-
-            }
+            map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'none');
 
         } else {
 
-        	activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
+            activeLayers.push('restaurantPlaceSymbol');
 
-		}
-
-        if ( filter.rating != null ) {
-
-			for (var i in activeLayers) {
-
-				map.setFilter(activeLayers[i], ['==', 'rating', filter.rating]);
-
-				console.log(filter.rating);
-
-			}
+            map.setLayoutProperty('restaurantPlaceSymbol', 'visibility', 'visible');
 
         }
 
-        if ( filter.price != null ) {
+        if (filter.types[1] === false) {
 
-            for (var i in activeLayers) {
+            map.setLayoutProperty('barPlaceSymbol', 'visibility', 'none');
 
-                map.setFilter(activeLayers[i], ['==', 'price', filter.price]);
+        } else {
 
-            }
+            activeLayers.push('barPlaceSymbol');
 
-		}
+            map.setLayoutProperty('barPlaceSymbol', 'visibility', 'visible');
+
+        }
+
+        if (filter.types[2] === false) {
+
+            map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'none');
+
+        } else {
+
+            activeLayers.push('barRestaurantPlaceSymbol');
+
+            map.setLayoutProperty('barRestaurantPlaceSymbol', 'visibility', 'visible');
+
+        }
+
+    } else {
+
+        activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
 
     }
 
-    function resetFilter() {
-
-       	var activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
-
-       	var filters = ["Bar", "Restaurant", "Bar-restaurant"];
+    if ( filter.rating != null ) {
 
         for (var i in activeLayers) {
 
-            map.setFilter(activeLayers[i], ['==', 'type', filters[i]]);
+            map.setFilter(activeLayers[i], ['==', 'rating', filter.rating]);
 
-            map.setLayoutProperty(activeLayers[i], 'visibility', 'visible');
+            console.log(filter.rating);
 
         }
 
     }
 
-    function filterSearch(searchString) {
+    if ( filter.price != null ) {
+
+        for (var i in activeLayers) {
+
+            map.setFilter(activeLayers[i], ['==', 'price', filter.price]);
+
+        }
+
+    }
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function resetFilter() {
+
+    var activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
+
+    var filters = ["Bar", "Restaurant", "Bar-restaurant"];
+
+    for (var i in activeLayers) {
+
+        map.setFilter(activeLayers[i], ['==', 'type', filters[i]]);
+
+        map.setLayoutProperty(activeLayers[i], 'visibility', 'visible');
+
+    }
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function filterSearch(searchString) {
+
+    resetFilter();
+
+    var activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
+
+    if (searchString.length !== 0) {
+
+        for (var i in activeLayers) {
+
+            console.log(searchString);
+
+            map.setFilter(activeLayers[i], ['==', 'name', searchString]); //['==', 'name', searchString]
+
+        }
+
+    } else {
 
         resetFilter();
 
-        var activeLayers = ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'];
-
-        if (searchString != null) {
-
-            for (var i in activeLayers) {
-
-                map.setFilter(activeLayers[i], ['contains', 'name', searchString]); //['==', 'name', searchString]
-
-            }
-
-        }
-
     }
+
+}
 
 //######################################################################################################################
 //############### DATA RETRIEVER AND JSON'S CREATION ###################################################################
@@ -730,203 +752,257 @@ var mapGridBounds = {
 
     var fetchedBars= [];
 
-    var barsString = "";
+var barsString = "";
 
-    var fetchedRestaurants = [];
+var fetchedRestaurants = [];
 
-    var restaurantsString = "";
+var restaurantsString = "";
 
-    var fetchedBarRestaurants = [];
+var fetchedBarRestaurants = [];
 
-    var barsRestaurantsString = "";
+var barsRestaurantsString = "";
 
-    var placesRequest;          // Google places API request
+var placesRequest;          // Google places API request
 
-    var counter;                // Simple counter for tasks
+var counter;                // Simple counter for tasks
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function fetchAllPlaceRadar( timeInterval ) {
+function fetchAllPlaceRadar( timeInterval ) {
 
-        allPlacesId = [];
+    allPlacesId = [];
 
-        counter = 0;
+    counter = 0;
 
-        var lngStep = lngVariance * 7;
+    var lngStep = lngVariance * 7;
 
-        var latStep = latVariance * 7;
+    var latStep = latVariance * 7;
 
 
-        var baseBounds = {
+    var baseBounds = {
 
-            north: 45.788347,
+        north: 45.788347,
 
-            west: 4.791173,
+        west: 4.791173,
 
-            south: 45.788347 - latStep,
+        south: 45.788347 - latStep,
 
-            east: 4.791173 + lngStep
+        east: 4.791173 + lngStep
 
-        };
+    };
 
-        var bounds = {
+    var bounds = {
 
-            north: 45.788347,
+        north: 45.788347,
 
-            west: 4.791173,
+        west: 4.791173,
 
-            south: 45.788347 - latStep,
+        south: 45.788347 - latStep,
 
-            east: 4.791173 + lngStep
+        east: 4.791173 + lngStep
 
-        };
+    };
 
-        var i = 1;
+    var i = 1;
 
-        console.log( "Crawling on lyon..." );
+    console.log( "Crawling on lyon..." );
 
-        var interval = setInterval( function () {
+    var interval = setInterval( function () {
 
-            if ( bounds.north < mapGridBounds.bottomLatitude - latVariance ) {
+        if ( bounds.north < mapGridBounds.bottomLatitude - latVariance ) {
 
-                clearInterval( interval );
-
-            }
-
-            var sw = new google.maps.LatLng( bounds.south.toFixed( 6 ), bounds.west.toFixed( 6 ) );
-
-            var ne = new google.maps.LatLng( bounds.north.toFixed( 6 ), bounds.east.toFixed( 6 ) );
-
-            var radarBounds = new google.maps.LatLngBounds( sw, ne );
-
-            placesRequest = {
-
-                bounds : radarBounds,
-
-                type : "bar"
-
-            };
-
-            googlePlacesAPIService.radarSearch( placesRequest, function ( results, status ) {
-
-                radarSquareCallBack( results, status, allPlacesId, i );
-
-            } );
-
-            placesRequest = {
-
-                bounds : radarBounds,
-
-                type : "restaurant"
-
-            };
-
-            googlePlacesAPIService.radarSearch( placesRequest, function ( results, status ) {
-
-                radarSquareCallBack( results, status, allPlacesId, i );
-
-            } );
-
-            // test markers
-            /*
-                    console.log( bounds );
-
-                    var position = new mapboxgl.LngLat( bounds.west.toFixed( 6 ), bounds.north.toFixed( 6 ) );
-
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
-
-                    position = new mapboxgl.LngLat( bounds.west.toFixed( 6 ), bounds.south.toFixed( 6 ) );
-
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
-
-                    position = new mapboxgl.LngLat( bounds.east.toFixed( 6 ), bounds.north.toFixed( 6 ) );
-
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
-
-                    position = new mapboxgl.LngLat( bounds.east.toFixed( 6 ), bounds.south.toFixed( 6 ) );
-
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
-            */
-
-            if ( bounds.west > mapGridBounds.rightLongitude ) {
-
-                bounds.west = baseBounds.west;
-
-                bounds.east = bounds.west + lngStep;
-
-                bounds.north -= latStep;
-
-                bounds.south -= latStep;
-
-            } else {
-
-                bounds.west += lngStep;
-
-                bounds.east += lngStep;
-
-            }
-
-            i++;
-
-        }, timeInterval );
-
-        setTimeout( function () {
-
-            console.log( "All data retrieved" );
-
-            getDetailsAfterRadar( allPlacesId, 2000 );
-
-        }, timeInterval * 31 + 1000 );
-
-    }
-
-//----------------------------------------------------------------------------------------------------------------------
-
-    function radarSquareCallBack( results, status, array, i ) {
-
-        i--;
-
-        console.log( "Fetching zones : " + i + " / 31 ... Status : " + status );
-
-        if ( status === google.maps.places.PlacesServiceStatus.OK ) {
-
-            // console.log( results );
-
-            for ( var i = 0 ; i < results.length ; i++ ) {
-
-                array.push( results[i]["place_id"] );
-
-            }
+            clearInterval( interval );
 
         }
 
-        //console.log( array.toString() );
+        var sw = new google.maps.LatLng( bounds.south.toFixed( 6 ), bounds.west.toFixed( 6 ) );
 
-    }
+        var ne = new google.maps.LatLng( bounds.north.toFixed( 6 ), bounds.east.toFixed( 6 ) );
+
+        var radarBounds = new google.maps.LatLngBounds( sw, ne );
+
+        placesRequest = {
+
+            bounds : radarBounds,
+
+            type : "bar"
+
+        };
+
+        googlePlacesAPIService.radarSearch( placesRequest, function ( results, status ) {
+
+            radarSquareCallBack( results, status, allPlacesId, i );
+
+        } );
+
+        placesRequest = {
+
+            bounds : radarBounds,
+
+            type : "restaurant"
+
+        };
+
+        googlePlacesAPIService.radarSearch( placesRequest, function ( results, status ) {
+
+            radarSquareCallBack( results, status, allPlacesId, i );
+
+        } );
+
+        // test markers
+        /*
+                console.log( bounds );
+
+                var position = new mapboxgl.LngLat( bounds.west.toFixed( 6 ), bounds.north.toFixed( 6 ) );
+
+                new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+
+                position = new mapboxgl.LngLat( bounds.west.toFixed( 6 ), bounds.south.toFixed( 6 ) );
+
+                new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+
+                position = new mapboxgl.LngLat( bounds.east.toFixed( 6 ), bounds.north.toFixed( 6 ) );
+
+                new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+
+                position = new mapboxgl.LngLat( bounds.east.toFixed( 6 ), bounds.south.toFixed( 6 ) );
+
+                new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+        */
+
+        if ( bounds.west > mapGridBounds.rightLongitude ) {
+
+            bounds.west = baseBounds.west;
+
+            bounds.east = bounds.west + lngStep;
+
+            bounds.north -= latStep;
+
+            bounds.south -= latStep;
+
+        } else {
+
+            bounds.west += lngStep;
+
+            bounds.east += lngStep;
+
+        }
+
+        i++;
+
+    }, timeInterval );
+
+    setTimeout( function () {
+
+        console.log( "All data retrieved" );
+
+        getDetailsAfterRadar( allPlacesId, 2000 );
+
+    }, timeInterval * 31 + 1000 );
+
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function getDetailsAfterRadar( placeIds, timeInterval ) {
+function radarSquareCallBack( results, status, array, i ) {
 
-        var i = 2931;
+    i--;
 
-        var interval = setInterval( function () {
+    console.log( "Fetching zones : " + i + " / 31 ... Status : " + status );
 
-            if ( i % 100 === 0 ) {
+    if ( status === google.maps.places.PlacesServiceStatus.OK ) {
 
-                console.log( "Bars : " );
-                console.log( fetchedBars );
-                console.log( "Bar Restaurants : " );
-                console.log( fetchedBarRestaurants );
-                console.log( "Restaurants : " );
-                console.log( fetchedRestaurants );
-                console.log( "Total : " );
-                console.log( fetchedBarRestaurants.length + fetchedBars.length + fetchedRestaurants.length );
+        // console.log( results );
+
+        for ( var i = 0 ; i < results.length ; i++ ) {
+
+            array.push( results[i]["place_id"] );
+
+        }
+
+    }
+
+    //console.log( array.toString() );
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function getDetailsAfterRadar( placeIds, timeInterval ) {
+
+    var i = 2931;
+
+    var interval = setInterval( function () {
+
+        if ( i % 100 === 0 ) {
+
+            console.log( "Bars : " );
+            console.log( fetchedBars );
+            console.log( "Bar Restaurants : " );
+            console.log( fetchedBarRestaurants );
+            console.log( "Restaurants : " );
+            console.log( fetchedRestaurants );
+            console.log( "Total : " );
+            console.log( fetchedBarRestaurants.length + fetchedBars.length + fetchedRestaurants.length );
+
+        }
+
+        if ( i >= placeIds.length ) {
+
+
+            clearInterval( interval );
+
+            for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
+
+                barsString += JSON.stringify( fetchedBars[j] );
+
+                if ( j !== fetchedBars.length - 1 ) {
+
+                    barsString += ",";
+
+                }
 
             }
 
-            if ( i >= placeIds.length ) {
+            for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
 
+                restaurantsString += JSON.stringify( fetchedRestaurants[j] );
+
+                if ( j !== fetchedRestaurants.length - 1 ) {
+
+                    restaurantsString += ",";
+
+                }
+
+            }
+
+            for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
+
+                barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
+
+                if ( j !== fetchedBarRestaurants.length - 1 ) {
+
+                    barsRestaurantsString += ",";
+
+                }
+
+            }
+
+            return;
+
+        }
+
+        var detailsRequest = {
+
+            placeId : placeIds[i]
+
+        };
+
+        googlePlacesAPIService.getDetails( detailsRequest, function ( results, status ) {
+
+            if ( status === "OVER_QUERY_LIMIT" ) {
+
+                console.log( "State " + i + ", interruption" );
 
                 clearInterval( interval );
 
@@ -966,694 +1042,640 @@ var mapGridBounds = {
 
                 }
 
-                return;
+            } else {
+
+                getDetailsCallback( results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants, i, placeIds.length );
 
             }
 
-            var detailsRequest = {
+        } );
 
-                placeId : placeIds[i]
+        i++;
 
-            };
+    }, timeInterval );
 
-            googlePlacesAPIService.getDetails( detailsRequest, function ( results, status ) {
+    setTimeout( function () {
 
-                if ( status === "OVER_QUERY_LIMIT" ) {
+        console.log( "All details retrieved" );
 
-                    console.log( "State " + i + ", interruption" );
+    }, timeInterval * placeIds.length + 1000 );
 
-                    clearInterval( interval );
-
-                    for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
-
-                        barsString += JSON.stringify( fetchedBars[j] );
-
-                        if ( j !== fetchedBars.length - 1 ) {
-
-                            barsString += ",";
-
-                        }
-
-                    }
-
-                    for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
-
-                        restaurantsString += JSON.stringify( fetchedRestaurants[j] );
-
-                        if ( j !== fetchedRestaurants.length - 1 ) {
-
-                            restaurantsString += ",";
-
-                        }
-
-                    }
-
-                    for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
-
-                        barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
-
-                        if ( j !== fetchedBarRestaurants.length - 1 ) {
-
-                            barsRestaurantsString += ",";
-
-                        }
-
-                    }
-
-                } else {
-
-                    getDetailsCallback( results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants, i, placeIds.length );
-
-                }
-
-            } );
-
-            i++;
-
-        }, timeInterval );
-
-        setTimeout( function () {
-
-            console.log( "All details retrieved" );
-
-        }, timeInterval * placeIds.length + 1000 );
-
-    }
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function getDetailsCallback( result, status, bars, restaurants, barRestaurants, state , progression ) {
+function getDetailsCallback( result, status, bars, restaurants, barRestaurants, state , progression ) {
 
-        state --;
+    state --;
 
-        console.log( "Progression : " + state + " / " + progression + " ... Status : " + status );
+    console.log( "Progression : " + state + " / " + progression + " ... Status : " + status );
 
-        if ( status === google.maps.places.PlacesServiceStatus.OK ) {
+    if ( status === google.maps.places.PlacesServiceStatus.OK ) {
 
-            // console.log( "callback" );
+        // console.log( "callback" );
 
-            var actualPlace = result;
+        var actualPlace = result;
 
-            placeInformations = {
+        placeInformations = {
 
-                "id" : actualPlace['place_id'],
+            "id" : actualPlace['place_id'],
 
-                "coordinates" : actualPlace['geometry']['location'],
+            "coordinates" : actualPlace['geometry']['location'],
 
-                "adress" : actualPlace['vicinity'],
+            "adress" : actualPlace['vicinity'],
 
-                "rating" : actualPlace['rating'],
+            "rating" : actualPlace['rating'],
 
-                "opened" : null,
+            "opened" : null,
 
-                "name" : actualPlace ['name'],
+            "name" : actualPlace ['name'],
 
-                "type" : null,
+            "type" : null,
 
-                "types" : actualPlace['types'],
+            "types" : actualPlace['types'],
 
-                "icon" : actualPlace['icon'],
+            "icon" : actualPlace['icon'],
 
-                "weekday_text" : null,
+            "weekday_text" : null,
 
-                "website" : actualPlace['website'],
+            "website" : actualPlace['website'],
 
-                "phone" : actualPlace['formatted_phone_number']
+            "phone" : actualPlace['formatted_phone_number']
 
-            };
+        };
 
-            if ( actualPlace['opening_hours'] ) {
+        if ( actualPlace['opening_hours'] ) {
 
-                placeInformations.opened = actualPlace['opening_hours']['open_now'];
+            placeInformations.opened = actualPlace['opening_hours']['open_now'];
 
-                placeInformations.weekday_text = actualPlace['opening_hours']['weekday_text'];
+            placeInformations.weekday_text = actualPlace['opening_hours']['weekday_text'];
 
-            }
+        }
 
-            var isBar = checkIfPlaceIsBar( actualPlace );
+        var isBar = checkIfPlaceIsBar( actualPlace );
 
-            var isRestaurant = checkIfPlaceIsRestaurant( actualPlace );
+        var isRestaurant = checkIfPlaceIsRestaurant( actualPlace );
 
-            if ( isBar && isRestaurant ) {
+        if ( isBar && isRestaurant ) {
 
-                placeInformations.type = "Bar-restaurant";
+            placeInformations.type = "Bar-restaurant";
 
-                barRestaurants.push( placeInformations );
+            barRestaurants.push( placeInformations );
 
-            } else if ( isBar ) {
+        } else if ( isBar ) {
 
-                placeInformations.type = "Bar";
+            placeInformations.type = "Bar";
 
-                bars.push( placeInformations );
+            bars.push( placeInformations );
 
-            } else if ( isRestaurant ) {
+        } else if ( isRestaurant ) {
 
-                placeInformations.type = "Restaurant";
+            placeInformations.type = "Restaurant";
 
-                restaurants.push( placeInformations );
-
-            }
+            restaurants.push( placeInformations );
 
         }
 
     }
 
-//----------------------------------------------------------------------------------------------------------------------
-
-    function checkIfPlaceIsBar( place ) {
-
-        for ( var i = 0 ; i < place.types.length ; i++ )
-        {
-
-            if ( place.types[i] === "bar" ) {
-
-                return true;
-
-            }
-
-        }
-
-        return false;
-
-    }
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function checkIfPlaceIsRestaurant( place ) {
+function checkIfPlaceIsBar( place ) {
 
-        for ( var i = 0 ; i < place.types.length ; i++ )
-        {
+    for ( var i = 0 ; i < place.types.length ; i++ )
+    {
 
-            if ( place.types[i] === "restaurant" ) {
+        if ( place.types[i] === "bar" ) {
 
-                return true;
-
-            }
+            return true;
 
         }
 
-        return false;
+    }
+
+    return false;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function checkIfPlaceIsRestaurant( place ) {
+
+    for ( var i = 0 ; i < place.types.length ; i++ )
+    {
+
+        if ( place.types[i] === "restaurant" ) {
+
+            return true;
+
+        }
 
     }
+
+    return false;
+
+}
 
 
 //######################################################################################################################
 //############ JSON FILES LOADER AND GEOJSON GENERATION ################################################################
 //######################################################################################################################
 
-    var loadedBarsString = "";
+var loadedBarsString = "";
 
-    var loadedRestaurantsString = "";
+var loadedRestaurantsString = "";
 
-    var loadedBarsRestaurantsString = "";
+var loadedBarsRestaurantsString = "";
 
-    var numberOfJSONLoadingCallbacks = 0;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-	function loadAllJSON() {
-
-		loadBarsJSON();
-
-		loadRestaurantsJSON();
-
-		loadBarsRestaurantsJSON();
-
-	}
+var numberOfJSONLoadingCallbacks = 0;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function loadBarsJSON() {
+function loadAllJSON() {
 
-        var xobj = new XMLHttpRequest();
+    loadBarsJSON();
 
-        xobj.overrideMimeType("application/json");
+    loadRestaurantsJSON();
 
-        xobj.open('GET', 'JSON/bars.json', true);
+    loadBarsRestaurantsJSON();
 
-        xobj.onreadystatechange = function () {
+}
 
-            if (xobj.readyState === 4 && xobj.status == "200") {
+//----------------------------------------------------------------------------------------------------------------------
 
-                loadedBarsString = xobj.responseText;
+function loadBarsJSON() {
 
-                console.log("retrieved Bars");
+    var xobj = new XMLHttpRequest();
 
-                callbackLoadingJSON();
+    xobj.overrideMimeType("application/json");
 
-            }
+    xobj.open('GET', 'JSON/bars.json', true);
 
-        };
+    xobj.onreadystatechange = function () {
 
-        xobj.send(null);
+        if (xobj.readyState === 4 && xobj.status == "200") {
+
+            loadedBarsString = xobj.responseText;
+
+            console.log("retrieved Bars");
+
+            callbackLoadingJSON();
+
+        }
+
+    };
+
+    xobj.send(null);
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function loadRestaurantsJSON() {
+
+    var xobj = new XMLHttpRequest();
+
+    xobj.open('GET', 'JSON/restaurants.json', true);
+
+    xobj.onreadystatechange = function () {
+
+        if (xobj.readyState === 4 && xobj.status == "200") {
+
+            loadedRestaurantsString = xobj.responseText;
+
+            console.log("retrieved Restaurants");
+
+            callbackLoadingJSON();
+
+        }
+
+    };
+
+    xobj.send(null);
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function loadBarsRestaurantsJSON() {
+
+    var xobj = new XMLHttpRequest();
+
+    xobj.open('GET', 'JSON/barsRestaurants.json', true);
+
+    xobj.onreadystatechange = function () {
+
+        if (xobj.readyState === 4 && xobj.status == "200") {
+
+            loadedBarsRestaurantsString = xobj.responseText;
+
+            console.log("retrieved Bars-Restaurants");
+
+            callbackLoadingJSON();
+
+        }
+
+    };
+
+    xobj.send(null);
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+function callbackLoadingJSON() {
+
+    numberOfJSONLoadingCallbacks++;
+
+    if (numberOfJSONLoadingCallbacks === 3) {
+
+        generateGeoJSON();
 
     }
 
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 
-    function loadRestaurantsJSON() {
+function generateGeoJSON() {
 
-        var xobj = new XMLHttpRequest();
+    var parsedBars = JSON.parse(loadedBarsString);
 
-        xobj.open('GET', 'JSON/restaurants.json', true);
+    var parsedRestaurants = JSON.parse(loadedRestaurantsString);
 
-        xobj.onreadystatechange = function () {
+    var parsedBarRestaurants = JSON.parse(loadedBarsRestaurantsString);
 
-            if (xobj.readyState === 4 && xobj.status == "200") {
+    var geoJSONString = "{\"type\" : \"FeatureCollection\", \"features\":[";
 
-                loadedRestaurantsString = xobj.responseText;
+    var geoJSONItem = {
 
-                console.log("retrieved Restaurants");
+        "type": "Feature",
 
-                callbackLoadingJSON();
+        "geometry": {
 
-            }
+            "type": "Point",
 
-        };
+            "coordinates": [null, null]
 
-        xobj.send(null);
+        },
 
+        "properties": {
+
+            "adress": null,
+
+            "icon": null,
+
+            "id": null,
+
+            "name": null,
+
+            "opened": null,
+
+            "rating": null,
+
+            "type": null,
+
+            "types": null,
+
+            "website": null,
+
+            "weekday_text": null,
+
+            "phone": null
+
+        }
+
+    };
+
+    for (var i = 0; i < parsedBars.length; i++) {
+
+        geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
+
+        geoJSONItem.geometry.name = parsedBars[i]["name"];
+
+        geoJSONItem.properties.id = parsedBars[i].id;
+
+        geoJSONItem.properties.name = parsedBars[i].name;
+
+        geoJSONItem.properties.type = parsedBars[i].type;
+
+        geoJSONItem.properties.types = parsedBars[i].types;
+
+        geoJSONItem.properties.adress = parsedBars[i].adress;
+
+        geoJSONItem.properties.rating = Math.floor(parsedBars[i].rating);
+
+        geoJSONItem.properties.icon = "Assets/barIcon.png";
+
+        if (parsedBars[i].phone != null) {
+
+            geoJSONItem.properties.phone = parsedBars[i].phone;
+
+        }
+
+        if (parsedBars[i]["weekday_text"] != null) {
+
+            geoJSONItem.properties.weekday_text = parsedBars[i].weekday_text;
+
+        }
+
+        if (parsedBars[i].website != null) {
+
+            geoJSONItem.properties.website = parsedBars[i].website;
+
+        }
+
+        geoJSONString += JSON.stringify(geoJSONItem);
+
+        if (i < parsedBars.length - 1) {
+
+            geoJSONString += ',';
+
+        }
     }
 
-//----------------------------------------------------------------------------------------------------------------------
+    geoJSONString += ',';
 
-    function loadBarsRestaurantsJSON() {
+    for (var i = 0; i < parsedBarRestaurants.length; i++) {
 
-        var xobj = new XMLHttpRequest();
+        geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i]["coordinates"]["lng"], parsedBarRestaurants[i]["coordinates"]["lat"]];
 
-        xobj.open('GET', 'JSON/barsRestaurants.json', true);
+        geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
 
-        xobj.onreadystatechange = function () {
+        geoJSONItem.properties = parsedBarRestaurants[i];
 
-            if (xobj.readyState === 4 && xobj.status == "200") {
+        geoJSONItem.properties.id = parsedBarRestaurants[i].id;
 
-                loadedBarsRestaurantsString = xobj.responseText;
+        geoJSONItem.properties.name = parsedBarRestaurants[i].name;
 
-                console.log("retrieved Bars-Restaurants");
+        geoJSONItem.properties.type = parsedBarRestaurants[i].type;
 
-                callbackLoadingJSON();
+        geoJSONItem.properties.types = parsedBarRestaurants[i].types;
 
-            }
+        geoJSONItem.properties.adress = parsedBarRestaurants[i].adress;
 
-        };
+        geoJSONItem.properties.rating = Math.floor(parsedBarRestaurants[i].rating);
 
-        xobj.send(null);
+        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
 
-    }
+        geoJSONString += JSON.stringify(geoJSONItem);
 
-//----------------------------------------------------------------------------------------------------------------------
+        if (parsedBarRestaurants[i].phone != null) {
 
-    function callbackLoadingJSON() {
+            geoJSONItem.properties.phone = parsedBarRestaurants[i].phone;
 
-        numberOfJSONLoadingCallbacks++;
+        }
 
-        if (numberOfJSONLoadingCallbacks === 3) {
+        if (parsedBarRestaurants[i]["weekday_text"] != null) {
 
-            generateGeoJSON();
+            geoJSONItem.properties.weekday_text = parsedBarRestaurants[i].weekday_text;
+
+        }
+
+        if (parsedBarRestaurants[i].website != null) {
+
+            geoJSONItem.properties.website = parsedBarRestaurants[i].website;
+
+        }
+
+        if (i < parsedBarRestaurants.length - 1) {
+
+            geoJSONString += ',';
 
         }
 
     }
 
-//----------------------------------------------------------------------------------------------------------------------
+    geoJSONString += ',';
 
-    function generateGeoJSON() {
+    for (var i = 0; i < parsedRestaurants.length; i++) {
 
-        var parsedBars = JSON.parse(loadedBarsString);
+        geoJSONItem.geometry.coordinates = [parsedRestaurants[i]["coordinates"]["lng"], parsedRestaurants[i]["coordinates"]["lat"]];
 
-        var parsedRestaurants = JSON.parse(loadedRestaurantsString);
+        geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
 
-        var parsedBarRestaurants = JSON.parse(loadedBarsRestaurantsString);
+        geoJSONItem.properties = parsedRestaurants[i];
 
-        var geoJSONString = "{\"type\" : \"FeatureCollection\", \"features\":[";
+        geoJSONItem.properties.id = parsedRestaurants[i].id;
 
-        var geoJSONItem = {
+        geoJSONItem.properties.name = parsedRestaurants[i].name;
 
-            "type": "Feature",
+        geoJSONItem.properties.type = parsedRestaurants[i].type;
 
-            "geometry": {
+        geoJSONItem.properties.types = parsedRestaurants[i].types;
 
-                "type": "Point",
+        geoJSONItem.properties.adress = parsedRestaurants[i].adress;
 
-                "coordinates": [null, null]
+        geoJSONItem.properties.rating = Math.floor(parsedRestaurants[i].rating);
 
-            },
+        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
 
-            "properties": {
+        geoJSONString += JSON.stringify(geoJSONItem);
 
-                "adress": null,
+        if (parsedRestaurants[i].phone != null) {
 
-                "icon": null,
-
-                "id": null,
-
-                "name": null,
-
-                "opened": null,
-
-                "rating": null,
-
-                "type": null,
-
-                "types": null,
-
-                "website": null,
-
-                "weekday_text": null,
-
-                "phone": null
-
-            }
-
-        };
-
-        for (var i = 0; i < parsedBars.length; i++) {
-
-            geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
-
-            geoJSONItem.geometry.name = parsedBars[i]["name"];
-
-            geoJSONItem.properties.id = parsedBars[i].id;
-
-            geoJSONItem.properties.name = parsedBars[i].name;
-
-            geoJSONItem.properties.type = parsedBars[i].type;
-
-            geoJSONItem.properties.types = parsedBars[i].types;
-
-            geoJSONItem.properties.adress = parsedBars[i].adress;
-
-            geoJSONItem.properties.rating = Math.floor(parsedBars[i].rating);
-
-            geoJSONItem.properties.icon = "Assets/barIcon.png";
-
-            if (parsedBars[i].phone != null) {
-
-                geoJSONItem.properties.phone = parsedBars[i].phone;
-
-            }
-
-            if (parsedBars[i]["weekday_text"] != null) {
-
-                geoJSONItem.properties.weekday_text = parsedBars[i].weekday_text;
-
-            }
-
-            if (parsedBars[i].website != null) {
-
-                geoJSONItem.properties.website = parsedBars[i].website;
-
-            }
-
-            geoJSONString += JSON.stringify(geoJSONItem);
-
-            if (i < parsedBars.length - 1) {
-
-                geoJSONString += ',';
-
-            }
-        }
-
-        geoJSONString += ',';
-
-        for (var i = 0; i < parsedBarRestaurants.length; i++) {
-
-            geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i]["coordinates"]["lng"], parsedBarRestaurants[i]["coordinates"]["lat"]];
-
-            geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
-
-            geoJSONItem.properties = parsedBarRestaurants[i];
-
-            geoJSONItem.properties.id = parsedBarRestaurants[i].id;
-
-            geoJSONItem.properties.name = parsedBarRestaurants[i].name;
-
-            geoJSONItem.properties.type = parsedBarRestaurants[i].type;
-
-            geoJSONItem.properties.types = parsedBarRestaurants[i].types;
-
-            geoJSONItem.properties.adress = parsedBarRestaurants[i].adress;
-
-            geoJSONItem.properties.rating = Math.floor(parsedBarRestaurants[i].rating);
-
-            geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
-
-            geoJSONString += JSON.stringify(geoJSONItem);
-
-            if (parsedBarRestaurants[i].phone != null) {
-
-                geoJSONItem.properties.phone = parsedBarRestaurants[i].phone;
-
-            }
-
-            if (parsedBarRestaurants[i]["weekday_text"] != null) {
-
-                geoJSONItem.properties.weekday_text = parsedBarRestaurants[i].weekday_text;
-
-            }
-
-            if (parsedBarRestaurants[i].website != null) {
-
-                geoJSONItem.properties.website = parsedBarRestaurants[i].website;
-
-            }
-
-            if (i < parsedBarRestaurants.length - 1) {
-
-                geoJSONString += ',';
-
-            }
+            geoJSONItem.properties.phone = parsedRestaurants[i].phone;
 
         }
 
-        geoJSONString += ',';
+        if (parsedRestaurants[i]["weekday_text"] != null) {
 
-        for (var i = 0; i < parsedRestaurants.length; i++) {
-
-            geoJSONItem.geometry.coordinates = [parsedRestaurants[i]["coordinates"]["lng"], parsedRestaurants[i]["coordinates"]["lat"]];
-
-            geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
-
-            geoJSONItem.properties = parsedRestaurants[i];
-
-            geoJSONItem.properties.id = parsedRestaurants[i].id;
-
-            geoJSONItem.properties.name = parsedRestaurants[i].name;
-
-            geoJSONItem.properties.type = parsedRestaurants[i].type;
-
-            geoJSONItem.properties.types = parsedRestaurants[i].types;
-
-            geoJSONItem.properties.adress = parsedRestaurants[i].adress;
-
-            geoJSONItem.properties.rating = Math.floor(parsedRestaurants[i].rating);
-
-            geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
-
-            geoJSONString += JSON.stringify(geoJSONItem);
-
-            if (parsedRestaurants[i].phone != null) {
-
-                geoJSONItem.properties.phone = parsedRestaurants[i].phone;
-
-            }
-
-            if (parsedRestaurants[i]["weekday_text"] != null) {
-
-                geoJSONItem.properties.weekday_text = parsedRestaurants[i].weekday_text;
-
-            }
-
-            if (parsedRestaurants[i].website != null) {
-
-                geoJSONItem.properties.website = parsedRestaurants[i].website;
-
-            }
-
-            if (i < parsedRestaurants.length - 1) {
-
-                geoJSONString += ',';
-
-            }
+            geoJSONItem.properties.weekday_text = parsedRestaurants[i].weekday_text;
 
         }
 
-        geoJSONString += ']}';
+        if (parsedRestaurants[i].website != null) {
 
-        //DEBUG DISPLAY
-        //console.log(geoJSONString);
+            geoJSONItem.properties.website = parsedRestaurants[i].website;
 
-		cleanGeoJSON(geoJSONString);
+        }
+
+        if (i < parsedRestaurants.length - 1) {
+
+            geoJSONString += ',';
+
+        }
 
     }
 
+    geoJSONString += ']}';
+
+    //DEBUG DISPLAY
+    //console.log(geoJSONString);
+
+    cleanGeoJSON(geoJSONString);
+
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 
-    function cleanGeoJSON() {
+function cleanGeoJSON() {
 
-        var xobj = new XMLHttpRequest();
+    var xobj = new XMLHttpRequest();
 
-        xobj.overrideMimeType("application/json");
+    xobj.overrideMimeType("application/json");
 
-        xobj.open('GET', 'JSON/places.geojson', true);
+    xobj.open('GET', 'JSON/places.geojson', true);
 
-        xobj.onreadystatechange = function () {
+    xobj.onreadystatechange = function () {
 
-            if (xobj.readyState === 4 && xobj.status == "200") {
+        if (xobj.readyState === 4 && xobj.status == "200") {
 
-                var geoPlacesJSON = JSON.parse(xobj.responseText)["features"];
+            var geoPlacesJSON = JSON.parse(xobj.responseText)["features"];
 
-                //console.log(geoPlacesJSON);
+            //console.log(geoPlacesJSON);
 
-                var newPlaces = [];
+            var newPlaces = [];
 
-                var ids = [];
+            var ids = [];
 
-                var doublons = 0;
+            var doublons = 0;
 
-                var geoJSONItem = {
+            var geoJSONItem = {
 
-                    "type": "Feature",
+                "type": "Feature",
 
-                    "geometry": {
+                "geometry": {
 
-                        "type": "Point",
+                    "type": "Point",
 
-                        "coordinates": [null, null]
+                    "coordinates": [null, null]
 
-                    },
+                },
 
-                    "properties": {
+                "properties": {
 
-                        "adress": null,
+                    "adress": null,
 
-                        "icon": null,
+                    "icon": null,
 
-                        "id": null,
+                    "id": null,
 
-                        "name": null,
+                    "name": null,
 
-                        "opened": null,
+                    "opened": null,
 
-                        "rating": null,
+                    "rating": null,
 
-                        "type": null,
+                    "type": null,
 
-                        "types": null,
+                    "types": null,
 
-                        "website": null,
+                    "website": null,
 
-                        "weekday_text": null,
+                    "weekday_text": null,
 
-                        "phone": null
-
-                    }
-
-                };
-
-                for (var i in geoPlacesJSON) {
-
-                    geoJSONItem = geoPlacesJSON[i];
-
-                    if (ids.indexOf(geoJSONItem.properties.id) === -1) {
-
-                        newPlaces.push(geoJSONItem);
-
-                        ids.push(geoJSONItem.properties.id);
-
-                    } else {
-
-                        doublons++;
-
-                    }
+                    "phone": null
 
                 }
 
-                console.log(JSON.stringify(newPlaces));
+            };
+
+            for (var i in geoPlacesJSON) {
+
+                geoJSONItem = geoPlacesJSON[i];
+
+                if (ids.indexOf(geoJSONItem.properties.id) === -1) {
+
+                    newPlaces.push(geoJSONItem);
+
+                    ids.push(geoJSONItem.properties.id);
+
+                } else {
+
+                    doublons++;
+
+                }
 
             }
 
-        };
+            console.log(JSON.stringify(newPlaces));
 
-        xobj.send(null);
+        }
 
-    }
+    };
+
+    xobj.send(null);
+
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
-    function cleanGeoJSON(geoJSONString) {
+function cleanGeoJSON(geoJSONString) {
 
-		var geoPlacesJSON = JSON.parse(geoJSONString)["features"];
+    var geoPlacesJSON = JSON.parse(geoJSONString)["features"];
 
-	   // console.log(geoPlacesJSON);
+    // console.log(geoPlacesJSON);
 
-		var newPlaces = [];
+    var newPlaces = [];
 
-		var ids = [];
+    var ids = [];
 
-		var doublons = 0;
+    var doublons = 0;
 
-		var geoJSONItem = {
+    var geoJSONItem = {
 
-			"type": "Feature",
+        "type": "Feature",
 
-			"geometry": {
+        "geometry": {
 
-				"type": "Point",
+            "type": "Point",
 
-				"coordinates": [null, null]
+            "coordinates": [null, null]
 
-			},
+        },
 
-			"properties": {
+        "properties": {
 
-				"adress": null,
+            "adress": null,
 
-				"icon": null,
+            "icon": null,
 
-				"id": null,
+            "id": null,
 
-				"name": null,
+            "name": null,
 
-				"opened": null,
+            "opened": null,
 
-				"rating": null,
+            "rating": null,
 
-				"type": null,
+            "type": null,
 
-				"types": null,
+            "types": null,
 
-				"website": null,
+            "website": null,
 
-				"weekday_text": null,
+            "weekday_text": null,
 
-				"phone": null
+            "phone": null
 
-			}
+        }
 
-		};
+    };
 
-		for (var i in geoPlacesJSON) {
+    for (var i in geoPlacesJSON) {
 
-			geoJSONItem = geoPlacesJSON[i];
+        geoJSONItem = geoPlacesJSON[i];
 
-			if (ids.indexOf(geoJSONItem.properties.id) === -1) {
+        if (ids.indexOf(geoJSONItem.properties.id) === -1) {
 
-				newPlaces.push(geoJSONItem);
+            newPlaces.push(geoJSONItem);
 
-				ids.push(geoJSONItem.properties.id);
+            ids.push(geoJSONItem.properties.id);
 
-			} else {
+        } else {
 
-				doublons++;
+            doublons++;
 
-			}
-
-		}
-
-		console.log(JSON.stringify(newPlaces));
+        }
 
     }
+
+    console.log(JSON.stringify(newPlaces));
+
+}
 
 
 //######################################################################################################################
