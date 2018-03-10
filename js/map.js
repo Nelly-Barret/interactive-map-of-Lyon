@@ -413,6 +413,8 @@ var mapGridBounds = {
 
         if (place.rating != null) {
 
+            console.log("rating=" + place.rating);
+
             html += "<p id='popupRating'>";
 
             var i;
@@ -458,10 +460,7 @@ var mapGridBounds = {
                 var d = new Date();
                 var day = d.getDay();
 
-                console.log("day = " + day);
-
                 html += "<br><p id='popupWeekday'>";
-
 
                 //In JavaScript, the first day of the week (0) means Sunday
                 // getDay()			days[]
@@ -487,19 +486,6 @@ var mapGridBounds = {
 
                 //str.indexOf( ': ' )+2 => starts after ': '
                 html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>\n";
-                /*html += "<p class='day'>";
-
-                if ( place.opened ) {
-
-                    html += "Opened";
-
-                } else {
-
-                    html += "Closed";
-
-                }*/
-
-                html += "</p>";
 
             }
 
@@ -619,6 +605,8 @@ var mapGridBounds = {
             filter.rating = i + 1;
 
         }
+
+        console.log(filter.rating);
 
 		console.log(filter);
 
@@ -740,7 +728,7 @@ var mapGridBounds = {
 //############### DATA RETRIEVER AND JSON'S CREATION ###################################################################
 //######################################################################################################################
 
-    var fetchedBars = [];
+    var fetchedBars= [];
 
     var barsString = "";
 

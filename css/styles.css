@@ -1,24 +1,23 @@
+/*####################################################################################################################*/
+/*############ MEMEO ON CSS ##########################################################################################*/
+/*####################################################################################################################*/
+
 /* element1, element2 : selects element1 and element2 */
 /* element1 element2 : selects all descendants (children, grandchildren...) which are element2 => descendant combinator */
-/* element1>element2 : select (only) children which are element2 => child combinator */
+/* element1>element2 : selects (only) children which are element2 => child combinator */
 
 /* padding : the space between the content and the border */
 /* padding : padding-top padding-right padding-bottom padding-left */
 /* margin : the space around the border (document side)*/
 /* margin : margin-top margin-right margin-bottom margin-left */
 
-/* CSS font-property : we add Times and serif to the font-property to have generic fonts (used if the navigator don't understand the others) */
+/* CSS font-property : Times and serif are generic fonts (used if the navigator don't understand the others) */
 
 
-html {
+/*####################################################################################################################*/
+/*############ WINDOW ################################################################################################*/
+/*####################################################################################################################*/
 
-	height: 100%;
-
-	margin: 0 !important;
-
-	padding: 0 !important;
-
-}
 
 body {
 
@@ -31,6 +30,85 @@ body {
 	padding: 0 !important;
 
 }
+
+input span::before {
+
+	background: rgb(255, 255, 255) !important;
+
+}
+
+
+/*####################################################################################################################*/
+/*############ NAVBAR ################################################################################################*/
+/*####################################################################################################################*/
+
+.navbar {
+
+	background-color: rgba(0, 0, 0, 0.9) !important;
+
+	z-index: 100;
+
+}
+
+#navbarDropdown {
+
+	color: white;
+
+}
+
+.dropdown-menu {
+
+	background-color: rgba(0, 0, 0, 0.9) !important;
+
+	border: 10px solid rgba(0, 0, 0, 0.9) !important;
+
+	margin-top: 14px;
+
+}
+
+.dropdown-item {
+
+	background-color: rgba(0, 0, 0, 0) !important; /* 0 to opacity to have the color of the menu */
+
+	color: white;
+
+}
+
+.dropdown-item:hover {
+
+	background-color: rgba(0, 0, 0, 0) !important;
+
+	color: white;
+
+}
+
+/* navbar */
+
+/* for the navbar's buttons
+
+nav button {
+
+	margin-bottom: 0;
+
+	margin-top: 10px;
+
+}
+*/
+
+/*
+.smallLink {
+
+	display: inline-block;
+
+	height: 30px;
+
+}
+*/
+
+
+/*####################################################################################################################*/
+/*############ MAP ###################################################################################################*/
+/*####################################################################################################################*/
 
 #map {
 
@@ -50,88 +128,14 @@ body {
 
 	width:100%;
 
-	/* z-index: -1;  /* the map in "underground" */ /* DON'T USE IT ! */
-
-}
-
-/*******************************************************************/
-/* navbar */
-
-#navMenu {
-
-	background: none !important;
-
-	margin: 0;
-
-	position: absolute; /* we use absolute position in order to fix the navbar in the top-left corner */
-
-	z-index: 100;
-
-}
-
-#togglerButton {
-
-	background-color: white;
-
-	height: 50px;
-
-	color: black;
-
-}
-
-/* for the navbar's buttons */
-
-nav button {
-
-	margin-bottom: 0;
-
-	margin-top: 10px;
-
-}
-
-#dropdownMenu {
-
-	background-color: rgba(0, 0, 0, 0.9);
-
-	border-radius: 10px;
-
-	color: white;
-
-	margin: 0 0 0 0; /* 10 0 0 0 */
-
-	padding-bottom: 20px;
-
-	width: 395px;
-
-}
-
-/* to remove highlight when hover a link */
-
-#dropdownMenu > a:hover {
-
-	background-color: rgba(0, 0, 0, 0); /* r g b opacity */
-
-	border-radius: 50px !important;
-
-}
-
-.dropdown-toggle::after {
-
-	display: none !important; /* remove the arrow */
-
-}
-
-.smallLink {
-
-	display: inline-block;
-
-	height: 30px;
+	/* z-index: -1; */ /* DON'T USE IT ! */
 
 }
 
 
-/*******************************************************************/
-/* filters */
+/*####################################################################################################################*/
+/*############ FILTERS ###############################################################################################*/
+/*####################################################################################################################*/
 
 /* restaurant / bar / bar-restaurant */
 
@@ -152,7 +156,6 @@ button {
 	width: 110px;
 
 }
-
 
 /* prices */
 
@@ -182,96 +185,6 @@ button {
 
 }
 
-/* margin for slider's text */
-
-#aroundMe {
-
-	margin-right: 21px;
-
-}
-
-#openedNow {
-
-	margin-right: 10px;
-
-}
-
-/* opened now and around me switches */
-
-.switch {
-
-	display: inline-block;
-
-	height: 22px;
-
-	position: relative;
-
-	width: 40px;
-
-}
-
-.switch input {
-
-	display:inline-block;
-
-}
-
-.slider {
-
-	background-color: #ccc;
-
-	border-radius: 20%; /* rounded corners */
-
-	cursor: pointer;
-
-	bottom: 0;
-
-	left: 0;
-
-	position: absolute;
-
-	right: 0;
-
-	top: 0;
-
-	transition: .4s;
-
-}
-
-.slider:before {
-
-	background-color: white;
-
-	border-radius: 20%; /* rounded corners */
-
-	bottom: 3px;
-
-	content: "";
-
-	height: 16px;
-
-	left: 3px;
-
-	position: absolute;
-
-	transition: .4s;
-
-	width: 16px;
-
-}
-
-input:checked + .slider {
-
-	background-color: rgb(40, 167, 69); /* green */
-
-}
-
-input:checked + .slider:before {
-
-	transform: translateX(16px); /* move the button in the slider */
-
-}
-
 /* buttons "go" and "trash" */
 
 #go , #resetFilters {
@@ -280,15 +193,16 @@ input:checked + .slider:before {
 
 	height: 30px;
 
-	padding: 0 15px 0 15px;
-
 	margin-right: 20px;
+
+	padding: 0 15px 0 15px;
 
 }
 
 
-/*******************************************************************/
-/* youAreHere popup */
+/*####################################################################################################################*/
+/*############ YOU ARE HERE  #########################################################################################*/
+/*####################################################################################################################*/
 
 #youAreHere {
 
@@ -301,8 +215,9 @@ input:checked + .slider:before {
 }
 
 
-/*******************************************************************/
-/* popup */
+/*####################################################################################################################*/
+/*############ POPUP - CONTENT #######################################################################################*/
+/*####################################################################################################################*/
 
 /* Using id instead of class, classes don't work */
 
@@ -344,9 +259,9 @@ input:checked + .slider:before {
 
 	margin: 0;
 
-	text-align: center;
-
 	padding-top: 10px !important;
+
+	text-align: center;
 
 }
 
@@ -372,16 +287,6 @@ input:checked + .slider:before {
 
 }
 
-
-/* fonts awesome */
-.fa-street-view, .fa-at, .fa-phone, .fa-clock-o {
-
-	padding-right: 10px !important;
-
-}
-
-
-/* popup design */
 .mapboxgl-popup-content {
 
 	background-color: rgba(0, 0, 0, 0.9) !important;
@@ -396,7 +301,19 @@ input:checked + .slider:before {
 
 }
 
-/* the anchor */
+/* close button for popup */
+.mapboxgl-popup-close-button {
+
+	color: white;
+
+	height: 50px;
+
+}
+
+
+/*####################################################################################################################*/
+/*############ POPUP - ANCHORS #######################################################################################*/
+/*####################################################################################################################*/
 
 /* getting all the anchors and the tips of popup */
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
@@ -433,50 +350,32 @@ input:checked + .slider:before {
 
 }
 
-/*~
-/* geocoder *
 
-.mapboxgl-ctrl-geocoder {
+/*####################################################################################################################*/
+/*############ FONTS AWESOME #########################################################################################*/
+/*####################################################################################################################*/
 
-	margin-right: 20px !important;
+.fa-street-view, .fa-at, .fa-phone, .fa-clock-o {
 
-	margin-top: 20px !important;
+	padding-right: 10px !important;
 
 }
 
-.mapboxgl-ctrl-geocoder input[type='text'], .mapboxgl-ctrl-geocoder, .mapboxgl-ctrl {
 
-	background-color: rgba(255, 255, 255, 0.7) !important;
+/*####################################################################################################################*/
+/*############ GEO CONTROLER #########################################################################################*/
+/*####################################################################################################################*/
 
-}*/
-
-/* Geocontroler */
-.mapboxgl-ctrl-group > button{
+.mapboxgl-ctrl-group > button {
 
 	top: 10px !important;
 
 }
 
 
-/*******************************************************************/
-
-/* search */
-
-#search {
-
-	/*position: relative;*/
-
-	/*left: 820px; /* add 100px to the left border */
-
-	z-index: 100; /* to display search bar "on" the map */
-
-	top: 10px !important;
-
-}
-
-
-/*******************************************************************/
-/* layout */
+/*####################################################################################################################*/
+/*############ LAYOUT ################################################################################################*/
+/*####################################################################################################################*/
 
 .inlineBlock {
 
@@ -494,18 +393,13 @@ input:checked + .slider:before {
 
 a {
 
-	color: cornflowerblue;
+	color: 	#6495ED;
 
 	text-decoration: underline;
 
 }
 
-.row-fluid {
 
-    margin-left: 0;
-
-    padding-left: 0;
-
-    /*text-align: left;*/
-
-}
+/*####################################################################################################################*/
+/*#### COPYRIGHTS @ NELLY BARRET & LOUIS LE BRUN - LIFPROJET 2018 ####################################################*/
+/*####################################################################################################################*/

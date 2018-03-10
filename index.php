@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 
@@ -15,7 +15,11 @@
 
     <!-- font-awsome for icons (search...) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- for slider buttons -->
+    <!-- https://github.com/kleinejan/titatoggle/tree/master/dist -->
+    <link href="css/titatoggle-dist.css" rel="stylesheet">
+
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -45,7 +49,6 @@
 
 <body class="container-fluid">
     <?php include("static/navbar.php"); ?>
-    <?php include("static/search.php"); ?>
 
     <div id="map">
     </div>
