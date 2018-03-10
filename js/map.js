@@ -419,9 +419,9 @@ function createMarkerPopupHTML(place) {
 
     if (place.rating != null) {
 
-            console.log("rating=" + place.rating);
+        console.log("rating=" + place.rating);
 
-            html += "<p id='popupRating'>";
+        html += "<p id='popupRating'>";
 
         var i;
 
@@ -462,7 +462,7 @@ function createMarkerPopupHTML(place) {
 
         if (days != null) {
 
-                html += "<br><p id='popupWeekday'>";
+            html += "<br><p id='popupWeekday'>";
 
             var d = new Date();
 
@@ -524,6 +524,8 @@ function showMap(err, data) {
 //######################################################################################################################
 
 function filterMap() {
+
+    resetFilter();
 
     var restaurantButton = document.getElementById("restaurantButton");
 
@@ -710,13 +712,11 @@ function filterFunction(filter) {
 
         for (var i in activeLayers) {
 
-            map.setFilter(activeLayers[i], ['<=', 'latitude', (userCoordinates.userLatitude + 5*latVariance)]);
-
-           // map.setFilter(activeLayers[i], ['>=', 'latitude', (userCoordinates.userLatitude - 5*latVariance)]);
-
-           // map.setFilter(activeLayers[i], ['<=', 'longitude', (userCoordinates.userLatitude + 5*lngVariance)]);
-
-           // map.setFilter(activeLayers[i], ['>=', 'longitude', (userCoordinates.userLatitude - 5*lngVariance)]);
+            map.setFilter(activeLayers[i], [ "all",
+                ['<=', 'latitude', (userCoordinates.userLatitude + 2*latVariance)],
+                ['>=', 'latitude', (userCoordinates.userLatitude - 2*latVariance)],
+                ['<=', 'longitude', (userCoordinates.userLongitude + 2*lngVariance)],
+                ['>=', 'longitude', (userCoordinates.userLongitude - 2*lngVariance)]]);
 
         }
 
