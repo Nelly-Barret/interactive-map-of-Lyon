@@ -700,6 +700,28 @@ function filterFunction(filter) {
 
     }
 
+    if( filter.opened != false ) {
+
+        var regex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)|\s))/);
+// working on
+    }
+
+    if( filter.aroundMe != false ) {
+
+        for (var i in activeLayers) {
+
+            map.setFilter(activeLayers[i], ['<=', 'latitude', (userCoordinates.userLatitude + 5*latVariance)]);
+
+           // map.setFilter(activeLayers[i], ['>=', 'latitude', (userCoordinates.userLatitude - 5*latVariance)]);
+
+           // map.setFilter(activeLayers[i], ['<=', 'longitude', (userCoordinates.userLatitude + 5*lngVariance)]);
+
+           // map.setFilter(activeLayers[i], ['>=', 'longitude', (userCoordinates.userLatitude - 5*lngVariance)]);
+
+        }
+
+    }
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -750,7 +772,7 @@ function filterSearch(searchString) {
 //############### DATA RETRIEVER AND JSON'S CREATION ###################################################################
 //######################################################################################################################
 
-    var fetchedBars= [];
+var fetchedBars= [];
 
 var barsString = "";
 
@@ -1329,9 +1351,15 @@ function generateGeoJSON() {
 
             "id": null,
 
+            "latitude" : null,
+
+            "longitude" : null,
+
             "name": null,
 
             "opened": null,
+
+            "phone": null,
 
             "rating": null,
 
@@ -1341,9 +1369,7 @@ function generateGeoJSON() {
 
             "website": null,
 
-            "weekday_text": null,
-
-            "phone": null
+            "weekday_text": null
 
         }
 
@@ -1354,6 +1380,10 @@ function generateGeoJSON() {
         geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
 
         geoJSONItem.geometry.name = parsedBars[i]["name"];
+
+        geoJSONItem.properties.latitude = parsedBars[i]["coordinates"]["lat"];
+
+        geoJSONItem.properties.longitude = parsedBars[i]["coordinates"]["lng"];
 
         geoJSONItem.properties.id = parsedBars[i].id;
 
@@ -1404,7 +1434,9 @@ function generateGeoJSON() {
 
         geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
 
-        geoJSONItem.properties = parsedBarRestaurants[i];
+        geoJSONItem.properties.latitude = parsedBarRestaurants[i]["coordinates"]["lat"];
+
+        geoJSONItem.properties.longitude = parsedBarRestaurants[i]["coordinates"]["lng"];
 
         geoJSONItem.properties.id = parsedBarRestaurants[i].id;
 
@@ -1456,7 +1488,9 @@ function generateGeoJSON() {
 
         geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
 
-        geoJSONItem.properties = parsedRestaurants[i];
+        geoJSONItem.properties.latitude = parsedRestaurants[i]["coordinates"]["lat"];
+
+        geoJSONItem.properties.longitude = parsedRestaurants[i]["coordinates"]["lng"];
 
         geoJSONItem.properties.id = parsedRestaurants[i].id;
 
@@ -1553,9 +1587,15 @@ function cleanGeoJSON() {
 
                     "id": null,
 
+                    "latitude" : null,
+
+                    "longitude" : null,
+
                     "name": null,
 
                     "opened": null,
+
+                    "phone": null,
 
                     "rating": null,
 
@@ -1565,9 +1605,7 @@ function cleanGeoJSON() {
 
                     "website": null,
 
-                    "weekday_text": null,
-
-                    "phone": null
+                    "weekday_text": null
 
                 }
 
@@ -1635,9 +1673,15 @@ function cleanGeoJSON(geoJSONString) {
 
             "id": null,
 
+            "latitude" : null,
+
+            "longitude" : null,
+
             "name": null,
 
             "opened": null,
+
+            "phone": null,
 
             "rating": null,
 
@@ -1647,9 +1691,7 @@ function cleanGeoJSON(geoJSONString) {
 
             "website": null,
 
-            "weekday_text": null,
-
-            "phone": null
+            "weekday_text": null
 
         }
 
@@ -1657,13 +1699,11 @@ function cleanGeoJSON(geoJSONString) {
 
     for (var i in geoPlacesJSON) {
 
-        geoJSONItem = geoPlacesJSON[i];
+        if (ids.indexOf(geoPlacesJSON[i].properties.id) === -1) {
 
-        if (ids.indexOf(geoJSONItem.properties.id) === -1) {
+            newPlaces.push(geoPlacesJSON[i]);
 
-            newPlaces.push(geoJSONItem);
-
-            ids.push(geoJSONItem.properties.id);
+            ids.push(geoPlacesJSON[i].properties.id);
 
         } else {
 
@@ -1673,7 +1713,7 @@ function cleanGeoJSON(geoJSONString) {
 
     }
 
-    console.log(JSON.stringify(newPlaces));
+    console.log("{\"type\" : \"FeatureCollection\", \"features\": " + JSON.stringify(newPlaces) + "}");
 
 }
 
