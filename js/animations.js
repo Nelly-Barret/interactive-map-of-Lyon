@@ -99,7 +99,7 @@ $(".btnStar").on('click', function() {
 
 $(".btnRemove").on('mouseover', function() {
 
-    $(this).css("background-color", "#FF0000");
+    $(this).css("background-color", "rgb(128, 0, 0)");
 
 });
 
@@ -109,11 +109,17 @@ $(".btnRemove").on('mouseleave', function() {
 
 });
 
+/* remove the selected buttons */
+
 $(".btnRemove").on('click', function() {
 
-    $(this).css("background-color", "#FF0000");
+    $(this).css("background-color", "rgb(128, 0, 0)");
 
-    $(this).data('clicked', false);
+    $(this).parent().children().each(function() {
+
+        uncolorButton($(this));
+
+    });
 
 });
 
