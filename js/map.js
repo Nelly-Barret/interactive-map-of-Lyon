@@ -153,7 +153,7 @@ function init() {
 
     var searchTextfield = document.getElementById("textSearch");
 
-    searchTextfield.addEventListener("search", function () {
+    searchTextfield.addEventListener("change", function () {
 
         filterSearch(searchTextfield.value);
 
@@ -783,6 +783,12 @@ function filterFunction(filter) {
 
     map.getSource('places').setData(filteredGeojson);
 
+    if ( filteredGeojson.features.length == 1 ) {
+
+        map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
+
+    }
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -807,13 +813,39 @@ function filterSearch(searchString) {
 
         features = features.filter( function (value) {
 
-            return ( value.properties.name.toLowerCase().indexOf(searchString.toLowerCase()) != -1 );
+            var accentMap = {
+                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u'
+            };
+
+            function accent_fold (s) {
+
+                if (!s) { return ''; }
+                var ret = '';
+                for (var i = 0; i < s.length; i++) {
+                    ret += accentMap[s.charAt(i)] || s.charAt(i);
+                }
+                return ret;
+
+            };
+
+
+            var valueName = accent_fold(value.properties.name);
+
+            var searchName = accent_fold(searchString);
+
+            return ( valueName.toLowerCase().indexOf(searchName.toLowerCase()) != -1 );
 
         });
 
         filteredGeojson.features = features;
 
         map.getSource('places').setData(filteredGeojson);
+
+        if ( filteredGeojson.features.length == 1 ) {
+
+            map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
+
+        }
 
     } else {
 
