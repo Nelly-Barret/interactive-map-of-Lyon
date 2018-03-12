@@ -10,6 +10,14 @@ $(document).ready(function() {
 
     });
 
+    if(window.matchMedia("(max-width: 600px)").matches) {
+
+        console.log("Mobile");
+
+        addBr();
+
+    }
+
 });
 
 
@@ -17,7 +25,7 @@ $(document).ready(function() {
 //############ DROPDOWN MENU ###########################################################################################
 //######################################################################################################################
 
-$(".dropdown-item").on('click', function (e) {
+$(".dropdown-item, #textSearch, #searchButton").on('click', function (e) {
 
     e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
 
@@ -30,7 +38,7 @@ $(".dropdown-item").on('click', function (e) {
 
 function colorButton(button) {
 
-    button.css("background-color", "#008000");
+    button.css("background-color", "#28A745");
 
     button.css("color", "white");
 
@@ -99,7 +107,7 @@ $(".btnStar").on('click', function() {
 
 $(".btnRemove").on('mouseover', function() {
 
-    $(this).css("background-color", "#FF0000");
+    $(this).css("background-color", "#DC3545");
 
 });
 
@@ -109,11 +117,17 @@ $(".btnRemove").on('mouseleave', function() {
 
 });
 
+/* remove the selected buttons */
+
 $(".btnRemove").on('click', function() {
 
-    $(this).css("background-color", "#FF0000");
+    $(this).css("background-color", "#DC3545");
 
-    $(this).data('clicked', false);
+    $(this).parent().children().each(function() {
+
+        uncolorButton($(this));
+
+    });
 
 });
 
@@ -140,6 +154,106 @@ $("#resetFilters").on('click', function() {
     }
 
 });
+
+
+
+//######################################################################################################################
+//############ RESIZE WINDOW ###########################################################################################
+//######################################################################################################################
+
+$(window).resize(function() {
+
+    if(window.matchMedia("(max-width: 600px)").matches) {
+        console.log("Mobile");
+
+        addBr();
+
+    }
+
+    else {
+
+        removeBr();
+
+    }
+
+});
+
+function addBr() {
+
+    /* there is no br yet */
+    if($("#br1").length === 0) {
+
+        var newBr1 = document.createElement("br"); /* we create a new breakline */
+
+        var newBr2 = document.createElement("br"); /* we create another breaklines because we can't use the same many times */
+
+        var newBr3 = document.createElement("br");
+
+        var newBr4 = document.createElement("br");
+
+        newBr1.setAttribute("id", "br1");
+
+        newBr2.setAttribute("id", "br2");
+
+        newBr3.setAttribute("id", "br3");
+
+        newBr4.setAttribute("id", "br4");
+
+
+        var containerType = document.getElementById("typeContainer");
+
+        var containerPrice = document.getElementById("currencyContainer");
+
+        var containerStar = document.getElementById("starContainer");
+
+
+        /* we add the breaklines to the DOM via inserting them */
+        containerType.insertBefore(newBr1, containerType.childNodes[1]);
+
+        containerType.insertBefore(newBr2, containerType.childNodes[3]);
+
+        containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);
+
+        containerStar.insertBefore(newBr4, containerStar.childNodes[3]);
+
+        /* shrink the dropdown menu */
+        $("#dropdownMenu").width("200px");
+
+    }
+
+}
+
+function removeBr() {
+
+    /* we remove the breaklines if they exist */
+    if(document.getElementById("br1") !== undefined && document.getElementById("br1") !== null) {
+
+        document.getElementById("br1").remove();
+
+    }
+
+    if(document.getElementById("br2") !== undefined && document.getElementById("br2") !== null) {
+
+        document.getElementById("br2").remove();
+
+    }
+
+    if(document.getElementById("br3") !== undefined && document.getElementById("br3") !== null) {
+
+        document.getElementById("br3").remove();
+
+    }
+
+    if(document.getElementById("br4") !== undefined && document.getElementById("br4") !== null) {
+
+        document.getElementById("br4").remove();
+
+    }
+
+    /* expand the dropdown menu */
+    $("#dropdownMenu").width("380px");
+
+}
 
 
 
