@@ -135,7 +135,7 @@ function mapInitialisation(userCoordinates) {
 
         trackUserLocation: true
 
-    }));
+    }), 'bottom-right');
 
     // disable map rotation using right click + drag
     map.dragRotate.disable();

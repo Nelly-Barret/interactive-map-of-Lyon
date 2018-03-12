@@ -17,7 +17,7 @@ $(document).ready(function() {
 //############ DROPDOWN MENU ###########################################################################################
 //######################################################################################################################
 
-$(".dropdown-item").on('click', function (e) {
+$(".dropdown-item, #textSearch, #searchButton").on('click', function (e) {
 
     e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
 
@@ -30,7 +30,7 @@ $(".dropdown-item").on('click', function (e) {
 
 function colorButton(button) {
 
-    button.css("background-color", "#008000");
+    button.css("background-color", "#28A745");
 
     button.css("color", "white");
 
@@ -99,7 +99,7 @@ $(".btnStar").on('click', function() {
 
 $(".btnRemove").on('mouseover', function() {
 
-    $(this).css("background-color", "#FF0000");
+    $(this).css("background-color", "#DC3545");
 
 });
 
@@ -109,11 +109,17 @@ $(".btnRemove").on('mouseleave', function() {
 
 });
 
+/* remove the selected buttons */
+
 $(".btnRemove").on('click', function() {
 
-    $(this).css("background-color", "#FF0000");
+    $(this).css("background-color", "#DC3545");
 
-    $(this).data('clicked', false);
+    $(this).parent().children().each(function() {
+
+        uncolorButton($(this));
+
+    });
 
 });
 
@@ -140,6 +146,12 @@ $("#resetFilters").on('click', function() {
     }
 
 });
+
+
+//######################################################################################################################
+//############ RESIZE WINDOW ###########################################################################################
+//######################################################################################################################
+
 
 
 

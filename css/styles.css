@@ -1,5 +1,5 @@
 /*####################################################################################################################*/
-/*############ MEMEO ON CSS ##########################################################################################*/
+/*############ MEMO ON CSS ##########################################################################################*/
 /*####################################################################################################################*/
 
 /* element1, element2 : selects element1 and element2 */
@@ -44,7 +44,7 @@ input span::before {
 
 .navbar {
 
-	background-color: rgba(0, 0, 0, 0.9) !important;
+	background-color: rgba(0, 0, 0, 0) !important;
 
 	z-index: 100;
 
@@ -52,7 +52,9 @@ input span::before {
 
 #navbarDropdown {
 
-	color: white;
+	color: black;
+
+	text-decoration: none;
 
 }
 
@@ -60,9 +62,11 @@ input span::before {
 
 	background-color: rgba(0, 0, 0, 0.9) !important;
 
-	border: 10px solid rgba(0, 0, 0, 0.9) !important;
+	border: 20px solid rgba(0, 0, 0, 0.9) !important;
 
 	margin-top: 14px;
+
+	padding: 0;
 
 }
 
@@ -71,6 +75,8 @@ input span::before {
 	background-color: rgba(0, 0, 0, 0) !important; /* 0 to opacity to have the color of the menu */
 
 	color: white;
+
+	padding: 0;
 
 }
 
@@ -82,9 +88,21 @@ input span::before {
 
 }
 
+.navbar-toggler {
+
+	border: none;
+
+}
+
+.fa-navicon {
+
+	color: white;
+
+}
+
 /* navbar */
 
-/* for the navbar's buttons
+/* for the navbar's buttons */
 
 nav button {
 
@@ -93,17 +111,6 @@ nav button {
 	margin-top: 10px;
 
 }
-*/
-
-/*
-.smallLink {
-
-	display: inline-block;
-
-	height: 30px;
-
-}
-*/
 
 
 /*####################################################################################################################*/
@@ -112,21 +119,21 @@ nav button {
 
 #map {
 
-	bottom:0;
+	bottom: 0;
 
 	left: 0;
 
 	margin: 0 !important;
 
-	padding:0 !important;
+	padding: 0 !important;
 
-	position:absolute;
+	position: absolute;
 
 	right: 0;
 
-	top:0;
+	top: 0;
 
-	width:100%;
+	width: 100%;
 
 	/* z-index: -1; */ /* DON'T USE IT ! */
 
@@ -182,6 +189,20 @@ button {
 	padding: 0;
 
 	width: 50px;
+
+}
+
+.btnRemove {
+
+	border-radius: 25px;
+
+	margin-left: 0;
+
+	margin-right: 8px;
+
+	padding: 0;
+
+	width: 25px;
 
 }
 
@@ -306,7 +327,7 @@ button {
 
 	color: white;
 
-	height: 50px;
+	font-size: 30px;
 
 }
 
