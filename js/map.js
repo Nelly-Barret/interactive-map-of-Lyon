@@ -108,12 +108,11 @@ function init() {
 
     });
 
-    var popup = new mapboxgl.Popup();
+    var popupsIds = [];
 
     map.on('mouseenter', 'placesSymbols', function (element) {
 
         var features = map.queryRenderedFeatures(element.point, {
-            //layers: ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'] // replace this with the name of the layer
 
             layers: ['placesSymbols']
 
@@ -131,15 +130,23 @@ function init() {
 
         if( feature.properties.id != null ) {
 
-            popup = createPopupForSymbol(feature);
+            var index = popupsIds.indexOf(feature.properties.id);
+
+            if( index == -1 ) {
+
+                popupsIds.push(feature.properties.id);
+
+                var popup = createPopupForSymbol(feature);
+
+                setTimeout( function() { popup.remove(); popupsIds.splice(index, 1); } , 10000);
+
+            }
 
         }
 
     });
 
     map.on('mouseleave', 'placesSymbols', function() {
-
-        popup.remove();
 
     });
 
@@ -153,7 +160,7 @@ function init() {
 
     var searchTextfield = document.getElementById("textSearch");
 
-    searchTextfield.addEventListener("change", function () {
+    searchTextfield.addEventListener("input", function () {
 
         filterSearch(searchTextfield.value);
 
@@ -173,7 +180,7 @@ function mapInitialisation(userCoordinates) {
 
         center: [userCoordinates.userLongitude, userCoordinates.userLatitude],
 
-        zoom: 13,
+        zoom: 15,
 
         style: 'mapbox://styles/mapbox/basic-v9'
 
@@ -272,88 +279,6 @@ function mapInitialisation(userCoordinates) {
                 "text-size": 12
             }
         });
-/*
-        map.loadImage('Assets/barIcon.png', function (error, image) {
-
-            map.addImage('barIcon', image);
-
-        });
-
-        map.addLayer({
-            id: "placesSymbols",
-            type: "symbol",
-            source: "places",
-            filter: ['==', 'type', 'Bar'],
-            layout: {
-                "text-field": "{name}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top",
-                "icon-image": "barIcon",
-                "icon-size": 0.3,
-                "visibility": 'visible',
-                "icon-allow-overlap": true,
-                "text-allow-overlap": true
-
-            },
-            paint: {
-                "text-halo-color": "rgba(0,0,0,1)"
-            }
-        });
-
-        map.loadImage('Assets/restaurantIcon.png', function (error, image) {
-
-            map.addImage('restaurantIcon', image);
-
-        });
-
-        map.addLayer({
-            id: "restaurantPlaceSymbol",
-            type: "symbol",
-            source: "places",
-            filter: ['==', 'type', 'Restaurant'],
-            layout: {
-                "text-field": "{name}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top",
-                "icon-image": "restaurantIcon",
-                "icon-size": 0.3,
-                "visibility": 'visible',
-                "icon-allow-overlap": true,
-                "text-allow-overlap": true
-            },
-            paint: {
-                "text-halo-color": "rgba(0,0,0,1)"
-            }
-        });
-
-        map.loadImage('Assets/cafeIcon.png', function (error, image) {
-
-            map.addImage('barRestaurantIcon', image);
-
-        });
-
-        map.addLayer({
-            id: "barRestaurantPlaceSymbol",
-            type: "symbol",
-            source: "places",
-            filter: ['==', 'type', 'Bar-restaurant'],
-            layout: {
-                "text-field": "{name}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top",
-                "icon-image": "barRestaurantIcon",
-                "icon-size": 0.3,
-                "visibility": 'visible',
-                "icon-allow-overlap": true,
-                "text-allow-overlap": true
-            },
-            paint: {
-                "text-halo-color": "rgba(0,0,0,1)"
-            }
-        });*/
 
     });
 
@@ -814,7 +739,7 @@ function filterSearch(searchString) {
         features = features.filter( function (value) {
 
             var accentMap = {
-                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u'
+                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o'
             };
 
             function accent_fold (s) {
@@ -1039,7 +964,7 @@ function radarSquareCallBack( results, status, array, i ) {
 
 function getDetailsAfterRadar( placeIds, timeInterval ) {
 
-    var i = 2931;
+    var i = 1;
 
     var interval = setInterval( function () {
 
