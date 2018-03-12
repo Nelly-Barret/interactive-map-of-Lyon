@@ -97,14 +97,6 @@ function init() {
 
     });
 
-    var searchButton = document.getElementById("searchButton");
-
-    searchButton.addEventListener("click", function () {
-
-        filterSearch(searchTextfield.value);
-
-    });
-
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -148,9 +140,9 @@ function mapInitialisation(userCoordinates) {
         map.addSource("places", {
             type: "geojson",
             data: "JSON/places.geojson",
-            // cluster: true,
-            //clusterMaxZoom: 17, // Max zoom to cluster points on
-            //clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
+            cluster: true,
+            clusterMaxZoom: 17, // Max zoom to cluster points on
+            clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
         });
 
         map.addLayer({
