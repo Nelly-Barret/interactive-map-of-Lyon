@@ -439,7 +439,26 @@ function createMarkerPopupHTML(place) {
 
     var html = "";
 
-    html += "<p id='popupTitle'>" + place.name + "</p>";
+    var accentMap = {
+        'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o'
+    };
+
+    function accent_fold (s) {
+
+        if (!s) { return ''; }
+        var ret = '';
+        for (var i = 0; i < s.length; i++) {
+            ret += accentMap[s.charAt(i)] || s.charAt(i);
+        }
+        return ret;
+
+    };
+
+
+    var placeName = accent_fold(place.name);
+
+    html += "<p id='popupTitle'>" + placeName + "</p>";
+
     html += "<p id='popupType'>" + place.type + "</p>";
 
     if (place.rating != null) {
