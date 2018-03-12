@@ -77,6 +77,12 @@ input span::before {
 
 }
 
+#dropdownFilters {
+
+	background-color: rgba(0,0,0,1);
+
+}
+
 #navbarDropdown {
 
 	color: black;
@@ -136,6 +142,32 @@ nav button {
 	margin-bottom: 0;
 
 	margin-top: 10px;
+
+}
+
+/* navbar */
+
+/* for the navbar's buttons */
+
+nav button {
+
+	bottom: 0;
+
+	margin-top: 10px;
+
+	margin: 0 !important;
+
+	padding: 0 !important;
+
+	position: absolute;
+
+	right: 0;
+
+	top: 0;
+
+	width: 100%;
+
+	/* z-index: -1; */ /* DON'T USE IT ! */
 
 }
 
