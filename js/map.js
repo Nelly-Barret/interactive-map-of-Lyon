@@ -4,6 +4,18 @@
 //######################################################################################################################
 {
 
+    var loaderBackground = document.createElement("div");
+
+    loaderBackground.classList.add("loaderBackground");
+
+    var loaderDiv = document.createElement("div");
+
+    loaderDiv.classList.add("loader");
+
+    loaderBackground.appendChild(loaderDiv);
+
+    document.body.insertBefore(loaderBackground, document.body.firstChild);
+
     var xobj = new XMLHttpRequest();
 
     xobj.open('GET', 'JSON/places.geojson', true);
@@ -11,6 +23,8 @@
     xobj.onreadystatechange = function () {
 
         if (xobj.readyState === 4 && xobj.status == "200") {
+
+            document.body.removeChild(loaderBackground);
 
             geojsonSource = xobj.responseText;
 
@@ -715,9 +729,68 @@ function filterFunction(filter) {
         features = features.filter( function (value) {
 
             return ( value.properties.latitude <= userCoordinates.userLatitude + 2*latVariance
-                  && value.properties.latitude >= userCoordinates.userLatitude - 2*latVariance
-                  && value.properties.longitude <= userCoordinates.userLongitude + 2*lngVariance
-                  && value.properties.longitude >= userCoordinates.userLongitude - 2*lngVariance);
+                && value.properties.latitude >= userCoordinates.userLatitude - 2*latVariance
+                && value.properties.longitude <= userCoordinates.userLongitude + 2*lngVariance
+                && value.properties.longitude >= userCoordinates.userLongitude - 2*lngVariance);
+
+        });
+
+    }
+
+    if( filter.opened ) {
+
+        features = features.filter( function (value) {
+
+            var hourRegex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)|\s))/);
+
+            var separatorRegex = new RegExp(/ . /);
+
+            var closedRegex = new RegExp(/Closed/);
+
+            var amRegex = new RegExp(/(am|AM)/);
+
+            var pmRegex = new RegExp(/(pm|PM)/);
+
+            var d = new Date();
+
+            var day = d.getDay();
+
+            if( value.properties.weekday_text != null ) {
+
+                var openingHours = value.properties.weekday_text[day];
+
+                if( openingHours.search(closedRegex) == -1 ) {
+
+                    return true;
+
+/* in progress
+
+                    var hourDeb = openingHours.search( hourRegex );
+
+                    var hourEnd = openingHours.search( separatorRegex );
+
+                    var firstHour = openingHours.substring( hourDeb, hourEnd );
+
+                    var secondPart = openingHours.substring( hourEnd, openingHours.length );
+
+                    var secondHourDeb = secondPart.search( hourRegex );
+
+                    var secondHour = secondPart.substring( secondHourDeb, openingHours.length )
+
+*/
+
+
+                } else {
+
+                    return false;
+
+                }
+
+            } else {
+
+                return false;
+
+            }
 
         });
 
@@ -758,7 +831,7 @@ function filterSearch(searchString) {
         features = features.filter( function (value) {
 
             var accentMap = {
-                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o'
+                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : '', ' ' : ''
             };
 
             function accent_fold (s) {
