@@ -17,7 +17,6 @@
 /*####################################################################################################################*/
 /*############ WINDOW ################################################################################################*/
 /*####################################################################################################################*/
-
 .loaderBackground {
 
 	width: 100%;
@@ -112,15 +111,9 @@ input span::before {
 
 .navbar {
 
-	background-color: rgba(0, 0, 0, 0.1) !important;
+	background-color: rgba(0, 0, 0, 0) !important;
 
 	z-index: 100;
-
-}
-
-#dropdownFilters {
-
-	background-color: white;
 
 }
 
@@ -183,32 +176,6 @@ nav button {
 	margin-bottom: 0;
 
 	margin-top: 10px;
-
-}
-
-/* navbar */
-
-/* for the navbar's buttons */
-
-nav button {
-
-	bottom: 0;
-
-	margin-top: 10px;
-
-	margin: 0 !important;
-
-	padding: 0 !important;
-
-	position: absolute;
-
-	right: 0;
-
-	top: 0;
-
-	width: 100%;
-
-	/* z-index: -1; */ /* DON'T USE IT ! */
 
 }
 
@@ -286,8 +253,6 @@ button {
 	display: inline-block; /* to align them side-by-side */
 
 	height: 30px;
-
-	width: 80px;
 
 	margin-right: 20px;
 
