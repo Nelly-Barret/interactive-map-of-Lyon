@@ -4,6 +4,8 @@
 //######################################################################################################################
 {
 
+
+
     var loaderBackground = document.createElement("div");
 
     loaderBackground.classList.add("loaderBackground");
@@ -56,6 +58,8 @@ var latVariance = 0.001764; // Latitude difference to get to an other sector // 
 var lngVariance = 0.002560; // Longitude difference to get to an other sector // Base = 0.001280
 
 var geojsonSource;
+
+var forcedDate = null;
 
 var mapGridBounds = {
 
@@ -519,6 +523,12 @@ function createMarkerPopupHTML(place) {
 
             var day = d.getDay();
 
+            if( forcedDate != null ) {
+
+                day = forcedDate;
+
+            }
+
             //In JavaScript, the first day of the week (0) means Sunday
             // getDay()			days[]
             // 0 Sunday			Monday
@@ -539,8 +549,17 @@ function createMarkerPopupHTML(place) {
 
                 str = days[day - 1];
 
-                //str.indexOf( ': ' )+2 => starts after ': '
-                html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>\n";
+                if( forcedDate == null ) {
+
+                    //str.indexOf( ': ' )+2 => starts after ': '
+                    html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>\n";
+
+                } else {
+
+                    //str.indexOf( ': ' )+2 => starts after ': '
+                    html += "<p class='day'><i class='fa fa-clock-o'></i>" + str + "</p>\n";
+
+                }
 
             }
 
@@ -575,6 +594,7 @@ function showMap(err, data) {
 //######################################################################################################################
 
 function filterMap() {
+
 
     resetFilter();
 
@@ -736,14 +756,6 @@ function filterFunction(filter) {
 
         features = features.filter( function (value) {
 
-            var hourRegex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)|\s))/);
-
-            var separatorRegex = new RegExp(/ . /);
-
-            var twoHoursRegex = new RegExp(/,/);
-
-            var closedRegex = new RegExp(/Closed/);
-
             if( value.properties.weekday_text != null ) {
 
                 var date = new Date();
@@ -762,57 +774,8 @@ function filterFunction(filter) {
 
                 }
 
-                if( openingHours.search(closedRegex) == -1 ) {
 
-                    var current = moment();
-
-                    var endFirstPart = openingHours.search(twoHoursRegex);
-
-                    var hourDeb = openingHours.search( hourRegex );
-
-                    var hourEnd = openingHours.search( separatorRegex );
-
-                    var firstHour = openingHours.substring( hourDeb, hourEnd );
-
-                    var secondPart = openingHours.substring( hourEnd, openingHours.length );
-
-                    var secondHourDeb = secondPart.search( hourRegex );
-
-                    var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
-
-                    var first = moment(firstHour, 'HH:mm a');
-
-                    var second = moment(secondHour, 'HH:mm a');
-
-                    if( endFirstPart == -1) {
-
-                        return current.isBetween(first, second);
-
-                    } else {
-
-                        var afterHours = openingHours.substring(endFirstPart, openingHours.length);
-
-                        var firstHour = afterHours.substring( hourDeb, hourEnd );
-
-                        var secondPart = afterHours.substring( hourEnd, openingHours.length );
-
-                        var secondHourDeb = secondPart.search( hourRegex );
-
-                        var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
-
-                        var secondFirst = moment(firstHour, 'HH:mm a');
-
-                        var secondSecond = moment(secondHour, 'HH:mm a');
-
-                        return current.isBetween(first, second) || current.isBetween(secondFirst, secondSecond);
-
-                    }
-
-                } else {
-
-                    return false;
-
-                }
+                return openenedFilter( openingHours );
 
             } else {
 
@@ -836,6 +799,70 @@ function filterFunction(filter) {
 
 }
 
+function openenedFilter( openingHours ) {
+
+    var hourRegex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)|\s))/);
+
+    var separatorRegex = new RegExp(/ . /);
+
+    var twoHoursRegex = new RegExp(/,/);
+
+    var closedRegex = new RegExp(/Closed/);
+
+    if( openingHours.search(closedRegex) == -1 ) {
+
+        var current = moment();
+
+        var endFirstPart = openingHours.search(twoHoursRegex);
+
+        var hourDeb = openingHours.search( hourRegex );
+
+        var hourEnd = openingHours.search( separatorRegex );
+
+        var firstHour = openingHours.substring( hourDeb, hourEnd );
+
+        var secondPart = openingHours.substring( hourEnd, openingHours.length );
+
+        var secondHourDeb = secondPart.search( hourRegex );
+
+        var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
+
+        var first = moment(firstHour, 'HH:mm a');
+
+        var second = moment(secondHour, 'HH:mm a');
+
+        if( endFirstPart == -1) {
+
+            return current.isBetween(first, second);
+
+        } else {
+
+            var afterHours = openingHours.substring(endFirstPart, openingHours.length);
+
+            var firstHour = afterHours.substring( hourDeb, hourEnd );
+
+            var secondPart = afterHours.substring( hourEnd, openingHours.length );
+
+            var secondHourDeb = secondPart.search( hourRegex );
+
+            var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
+
+            var secondFirst = moment(firstHour, 'HH:mm a');
+
+            var secondSecond = moment(secondHour, 'HH:mm a');
+
+            return current.isBetween(first, second) || current.isBetween(secondFirst, secondSecond);
+
+        }
+
+    } else {
+
+        return false;
+
+    }
+
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 
 function resetFilter() {
@@ -845,6 +872,8 @@ function resetFilter() {
         popups[i].remove();
 
     }
+
+    forcedDate = null;
 
     map.getSource('places').setData(JSON.parse(geojsonSource));
 
@@ -862,35 +891,92 @@ function filterSearch(searchString) {
 
         var features = filteredGeojson.features;
 
-        features = features.filter( function (value) {
+        var accentMap = {
+            'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
+        };
 
-            var accentMap = {
-                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
-            };
+        function accent_fold (s) {
 
-            function accent_fold (s) {
+            if (!s) { return ''; }
+            var ret = '';
+            for (var i = 0; i < s.length; i++) {
+                ret += accentMap[s.charAt(i)] || s.charAt(i);
+            }
+            return ret;
 
-                if (!s) { return ''; }
-                var ret = '';
-                for (var i = 0; i < s.length; i++) {
-                    ret += accentMap[s.charAt(i)] || s.charAt(i);
-                }
-                return ret;
+        };
 
-            };
+        var optionRegex = new RegExp(/!/);
 
+        if( searchString.search(openRegex) == -1 ) {
 
-            var valueName = accent_fold(value.properties.name).toLowerCase();
+            features = features.filter(function (value) {
 
-            var valueType = accent_fold(value.properties.type).toLowerCase();
+                var valueName = accent_fold(value.properties.name).toLowerCase();
 
-            var valueAddress = accent_fold(value.properties.adress).toLowerCase();
+                var valueType = accent_fold(value.properties.type).toLowerCase();
 
-            var searchName = accent_fold(searchString).toLowerCase();
+                var valueAddress = accent_fold(value.properties.adress).toLowerCase();
 
-            return ( valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1 );
+                var searchName = accent_fold(searchString).toLowerCase();
 
-        });
+                return (valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1);
+
+            });
+
+        } else {
+
+            var openRegex = new RegExp(/open/);
+
+            if( searchString.search( openRegex ) != -1 ) {
+
+                features = features.filter( function (value) {
+
+                    var sundayRegex = new RegExp(/sunday|dimanche/);
+
+                    var mondayRegex = new RegExp(/monday|lundi/);
+
+                    var tuesdayRegex = new RegExp(/tuesday|mardi/);
+
+                    var wednesdayRegex = new RegExp(/wednesday|mercredi/);
+
+                    var thursdayRegex = new RegExp(/thursday|jeudi/);
+
+                    var fridayRegex = new RegExp(/friday|vendredi/);
+
+                    var saturdayRegex = new RegExp(/saturday|samedi/);
+
+                    var regexes = [ sundayRegex, mondayRegex, tuesdayRegex, wednesdayRegex, thursdayRegex, fridayRegex, saturdayRegex ];
+
+                    for(var i = 0; i < regexes.length ; i++) {
+
+                        if ( searchString.search( regexes[i] ) != -1 ) {
+
+                            if( value.properties.weekday_text != null && i < value.properties.weekday_text.length ) {
+
+                                forcedDate = i;
+
+                                var openingHours = value.properties.weekday_text[ i ];
+
+                                return openenedFilter( openingHours );
+
+                            } else {
+
+                                return false;
+
+                            }
+
+                        }
+
+                    }
+
+                    return false;
+
+                });
+
+            }
+
+        }
 
         filteredGeojson.features = features;
 
