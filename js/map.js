@@ -57,8 +57,6 @@ var lngVariance = 0.002560; // Longitude difference to get to an other sector //
 
 var geojsonSource;
 
-var geojsonSave;
-
 var mapGridBounds = {
 
     topLatitude : 45.788347,
@@ -70,6 +68,9 @@ var mapGridBounds = {
     rightLongitude : 4.871854
 
 };
+
+var popups = [];
+
 //######################################################################################################################
 
 
@@ -116,13 +117,13 @@ function init() {
 
         if( feature.properties.id != null ) {
 
-            createPopupForSymbol(feature);
+            popups.push(createPopupForSymbol(feature));
 
         }
 
     });
 
-    var popupsIds = [];
+    var popup = new mapboxgl.Popup();
 
     map.on('mouseenter', 'placesSymbols', function (element) {
 
@@ -144,23 +145,15 @@ function init() {
 
         if( feature.properties.id != null ) {
 
-            var index = popupsIds.indexOf(feature.properties.id);
-
-            if( index == -1 ) {
-
-                popupsIds.push(feature.properties.id);
-
-                var popup = createPopupForSymbol(feature);
-
-                setTimeout( function() { popup.remove(); popupsIds.splice(index, 1); } , 10000);
-
-            }
+            popup = createPopupForSymbol(feature);
 
         }
 
     });
 
     map.on('mouseleave', 'placesSymbols', function() {
+
+        popup.remove();
 
     });
 
@@ -595,7 +588,7 @@ function filterMap() {
     var typeButtons = [restaurantButton, barButton, barRestaurantButton];
 
 
-    var priceButton1 = document.getElementById("priceButton1");
+  /*  var priceButton1 = document.getElementById("priceButton1");
 
     var priceButton2 = document.getElementById("priceButton2");
 
@@ -605,7 +598,7 @@ function filterMap() {
 
 
     var priceButtons = [priceButton1, priceButton2, priceButton3, priceButton4];
-
+*/
 
     var starButton1 = document.getElementById("starButton1");
 
@@ -660,11 +653,11 @@ function filterMap() {
 
     }
 
-    for (i = 1; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
+    /*for (i = 1; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
 
         filter.price = i + 1;
 
-    }
+    }*/
 
     for (i = 1; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
 
@@ -726,6 +719,8 @@ function filterFunction(filter) {
 
     if( filter.aroundMe ) {
 
+        map.flyTo({center : [userCoordinates.userLongitude, userCoordinates.userLatitude]});
+
         features = features.filter( function (value) {
 
             return ( value.properties.latitude <= userCoordinates.userLatitude + 2*latVariance
@@ -745,25 +740,33 @@ function filterFunction(filter) {
 
             var separatorRegex = new RegExp(/ . /);
 
+            var twoHoursRegex = new RegExp(/,/);
+
             var closedRegex = new RegExp(/Closed/);
-
-            var amRegex = new RegExp(/(am|AM)/);
-
-            var pmRegex = new RegExp(/(pm|PM)/);
-
-            var d = new Date();
-
-            var day = d.getDay();
 
             if( value.properties.weekday_text != null ) {
 
+                var date = new Date();
+
+                var day = date.getDay();
+
                 var openingHours = value.properties.weekday_text[day];
+
+                if (day === 0) {
+
+                    openingHours = value.properties.weekday_text[6];
+
+                } else {
+
+                    openingHours = value.properties.weekday_text[day - 1];
+
+                }
 
                 if( openingHours.search(closedRegex) == -1 ) {
 
-                    return true;
+                    var current = moment();
 
-/* in progress
+                    var endFirstPart = openingHours.search(twoHoursRegex);
 
                     var hourDeb = openingHours.search( hourRegex );
 
@@ -775,10 +778,35 @@ function filterFunction(filter) {
 
                     var secondHourDeb = secondPart.search( hourRegex );
 
-                    var secondHour = secondPart.substring( secondHourDeb, openingHours.length )
+                    var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
 
-*/
+                    var first = moment(firstHour, 'HH:mm a');
 
+                    var second = moment(secondHour, 'HH:mm a');
+
+                    if( endFirstPart == -1) {
+
+                        return current.isBetween(first, second);
+
+                    } else {
+
+                        var afterHours = openingHours.substring(endFirstPart, openingHours.length);
+
+                        var firstHour = afterHours.substring( hourDeb, hourEnd );
+
+                        var secondPart = afterHours.substring( hourEnd, openingHours.length );
+
+                        var secondHourDeb = secondPart.search( hourRegex );
+
+                        var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
+
+                        var secondFirst = moment(firstHour, 'HH:mm a');
+
+                        var secondSecond = moment(secondHour, 'HH:mm a');
+
+                        return current.isBetween(first, second) || current.isBetween(secondFirst, secondSecond);
+
+                    }
 
                 } else {
 
@@ -812,6 +840,12 @@ function filterFunction(filter) {
 
 function resetFilter() {
 
+    for(var i = 0; i < popups.length ; i++) {
+
+        popups[i].remove();
+
+    }
+
     map.getSource('places').setData(JSON.parse(geojsonSource));
 
 }
@@ -831,7 +865,7 @@ function filterSearch(searchString) {
         features = features.filter( function (value) {
 
             var accentMap = {
-                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : '', ' ' : ''
+                'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
             };
 
             function accent_fold (s) {
@@ -846,11 +880,15 @@ function filterSearch(searchString) {
             };
 
 
-            var valueName = accent_fold(value.properties.name);
+            var valueName = accent_fold(value.properties.name).toLowerCase();
 
-            var searchName = accent_fold(searchString);
+            var valueType = accent_fold(value.properties.type).toLowerCase();
 
-            return ( valueName.toLowerCase().indexOf(searchName.toLowerCase()) != -1 );
+            var valueAddress = accent_fold(value.properties.adress).toLowerCase();
+
+            var searchName = accent_fold(searchString).toLowerCase();
+
+            return ( valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1 );
 
         });
 
