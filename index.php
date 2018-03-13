@@ -45,6 +45,10 @@
 
     <!-- Turf.js plugin -->
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+    <!-- Moment.js -->
+    <script src='https://momentjs.com/downloads/moment.js'></script>
+
 </head>
 
 <body class="container-fluid">
