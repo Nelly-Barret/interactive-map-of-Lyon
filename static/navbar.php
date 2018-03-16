@@ -23,7 +23,12 @@
                             <label>
                                 <input type="checkbox" id="openedNow"><span>Opened now</span>
                             </label>
-                        </div></div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-item">
+                        Time: <input type="time" id="inputTime">
+                    </div>
                     <div class="dropdown-item"><button type="button" class="btn btn-success" id="go">Go</button><button type="button" class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button></div>
                 </div>
             </li>

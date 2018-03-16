@@ -571,6 +571,7 @@ function createMarkerPopupHTML(place) {
 
 }
 
+
 //----------------------------------------------------------------------------------------------------------------------
 
 function showMap(err, data) {
@@ -638,6 +639,8 @@ function filterMap() {
 
     var openedNowButton = document.getElementById("openedNow");
 
+    var openingHoursInput = document.getElementById("inputTime");
+
 
     var filter = {
 
@@ -651,7 +654,9 @@ function filterMap() {
 
         aroundMe: false,
 
-        opened: false
+        opened: false,
+
+        openingHours: null
 
     };
 
@@ -688,6 +693,12 @@ function filterMap() {
     filter.aroundMe = aroundMeButton.checked;
 
     filter.opened = openedNowButton.checked;
+
+    if ( openingHoursInput.value.length !== 0 ) {
+
+        filter.openingHours = openingHoursInput.value;
+
+    }
 
     //console.log(filter);
 
@@ -787,6 +798,12 @@ function filterFunction(filter) {
 
     }
 
+    if ( filter.openingHours !== null ) {
+
+        
+
+    }
+
     filteredGeojson.features = features;
 
     map.getSource('places').setData(filteredGeojson);
@@ -799,9 +816,9 @@ function filterFunction(filter) {
 
 }
 
-function openenedFilter( openingHours ) {
+function openenedFilter(openingHours) {
 
-    var hourRegex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)|\s))/);
+    var hourRegex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)))/);
 
     var separatorRegex = new RegExp(/ . /);
 
@@ -858,6 +875,45 @@ function openenedFilter( openingHours ) {
     } else {
 
         return false;
+
+    }
+
+}
+
+function filterDate(filter) {
+
+    var str = document.getElementById("#inputTime").value;
+
+    var hour = str.substring(0, str.length - str.indexOf(':')-1);
+
+    var minute = str.substring(str.indexOf(':')+1, str.length);
+
+
+    var filteredGeojson = JSON.parse(geojsonSource);
+
+    var features = filteredGeojson.features;
+
+    if( filter.filteringTypes ) {
+
+        features = filteredGeojson.features.filter(function (value) {
+
+            var values = [hour];
+
+            var bool = false;
+
+            for (var i = 0; i < filter.types.length; i++) {
+
+                if (filter.types[i] == true) {
+
+                    bool = bool || value.properties.type == values[i];
+
+                }
+
+            }
+
+            return bool;
+
+        });
 
     }
 
