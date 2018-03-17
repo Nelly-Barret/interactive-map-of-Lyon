@@ -32,6 +32,8 @@
 
             init();
 
+            fusionYelpGoogle();
+
         }
 
     };
@@ -44,6 +46,21 @@
 //######################################################################################################################
 //######################## GLOBAL VARIABLES ############################################################################
 //######################################################################################################################
+
+var accentMap = {
+    'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
+};
+
+function accent_fold (s) {
+
+    if (!s) { return ''; }
+    var ret = '';
+    for (var i = 0; i < s.length; i++) {
+        ret += accentMap[s.charAt(i)] || s.charAt(i);
+    }
+    return ret;
+
+};
 
 var googlePlacesAPIService; // Service for API request executions
 
@@ -947,21 +964,6 @@ function filterSearch(searchString) {
 
         var features = filteredGeojson.features;
 
-        var accentMap = {
-            'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
-        };
-
-        function accent_fold (s) {
-
-            if (!s) { return ''; }
-            var ret = '';
-            for (var i = 0; i < s.length; i++) {
-                ret += accentMap[s.charAt(i)] || s.charAt(i);
-            }
-            return ret;
-
-        };
-
         var optionRegex = new RegExp(/!/);
 
         if( searchString.search(optionRegex) == -1 ) {
@@ -1499,7 +1501,7 @@ var numberOfJSONLoadingCallbacks = 0;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-function loadAllJSON() {
+function loadAllJSON( callback ) {
 
     loadBarsJSON();
 
@@ -1998,6 +2000,158 @@ function cleanGeoJSON(geoJSONString) {
     }
 
     console.log("{\"type\" : \"FeatureCollection\", \"features\": " + JSON.stringify(newPlaces) + "}");
+
+}
+
+function fusionYelpGoogle() {
+
+    var xobj = new XMLHttpRequest();
+
+    xobj.open('GET', 'JSON/jsonBusinessYELP.json', true);
+
+    xobj.onreadystatechange = function () {
+
+        if (xobj.readyState === 4 && xobj.status == "200") {
+
+            var yelpJSON = JSON.parse(xobj.responseText);
+
+            var i = 0;
+
+            var geojsonBase = JSON.parse(geojsonSource);
+
+            var interval = setInterval(function () {
+
+                if ( i >= yelpJSON.length ) {
+
+                    clearInterval(interval);
+
+                } else {
+
+                    if( yelpJSON[i]['display_phone'].length != 0 ) {
+
+                        var formattedPhone = yelpJSON[i]['display_phone'].replace('+33 ', '0');
+
+                        var name = accent_fold(yelpJSON[i].name.toLowerCase());
+
+                        var features = geojsonBase.features;
+
+                        //First filter
+
+                        features = features.filter(function (value) {
+
+                            if (value.properties.phone != 0) {
+
+                                return accent_fold(value.properties.name).indexOf(name) != -1 || value.properties.phone == formattedPhone;
+
+                            } else {
+
+                                return accent_fold(value.properties.name).indexOf(name) != -1;
+
+                            }
+
+                        });
+
+                        if (features.length == 1) {
+
+                            features[0].properties.subtypes = yelpJSON[i].categories;
+
+                            features[0].properties.price = yelpJSON[i].price;
+
+                            if (yelpJSON[i].phone.length != 0 && features[0].properties.phone == null) {
+
+                                features[0].properties.phone = yelpJSON[i]['display_phone'];
+
+                            }
+
+                            for (var j = 0 ; j < geojsonBase.features.length ; j++){
+
+                                if( features[0].properties.id == geojsonBase.features[j].id ) {
+
+                                    geojsonBase.features[j] = features[0];
+
+                                }
+
+                            }
+
+                        } else if (features.length > 1) {
+
+
+
+                        }
+
+                    }
+
+                }
+
+                i++;
+
+            }, 500);
+
+            /*for( var i = 0 ; i < yelpJSON.length; i ++ ) {
+
+                if( yelpJSON[i]['display_phone'].length != 0 ) {
+
+                    var formattedPhone = yelpJSON[i]['display_phone'].replace('+33 ', '0');
+
+                    var name = accent_fold(yelpJSON[i].name.toLowerCase());
+
+                    var geojsonBase = JSON.parse(geojsonSource);
+
+                    var features = geojsonBase.features;
+
+                    //First filter
+
+                    features = features.filter( function (value) {
+
+                        if ( value.properties.phone != null ) {
+
+                            return accent_fold(value.properties.name).indexOf(name) != -1 || value.properties.phone == formattedPhone;
+
+                        } else {
+
+                            return accent_fold(value.properties.name).indexOf(name) != -1;
+
+                        }
+
+                    });
+
+                    console.log(features.length);
+
+                    /*if ( value.properties.phone != null ) {
+
+                        if ( accent_fold(value.properties.name).indexOf(name) || value.properties.phone == formattedPhone ) {
+
+                            value.properties.subtypes = yelpJSON[i].categories;
+
+                            value.properties.price = yelpJSON[i].price;
+
+                        }
+
+                    } else {
+
+                        if( accent_fold(value.properties.name).indexOf(name) ) {
+
+                            value.properties.subtypes = yelpJSON[i].categories;
+
+                            value.properties.price = yelpJSON[i].price;
+
+                            value.properties.phone = yelpJSON[i]['display_phone'];
+
+                        }
+
+                    }
+
+                }
+
+            }*/
+
+            //callbackLoadingJSON();
+
+        }
+
+    };
+
+    xobj.send(null);
 
 }
 
