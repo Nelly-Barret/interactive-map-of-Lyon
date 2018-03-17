@@ -908,7 +908,7 @@ function filterSearch(searchString) {
 
         var optionRegex = new RegExp(/!/);
 
-        if( searchString.search(openRegex) == -1 ) {
+        if( searchString.search(optionRegex) == -1 ) {
 
             features = features.filter(function (value) {
 
