@@ -4,15 +4,15 @@
 
 $(document).ready(function() {
 
+    /* by default, all buttons aren't clicked */
     $(".btnType, .btnPrice, .btnStar").each(function() {
 
         $(this).data('clicked', false);
 
     });
 
+    /* if the screen is too small, add Br */
     if(window.matchMedia("(max-width: 600px)").matches) {
-
-        console.log("Mobile");
 
         addBr();
 
@@ -62,7 +62,6 @@ function uncolorButton(button) {
 $(".btnType, .btnPrice").on('click', function() {
 
     /* it's green -> to grey */
-
     if($(this).data('clicked')) {
 
         uncolorButton($(this));
@@ -70,8 +69,6 @@ $(".btnType, .btnPrice").on('click', function() {
     }
 
     /* it's grey -> to green */
-    /* if(!$(this).data('clicked'))  */
-
     else {
 
         colorButton($(this));
@@ -105,12 +102,14 @@ $(".btnStar").on('click', function() {
 
 });
 
+/* color the remove buttons in red when the mouse is over */
 $(".btnRemove").on('mouseover', function() {
 
     $(this).css("background-color", "#DC3545");
 
 });
 
+/* by default, remove buttons are grey */
 $(".btnRemove").on('mouseleave', function() {
 
     $(this).css("background-color", "#DDDDDD");
@@ -118,7 +117,6 @@ $(".btnRemove").on('mouseleave', function() {
 });
 
 /* remove the selected buttons */
-
 $(".btnRemove").on('click', function() {
 
     $(this).css("background-color", "#DC3545");
@@ -160,18 +158,16 @@ $("#resetFilters").on('click', function() {
 //############ RESIZE WINDOW ###########################################################################################
 //######################################################################################################################
 
-//######################################################################################################################
-//############ RESIZE WINDOW ###########################################################################################
-//######################################################################################################################
-
 $(window).resize(function() {
 
+    /* when the window is too small, we add Br to buttons in the menu */
     if(window.matchMedia("(max-width: 600px)").matches) {
 
         addBr();
 
     }
 
+    /* when the window become larger, remove the Br */
     else {
 
         removeBr();
@@ -187,7 +183,7 @@ function addBr() {
 
         var newBr1 = document.createElement("br"); /* we create a new breakline */
 
-        var newBr2 = document.createElement("br"); /* we create another breaklines because we can't use the same many times */
+        var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same many times */
 
         var newBr3 = document.createElement("br");
 
