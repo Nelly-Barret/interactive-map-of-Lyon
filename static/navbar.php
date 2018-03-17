@@ -26,10 +26,17 @@
                             </label>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="dropdown-item">
                         Time: <input type="time" id="inputTime">
                     </div>
                     <!-- reset and go buttons -->
+=======
+
+                    <div class="dropdown-item">
+                        Time: <input type="time" id="inputTime">
+                    </div>
+>>>>>>> logic
                     <div class="dropdown-item"><button type="button" class="btn btn-success" id="go">Go</button><button type="button" class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button></div>
                 </div>
             </li>
