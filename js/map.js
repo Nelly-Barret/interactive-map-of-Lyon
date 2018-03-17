@@ -704,6 +704,12 @@ function filterMap() {
 
     //~console.log(filter);
 
+        filter.openingHours = openingHoursInput.value;
+
+    }
+
+    //~console.log(filter);
+
     filterFunction(filter);
 
 }
@@ -801,7 +807,6 @@ function filterFunction(filter) {
     }
 
     if ( filter.openingHours !== null ) {
-
         var str = document.getElementById("inputTime").value;
 
         var hour = str.substring(0, str.length - str.indexOf(':')-1);
@@ -838,6 +843,7 @@ function filterFunction(filter) {
         console.log("filter is applied...");
 
     }
+
 
     filteredGeojson.features = features;
 
@@ -915,6 +921,45 @@ function openenedFilter(openingHours) {
 
 }
 
+function filterDate(filter) {
+
+    var str = document.getElementById("#inputTime").value;
+
+    var hour = str.substring(0, str.length - str.indexOf(':')-1);
+
+    var minute = str.substring(str.indexOf(':')+1, str.length);
+
+
+    var filteredGeojson = JSON.parse(geojsonSource);
+
+    var features = filteredGeojson.features;
+
+    if( filter.filteringTypes ) {
+
+        features = filteredGeojson.features.filter(function (value) {
+
+            var values = [hour];
+
+            var bool = false;
+
+            for (var i = 0; i < filter.types.length; i++) {
+
+                if (filter.types[i] == true) {
+
+                    bool = bool || value.properties.type == values[i];
+
+                }
+
+            }
+
+            return bool;
+
+        });
+
+    }
+
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 
 function resetFilter() {
@@ -960,7 +1005,7 @@ function filterSearch(searchString) {
 
         var optionRegex = new RegExp(/!/);
 
-        if( searchString.search(openRegex) == -1 ) {
+        if( searchString.search(optionRegex) == -1 ) {
 
             features = features.filter(function (value) {
 
