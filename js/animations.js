@@ -4,15 +4,15 @@
 
 $(document).ready(function() {
 
+    /* by default, all buttons aren't clicked */
     $(".btnType, .btnPrice, .btnStar").each(function() {
 
         $(this).data('clicked', false);
 
     });
 
+    /* if the screen is too small, add Br */
     if(window.matchMedia("(max-width: 600px)").matches) {
-
-        console.log("Mobile");
 
         addBr();
 
@@ -62,7 +62,6 @@ function uncolorButton(button) {
 $(".btnType, .btnPrice").on('click', function() {
 
     /* it's green -> to grey */
-
     if($(this).data('clicked')) {
 
         uncolorButton($(this));
@@ -70,8 +69,6 @@ $(".btnType, .btnPrice").on('click', function() {
     }
 
     /* it's grey -> to green */
-    /* if(!$(this).data('clicked'))  */
-
     else {
 
         colorButton($(this));
@@ -105,12 +102,14 @@ $(".btnStar").on('click', function() {
 
 });
 
+/* color the remove buttons in red when the mouse is over */
 $(".btnRemove").on('mouseover', function() {
 
     $(this).css("background-color", "#DC3545");
 
 });
 
+/* by default, remove buttons are grey */
 $(".btnRemove").on('mouseleave', function() {
 
     $(this).css("background-color", "#DDDDDD");
@@ -118,7 +117,6 @@ $(".btnRemove").on('mouseleave', function() {
 });
 
 /* remove the selected buttons */
-
 $(".btnRemove").on('click', function() {
 
     $(this).css("background-color", "#DC3545");
@@ -160,19 +158,16 @@ $("#resetFilters").on('click', function() {
 //############ RESIZE WINDOW ###########################################################################################
 //######################################################################################################################
 
-//######################################################################################################################
-//############ RESIZE WINDOW ###########################################################################################
-//######################################################################################################################
-
 $(window).resize(function() {
 
+    /* when the window is too small, we add Br to buttons in the menu */
     if(window.matchMedia("(max-width: 600px)").matches) {
-        console.log("Mobile");
 
         addBr();
 
     }
 
+    /* when the window become larger, remove the Br */
     else {
 
         removeBr();
@@ -188,11 +183,13 @@ function addBr() {
 
         var newBr1 = document.createElement("br"); /* we create a new breakline */
 
-        var newBr2 = document.createElement("br"); /* we create another breaklines because we can't use the same many times */
+        var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same many times */
 
         var newBr3 = document.createElement("br");
 
         var newBr4 = document.createElement("br");
+
+        var newBr5 = document.createElement("br");
 
         newBr1.setAttribute("id", "br1");
 
@@ -202,10 +199,12 @@ function addBr() {
 
         newBr4.setAttribute("id", "br4");
 
+        newBr5.setAttribute("id", "br5");
+
 
         var containerType = document.getElementById("typeContainer");
 
-        var containerPrice = document.getElementById("currencyContainer");
+        /*var containerPrice = document.getElementById("currencyContainer");*/
 
         var containerStar = document.getElementById("starContainer");
 
@@ -215,12 +214,14 @@ function addBr() {
 
         containerType.insertBefore(newBr2, containerType.childNodes[3]);
 
-        containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);
+        /*containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);*/
 
-        containerStar.insertBefore(newBr4, containerStar.childNodes[3]);
+        containerStar.insertBefore(newBr4, containerStar.childNodes[2]);
+
+        containerStar.insertBefore(newBr5, containerStar.childNodes[5]);
 
         /* shrink the dropdown menu */
-        $("#dropdownMenu").width("200px");
+        $("#dropdown-menu-collapse").width("180px");
 
     }
 
@@ -241,11 +242,11 @@ function removeBr() {
 
     }
 
-    if(document.getElementById("br3") !== undefined && document.getElementById("br3") !== null) {
+    /*if(document.getElementById("br3") !== undefined && document.getElementById("br3") !== null) {
 
         document.getElementById("br3").remove();
 
-    }
+    }*/
 
     if(document.getElementById("br4") !== undefined && document.getElementById("br4") !== null) {
 
@@ -253,8 +254,14 @@ function removeBr() {
 
     }
 
+    if(document.getElementById("br5") !== undefined && document.getElementById("br5") !== null) {
+
+        document.getElementById("br5").remove();
+
+    }
+
     /* expand the dropdown menu */
-    $("#dropdownMenu").width("380px");
+    $("#dropdown-menu-collapse").width("400px");
 
 }
 
