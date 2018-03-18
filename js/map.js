@@ -20,7 +20,7 @@
 
     var xobj = new XMLHttpRequest();
 
-    xobj.open('GET', 'JSON/places.geojson', true);
+    xobj.open('GET', 'JSON/fusionPlaces.geojson', true);
 
     xobj.onreadystatechange = function () {
 
@@ -32,7 +32,7 @@
 
             init();
 
-            fusionYelpGoogle();
+            //fusionYelpGoogle();
 
         }
 
@@ -163,6 +163,8 @@ function init() {
         var feature = features[0];
 
         // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
+
+        console.log(feature.properties);
 
         if( feature.properties.id != null ) {
 
@@ -584,10 +586,21 @@ function createMarkerPopupHTML(place) {
 
     }
 
+    if ( place.price != null ) {
+
+
+
+    }
+
+    if ( place.subtypes != null ) {
+
+
+
+    }
+
     return html;
 
 }
-
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -625,7 +638,6 @@ function filterMap() {
 
     var typeButtons = [restaurantButton, barButton, barRestaurantButton];
 
-    /*~
     var priceButton1 = document.getElementById("priceButton1");
 
     var priceButton2 = document.getElementById("priceButton2");
@@ -636,7 +648,7 @@ function filterMap() {
 
 
     var priceButtons = [priceButton1, priceButton2, priceButton3, priceButton4];
-    */
+
 
     var starButton1 = document.getElementById("starButton1");
 
@@ -695,13 +707,13 @@ function filterMap() {
 
     }
 
-    /*~
+
     for (i = 1; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
 
         filter.price = i + 1;
 
     }
-    */
+
 
     for (i = 1; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
 
@@ -714,12 +726,6 @@ function filterMap() {
     filter.opened = openedNowButton.checked;
 
     if ( openingHoursInput.value.length !== 0 ) {
-
-        filter.openingHours = openingHoursInput.value;
-
-    }
-
-    //~console.log(filter);
 
         filter.openingHours = openingHoursInput.value;
 
@@ -861,6 +867,23 @@ function filterFunction(filter) {
 
     }
 
+    if( filter.price != null ) {
+
+        features = features.filter( function (value) {
+
+            if( value.price != null ) {
+
+                return value.price == filter.price;
+
+            } else {
+
+                return false;
+
+            }
+
+        });
+
+    }
 
     filteredGeojson.features = features;
 
@@ -1019,7 +1042,27 @@ function filterSearch(searchString) {
 
                 var searchName = accent_fold(searchString).toLowerCase();
 
-                return (valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1);
+                var subtype = false;
+
+                if( value.properties.subtypes != null ) {
+
+                    for (var l = 0  ; l < value.properties.subtypes.length; l++) {
+
+                        var elem = value.properties.subtypes[l];
+
+                        if( accent_fold(elem.alias).indexOf(searchName) != -1 || accent_fold(elem.title.toLowerCase()).indexOf(searchName) != -1 ) {
+
+                            subtype = true;
+
+                            break;
+
+                        }
+
+                    }
+
+                }
+
+                return (valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1 || subtype);
 
             });
 
@@ -2054,13 +2097,19 @@ function fusionYelpGoogle() {
 
         if (xobj.readyState === 4 && xobj.status == "200") {
 
+            var time = 100;
+
             var yelpJSON = JSON.parse(xobj.responseText);
 
             var i = 0;
 
             var geojsonBase = JSON.parse(geojsonSource);
 
+            console.log(yelpJSON.length);
+
             var interval = setInterval(function () {
+
+                console.log("Progression : " + i + " / " + yelpJSON.length);
 
                 if ( i >= yelpJSON.length ) {
 
@@ -2068,140 +2117,39 @@ function fusionYelpGoogle() {
 
                 } else {
 
-                    if( yelpJSON[i]['display_phone'].length != 0 ) {
+                    for (var j = 0; j < geojsonBase.features.length ; j++) {
 
                         var formattedPhone = yelpJSON[i]['display_phone'].replace('+33 ', '0');
 
                         var name = accent_fold(yelpJSON[i].name.toLowerCase());
 
-                        var features = geojsonBase.features;
+                        var feature = geojsonBase.features[j].properties;
 
-                        //First filter
+                        if( accent_fold(feature.name).indexOf(name) != -1 || feature.phone == formattedPhone ) {
 
-                        features = features.filter(function (value) {
+                            feature.subtypes = yelpJSON[i].categories;
 
-                            if (value.properties.phone != 0) {
+                            if (yelpJSON[i].phone.length != 0 && feature.phone == null) {
 
-                                return accent_fold(value.properties.name).indexOf(name) != -1 || value.properties.phone == formattedPhone;
-
-                            } else {
-
-                                return accent_fold(value.properties.name).indexOf(name) != -1;
+                                feature.phone = yelpJSON[i]['display_phone'];
 
                             }
 
-                        });
+                            if( yelpJSON[i].price != null ) {
 
-                        if (features.length == 1) {
-
-                            features[0].properties.subtypes = yelpJSON[i].categories;
-
-                            features[0].properties.price = yelpJSON[i].price;
-
-                            if (yelpJSON[i].phone.length != 0 && features[0].properties.phone == null) {
-
-                                features[0].properties.phone = yelpJSON[i]['display_phone'];
+                                feature.price = yelpJSON[i].price;
 
                             }
 
-                            for (var j = 0 ; j < geojsonBase.features.length ; j++){
+                            yelpJSON.splice(i, 1);
 
-                                if( features[0].properties.id == geojsonBase.features[j].id ) {
-
-                                    geojsonBase.features[j] = features[0];
-
-                                }
-
-                            }
-
-                        } else if (features.length > 1) {
-
-
+                            break;
 
                         } else {
-/*reference
- "id": "la-roulotte-à-manu-champagne-au-mont-d-or",
-  "name": "La Roulotte à Manu",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/07SF7S0x5Pb0sa-v6FjkGg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/la-roulotte-%C3%A0-manu-champagne-au-mont-d-or?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "foodtrucks",
-    "title": "Food Trucks"
-  }, {
-    "alias": "burgers",
-    "title": "Burgers"
-  }, {
-    "alias": "sandwiches",
-    "title": "Sandwiches"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.8006401,
-    "longitude": 4.7857299
-  },
-  "transactions": [],
-  "price": "€€",
-  "location": {
-    "address1": "2 avenue Général de Gaulle",
-    "address2": "",
-    "address3": "",
-    "city": "Champagne-au-Mont-d'Or",
-    "zip_code": "69410",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["2 avenue Général de Gaulle", "69410 Champagne-au-Mont-d'Or", "France"]
-  },
-  "phone": "+33620734197",
-  "display_phone": "+33 6 20 73 41 97",
-  "distance": 1452.222269462972
- */
-                            var addedObject = {
 
-                                "type": "Feature",
+                            feature.subtypes = null;
 
-                                "geometry": {
-
-                                    "type": "Point",
-
-                                    "coordinates": [yelpJSON[i].coordinates.longitude, yelpJSON[i].coordinates.latitude],
-
-                                    "name": "Bijou Bar"
-
-                                },
-
-                                "properties": {
-
-                                    "adress": "France",
-
-                                    "icon": "Assets/barIcon.png",
-
-                                    "id": null,
-
-                                    "latitude": 45.7790991,
-
-                                    "longitude": 4.805168600000002,
-
-                                    "name": "Bijou Bar",
-
-                                    "opened": null,
-
-                                    "phone": null,
-
-                                    "rating": null,
-
-                                    "type": "Bar",
-
-                                    "types": ["bar", "point_of_interest", "establishment"],
-
-                                    "website": null,
-
-                                    "weekday_text": null
-
-                                }
-
-                            };
+                            feature.price = null;
 
                         }
 
@@ -2211,67 +2159,75 @@ function fusionYelpGoogle() {
 
                 i++;
 
-            }, 500);
+            }, time);
 
-            /*for( var i = 0 ; i < yelpJSON.length; i ++ ) {
+            setTimeout( function () {
 
-                if( yelpJSON[i]['display_phone'].length != 0 ) {
+                for (var indice = 0 ; indice < yelpJSON.length; indice++) {
 
-                    var formattedPhone = yelpJSON[i]['display_phone'].replace('+33 ', '0');
+                    var addedObject = {
 
-                    var name = accent_fold(yelpJSON[i].name.toLowerCase());
+                        "type": "Feature",
 
-                    var geojsonBase = JSON.parse(geojsonSource);
+                        "geometry": {
 
-                    var features = geojsonBase.features;
+                            "type": "Point",
 
-                    //First filter
+                            "coordinates": [yelpJSON[indice].coordinates.longitude, yelpJSON[indice].coordinates.latitude],
 
-                    features = features.filter( function (value) {
+                            "name": yelpJSON[indice].name
 
-                        if ( value.properties.phone != null ) {
+                        },
 
-                            return accent_fold(value.properties.name).indexOf(name) != -1 || value.properties.phone == formattedPhone;
+                        "properties": {
 
-                        } else {
+                            "adress": yelpJSON[indice].location['display_address'][0],
 
-                            return accent_fold(value.properties.name).indexOf(name) != -1;
+                            "icon": null,
+
+                            "id": null,
+
+                            "latitude": yelpJSON[indice].coordinates.latitude,
+
+                            "longitude": yelpJSON[indice].coordinates.longitude,
+
+                            "name": yelpJSON[indice].name,
+
+                            "opened": null,
+
+                            "phone": yelpJSON[indice]["display_phone"],
+
+                            "price" : null,
+
+                            "rating": yelpJSON[indice].rating,
+
+                            "subtypes" : yelpJSON[indice].categories,
+
+                            "type": "Bar-Restaurant",
+
+                            "types": null,
+
+                            "website": yelpJSON[indice].url,
+
+                            "weekday_text": null
 
                         }
 
-                    });
+                    };
 
-                    console.log(features.length);
+                    if (yelpJSON[indice].price != null) {
 
-                    /*if ( value.properties.phone != null ) {
-
-                        if ( accent_fold(value.properties.name).indexOf(name) || value.properties.phone == formattedPhone ) {
-
-                            value.properties.subtypes = yelpJSON[i].categories;
-
-                            value.properties.price = yelpJSON[i].price;
-
-                        }
-
-                    } else {
-
-                        if( accent_fold(value.properties.name).indexOf(name) ) {
-
-                            value.properties.subtypes = yelpJSON[i].categories;
-
-                            value.properties.price = yelpJSON[i].price;
-
-                            value.properties.phone = yelpJSON[i]['display_phone'];
-
-                        }
+                        addedObject.properties.price = yelpJSON[indice].price;
 
                     }
 
+                    geojsonBase.features.push(addedObject);
+
                 }
 
-            }*/
+                console.log(JSON.stringify(geojsonBase));
 
-            //callbackLoadingJSON();
+            }, time * yelpJSON.length + 1000 )
 
         }
 
