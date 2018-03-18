@@ -2118,6 +2118,91 @@ function fusionYelpGoogle() {
 
 
 
+                        } else {
+/*reference
+ "id": "la-roulotte-à-manu-champagne-au-mont-d-or",
+  "name": "La Roulotte à Manu",
+  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/07SF7S0x5Pb0sa-v6FjkGg/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/la-roulotte-%C3%A0-manu-champagne-au-mont-d-or?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 1,
+  "categories": [{
+    "alias": "foodtrucks",
+    "title": "Food Trucks"
+  }, {
+    "alias": "burgers",
+    "title": "Burgers"
+  }, {
+    "alias": "sandwiches",
+    "title": "Sandwiches"
+  }],
+  "rating": 5,
+  "coordinates": {
+    "latitude": 45.8006401,
+    "longitude": 4.7857299
+  },
+  "transactions": [],
+  "price": "€€",
+  "location": {
+    "address1": "2 avenue Général de Gaulle",
+    "address2": "",
+    "address3": "",
+    "city": "Champagne-au-Mont-d'Or",
+    "zip_code": "69410",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["2 avenue Général de Gaulle", "69410 Champagne-au-Mont-d'Or", "France"]
+  },
+  "phone": "+33620734197",
+  "display_phone": "+33 6 20 73 41 97",
+  "distance": 1452.222269462972
+ */
+                            var addedObject = {
+
+                                "type": "Feature",
+
+                                "geometry": {
+
+                                    "type": "Point",
+
+                                    "coordinates": [yelpJSON[i].coordinates.longitude, yelpJSON[i].coordinates.latitude],
+
+                                    "name": "Bijou Bar"
+
+                                },
+
+                                "properties": {
+
+                                    "adress": "France",
+
+                                    "icon": "Assets/barIcon.png",
+
+                                    "id": null,
+
+                                    "latitude": 45.7790991,
+
+                                    "longitude": 4.805168600000002,
+
+                                    "name": "Bijou Bar",
+
+                                    "opened": null,
+
+                                    "phone": null,
+
+                                    "rating": null,
+
+                                    "type": "Bar",
+
+                                    "types": ["bar", "point_of_interest", "establishment"],
+
+                                    "website": null,
+
+                                    "weekday_text": null
+
+                                }
+
+                            };
+
                         }
 
                     }
