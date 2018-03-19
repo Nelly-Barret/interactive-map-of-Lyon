@@ -338,6 +338,16 @@ button {
 
 }
 
+#substypes {
+
+	font-family: "Open Sans", Times, serif;
+
+	font-size: 15px;
+
+	margin: 5px;
+
+}
+
 .day {
 
 	font-family: "Open Sans", Times, serif;

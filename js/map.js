@@ -402,37 +402,7 @@ function setUserCoordinates(position) {
 
 function createPopupForSymbol(feature) {
 
-    placeInformations = {
-
-        "adress": null,
-
-        "icon": null,
-
-        "id": null,
-
-        "latitude" : null,
-
-        "longitude" : null,
-
-        "name": null,
-
-        "opened": null,
-
-        "phone": null,
-
-        "rating": null,
-
-        "type": null,
-
-        "types": null,
-
-        "website": null,
-
-        "weekday_text": null
-
-    };
-
-    placeInformations = feature.properties;
+    var placeInformations = feature.properties;
 
     var markerHeight = 50, markerRadius = 10, linearOffset = 25;
 
@@ -470,22 +440,6 @@ function createMarkerPopupHTML(place) {
     }
 
     var html = "";
-
-    var accentMap = {
-        'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o'
-    };
-
-    function accent_fold (s) {
-
-        if (!s) { return ''; }
-        var ret = '';
-        for (var i = 0; i < s.length; i++) {
-            ret += accentMap[s.charAt(i)] || s.charAt(i);
-        }
-        return ret;
-
-    };
-
 
     var placeName = accent_fold(place.name);
 
@@ -573,7 +527,7 @@ function createMarkerPopupHTML(place) {
                 if( forcedDate == null ) {
 
                     //str.indexOf( ': ' )+2 => starts after ': '
-                    html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>\n";
+                    html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p><br>";
 
                 } else {
 
@@ -596,7 +550,15 @@ function createMarkerPopupHTML(place) {
 
     if ( place.subtypes != null ) {
 
+        var subtypesToDisplay = JSON.parse(place.subtypes);
 
+        for (var i = 0 ; i < subtypesToDisplay.length ; i++) {
+
+            var idColor = Math.floor((Math.random() * 10) + 1);
+
+            html += "<button type='button' class='btn btn-sm' id='substypes'>" + subtypesToDisplay[i].title + "</button>";
+
+        }
 
     }
 
