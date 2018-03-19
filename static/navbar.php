@@ -38,4 +38,7 @@
     </div>
 </nav>
 
+<!-- our JS -->
+<script src="js/animations.js"></script>
+
 

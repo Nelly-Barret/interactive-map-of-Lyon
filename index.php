@@ -34,9 +34,6 @@
     <!-- our CSS -->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-    <!-- our JS -->
-    <script src="js/animations.js"></script>
-
 
     <!-- Mapbox -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>

@@ -4,6 +4,8 @@
 
 $(document).ready(function() {
 
+    console.log("document ready");
+
     /* by default, all buttons aren't clicked */
     $(".btnType, .btnPrice, .btnStar").each(function() {
 
@@ -27,6 +29,7 @@ $(document).ready(function() {
 
 $(".dropdown-item, #textSearch, #searchButton").on('click', function (e) {
 
+    console.log("stopPropagation");
     e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
 
 });
@@ -204,7 +207,7 @@ function addBr() {
 
         var containerType = document.getElementById("typeContainer");
 
-        /*var containerPrice = document.getElementById("currencyContainer");*/
+        var containerPrice = document.getElementById("currencyContainer");
 
         var containerStar = document.getElementById("starContainer");
 
@@ -214,7 +217,7 @@ function addBr() {
 
         containerType.insertBefore(newBr2, containerType.childNodes[3]);
 
-        /*containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);*/
+        containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);
 
         containerStar.insertBefore(newBr4, containerStar.childNodes[2]);
 
@@ -242,11 +245,11 @@ function removeBr() {
 
     }
 
-    /*if(document.getElementById("br3") !== undefined && document.getElementById("br3") !== null) {
+    if(document.getElementById("br3") !== undefined && document.getElementById("br3") !== null) {
 
         document.getElementById("br3").remove();
 
-    }*/
+    }
 
     if(document.getElementById("br4") !== undefined && document.getElementById("br4") !== null) {
 
