@@ -160,36 +160,6 @@
   "display_phone": "+33 4 78 35 04 65",
   "distance": 717.092036580808
 }, {
-  "id": "projet-lyon-la-duchère-lyon-2",
-  "name": "Projet Lyon La Duchère",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/Estg8IaUDY_KUv-2w_kgJQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/projet-lyon-la-duch%C3%A8re-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.78435,
-    "longitude": 4.79387
-  },
-  "transactions": [],
-  "location": {
-    "address1": "227 avenue du Plateau",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["227 avenue du Plateau", "69009 Lyon", "France"]
-  },
-  "phone": "+33437497390",
-  "display_phone": "+33 4 37 49 73 90",
-  "distance": 660.402978592974
-}, {
   "id": "chicken-chips-lyon",
   "name": "Chicken Chips",
   "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/cjszVrQQ4tIcEzVfaInxvw/o.jpg",
@@ -257,36 +227,6 @@
   "phone": "+33478350451",
   "display_phone": "+33 4 78 35 04 51",
   "distance": 857.789922154876
-}, {
-  "id": "parc-du-vallon-lyon",
-  "name": "Parc du Vallon",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/jiheSzRqeBV1goAUzU0riA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-du-vallon-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 2,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.78061,
-    "longitude": 4.79635
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Bd de la Duchère",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Bd de la Duchère", "69009 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 838.2305657764039
 }, {
   "id": "la-roulotte-à-manu-champagne-au-mont-d-or",
   "name": "La Roulotte à Manu",
@@ -358,36 +298,6 @@
   "phone": "+33612345305",
   "display_phone": "+33 6 12 34 53 05",
   "distance": 5999.6785539708135
-}, {
-  "id": "pizza-d-or-champagne-au-mont-d-or",
-  "name": "Pizza d'Or",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/pizza-d-or-champagne-au-mont-d-or?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 2,
-  "coordinates": {
-    "latitude": 45.79572,
-    "longitude": 4.79194
-  },
-  "transactions": [],
-  "location": {
-    "address1": "52 Bis avenue Lanessan",
-    "address2": null,
-    "address3": null,
-    "city": "Champagne au Mont d'Or",
-    "zip_code": "69410",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["52 Bis avenue Lanessan", "69410 Champagne au Mont d'Or", "France"]
-  },
-  "phone": "+33478645331",
-  "display_phone": "+33 4 78 64 53 31",
-  "distance": 823.96770939847
 }, {
   "id": "master-cook-lyon",
   "name": "Master Cook",
@@ -943,69 +853,6 @@
   "display_phone": "+33 4 78 47 29 52",
   "distance": 1459.872525612976
 }, {
-  "id": "bois-de-balmont-lyon",
-  "name": "Bois de Balmont",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/bois-de-balmont-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "gardens",
-    "title": "Botanical Gardens"
-  }, {
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.787593,
-    "longitude": 4.806027
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Rue des Contrebandiers",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Rue des Contrebandiers", "69009 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 367.45248291876595
-}, {
-  "id": "bistrot-des-baumes-lyon",
-  "name": "Bistrot des Baumes",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/bistrot-des-baumes-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 4,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.776881,
-    "longitude": 4.807448
-  },
-  "transactions": [],
-  "location": {
-    "address1": "14 Quai Jaÿr",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["14 Quai Jaÿr", "69009 Lyon", "France"]
-  },
-  "phone": "+33478834699",
-  "display_phone": "+33 4 78 83 46 99",
-  "distance": 1358.135829631048
-}, {
   "id": "l-odyssée-des-coccinelles-lyon",
   "name": "L'Odyssée des Coccinelles",
   "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/ewJMuTHiVcfayv1giW44gg/o.jpg",
@@ -1098,642 +945,6 @@
   "phone": "+33478472494",
   "display_phone": "+33 4 78 47 24 94",
   "distance": 1080.990967227704
-}, {
-  "id": "fond-rose-caluire-et-cuire-2",
-  "name": "Fond Rose",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/zcKqBSgAz5LLkOGEoil1kQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/fond-rose-caluire-et-cuire-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 46,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.79208,
-    "longitude": 4.82529
-  },
-  "transactions": [],
-  "price": "€€€",
-  "location": {
-    "address1": "25 chemin Fond Rose",
-    "address2": "",
-    "address3": "",
-    "city": "Caluire et Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["25 chemin Fond Rose", "69300 Caluire et Cuire", "France"]
-  },
-  "phone": "+33478293461",
-  "display_phone": "+33 4 78 29 34 61",
-  "distance": 491.601284676504
-}, {
-  "id": "lyon-metropole-lyon",
-  "name": "Lyon Metropole",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/RHDK1WH5Dtea7wBhtHJVRg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/lyon-metropole-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 19,
-  "categories": [{
-    "alias": "hotels",
-    "title": "Hotels"
-  }, {
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 3.5,
-  "coordinates": {
-    "latitude": 45.7888499,
-    "longitude": 4.8196899
-  },
-  "transactions": [],
-  "price": "€€€",
-  "location": {
-    "address1": "85 quai Joseph Gillet",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["85 quai Joseph Gillet", "69004 Lyon", "France"]
-  },
-  "phone": "+33472104444",
-  "display_phone": "+33 4 72 10 44 44",
-  "distance": 138.542288907208
-}, {
-  "id": "kos-i-lyon-3",
-  "name": "KOS-I",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/BzsvyZl7UDea4vyvLW821w/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/kos-i-lyon-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 17,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }, {
-    "alias": "wine_bars",
-    "title": "Wine Bars"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.7888946374686,
-    "longitude": 4.81391079206537
-  },
-  "transactions": [],
-  "price": "€€€",
-  "location": {
-    "address1": "4 rue Jean Marcuit",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["4 rue Jean Marcuit", "69009 Lyon", "France"]
-  },
-  "phone": "+33437502855",
-  "display_phone": "+33 4 37 50 28 55",
-  "distance": 621.904644840874
-}, {
-  "id": "bodeguita-cubana-lyon",
-  "name": "Bodeguita Cubana",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/PtE45oT-6J3naZkMDQFnfw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/bodeguita-cubana-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 41,
-  "categories": [{
-    "alias": "cuban",
-    "title": "Cuban"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.77776,
-    "longitude": 4.82993
-  },
-  "transactions": [],
-  "price": "€€€",
-  "location": {
-    "address1": "44 rue de Cuire",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["44 rue de Cuire", "69004 Lyon", "France"]
-  },
-  "phone": "+33472079547",
-  "display_phone": "+33 4 72 07 95 47",
-  "distance": 1332.012450469744
-}, {
-  "id": "l-endroit-lyon",
-  "name": "L'Endroit",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/J3h6QHsXJ1SQGMVR9PT_nA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/l-endroit-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 23,
-  "categories": [{
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.788231,
-    "longitude": 4.812199
-  },
-  "transactions": [],
-  "price": "€€€",
-  "location": {
-    "address1": "14-16 rue de la Navigation",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["14-16 rue de la Navigation", "69009 Lyon", "France"]
-  },
-  "phone": "+33474017445",
-  "display_phone": "+33 4 74 01 74 45",
-  "distance": 696.509085566644
-}, {
-  "id": "le-mur-des-canuts-lyon-2",
-  "name": "Le Mur des Canuts",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/0XOJ27MjEhzUrvUMk2zRAg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-mur-des-canuts-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 16,
-  "categories": [{
-    "alias": "galleries",
-    "title": "Art Galleries"
-  }, {
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.77964,
-    "longitude": 4.82748
-  },
-  "transactions": [],
-  "price": "€",
-  "location": {
-    "address1": "Boulevard des Canuts",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Boulevard des Canuts", "69004 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 1140.385829478958
-}, {
-  "id": "ile-de-chine-caluire-et-cuire-2",
-  "name": "Ile de Chine",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/ile-de-chine-caluire-et-cuire-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 7,
-  "categories": [{
-    "alias": "chinese",
-    "title": "Chinese"
-  }, {
-    "alias": "massage",
-    "title": "Massage"
-  }, {
-    "alias": "japanese",
-    "title": "Japanese"
-  }],
-  "rating": 3.5,
-  "coordinates": {
-    "latitude": 45.792108,
-    "longitude": 4.824216
-  },
-  "transactions": [],
-  "location": {
-    "address1": "48 Quai Clemenceau",
-    "address2": null,
-    "address3": null,
-    "city": "Caluire-Et-Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["48 Quai Clemenceau", "69300 Caluire-Et-Cuire", "France"]
-  },
-  "phone": "+33478304995",
-  "display_phone": "+33 4 78 30 49 95",
-  "distance": 455.34059319286996
-}, {
-  "id": "l-oiseau-sur-sa-branche-lyon",
-  "name": "L'Oiseau Sur Sa Branche",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/X8j6oA0VyqFOt4fdd2l-_g/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/l-oiseau-sur-sa-branche-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 15,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }, {
-    "alias": "cafes",
-    "title": "Cafes"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.77876,
-    "longitude": 4.82975
-  },
-  "transactions": [],
-  "price": "€€",
-  "location": {
-    "address1": "18 rue de Cuire",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["18 rue de Cuire", "69004 Lyon", "France"]
-  },
-  "phone": "+33478919347",
-  "display_phone": "+33 4 78 91 93 47",
-  "distance": 1227.847794406828
-}, {
-  "id": "la-famille-lyon",
-  "name": "La Famille",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/7Wvyc8uJWmygUfUvA2ssMg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/la-famille-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 33,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 3.5,
-  "coordinates": {
-    "latitude": 45.7755,
-    "longitude": 4.82813
-  },
-  "transactions": ["restaurant_reservation"],
-  "price": "€€",
-  "location": {
-    "address1": "18 rue Duviard",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["18 rue Duviard", "69004 Lyon", "France"]
-  },
-  "phone": "+33472988390",
-  "display_phone": "+33 4 72 98 83 90",
-  "distance": 1510.781436374904
-}, {
-  "id": "quai-50-lyon",
-  "name": "Quai 50",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/3ysqGkFVWgzm3UEsFPnB0A/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/quai-50-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 5,
-  "categories": [{
-    "alias": "italian",
-    "title": "Italian"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.7881649,
-    "longitude": 4.8150659
-  },
-  "transactions": [],
-  "price": "€€",
-  "location": {
-    "address1": "Hotel Lyon Ouest",
-    "address2": "50 quai Paul Sédaillan",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Hotel Lyon Ouest", "50 quai Paul Sédaillan", "69009 Lyon", "France"]
-  },
-  "phone": "+33472660103",
-  "display_phone": "+33 4 72 66 01 03",
-  "distance": 529.743218498356
-}, {
-  "id": "parc-popy-lyon",
-  "name": "Parc Popy",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/o8k-q52wTjuV08zzxWJiXw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-popy-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 6,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.77811,
-    "longitude": 4.8234899
-  },
-  "transactions": [],
-  "location": {
-    "address1": "33 rue Henri Gorjus",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["33 rue Henri Gorjus", "69004 Lyon", "France"]
-  },
-  "phone": "+33472694760",
-  "display_phone": "+33 4 72 69 47 60",
-  "distance": 1173.206252225464
-}, {
-  "id": "daniel-et-denise-lyon-5",
-  "name": "Daniel et Denise",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/H47Ve4UnbE8L8FoHUlcQ1g/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/daniel-et-denise-lyon-5?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 6,
-  "categories": [{
-    "alias": "lyonnais",
-    "title": "Lyonnais"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.77546,
-    "longitude": 4.83079
-  },
-  "transactions": [],
-  "price": "€€€",
-  "location": {
-    "address1": "8 rue de Cuire",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["8 rue de Cuire", "69004 Lyon", "France"]
-  },
-  "phone": "+33478282744",
-  "display_phone": "+33 4 78 28 27 44",
-  "distance": 1593.4119308778138
-}, {
-  "id": "le-numérique-lyon-2",
-  "name": "Le Numérique",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-num%C3%A9rique-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "pizza",
-    "title": "Pizza"
-  }, {
-    "alias": "italian",
-    "title": "Italian"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.7896384,
-    "longitude": 4.814266
-  },
-  "transactions": [],
-  "location": {
-    "address1": "74 Rue Docks",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["74 Rue Docks", "69009 Lyon", "France"]
-  },
-  "phone": "+33478640949",
-  "display_phone": "+33 4 78 64 09 49",
-  "distance": 608.554976902876
-}, {
-  "id": "conciergerie-lyon",
-  "name": "Conciergerie",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/conciergerie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7982163,
-    "longitude": 4.8233772
-  },
-  "transactions": [],
-  "location": {
-    "address1": "15 Rue Ernest Fabregue",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["15 Rue Ernest Fabregue", "69009 Lyon", "France"]
-  },
-  "phone": "+33478831646",
-  "display_phone": "+33 4 78 83 16 46",
-  "distance": 1103.43131997826
-}, {
-  "id": "espace-gros-cailloux-lyon",
-  "name": "Espace Gros Cailloux",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/v1cvgFdkysI_cFCFxkV_dw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/espace-gros-cailloux-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.78008,
-    "longitude": 4.82607
-  },
-  "transactions": [],
-  "location": {
-    "address1": "",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["69004 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 844.031393504112
-}, {
-  "id": "les-enfants-du-paradis-lyon",
-  "name": "Les Enfants du Paradis",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/4uERGDvafna46DTZ0_TDAw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/les-enfants-du-paradis-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 5,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.77568,
-    "longitude": 4.82374
-  },
-  "transactions": [],
-  "price": "€€€€",
-  "location": {
-    "address1": "2 Rue Henri Gorjus",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["2 Rue Henri Gorjus", "69004 Lyon", "France"]
-  },
-  "phone": "+33478299947",
-  "display_phone": "+33 4 78 29 99 47",
-  "distance": 1415.7681034464058
-}, {
-  "id": "curnonsky-lyon",
-  "name": "Curnonsky",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/OuS8edVepsoAKqhysPwOvg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/curnonsky-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "bistros",
-    "title": "Bistros"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.77785,
-    "longitude": 4.82793
-  },
-  "transactions": [],
-  "price": "€€€€",
-  "location": {
-    "address1": "14 rue Pelletier",
-    "address2": "",
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["14 rue Pelletier", "69004 Lyon", "France"]
-  },
-  "phone": "+33478274723",
-  "display_phone": "+33 4 78 27 47 23",
-  "distance": 1246.599744263564
-}, {
-  "id": "la-ferme-à-pizza-lyon",
-  "name": "La Ferme à Pizza",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/xzkSOqQrDnA90uOtL5VevA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/la-ferme-%C3%A0-pizza-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 3,
-  "categories": [{
-    "alias": "pizza",
-    "title": "Pizza"
-  }, {
-    "alias": "italian",
-    "title": "Italian"
-  }],
-  "rating": 3.5,
-  "coordinates": {
-    "latitude": 45.79856,
-    "longitude": 4.83094
-  },
-  "transactions": [],
-  "location": {
-    "address1": "5 grande rue de Saint Rambert",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["5 grande rue de Saint Rambert", "69009 Lyon", "France"]
-  },
-  "phone": "+33478251511",
-  "display_phone": "+33 4 78 25 15 11",
-  "distance": 1337.718424985324
-}, {
-  "id": "l-angevin-lyon",
-  "name": "L'Angevin",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/l-angevin-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 4,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.7893004,
-    "longitude": 4.8137659
-  },
-  "transactions": [],
-  "location": {
-    "address1": "53 Rue Docks",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["53 Rue Docks", "69009 Lyon", "France"]
-  },
-  "phone": "+33478834733",
-  "display_phone": "+33 4 78 83 47 33",
-  "distance": 639.00373814401
-}, {
-  "id": "le-puzzle-lyon",
-  "name": "Le Puzzle",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/4IVapUtwUj8YXBY7IXNixg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-puzzle-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 6,
-  "categories": [{
-    "alias": "modern_european",
-    "title": "Modern European"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.77546,
-    "longitude": 4.83079
-  },
-  "transactions": [],
-  "location": {
-    "address1": "8 - 10 Rue de Cuire",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["8 - 10 Rue de Cuire", "69004 Lyon", "France"]
-  },
-  "phone": "+33478285140",
-  "display_phone": "+33 4 78 28 51 40",
-  "distance": 1578.5185188335458
 }, {
   "id": "l-ouest-lyon-4",
   "name": "L'Ouest",
@@ -1837,6 +1048,71 @@
   "display_phone": "+33 4 78 25 56 14",
   "distance": 83.238935745502
 }, {
+  "id": "kos-i-lyon-3",
+  "name": "KOS-I",
+  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/BzsvyZl7UDea4vyvLW821w/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/kos-i-lyon-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 17,
+  "categories": [{
+    "alias": "french",
+    "title": "French"
+  }, {
+    "alias": "wine_bars",
+    "title": "Wine Bars"
+  }],
+  "rating": 4,
+  "coordinates": {
+    "latitude": 45.7888946374686,
+    "longitude": 4.81391079206537
+  },
+  "transactions": [],
+  "price": "€€€",
+  "location": {
+    "address1": "4 rue Jean Marcuit",
+    "address2": "",
+    "address3": "",
+    "city": "Lyon",
+    "zip_code": "69009",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["4 rue Jean Marcuit", "69009 Lyon", "France"]
+  },
+  "phone": "+33437502855",
+  "display_phone": "+33 4 37 50 28 55",
+  "distance": 185.350907445604
+}, {
+  "id": "l-endroit-lyon",
+  "name": "L'Endroit",
+  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/J3h6QHsXJ1SQGMVR9PT_nA/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/l-endroit-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 23,
+  "categories": [{
+    "alias": "restaurants",
+    "title": "Restaurants"
+  }],
+  "rating": 3,
+  "coordinates": {
+    "latitude": 45.788231,
+    "longitude": 4.812199
+  },
+  "transactions": [],
+  "price": "€€€",
+  "location": {
+    "address1": "14-16 rue de la Navigation",
+    "address2": "",
+    "address3": "",
+    "city": "Lyon",
+    "zip_code": "69009",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["14-16 rue de la Navigation", "69009 Lyon", "France"]
+  },
+  "phone": "+33474017445",
+  "display_phone": "+33 4 74 01 74 45",
+  "distance": 107.022286588474
+}, {
   "id": "l-epicerie-comptoir-lyon-5",
   "name": "L'Epicerie Comptoir",
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/2O0JuYemG9FdCUy7IOcLCA/o.jpg",
@@ -1873,6 +1149,40 @@
   "phone": "+33972308978",
   "display_phone": "+33 9 72 30 89 78",
   "distance": 225.32137611133402
+}, {
+  "id": "lyon-metropole-lyon",
+  "name": "Lyon Metropole",
+  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/RHDK1WH5Dtea7wBhtHJVRg/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/lyon-metropole-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 19,
+  "categories": [{
+    "alias": "hotels",
+    "title": "Hotels"
+  }, {
+    "alias": "restaurants",
+    "title": "Restaurants"
+  }],
+  "rating": 3.5,
+  "coordinates": {
+    "latitude": 45.7888499,
+    "longitude": 4.8196899
+  },
+  "transactions": [],
+  "price": "€€€",
+  "location": {
+    "address1": "85 quai Joseph Gillet",
+    "address2": null,
+    "address3": null,
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["85 quai Joseph Gillet", "69004 Lyon", "France"]
+  },
+  "phone": "+33472104444",
+  "display_phone": "+33 4 72 10 44 44",
+  "distance": 658.8564010826999
 }, {
   "id": "coffee-and-food-lyon",
   "name": "Coffee and Food",
@@ -2009,6 +1319,291 @@
   "phone": "+33472869673",
   "display_phone": "+33 4 72 86 96 73",
   "distance": 326.35820360153394
+}, {
+  "id": "fond-rose-caluire-et-cuire-2",
+  "name": "Fond Rose",
+  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/zcKqBSgAz5LLkOGEoil1kQ/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/fond-rose-caluire-et-cuire-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 46,
+  "categories": [{
+    "alias": "french",
+    "title": "French"
+  }],
+  "rating": 4,
+  "coordinates": {
+    "latitude": 45.79208,
+    "longitude": 4.82529
+  },
+  "transactions": [],
+  "price": "€€€",
+  "location": {
+    "address1": "25 chemin Fond Rose",
+    "address2": "",
+    "address3": "",
+    "city": "Caluire et Cuire",
+    "zip_code": "69300",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["25 chemin Fond Rose", "69300 Caluire et Cuire", "France"]
+  },
+  "phone": "+33478293461",
+  "display_phone": "+33 4 78 29 34 61",
+  "distance": 491.601284676504
+}, {
+  "id": "bodeguita-cubana-lyon",
+  "name": "Bodeguita Cubana",
+  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/PtE45oT-6J3naZkMDQFnfw/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/bodeguita-cubana-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 41,
+  "categories": [{
+    "alias": "cuban",
+    "title": "Cuban"
+  }],
+  "rating": 4,
+  "coordinates": {
+    "latitude": 45.77776,
+    "longitude": 4.82993
+  },
+  "transactions": [],
+  "price": "€€€",
+  "location": {
+    "address1": "44 rue de Cuire",
+    "address2": null,
+    "address3": null,
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["44 rue de Cuire", "69004 Lyon", "France"]
+  },
+  "phone": "+33472079547",
+  "display_phone": "+33 4 72 07 95 47",
+  "distance": 1332.012450469744
+}, {
+  "id": "le-mur-des-canuts-lyon-2",
+  "name": "Le Mur des Canuts",
+  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/0XOJ27MjEhzUrvUMk2zRAg/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/le-mur-des-canuts-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 16,
+  "categories": [{
+    "alias": "galleries",
+    "title": "Art Galleries"
+  }, {
+    "alias": "landmarks",
+    "title": "Landmarks & Historical Buildings"
+  }],
+  "rating": 4.5,
+  "coordinates": {
+    "latitude": 45.77964,
+    "longitude": 4.82748
+  },
+  "transactions": [],
+  "price": "€",
+  "location": {
+    "address1": "Boulevard des Canuts",
+    "address2": "",
+    "address3": "",
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["Boulevard des Canuts", "69004 Lyon", "France"]
+  },
+  "phone": "",
+  "display_phone": "",
+  "distance": 1140.385829478958
+}, {
+  "id": "l-oiseau-sur-sa-branche-lyon",
+  "name": "L'Oiseau Sur Sa Branche",
+  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/X8j6oA0VyqFOt4fdd2l-_g/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/l-oiseau-sur-sa-branche-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 15,
+  "categories": [{
+    "alias": "french",
+    "title": "French"
+  }, {
+    "alias": "cafes",
+    "title": "Cafes"
+  }],
+  "rating": 4,
+  "coordinates": {
+    "latitude": 45.77876,
+    "longitude": 4.82975
+  },
+  "transactions": [],
+  "price": "€€",
+  "location": {
+    "address1": "18 rue de Cuire",
+    "address2": null,
+    "address3": null,
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["18 rue de Cuire", "69004 Lyon", "France"]
+  },
+  "phone": "+33478919347",
+  "display_phone": "+33 4 78 91 93 47",
+  "distance": 1227.847794406828
+}, {
+  "id": "la-famille-lyon",
+  "name": "La Famille",
+  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/7Wvyc8uJWmygUfUvA2ssMg/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/la-famille-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 33,
+  "categories": [{
+    "alias": "french",
+    "title": "French"
+  }],
+  "rating": 3.5,
+  "coordinates": {
+    "latitude": 45.7755,
+    "longitude": 4.82813
+  },
+  "transactions": ["restaurant_reservation"],
+  "price": "€€",
+  "location": {
+    "address1": "18 rue Duviard",
+    "address2": null,
+    "address3": null,
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["18 rue Duviard", "69004 Lyon", "France"]
+  },
+  "phone": "+33472988390",
+  "display_phone": "+33 4 72 98 83 90",
+  "distance": 1510.781436374904
+}, {
+  "id": "quai-50-lyon",
+  "name": "Quai 50",
+  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/3ysqGkFVWgzm3UEsFPnB0A/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/quai-50-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 5,
+  "categories": [{
+    "alias": "italian",
+    "title": "Italian"
+  }],
+  "rating": 3,
+  "coordinates": {
+    "latitude": 45.7881649,
+    "longitude": 4.8150659
+  },
+  "transactions": [],
+  "price": "€€",
+  "location": {
+    "address1": "Hotel Lyon Ouest",
+    "address2": "50 quai Paul Sédaillan",
+    "address3": "",
+    "city": "Lyon",
+    "zip_code": "69009",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["Hotel Lyon Ouest", "50 quai Paul Sédaillan", "69009 Lyon", "France"]
+  },
+  "phone": "+33472660103",
+  "display_phone": "+33 4 72 66 01 03",
+  "distance": 529.743218498356
+}, {
+  "id": "daniel-et-denise-lyon-5",
+  "name": "Daniel et Denise",
+  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/H47Ve4UnbE8L8FoHUlcQ1g/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/daniel-et-denise-lyon-5?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 6,
+  "categories": [{
+    "alias": "lyonnais",
+    "title": "Lyonnais"
+  }],
+  "rating": 4,
+  "coordinates": {
+    "latitude": 45.77546,
+    "longitude": 4.83079
+  },
+  "transactions": [],
+  "price": "€€€",
+  "location": {
+    "address1": "8 rue de Cuire",
+    "address2": "",
+    "address3": "",
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["8 rue de Cuire", "69004 Lyon", "France"]
+  },
+  "phone": "+33478282744",
+  "display_phone": "+33 4 78 28 27 44",
+  "distance": 1593.4119308778138
+}, {
+  "id": "les-enfants-du-paradis-lyon",
+  "name": "Les Enfants du Paradis",
+  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/4uERGDvafna46DTZ0_TDAw/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/les-enfants-du-paradis-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 5,
+  "categories": [{
+    "alias": "french",
+    "title": "French"
+  }],
+  "rating": 3,
+  "coordinates": {
+    "latitude": 45.77568,
+    "longitude": 4.82374
+  },
+  "transactions": [],
+  "price": "€€€€",
+  "location": {
+    "address1": "2 Rue Henri Gorjus",
+    "address2": null,
+    "address3": null,
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["2 Rue Henri Gorjus", "69004 Lyon", "France"]
+  },
+  "phone": "+33478299947",
+  "display_phone": "+33 4 78 29 99 47",
+  "distance": 1415.7681034464058
+}, {
+  "id": "curnonsky-lyon",
+  "name": "Curnonsky",
+  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/OuS8edVepsoAKqhysPwOvg/o.jpg",
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/curnonsky-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+  "review_count": 1,
+  "categories": [{
+    "alias": "bistros",
+    "title": "Bistros"
+  }],
+  "rating": 5,
+  "coordinates": {
+    "latitude": 45.77785,
+    "longitude": 4.82793
+  },
+  "transactions": [],
+  "price": "€€€€",
+  "location": {
+    "address1": "14 rue Pelletier",
+    "address2": "",
+    "address3": null,
+    "city": "Lyon",
+    "zip_code": "69004",
+    "country": "FR",
+    "state": "69",
+    "display_address": ["14 rue Pelletier", "69004 Lyon", "France"]
+  },
+  "phone": "+33478274723",
+  "display_phone": "+33 4 78 27 47 23",
+  "distance": 1246.599744263564
 }, {
   "id": "le-pailleron-lyon",
   "name": "Le Pailleron",
@@ -2539,39 +2134,6 @@
   "display_phone": "+33 4 78 30 93 10",
   "distance": 1408.592901289906
 }, {
-  "id": "berges-du-rhône-lyon-2",
-  "name": "Berges du Rhône",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/AofxeHet_NVwJe6Hac9bxA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/berges-du-rh%C3%B4ne-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 83,
-  "categories": [{
-    "alias": "playgrounds",
-    "title": "Playgrounds"
-  }, {
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.7770002221111,
-    "longitude": 4.84345653430182
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Quai Général Sarrail",
-    "address2": "Quai Victor Auganeur",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69003",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Quai Général Sarrail", "Quai Victor Auganeur", "69003 Lyon", "France"]
-  },
-  "phone": "+33472567040",
-  "display_phone": "+33 4 72 56 70 40",
-  "distance": 1264.497388373218
-}, {
   "id": "la-terrasse-saint-clair-caluire-et-cuire",
   "name": "La Terrasse Saint-Clair",
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/c7cdGMoAWv-VcYK7P7m9-g/o.jpg",
@@ -2636,36 +2198,6 @@
   "phone": "+33437454545",
   "display_phone": "+33 4 37 45 45 45",
   "distance": 853.837391805312
-}, {
-  "id": "cité-internationale-de-lyon-lyon-2",
-  "name": "Cité Internationale de Lyon",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/RDBd-fR-zgqPbx3tzwxlqg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/cit%C3%A9-internationale-de-lyon-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 21,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.7823,
-    "longitude": 4.84912
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Quai Charles de Gaulle",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69006",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Quai Charles de Gaulle", "69006 Lyon", "France"]
-  },
-  "phone": "+33472449191",
-  "display_phone": "+33 4 72 44 91 91",
-  "distance": 851.953546842446
 }, {
   "id": "le-cinoche-lyon",
   "name": "Le Cinoche",
@@ -2992,36 +2524,6 @@
   "display_phone": "+33 4 78 23 42 56",
   "distance": 308.245273573928
 }, {
-  "id": "passerelle-de-la-paix-lyon",
-  "name": "Passerelle de la Paix",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/2EE7ccja8xczLEedeAioKA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/passerelle-de-la-paix-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 4,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.7834411,
-    "longitude": 4.849568
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Quai Charles de Gaulle",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69006",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Quai Charles de Gaulle", "69006 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 594.4160944225019
-}, {
   "id": "class-croûte-lyon-7",
   "name": "Class'Croûte",
   "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/xjp7LttfsQiLfjW8e_TE8A/o.jpg",
@@ -3123,69 +2625,6 @@
   "phone": "",
   "display_phone": "",
   "distance": 1294.543293188192
-}, {
-  "id": "parmigianino-caluire-et-cuire",
-  "name": "Parmigianino",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/NWucWLEm7Ouvo2RP10gRJQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parmigianino-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 2,
-  "categories": [{
-    "alias": "italian",
-    "title": "Italian"
-  }, {
-    "alias": "pizza",
-    "title": "Pizza"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7886499,
-    "longitude": 4.85325
-  },
-  "transactions": [],
-  "location": {
-    "address1": "75 Grande Rue de Saint-Clair",
-    "address2": "",
-    "address3": null,
-    "city": "Caluire-et-Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["75 Grande Rue de Saint-Clair", "69300 Caluire-et-Cuire", "France"]
-  },
-  "phone": "+33472053961",
-  "display_phone": "+33 4 72 05 39 61",
-  "distance": 65.59880518699399
-}, {
-  "id": "la-table-en-braille-lyon",
-  "name": "La Table en Braille",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/1HUNPuf5O7kbbpgE5WzWGg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/la-table-en-braille-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 2,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.78536,
-    "longitude": 4.85545
-  },
-  "transactions": [],
-  "location": {
-    "address1": "44 quai Charles de Gaulle",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69006",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["44 quai Charles de Gaulle", "69006 Lyon", "France"]
-  },
-  "phone": "+33472399231",
-  "display_phone": "+33 4 72 39 92 31",
-  "distance": 404.7426165749819
 }, {
   "id": "terrazzura-lyon",
   "name": "Terrazzura",
@@ -3348,36 +2787,6 @@
   "display_phone": "+33 4 72 98 34 48",
   "distance": 1353.191579716634
 }, {
-  "id": "l-épicurien-caluire-et-cuire",
-  "name": "L'épicurien",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/l-%C3%A9picurien-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7899284,
-    "longitude": 4.85674
-  },
-  "transactions": [],
-  "location": {
-    "address1": "115 Grande rue de Saint-Clair",
-    "address2": "",
-    "address3": "",
-    "city": "Caluire et Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["115 Grande rue de Saint-Clair", "69300 Caluire et Cuire", "France"]
-  },
-  "phone": "+33472870038",
-  "display_phone": "+33 4 72 87 00 38",
-  "distance": 352.31791819565996
-}, {
   "id": "malice-et-sens-villeurbanne",
   "name": "Malice & Sens",
   "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/BZTOCRRsE30v74Kj2zstkA/o.jpg",
@@ -3408,159 +2817,6 @@
   "phone": "+33478949787",
   "display_phone": "+33 4 78 94 97 87",
   "distance": 1326.4656078152318
-}, {
-  "id": "mix-city-villeurbanne-2",
-  "name": "Mix City",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/IHlfGajxiuCq1Gf-B30IYQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/mix-city-villeurbanne-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 4,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.776137,
-    "longitude": 4.861085
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Hotel des Congres",
-    "address2": "Place du Commandant Rivière",
-    "address3": null,
-    "city": "Villeurbanne",
-    "zip_code": "69100",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Hotel des Congres", "Place du Commandant Rivière", "69100 Villeurbanne", "France"]
-  },
-  "phone": "+33472691616",
-  "display_phone": "+33 4 72 69 16 16",
-  "distance": 1364.59330605918
-}, {
-  "id": "bleu-de-france-caluire-et-cuire",
-  "name": "Bleu de France",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/s-cLVCySocJaembpXt_xEQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/bleu-de-france-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 3,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.7915222,
-    "longitude": 4.863718
-  },
-  "transactions": [],
-  "location": {
-    "address1": "8 route de Strasbourg",
-    "address2": null,
-    "address3": null,
-    "city": "Caluire Et Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["8 route de Strasbourg", "69300 Caluire Et Cuire", "France"]
-  },
-  "phone": "+33472271211",
-  "display_phone": "+33 4 72 27 12 11",
-  "distance": 359.37935256701195
-}, {
-  "id": "tre-scalin-caluire-et-cuire",
-  "name": "Tre Scalin",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/tre-scalin-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "italian",
-    "title": "Italian"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 44.9959717,
-    "longitude": 7.1347699
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Via Nazionale 48",
-    "address2": "",
-    "address3": "",
-    "city": "Caluire-et-Cuire",
-    "zip_code": "69300",
-    "country": "IT",
-    "state": "AG",
-    "display_address": ["Via Nazionale 48", "69300 Caluire-et-Cuire", "Italy"]
-  },
-  "phone": "+390121842516",
-  "display_phone": "+39 0121 842516",
-  "distance": 346.682935529896
-}, {
-  "id": "le-spécial-caluire-et-cuire",
-  "name": "Le Spécial",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/7U3WCeIXk6hmqBaLxJFlQQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-sp%C3%A9cial-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "hotdogs",
-    "title": "Fast Food"
-  }, {
-    "alias": "sandwiches",
-    "title": "Sandwiches"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7907614596073,
-    "longitude": 4.85897085227622
-  },
-  "transactions": [],
-  "location": {
-    "address1": "149 grande rue de Saint Clair",
-    "address2": "",
-    "address3": "",
-    "city": "Caluire-et-Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["149 grande rue de Saint Clair", "69300 Caluire-et-Cuire", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 403.3397835432339
-}, {
-  "id": "le-121-caluire-et-cuire",
-  "name": "Le 121",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-121-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "hotdogs",
-    "title": "Fast Food"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7901,
-    "longitude": 4.8572
-  },
-  "transactions": [],
-  "location": {
-    "address1": "119 Grande rue St Clair",
-    "address2": null,
-    "address3": null,
-    "city": "Caluire et Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["119 Grande rue St Clair", "69300 Caluire et Cuire", "France"]
-  },
-  "phone": "+33478230879",
-  "display_phone": "+33 4 78 23 08 79",
-  "distance": 477.884275227466
 }, {
   "id": "l-auberge-de-la-doua-villeurbanne",
   "name": "L'Auberge de la Doua",
@@ -3595,36 +2851,6 @@
   "phone": "+33437441887",
   "display_phone": "+33 4 37 44 18 87",
   "distance": 1276.216467068658
-}, {
-  "id": "parc-des-berges-caluire-et-cuire",
-  "name": "Parc des Berges",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/RXPuTaNkV-0nU52gLiTwgQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-des-berges-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.788805612987,
-    "longitude": 4.85923808610528
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Au bord du Rhône",
-    "address2": "",
-    "address3": "",
-    "city": "Caluire-et-Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Au bord du Rhône", "69300 Caluire-et-Cuire", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 284.890918540198
 }, {
   "id": "côté-terrasse-caluire-et-cuire-4",
   "name": "Côté Terrasse",
@@ -3687,36 +2913,6 @@
   "phone": "+33437260152",
   "display_phone": "+33 4 37 26 01 52",
   "distance": 405.139514902594
-}, {
-  "id": "lyon-le-pique-nique-magique-yelp-x-happn-lyon",
-  "name": "Lyon : Le Pique-Nique Magique Yelp x Happn",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/8_jqCH7wLMHE-zTjgc4-gQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/lyon-le-pique-nique-magique-yelp-x-happn-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "yelpevents",
-    "title": "Yelp Events"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.7839267487516,
-    "longitude": 4.85823672068477
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Parc de la Tête d'Or",
-    "address2": "",
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69006",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Parc de la Tête d'Or", "69006 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 608.036194083826
 }, {
   "id": "tennis-club-de-lyon-villeurbanne-2",
   "name": "Tennis Club de Lyon",
@@ -3785,36 +2981,6 @@
   "phone": "+33478898568",
   "display_phone": "+33 4 78 89 85 68",
   "distance": 1313.496394451528
-}, {
-  "id": "ancienne-usine-des-eaux-de-saint-clair-caluire-et-cuire",
-  "name": "Ancienne Usine des Eaux de Saint-Clair",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/MSMnJT9iRpya__VLJ770cw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/ancienne-usine-des-eaux-de-saint-clair-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.78961,
-    "longitude": 4.8589
-  },
-  "transactions": [],
-  "location": {
-    "address1": "2 avenue de Poumeyrol",
-    "address2": "",
-    "address3": "",
-    "city": "Caluire-et-Cuire",
-    "zip_code": "69300",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["2 avenue de Poumeyrol", "69300 Caluire-et-Cuire", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 335.943098381616
 }, {
   "id": "toï-toï-le-zinc-villeurbanne-4",
   "name": "Toï Toï Le Zinc",
@@ -3890,102 +3056,6 @@
   "display_phone": "+33 4 72 82 98 05",
   "distance": 1395.936952394562
 }, {
-  "id": "parc-de-la-feyssine-villeurbanne-3",
-  "name": "Parc de la Feyssine",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/GOyFC_SozbmcflX-hZRzAg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-de-la-feyssine-villeurbanne-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 9,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.78672,
-    "longitude": 4.87278
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Bd Laurent Bonnevay",
-    "address2": null,
-    "address3": null,
-    "city": "Villeurbanne",
-    "zip_code": "69100",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Bd Laurent Bonnevay", "69100 Villeurbanne", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 182.534561801868
-}, {
-  "id": "le-gnafron-villeurbanne",
-  "name": "Le Gnafron",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/FB_4Uv_LiZkBozRUzTJS_Q/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-gnafron-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 6,
-  "categories": [{
-    "alias": "bbq",
-    "title": "Barbeque"
-  }, {
-    "alias": "wine_bars",
-    "title": "Wine Bars"
-  }, {
-    "alias": "tapas",
-    "title": "Tapas Bars"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.776074093096,
-    "longitude": 4.87205900251865
-  },
-  "transactions": [],
-  "location": {
-    "address1": "2 rue Descartes",
-    "address2": "",
-    "address3": "",
-    "city": "Villeurbanne",
-    "zip_code": "69100",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["2 rue Descartes", "69100 Villeurbanne", "France"]
-  },
-  "phone": "+33764083485",
-  "display_phone": "+33 7 64 08 34 85",
-  "distance": 1367.037001783886
-}, {
-  "id": "prisca-café-villeurbanne-3",
-  "name": "Prisca Café",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/lYPOBXCb4mYY2iJR2CG6eQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/prisca-caf%C3%A9-villeurbanne-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 12,
-  "categories": [{
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 3.5,
-  "coordinates": {
-    "latitude": 45.78063,
-    "longitude": 4.88153
-  },
-  "transactions": [],
-  "location": {
-    "address1": "11 Rue Prisca",
-    "address2": null,
-    "address3": null,
-    "city": "Villeurbanne",
-    "zip_code": "69100",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["11 Rue Prisca", "69100 Villeurbanne", "France"]
-  },
-  "phone": "+33478892949",
-  "display_phone": "+33 4 78 89 29 49",
-  "distance": 1079.0426699681118
-}, {
   "id": "lacha-gore-villeurbanne-2",
   "name": "Lacha Gore",
   "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/7LUutT9o4kF52PS32l_niA/o.jpg",
@@ -4047,39 +3117,6 @@
   "phone": "+33980598716",
   "display_phone": "+33 9 80 59 87 16",
   "distance": 1299.8422632037618
-}, {
-  "id": "le-roccasecca-villeurbanne",
-  "name": "Le Roccasecca",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/AlWSQ9XgxZWDyHGbLhrs1Q/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-roccasecca-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 2,
-  "categories": [{
-    "alias": "hotdogs",
-    "title": "Fast Food"
-  }, {
-    "alias": "pizza",
-    "title": "Pizza"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7817999,
-    "longitude": 4.87854
-  },
-  "transactions": [],
-  "location": {
-    "address1": "7 rue Antonins",
-    "address2": null,
-    "address3": null,
-    "city": "Villeurbanne",
-    "zip_code": "69100",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["7 rue Antonins", "69100 Villeurbanne", "France"]
-  },
-  "phone": "+33472443129",
-  "display_phone": "+33 4 72 44 31 29",
-  "distance": 823.3945632351539
 }, {
   "id": "la-nonna-carméla-villeurbanne",
   "name": "La Nonna Carméla",
@@ -4347,72 +3384,6 @@
   "display_phone": "+33 4 72 76 52 30",
   "distance": 1048.912925620234
 }, {
-  "id": "arcaneum-villeurbanne",
-  "name": "Arcaneum",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/rXqGeeK309ZVUD6X9fEZGQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/arcaneum-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "bars",
-    "title": "Bars"
-  }, {
-    "alias": "lancenters",
-    "title": "LAN Centers"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.77904,
-    "longitude": 4.8793
-  },
-  "transactions": [],
-  "location": {
-    "address1": "49 rue des Antonins",
-    "address2": "",
-    "address3": "",
-    "city": "Villeurbanne",
-    "zip_code": "69100",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["49 rue des Antonins", "69100 Villeurbanne", "France"]
-  },
-  "phone": "+33649622251",
-  "display_phone": "+33 6 49 62 22 51",
-  "distance": 1138.872379427914
-}, {
-  "id": "sound-factory-lyon",
-  "name": "Sound Factory",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/saL0udpa5HUym61Xz_zWnw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/sound-factory-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 6,
-  "categories": [{
-    "alias": "danceclubs",
-    "title": "Dance Clubs"
-  }, {
-    "alias": "bars",
-    "title": "Bars"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.77386,
-    "longitude": 4.79992
-  },
-  "transactions": [],
-  "location": {
-    "address1": "65/73 rue du Bourbonnais",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["65/73 rue du Bourbonnais", "69009 Lyon", "France"]
-  },
-  "phone": "+33607289084",
-  "display_phone": "+33 6 07 28 90 84",
-  "distance": 1069.070557845188
-}, {
   "id": "guyot-la-cave-gourmande-lyon-2",
   "name": "Guyot La Cave Gourmande",
   "image_url": "",
@@ -4443,36 +3414,6 @@
   "phone": "+33478831662",
   "display_phone": "+33 4 78 83 16 62",
   "distance": 964.092507550132
-}, {
-  "id": "eleven-restaurant-lyon",
-  "name": "Eleven Restaurant",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/iOj4Syyn1ks30fWqhZBsTw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/eleven-restaurant-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "french",
-    "title": "French"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.7743607,
-    "longitude": 4.7948699
-  },
-  "transactions": [],
-  "location": {
-    "address1": "11 ave Sidoine Apollinaire",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["11 ave Sidoine Apollinaire", "69009 Lyon", "France"]
-  },
-  "phone": "+33678475162",
-  "display_phone": "+33 6 78 47 51 62",
-  "distance": 822.695958879996
 }, {
   "id": "l-assiette-du-marché-lyon-4",
   "name": "L'Assiette du Marché",
@@ -4643,42 +3584,6 @@
   "phone": "+33474704221",
   "display_phone": "+33 4 74 70 42 21",
   "distance": 1121.9377740303
-}, {
-  "id": "parc-de-la-cerisaie-chazière-lyon",
-  "name": "Parc de la Cerisaie - Chazière",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/vtrwNcu86jufw1UQGtUJxA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-de-la-cerisaie-chazi%C3%A8re-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 24,
-  "categories": [{
-    "alias": "gardens",
-    "title": "Botanical Gardens"
-  }, {
-    "alias": "parks",
-    "title": "Parks"
-  }, {
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.77532,
-    "longitude": 4.81794
-  },
-  "transactions": [],
-  "location": {
-    "address1": "25 rue Chazière",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["25 rue Chazière", "69004 Lyon", "France"]
-  },
-  "phone": "+33472982350",
-  "display_phone": "+33 4 72 98 23 50",
-  "distance": 767.640031765382
 }, {
   "id": "paddys-corner-lyon",
   "name": "Paddy's Corner",
@@ -5508,36 +4413,6 @@
   "phone": "+33482314339",
   "display_phone": "+33 4 82 31 43 39",
   "distance": 1206.9953597315318
-}, {
-  "id": "parc-de-la-tête-d-or-lyon-6",
-  "name": "Parc de la Tête d'Or",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/vmXBIf0KEE7VwqAHp83PPw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-de-la-t%C3%AAte-d-or-lyon-6?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 268,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.7732536109761,
-    "longitude": 4.85148826324436
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Place Général Leclerc",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69006",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Place Général Leclerc", "69006 Lyon", "France"]
-  },
-  "phone": "+33472103030",
-  "display_phone": "+33 4 72 10 30 30",
-  "distance": 897.962440882662
 }, {
   "id": "le-gourmet-de-sèze-lyon-2",
   "name": "Le Gourmet de Sèze",
@@ -6590,7 +5465,7 @@
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/bKAmwqwuIhCxQiQkfjSQPQ/o.jpg",
   "is_closed": false,
   "url": "https://www.yelp.com/biz/pizzeria-zanotti-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 12,
+  "review_count": 11,
   "categories": [{
     "alias": "pizza",
     "title": "Pizza"
@@ -6870,39 +5745,6 @@
   "display_phone": "+33 4 72 38 57 79",
   "distance": 1334.062077247492
 }, {
-  "id": "parc-de-champvert-lyon",
-  "name": "Parc de Champvert",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-de-champvert-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 2,
-  "categories": [{
-    "alias": "gardens",
-    "title": "Botanical Gardens"
-  }, {
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.7621687,
-    "longitude": 4.7965495
-  },
-  "transactions": [],
-  "location": {
-    "address1": "39 Rue de Champvert",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["39 Rue de Champvert", "69005 Lyon", "France"]
-  },
-  "phone": "+33478257128",
-  "display_phone": "+33 4 78 25 71 28",
-  "distance": 1405.026516623678
-}, {
   "id": "pizza-city-et-pizza-clique-lyon",
   "name": "Pizza City et Pizza Clique",
   "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/NYEJr4WI79nzC_nNAUmkyQ/o.jpg",
@@ -6967,39 +5809,6 @@
   "phone": "+33437646103",
   "display_phone": "+33 4 37 64 61 03",
   "distance": 519.4649596960239
-}, {
-  "id": "fusion-cocotte-et-wok-lyon",
-  "name": "Fusion Cocotte & Wok",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/glE01OJ63QZdFds8ExQueQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/fusion-cocotte-et-wok-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 5,
-  "categories": [{
-    "alias": "cajun",
-    "title": "Cajun/Creole"
-  }, {
-    "alias": "panasian",
-    "title": "Pan Asian"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.7718804180203,
-    "longitude": 4.8044470204621
-  },
-  "transactions": [],
-  "location": {
-    "address1": "50 rue Saint Pierre de Vaise",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["50 rue Saint Pierre de Vaise", "69009 Lyon", "France"]
-  },
-  "phone": "+33472178488",
-  "display_phone": "+33 4 72 17 84 88",
-  "distance": 352.02438021235
 }, {
   "id": "nakamal-lyon",
   "name": "Nakamal",
@@ -7195,36 +6004,6 @@
   "phone": "+33478289755",
   "display_phone": "+33 4 78 28 97 55",
   "distance": 1006.0299847888318
-}, {
-  "id": "tunnel-modes-doux-de-la-croix-rousse-lyon",
-  "name": "Tunnel Modes Doux De La Croix Rousse",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/R_slqJ-EbCZUy2I3aXtikQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/tunnel-modes-doux-de-la-croix-rousse-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 10,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.7744530687001,
-    "longitude": 4.81464229524136
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Tunnel de la Croix Rousse",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Tunnel de la Croix Rousse", "69004 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 233.10484827664996
 }, {
   "id": "la-petite-madeleine-lyon",
   "name": "La Petite Madeleine",
@@ -7483,39 +6262,6 @@
   "display_phone": "+33 4 72 07 82 11",
   "distance": 893.1351108067199
 }, {
-  "id": "rives-de-saône-lyon",
-  "name": "Rives de Saône",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/VF92UI3wbCjO547dg2JKiA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/rives-de-sa%C3%B4ne-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 22,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }, {
-    "alias": "playgrounds",
-    "title": "Playgrounds"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.7682366367757,
-    "longitude": 4.82357896331791
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Quai Saint Vincent",
-    "address2": "Quai des Celestins",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69004",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Quai Saint Vincent", "Quai des Celestins", "69004 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 679.684461177158
-}, {
   "id": "cour-des-loges-lyon-2",
   "name": "Cour des Loges",
   "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/_nByzOL51L__7eU9iLkfpA/o.jpg",
@@ -7682,36 +6428,6 @@
   "phone": "+33983228847",
   "display_phone": "+33 9 83 22 88 47",
   "distance": 1274.3902771940939
-}, {
-  "id": "la-fresque-des-lyonnais-lyon",
-  "name": "La Fresque des Lyonnais",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/CBPbnO-uIgFKCAy2msNnkw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/la-fresque-des-lyonnais-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 34,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.768087,
-    "longitude": 4.828024
-  },
-  "transactions": [],
-  "location": {
-    "address1": "2 rue de la Martinière",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69001",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["2 rue de la Martinière", "69001 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 832.749023540798
 }, {
   "id": "bangkok-royal-lyon",
   "name": "Bangkok Royal",
@@ -8697,69 +7413,6 @@
   "display_phone": "+33 4 78 25 04 44",
   "distance": 1426.9711051061379
 }, {
-  "id": "parc-de-la-passerelle-lyon",
-  "name": "Parc de la Passerelle",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/GraJGi3-zHZmRtBhms2Qhw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-de-la-passerelle-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.760176,
-    "longitude": 4.797881
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Rue Edmond Locard",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Rue Edmond Locard", "69005 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 922.707241536292
-}, {
-  "id": "rectorat-notre-dame-de-fourvière-lyon-3",
-  "name": "Rectorat Notre Dame de Fourvière",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/guc2fn5GjvDhcSQxVsKBJA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/rectorat-notre-dame-de-fourvi%C3%A8re-lyon-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "churches",
-    "title": "Churches"
-  }, {
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7582622,
-    "longitude": 4.7990749
-  },
-  "transactions": [],
-  "location": {
-    "address1": "8 Cloître de Fourvière",
-    "address2": "Premier et cinquième arrondissement de Lyon",
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["8 Cloître de Fourvière", "Premier et cinquième arrondissement de Lyon", "69005 Lyon", "France"]
-  },
-  "phone": "+33478258098",
-  "display_phone": "+33 4 78 25 80 98",
-  "distance": 1165.681334532406
-}, {
   "id": "dominos-pizza-lyon-5",
   "name": "Domino's Pizza",
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/IHM0jl4DpkVC_MYvBISEBw/o.jpg",
@@ -8790,66 +7443,6 @@
   "phone": "+33478250707",
   "display_phone": "+33 4 78 25 07 07",
   "distance": 1583.791522148216
-}, {
-  "id": "le-comptoir-du-narval-lyon-2",
-  "name": "Le Comptoir du Narval",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/-swXSWV0grIbJxuj8V7q4w/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-comptoir-du-narval-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "brasseries",
-    "title": "Brasseries"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.7564142397727,
-    "longitude": 4.79738563299179
-  },
-  "transactions": [],
-  "location": {
-    "address1": "70 avenue Point du Jour",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["70 avenue Point du Jour", "69005 Lyon", "France"]
-  },
-  "phone": "+33478252801",
-  "display_phone": "+33 4 78 25 28 01",
-  "distance": 1290.364547570868
-}, {
-  "id": "parc-de-la-garde-lyon",
-  "name": "Parc de la Garde",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/3KDMaANdlD4LVd-CPMp2Pg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/parc-de-la-garde-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 1,
-  "coordinates": {
-    "latitude": 45.7594795,
-    "longitude": 4.7914572
-  },
-  "transactions": [],
-  "location": {
-    "address1": "6 rue de la Garde",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["6 rue de la Garde", "69005 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 738.601202032868
 }, {
   "id": "le-comptoir-41-lyon",
   "name": "Le Comptoir 41",
@@ -8980,36 +7573,6 @@
   "phone": "+33478472521",
   "display_phone": "+33 4 78 47 25 21",
   "distance": 407.222842869282
-}, {
-  "id": "nunc-est-bibendum-lyon",
-  "name": "Nunc Est Bibendum",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/GfnK1c8X8a5kSs0i-N1H9g/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/nunc-est-bibendum-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 3,
-  "categories": [{
-    "alias": "wine_bars",
-    "title": "Wine Bars"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.76641585,
-    "longitude": 4.8115907
-  },
-  "transactions": [],
-  "location": {
-    "address1": "19 rue Docteur Rafin",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["19 rue Docteur Rafin", "69009 Lyon", "France"]
-  },
-  "phone": "+33478271668",
-  "display_phone": "+33 4 78 27 16 68",
-  "distance": 89.204267794
 }, {
   "id": "le-papagayo-lyon-2",
   "name": "Le Papagayo",
@@ -9874,36 +8437,6 @@
   "display_phone": "+33 4 78 60 25 03",
   "distance": 1005.218369360194
 }, {
-  "id": "soirée-yelp-et-giraudet-fêtent-l-été-lyon",
-  "name": "Soirée Yelp & Giraudet fêtent l'été",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/e7h7pxNddlkh4kr6twcK5Q/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/soir%C3%A9e-yelp-et-giraudet-f%C3%AAtent-l-%C3%A9t%C3%A9-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 18,
-  "categories": [{
-    "alias": "yelpevents",
-    "title": "Yelp Events"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7635269,
-    "longitude": 4.8502302
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Halles de Lyon",
-    "address2": "102 cours Lafayette",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69003",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Halles de Lyon", "102 cours Lafayette", "69003 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 451.57788851965597
-}, {
   "id": "l-osteria-de-lello-lyon",
   "name": "L'Osteria de Lello",
   "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/KxJ26FSwonI0gIWtC2wFsQ/o.jpg",
@@ -10198,66 +8731,6 @@
   "display_phone": "+33 4 72 57 94 78",
   "distance": 1037.527683747308
 }, {
-  "id": "le-parc-de-la-mairie-lyon",
-  "name": "Le Parc de la Mairie",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/RQIAcIXoWDt4feh5UX62HA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/le-parc-de-la-mairie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 2,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.75764,
-    "longitude": 4.8011
-  },
-  "transactions": [],
-  "location": {
-    "address1": "14 rue Edmond Locard",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["14 rue Edmond Locard", "69005 Lyon", "France"]
-  },
-  "phone": "+33472103030",
-  "display_phone": "+33 4 72 10 30 30",
-  "distance": 262.211628045446
-}, {
-  "id": "mc-donalds-lyon-10",
-  "name": "Mc donald's",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/bLPGrN-8c_WXYD1xELgSLA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/mc-donalds-lyon-10?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 4,
-  "categories": [{
-    "alias": "tradamerican",
-    "title": "American (Traditional)"
-  }],
-  "rating": 3,
-  "coordinates": {
-    "latitude": 45.75381,
-    "longitude": 4.8054
-  },
-  "transactions": [],
-  "location": {
-    "address1": "44 rue Commandant Charcot",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["44 rue Commandant Charcot", "69005 Lyon", "France"]
-  },
-  "phone": "+33472578661",
-  "display_phone": "+33 4 72 57 86 61",
-  "distance": 767.0996142668439
-}, {
   "id": "saveurs-et-composées-lyon",
   "name": "Saveurs et Composées",
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/ur6UGW3i-tnnX5KAmKH6kQ/o.jpg",
@@ -10320,66 +8793,6 @@
   "display_phone": "+33 9 83 09 23 35",
   "distance": 928.7968160811961
 }, {
-  "id": "la-tonnelle-lyon-2",
-  "name": "la tonnelle",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/la-tonnelle-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7679085,
-    "longitude": 4.8036914
-  },
-  "transactions": [],
-  "location": {
-    "address1": "56 Rue St Pierre de Vaise",
-    "address2": "Vaise - Valmy - Gorge de Loup",
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["56 Rue St Pierre de Vaise", "Vaise - Valmy - Gorge de Loup", "69009 Lyon", "France"]
-  },
-  "phone": "+33478835856",
-  "display_phone": "+33 4 78 83 58 56",
-  "distance": 883.5639436968379
-}, {
-  "id": "tunnel-de-fourvière-lyon-2",
-  "name": "Tunnel de Fourvière",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/TWEYELsLP__SFBFeKNIAKA/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/tunnel-de-fourvi%C3%A8re-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 5,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 2,
-  "coordinates": {
-    "latitude": 45.761201,
-    "longitude": 4.807017
-  },
-  "transactions": [],
-  "location": {
-    "address1": "34-46 rue Pierre Audry",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69009",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["34-46 rue Pierre Audry", "69009 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 450.95777167629797
-}, {
   "id": "la-petite-auberge-lyon",
   "name": "La Petite Auberge",
   "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/2F0T6__eYKuYgRYy8-ogrA/o.jpg",
@@ -10410,36 +8823,6 @@
   "phone": "+33637378293",
   "display_phone": "+33 6 37 37 82 93",
   "distance": 652.9229024231379
-}, {
-  "id": "jardin-de-la-visitation-lyon",
-  "name": "Jardin de la Visitation",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/ezLGVqGbZzVSf9SBUmCeAg/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/jardin-de-la-visitation-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 6,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.75962,
-    "longitude": 4.81618
-  },
-  "transactions": [],
-  "location": {
-    "address1": "23 rue Roger Radisson",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["23 rue Roger Radisson", "69005 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 395.465725813602
 }, {
   "id": "les-caprices-de-sophie-lyon",
   "name": "Les Caprices de Sophie",
@@ -10635,66 +9018,6 @@
   "phone": "+33478294010",
   "display_phone": "+33 4 78 29 40 10",
   "distance": 171.908055502926
-}, {
-  "id": "jardin-des-curiosités-lyon-2",
-  "name": "Jardin des Curiosités",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/SpW1vp6klLod4hE2qcLWMw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/jardin-des-curiosit%C3%A9s-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 43,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.7551619156385,
-    "longitude": 4.82203720631749
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Place Abbé Larue",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Place Abbé Larue", "69005 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 551.760231143232
-}, {
-  "id": "rdv-yelp-officiel-mon-premier-shooting-photo-de-lyonnais-e-lyon",
-  "name": "RDV Yelp Officiel Mon Premier Shooting Photo de Lyonnais-e",
-  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/GJ1sLLv0ntRBkaqCn2Mbuw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/rdv-yelp-officiel-mon-premier-shooting-photo-de-lyonnais-e-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 19,
-  "categories": [{
-    "alias": "yelpevents",
-    "title": "Yelp Events"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.75776,
-    "longitude": 4.82501
-  },
-  "transactions": [],
-  "location": {
-    "address1": "46 Rue Saint-Georges",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69005",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["46 Rue Saint-Georges", "69005 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 346.494540556806
 }, {
   "id": "café-du-soleil-lyon-2",
   "name": "Café du Soleil",
@@ -11242,7 +9565,7 @@
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/jaaBrskBZtrDA-s8QJfhgA/o.jpg",
   "is_closed": false,
   "url": "https://www.yelp.com/biz/engimono-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 54,
+  "review_count": 53,
   "categories": [{
     "alias": "chinese",
     "title": "Chinese"
@@ -11812,36 +10135,6 @@
   "display_phone": "+33 4 78 95 29 59",
   "distance": 268.771895433388
 }, {
-  "id": "fête-des-lumières-de-lyon-lyon",
-  "name": "Fête des Lumières de Lyon",
-  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/Z-IqyGSLVBaMbEDLicaPdQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/f%C3%AAte-des-lumi%C3%A8res-de-lyon-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 35,
-  "categories": [{
-    "alias": "localflavor",
-    "title": "Local Flavor"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.759391784668,
-    "longitude": 4.82897996902466
-  },
-  "transactions": [],
-  "location": {
-    "address1": null,
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69000",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["69000 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 759.43667571297
-}, {
   "id": "kaffee-berlin-lyon-3",
   "name": "Kaffee Berlin",
   "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/RYEypLBM0vDoC7tbqkkfDw/o.jpg",
@@ -12110,72 +10403,6 @@
   "phone": "+33472741734",
   "display_phone": "+33 4 72 74 17 34",
   "distance": 566.813182372522
-}, {
-  "id": "pizzeria-de-chavril-sainte-foy-les-lyon-2",
-  "name": "Pizzeria de Chavril",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/w9XpI__8p5btIvMT6oVrqQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/pizzeria-de-chavril-sainte-foy-les-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "halal",
-    "title": "Halal"
-  }, {
-    "alias": "hotdogs",
-    "title": "Fast Food"
-  }, {
-    "alias": "pizza",
-    "title": "Pizza"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.74734,
-    "longitude": 4.80257
-  },
-  "transactions": [],
-  "location": {
-    "address1": "20 rue de Chavril",
-    "address2": "",
-    "address3": "",
-    "city": "Sainte Foy Les Lyon",
-    "zip_code": "69110",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["20 rue de Chavril", "69110 Sainte Foy Les Lyon", "France"]
-  },
-  "phone": "+33474018199",
-  "display_phone": "+33 4 74 01 81 99",
-  "distance": 643.1091379299
-}, {
-  "id": "lares-d-aimé-lyon",
-  "name": "Lares d'Aimé",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/lares-d-aim%C3%A9-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.7495117,
-    "longitude": 4.8070998
-  },
-  "transactions": [],
-  "location": {
-    "address1": "10 rue Claude Jusseaud",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69110",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["10 rue Claude Jusseaud", "69110 Lyon", "France"]
-  },
-  "phone": "+33472577269",
-  "display_phone": "+33 4 72 57 72 69",
-  "distance": 606.430351662448
 }, {
   "id": "confluence-sushi-lyon",
   "name": "Confluence Sushi",
@@ -12622,36 +10849,6 @@
   "display_phone": "+33 4 72 16 00 00",
   "distance": 1288.294182516012
 }, {
-  "id": "jardin-d-erevan-lyon",
-  "name": "Jardin d'Erevan",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/xuLWSRWoENEUv-D07oakUQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/jardin-d-erevan-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 4,
-  "categories": [{
-    "alias": "parks",
-    "title": "Parks"
-  }],
-  "rating": 5,
-  "coordinates": {
-    "latitude": 45.7423303,
-    "longitude": 4.8175822
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Rue Casimir Périer",
-    "address2": "Quai Antoine Riboud",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69002",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Rue Casimir Périer", "Quai Antoine Riboud", "69002 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 1279.444506185428
-}, {
   "id": "sushi-shop-lyon-3",
   "name": "Sushi Shop",
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/QxDL8Wfo0IhAUY7t6kU6Cw/o.jpg",
@@ -12827,7 +11024,7 @@
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/PPS64J07a7p-rhVFVwcAmw/o.jpg",
   "is_closed": false,
   "url": "https://www.yelp.com/biz/caf%C3%A9-marmot-lyon-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 58,
+  "review_count": 59,
   "categories": [{
     "alias": "cafes",
     "title": "Cafes"
@@ -15131,36 +13328,6 @@
   "display_phone": "+33 6 19 89 50 26",
   "distance": 217.655190392142
 }, {
-  "id": "place-ambroise-courtois-lyon",
-  "name": "Place Ambroise Courtois",
-  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/tA6G_cxrl245aSbdc3IzAQ/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/place-ambroise-courtois-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 12,
-  "categories": [{
-    "alias": "landmarks",
-    "title": "Landmarks & Historical Buildings"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.74529,
-    "longitude": 4.87099
-  },
-  "transactions": [],
-  "location": {
-    "address1": "Place Ambroise Courtois",
-    "address2": "",
-    "address3": "",
-    "city": "Lyon",
-    "zip_code": "69008",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["Place Ambroise Courtois", "69008 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 217.655190392142
-}, {
   "id": "l-esprit-bistrot-lyon-2",
   "name": "L'Esprit Bistrot",
   "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/MUThRZ2FDhntRPUM2-ciig/o.jpg",
@@ -15225,66 +13392,6 @@
   "phone": "+33478592986",
   "display_phone": "+33 4 78 59 29 86",
   "distance": 1051.76701028697
-}, {
-  "id": "pizza-roule-mulatière-la-2",
-  "name": "Pizza Roule",
-  "image_url": "",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/pizza-roule-mulati%C3%A8re-la-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 1,
-  "categories": [{
-    "alias": "pizza",
-    "title": "Pizza"
-  }],
-  "rating": 4,
-  "coordinates": {
-    "latitude": 45.72874,
-    "longitude": 4.80673
-  },
-  "transactions": [],
-  "location": {
-    "address1": "103 rue Grand Roule",
-    "address2": null,
-    "address3": null,
-    "city": "Mulatière (La)",
-    "zip_code": "69350",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["103 rue Grand Roule", "69350 Mulatière (La)", "France"]
-  },
-  "phone": "+33478504106",
-  "display_phone": "+33 4 78 50 41 06",
-  "distance": 1204.840007523418
-}, {
-  "id": "soirée-drinkalsace-le-sucre-lyon",
-  "name": "Soirée DrinkAlsace @ Le Sucre",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/V-mC0NdS2lAJDaUxeWXotw/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/soir%C3%A9e-drinkalsace-le-sucre-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 5,
-  "categories": [{
-    "alias": "yelpevents",
-    "title": "Yelp Events"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.73692,
-    "longitude": 4.8153
-  },
-  "transactions": [],
-  "location": {
-    "address1": "50 Quai Rambaud",
-    "address2": "",
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69002",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["50 Quai Rambaud", "69002 Lyon", "France"]
-  },
-  "phone": "",
-  "display_phone": "",
-  "distance": 362.34978060663195
 }, {
   "id": "ninkasi-gerland-lyon-3",
   "name": "Ninkasi Gerland",
@@ -16030,34 +14137,4 @@
   "phone": "+33478000433",
   "display_phone": "+33 4 78 00 04 33",
   "distance": 726.194961711538
-}, {
-  "id": "foll-envie-lyon",
-  "name": "Foll'Envie",
-  "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/juG5lLFCv_6uzeet1JsS6Q/o.jpg",
-  "is_closed": false,
-  "url": "https://www.yelp.com/biz/foll-envie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-  "review_count": 3,
-  "categories": [{
-    "alias": "restaurants",
-    "title": "Restaurants"
-  }],
-  "rating": 4.5,
-  "coordinates": {
-    "latitude": 45.73711,
-    "longitude": 4.8774
-  },
-  "transactions": [],
-  "location": {
-    "address1": "3 Rue Transvaal",
-    "address2": null,
-    "address3": null,
-    "city": "Lyon",
-    "zip_code": "69008",
-    "country": "FR",
-    "state": "69",
-    "display_address": ["3 Rue Transvaal", "69008 Lyon", "France"]
-  },
-  "phone": "+33472786109",
-  "display_phone": "+33 4 72 78 61 09",
-  "distance": 392.191942977606
 }]

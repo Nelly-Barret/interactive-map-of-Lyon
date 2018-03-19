@@ -32,6 +32,8 @@
 
             init();
 
+            //cleanPositionDoublons();
+
             //fusionYelpGoogle();
 
         }
@@ -2234,6 +2236,32 @@ function fusionYelpGoogle() {
     };
 
     xobj.send(null);
+
+}
+
+function cleanPositionDoublons() {
+
+    var geoJSONParsed = JSON.parse(geojsonSource);
+
+    for (var i = 0; i < geoJSONParsed.length - 1; i++){
+
+        for (var j = i + 1; j < geoJSONParsed.length; j++) {
+
+            if( geoJSONParsed[i].properties.latitude == geoJSONParsed[j].properties.latitude && geoJSONParsed[i].properties.longitude == geoJSONParsed[j].properties.longitude ) {
+
+                geoJSONParsed[i].properties.latitude += 0.000010;
+
+                geoJSONParsed[i].properties.longitude += 0.000010;
+
+                break;
+
+            }
+
+        }
+
+    }
+
+    console.log(JSON.stringify(geoJSONParsed));
 
 }
 

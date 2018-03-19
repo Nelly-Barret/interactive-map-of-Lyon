@@ -63343,33 +63343,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.79387, 45.78435],
-			"name": "Projet Lyon La Duchère"
-		},
-		"properties": {
-			"adress": "227 avenue du Plateau",
-			"icon": null,
-			"id": null,
-			"latitude": 45.78435,
-			"longitude": 4.79387,
-			"name": "Projet Lyon La Duchère",
-			"opened": null,
-			"phone": "+33 4 37 49 73 90",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/projet-lyon-la-duch%C3%A8re-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.79939, 45.77555],
 			"name": "Chicken Chips"
 		},
@@ -63424,33 +63397,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/le-rouge-gorge-champagne-au-mont-d-or?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.79635, 45.78061],
-			"name": "Parc du Vallon"
-		},
-		"properties": {
-			"adress": "Bd de la Duchère",
-			"icon": null,
-			"id": null,
-			"latitude": 45.78061,
-			"longitude": 4.79635,
-			"name": "Parc du Vallon",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 3,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-du-vallon-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -63514,33 +63460,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/ma-cantine-gourmande-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.79194, 45.79572],
-			"name": "Pizza d'Or"
-		},
-		"properties": {
-			"adress": "52 Bis avenue Lanessan",
-			"icon": null,
-			"id": null,
-			"latitude": 45.79572,
-			"longitude": 4.79194,
-			"name": "Pizza d'Or",
-			"opened": null,
-			"phone": "+33 4 78 64 53 31",
-			"price": null,
-			"rating": 2,
-			"subtypes": [{
-				"alias": "restaurants",
-				"title": "Restaurants"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/pizza-d-or-champagne-au-mont-d-or?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -63859,63 +63778,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.806027, 45.787593],
-			"name": "Bois de Balmont"
-		},
-		"properties": {
-			"adress": "Rue des Contrebandiers",
-			"icon": null,
-			"id": null,
-			"latitude": 45.787593,
-			"longitude": 4.806027,
-			"name": "Bois de Balmont",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "gardens",
-				"title": "Botanical Gardens"
-			}, {
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/bois-de-balmont-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.807448, 45.776881],
-			"name": "Bistrot des Baumes"
-		},
-		"properties": {
-			"adress": "14 Quai Jaÿr",
-			"icon": null,
-			"id": null,
-			"latitude": 45.776881,
-			"longitude": 4.807448,
-			"name": "Bistrot des Baumes",
-			"opened": null,
-			"phone": "+33 4 78 83 46 99",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/bistrot-des-baumes-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.80456, 45.77912],
 			"name": "L'Odyssée des Coccinelles"
 		},
@@ -63970,57 +63832,63 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.82529, 45.79208],
-			"name": "Fond Rose"
+			"coordinates": [4.81180907794914, 45.7871164083588],
+			"name": "Ouest Express Vaise"
 		},
 		"properties": {
-			"adress": "25 chemin Fond Rose",
+			"adress": "41 rue des Docks",
 			"icon": null,
 			"id": null,
-			"latitude": 45.79208,
-			"longitude": 4.82529,
-			"name": "Fond Rose",
+			"latitude": 45.7871164083588,
+			"longitude": 4.81180907794914,
+			"name": "Ouest Express Vaise",
 			"opened": null,
-			"phone": "+33 4 78 29 34 61",
-			"price": "€€€",
-			"rating": 4,
+			"phone": "+33 4 72 17 95 95",
+			"price": "€€",
+			"rating": 3.5,
 			"subtypes": [{
+				"alias": "hotdogs",
+				"title": "Fast Food"
+			}, {
 				"alias": "french",
 				"title": "French"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/fond-rose-caluire-et-cuire-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/ouest-express-vaise-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.8196899, 45.7888499],
-			"name": "Lyon Metropole"
+			"coordinates": [4.812691, 45.788156],
+			"name": "Bieh"
 		},
 		"properties": {
-			"adress": "85 quai Joseph Gillet",
+			"adress": "8 rue de la Navigation",
 			"icon": null,
 			"id": null,
-			"latitude": 45.7888499,
-			"longitude": 4.8196899,
-			"name": "Lyon Metropole",
+			"latitude": 45.788156,
+			"longitude": 4.812691,
+			"name": "Bieh",
 			"opened": null,
-			"phone": "+33 4 72 10 44 44",
-			"price": "€€€",
-			"rating": 3.5,
+			"phone": "+33 4 78 25 56 14",
+			"price": "€€",
+			"rating": 3,
 			"subtypes": [{
-				"alias": "hotels",
-				"title": "Hotels"
+				"alias": "tradamerican",
+				"title": "American (Traditional)"
 			}, {
-				"alias": "restaurants",
-				"title": "Restaurants"
+				"alias": "burgers",
+				"title": "Burgers"
+			}, {
+				"alias": "bagels",
+				"title": "Bagels"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/lyon-metropole-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/bieh-lyon-4?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -64084,6 +63952,183 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [4.8112202, 45.7862892],
+			"name": "L'Epicerie Comptoir"
+		},
+		"properties": {
+			"adress": "39 rue des Docks",
+			"icon": null,
+			"id": null,
+			"latitude": 45.7862892,
+			"longitude": 4.8112202,
+			"name": "L'Epicerie Comptoir",
+			"opened": null,
+			"phone": "+33 9 72 30 89 78",
+			"price": "€€",
+			"rating": 4.5,
+			"subtypes": [{
+				"alias": "delicatessen",
+				"title": "Delicatessen"
+			}, {
+				"alias": "wine_bars",
+				"title": "Wine Bars"
+			}, {
+				"alias": "tapasmallplates",
+				"title": "Tapas/Small Plates"
+			}],
+			"type": "Bar-Restaurant",
+			"types": null,
+			"website": "https://www.yelp.com/biz/l-epicerie-comptoir-lyon-5?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"weekday_text": null
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.8196899, 45.7888499],
+			"name": "Lyon Metropole"
+		},
+		"properties": {
+			"adress": "85 quai Joseph Gillet",
+			"icon": null,
+			"id": null,
+			"latitude": 45.7888499,
+			"longitude": 4.8196899,
+			"name": "Lyon Metropole",
+			"opened": null,
+			"phone": "+33 4 72 10 44 44",
+			"price": "€€€",
+			"rating": 3.5,
+			"subtypes": [{
+				"alias": "hotels",
+				"title": "Hotels"
+			}, {
+				"alias": "restaurants",
+				"title": "Restaurants"
+			}],
+			"type": "Bar-Restaurant",
+			"types": null,
+			"website": "https://www.yelp.com/biz/lyon-metropole-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"weekday_text": null
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.8109021155413, 45.785957011952],
+			"name": "Coffee and Food"
+		},
+		"properties": {
+			"adress": "29 Rue Docks",
+			"icon": null,
+			"id": null,
+			"latitude": 45.785957011952,
+			"longitude": 4.8109021155413,
+			"name": "Coffee and Food",
+			"opened": null,
+			"phone": "+33 9 51 04 57 23",
+			"price": "€",
+			"rating": 4,
+			"subtypes": [{
+				"alias": "bagels",
+				"title": "Bagels"
+			}, {
+				"alias": "cakeshop",
+				"title": "Patisserie/Cake Shop"
+			}, {
+				"alias": "sandwiches",
+				"title": "Sandwiches"
+			}],
+			"type": "Bar-Restaurant",
+			"types": null,
+			"website": "https://www.yelp.com/biz/coffee-and-food-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"weekday_text": null
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.8109102, 45.7859306],
+			"name": "Le Comptoir de l'industrie"
+		},
+		"properties": {
+			"adress": "29 rue des Docks",
+			"icon": null,
+			"id": null,
+			"latitude": 45.7859306,
+			"longitude": 4.8109102,
+			"name": "Le Comptoir de l'industrie",
+			"opened": null,
+			"phone": "+33 4 78 64 97 10",
+			"price": "€€",
+			"rating": 4,
+			"subtypes": [{
+				"alias": "french",
+				"title": "French"
+			}],
+			"type": "Bar-Restaurant",
+			"types": null,
+			"website": "https://www.yelp.com/biz/le-comptoir-de-l-industrie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"weekday_text": null
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.81063, 45.7855],
+			"name": "Atelier 32"
+		},
+		"properties": {
+			"adress": "32 Rue Des Docks",
+			"icon": null,
+			"id": null,
+			"latitude": 45.7855,
+			"longitude": 4.81063,
+			"name": "Atelier 32",
+			"opened": null,
+			"phone": "+33 4 72 86 96 73",
+			"price": "€€",
+			"rating": 3.5,
+			"subtypes": [{
+				"alias": "pizza",
+				"title": "Pizza"
+			}],
+			"type": "Bar-Restaurant",
+			"types": null,
+			"website": "https://www.yelp.com/biz/atelier-32-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"weekday_text": null
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [4.82529, 45.79208],
+			"name": "Fond Rose"
+		},
+		"properties": {
+			"adress": "25 chemin Fond Rose",
+			"icon": null,
+			"id": null,
+			"latitude": 45.79208,
+			"longitude": 4.82529,
+			"name": "Fond Rose",
+			"opened": null,
+			"phone": "+33 4 78 29 34 61",
+			"price": "€€€",
+			"rating": 4,
+			"subtypes": [{
+				"alias": "french",
+				"title": "French"
+			}],
+			"type": "Bar-Restaurant",
+			"types": null,
+			"website": "https://www.yelp.com/biz/fond-rose-caluire-et-cuire-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"weekday_text": null
+		}
+	}, {
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [4.82748, 45.77964],
 			"name": "Le Mur des Canuts"
 		},
@@ -64108,39 +64153,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/le-mur-des-canuts-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.824216, 45.792108],
-			"name": "Ile de Chine"
-		},
-		"properties": {
-			"adress": "48 Quai Clemenceau",
-			"icon": null,
-			"id": null,
-			"latitude": 45.792108,
-			"longitude": 4.824216,
-			"name": "Ile de Chine",
-			"opened": null,
-			"phone": "+33 4 78 30 49 95",
-			"price": null,
-			"rating": 3.5,
-			"subtypes": [{
-				"alias": "chinese",
-				"title": "Chinese"
-			}, {
-				"alias": "massage",
-				"title": "Massage"
-			}, {
-				"alias": "japanese",
-				"title": "Japanese"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/ile-de-chine-caluire-et-cuire-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -64231,33 +64243,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.8234899, 45.77811],
-			"name": "Parc Popy"
-		},
-		"properties": {
-			"adress": "33 rue Henri Gorjus",
-			"icon": null,
-			"id": null,
-			"latitude": 45.77811,
-			"longitude": 4.8234899,
-			"name": "Parc Popy",
-			"opened": null,
-			"phone": "+33 4 72 69 47 60",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-popy-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.83079, 45.77546],
 			"name": "Daniel et Denise"
 		},
@@ -64279,90 +64264,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/daniel-et-denise-lyon-5?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.814266, 45.7896384],
-			"name": "Le Numérique"
-		},
-		"properties": {
-			"adress": "74 Rue Docks",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7896384,
-			"longitude": 4.814266,
-			"name": "Le Numérique",
-			"opened": null,
-			"phone": "+33 4 78 64 09 49",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "pizza",
-				"title": "Pizza"
-			}, {
-				"alias": "italian",
-				"title": "Italian"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-num%C3%A9rique-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8233772, 45.7982163],
-			"name": "Conciergerie"
-		},
-		"properties": {
-			"adress": "15 Rue Ernest Fabregue",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7982163,
-			"longitude": 4.8233772,
-			"name": "Conciergerie",
-			"opened": null,
-			"phone": "+33 4 78 83 16 46",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "restaurants",
-				"title": "Restaurants"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/conciergerie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.82607, 45.78008],
-			"name": "Espace Gros Cailloux"
-		},
-		"properties": {
-			"adress": "69004 Lyon",
-			"icon": null,
-			"id": null,
-			"latitude": 45.78008,
-			"longitude": 4.82607,
-			"name": "Espace Gros Cailloux",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/espace-gros-cailloux-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -64417,273 +64318,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/curnonsky-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.83094, 45.79856],
-			"name": "La Ferme à Pizza"
-		},
-		"properties": {
-			"adress": "5 grande rue de Saint Rambert",
-			"icon": null,
-			"id": null,
-			"latitude": 45.79856,
-			"longitude": 4.83094,
-			"name": "La Ferme à Pizza",
-			"opened": null,
-			"phone": "+33 4 78 25 15 11",
-			"price": null,
-			"rating": 3.5,
-			"subtypes": [{
-				"alias": "pizza",
-				"title": "Pizza"
-			}, {
-				"alias": "italian",
-				"title": "Italian"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/la-ferme-%C3%A0-pizza-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8137659, 45.7893004],
-			"name": "L'Angevin"
-		},
-		"properties": {
-			"adress": "53 Rue Docks",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7893004,
-			"longitude": 4.8137659,
-			"name": "L'Angevin",
-			"opened": null,
-			"phone": "+33 4 78 83 47 33",
-			"price": null,
-			"rating": 3,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/l-angevin-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.83079, 45.77546],
-			"name": "Le Puzzle"
-		},
-		"properties": {
-			"adress": "8 - 10 Rue de Cuire",
-			"icon": null,
-			"id": null,
-			"latitude": 45.77546,
-			"longitude": 4.83079,
-			"name": "Le Puzzle",
-			"opened": null,
-			"phone": "+33 4 78 28 51 40",
-			"price": null,
-			"rating": 3,
-			"subtypes": [{
-				"alias": "modern_european",
-				"title": "Modern European"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-puzzle-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.81180907794914, 45.7871164083588],
-			"name": "Ouest Express Vaise"
-		},
-		"properties": {
-			"adress": "41 rue des Docks",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7871164083588,
-			"longitude": 4.81180907794914,
-			"name": "Ouest Express Vaise",
-			"opened": null,
-			"phone": "+33 4 72 17 95 95",
-			"price": "€€",
-			"rating": 3.5,
-			"subtypes": [{
-				"alias": "hotdogs",
-				"title": "Fast Food"
-			}, {
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/ouest-express-vaise-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.812691, 45.788156],
-			"name": "Bieh"
-		},
-		"properties": {
-			"adress": "8 rue de la Navigation",
-			"icon": null,
-			"id": null,
-			"latitude": 45.788156,
-			"longitude": 4.812691,
-			"name": "Bieh",
-			"opened": null,
-			"phone": "+33 4 78 25 56 14",
-			"price": "€€",
-			"rating": 3,
-			"subtypes": [{
-				"alias": "tradamerican",
-				"title": "American (Traditional)"
-			}, {
-				"alias": "burgers",
-				"title": "Burgers"
-			}, {
-				"alias": "bagels",
-				"title": "Bagels"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/bieh-lyon-4?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8112202, 45.7862892],
-			"name": "L'Epicerie Comptoir"
-		},
-		"properties": {
-			"adress": "39 rue des Docks",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7862892,
-			"longitude": 4.8112202,
-			"name": "L'Epicerie Comptoir",
-			"opened": null,
-			"phone": "+33 9 72 30 89 78",
-			"price": "€€",
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "delicatessen",
-				"title": "Delicatessen"
-			}, {
-				"alias": "wine_bars",
-				"title": "Wine Bars"
-			}, {
-				"alias": "tapasmallplates",
-				"title": "Tapas/Small Plates"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/l-epicerie-comptoir-lyon-5?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8109021155413, 45.785957011952],
-			"name": "Coffee and Food"
-		},
-		"properties": {
-			"adress": "29 Rue Docks",
-			"icon": null,
-			"id": null,
-			"latitude": 45.785957011952,
-			"longitude": 4.8109021155413,
-			"name": "Coffee and Food",
-			"opened": null,
-			"phone": "+33 9 51 04 57 23",
-			"price": "€",
-			"rating": 4,
-			"subtypes": [{
-				"alias": "bagels",
-				"title": "Bagels"
-			}, {
-				"alias": "cakeshop",
-				"title": "Patisserie/Cake Shop"
-			}, {
-				"alias": "sandwiches",
-				"title": "Sandwiches"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/coffee-and-food-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8109102, 45.7859306],
-			"name": "Le Comptoir de l'industrie"
-		},
-		"properties": {
-			"adress": "29 rue des Docks",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7859306,
-			"longitude": 4.8109102,
-			"name": "Le Comptoir de l'industrie",
-			"opened": null,
-			"phone": "+33 4 78 64 97 10",
-			"price": "€€",
-			"rating": 4,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-comptoir-de-l-industrie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.81063, 45.7855],
-			"name": "Atelier 32"
-		},
-		"properties": {
-			"adress": "32 Rue Des Docks",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7855,
-			"longitude": 4.81063,
-			"name": "Atelier 32",
-			"opened": null,
-			"phone": "+33 4 72 86 96 73",
-			"price": "€€",
-			"rating": 3.5,
-			"subtypes": [{
-				"alias": "pizza",
-				"title": "Pizza"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/atelier-32-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -64975,36 +64609,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.84345653430182, 45.7770002221111],
-			"name": "Berges du Rhône"
-		},
-		"properties": {
-			"adress": "Quai Général Sarrail",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7770002221111,
-			"longitude": 4.84345653430182,
-			"name": "Berges du Rhône",
-			"opened": null,
-			"phone": "+33 4 72 56 70 40",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "playgrounds",
-				"title": "Playgrounds"
-			}, {
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/berges-du-rh%C3%B4ne-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.85022, 45.78296],
 			"name": "33 Cité"
 		},
@@ -65026,33 +64630,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/33-cit%C3%A9-lyon-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.84912, 45.7823],
-			"name": "Cité Internationale de Lyon"
-		},
-		"properties": {
-			"adress": "Quai Charles de Gaulle",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7823,
-			"longitude": 4.84912,
-			"name": "Cité Internationale de Lyon",
-			"opened": null,
-			"phone": "+33 4 72 44 91 91",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/cit%C3%A9-internationale-de-lyon-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -65263,33 +64840,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.849568, 45.7834411],
-			"name": "Passerelle de la Paix"
-		},
-		"properties": {
-			"adress": "Quai Charles de Gaulle",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7834411,
-			"longitude": 4.849568,
-			"name": "Passerelle de la Paix",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/passerelle-de-la-paix-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.852943, 45.784823],
 			"name": "Zucca"
 		},
@@ -65347,63 +64897,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/la-gaufrerie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.85325, 45.7886499],
-			"name": "Parmigianino"
-		},
-		"properties": {
-			"adress": "75 Grande Rue de Saint-Clair",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7886499,
-			"longitude": 4.85325,
-			"name": "Parmigianino",
-			"opened": null,
-			"phone": "+33 4 72 05 39 61",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "italian",
-				"title": "Italian"
-			}, {
-				"alias": "pizza",
-				"title": "Pizza"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parmigianino-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.85545, 45.78536],
-			"name": "La Table en Braille"
-		},
-		"properties": {
-			"adress": "44 quai Charles de Gaulle",
-			"icon": null,
-			"id": null,
-			"latitude": 45.78536,
-			"longitude": 4.85545,
-			"name": "La Table en Braille",
-			"opened": null,
-			"phone": "+33 4 72 39 92 31",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/la-table-en-braille-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -65521,33 +65014,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.85674, 45.7899284],
-			"name": "L'épicurien"
-		},
-		"properties": {
-			"adress": "115 Grande rue de Saint-Clair",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7899284,
-			"longitude": 4.85674,
-			"name": "L'épicurien",
-			"opened": null,
-			"phone": "+33 4 72 87 00 38",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/l-%C3%A9picurien-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.8626956, 45.7764183],
 			"name": "Malice & Sens"
 		},
@@ -65569,171 +65035,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/malice-et-sens-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.861085, 45.776137],
-			"name": "Mix City"
-		},
-		"properties": {
-			"adress": "Hotel des Congres",
-			"icon": null,
-			"id": null,
-			"latitude": 45.776137,
-			"longitude": 4.861085,
-			"name": "Mix City",
-			"opened": null,
-			"phone": "+33 4 72 69 16 16",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/mix-city-villeurbanne-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.863718, 45.7915222],
-			"name": "Bleu de France"
-		},
-		"properties": {
-			"adress": "8 route de Strasbourg",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7915222,
-			"longitude": 4.863718,
-			"name": "Bleu de France",
-			"opened": null,
-			"phone": "+33 4 72 27 12 11",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/bleu-de-france-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [7.1347699, 44.9959717],
-			"name": "Tre Scalin"
-		},
-		"properties": {
-			"adress": "Via Nazionale 48",
-			"icon": null,
-			"id": null,
-			"latitude": 44.9959717,
-			"longitude": 7.1347699,
-			"name": "Tre Scalin",
-			"opened": null,
-			"phone": "+39 0121 842516",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "italian",
-				"title": "Italian"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/tre-scalin-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.85897085227622, 45.7907614596073],
-			"name": "Le Spécial"
-		},
-		"properties": {
-			"adress": "149 grande rue de Saint Clair",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7907614596073,
-			"longitude": 4.85897085227622,
-			"name": "Le Spécial",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "hotdogs",
-				"title": "Fast Food"
-			}, {
-				"alias": "sandwiches",
-				"title": "Sandwiches"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-sp%C3%A9cial-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8572, 45.7901],
-			"name": "Le 121"
-		},
-		"properties": {
-			"adress": "119 Grande rue St Clair",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7901,
-			"longitude": 4.8572,
-			"name": "Le 121",
-			"opened": null,
-			"phone": "+33 4 78 23 08 79",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "hotdogs",
-				"title": "Fast Food"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-121-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.85923808610528, 45.788805612987],
-			"name": "Parc des Berges"
-		},
-		"properties": {
-			"adress": "Au bord du Rhône",
-			"icon": null,
-			"id": null,
-			"latitude": 45.788805612987,
-			"longitude": 4.85923808610528,
-			"name": "Parc des Berges",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-des-berges-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -65794,33 +65095,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.85823672068477, 45.7839267487516],
-			"name": "Lyon : Le Pique-Nique Magique Yelp x Happn"
-		},
-		"properties": {
-			"adress": "Parc de la Tête d'Or",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7839267487516,
-			"longitude": 4.85823672068477,
-			"name": "Lyon : Le Pique-Nique Magique Yelp x Happn",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "yelpevents",
-				"title": "Yelp Events"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/lyon-le-pique-nique-magique-yelp-x-happn-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.86932, 45.7774],
 			"name": "Bar Le Bruxelles"
 		},
@@ -65842,33 +65116,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/bar-le-bruxelles-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8589, 45.78961],
-			"name": "Ancienne Usine des Eaux de Saint-Clair"
-		},
-		"properties": {
-			"adress": "2 avenue de Poumeyrol",
-			"icon": null,
-			"id": null,
-			"latitude": 45.78961,
-			"longitude": 4.8589,
-			"name": "Ancienne Usine des Eaux de Saint-Clair",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 3,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/ancienne-usine-des-eaux-de-saint-clair-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -65908,93 +65155,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.87278, 45.78672],
-			"name": "Parc de la Feyssine"
-		},
-		"properties": {
-			"adress": "Bd Laurent Bonnevay",
-			"icon": null,
-			"id": null,
-			"latitude": 45.78672,
-			"longitude": 4.87278,
-			"name": "Parc de la Feyssine",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 3,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-de-la-feyssine-villeurbanne-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.87205900251865, 45.776074093096],
-			"name": "Le Gnafron"
-		},
-		"properties": {
-			"adress": "2 rue Descartes",
-			"icon": null,
-			"id": null,
-			"latitude": 45.776074093096,
-			"longitude": 4.87205900251865,
-			"name": "Le Gnafron",
-			"opened": null,
-			"phone": "+33 7 64 08 34 85",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "bbq",
-				"title": "Barbeque"
-			}, {
-				"alias": "wine_bars",
-				"title": "Wine Bars"
-			}, {
-				"alias": "tapas",
-				"title": "Tapas Bars"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-gnafron-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.88153, 45.78063],
-			"name": "Prisca Café"
-		},
-		"properties": {
-			"adress": "11 Rue Prisca",
-			"icon": null,
-			"id": null,
-			"latitude": 45.78063,
-			"longitude": 4.88153,
-			"name": "Prisca Café",
-			"opened": null,
-			"phone": "+33 4 78 89 29 49",
-			"price": null,
-			"rating": 3.5,
-			"subtypes": [{
-				"alias": "restaurants",
-				"title": "Restaurants"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/prisca-caf%C3%A9-villeurbanne-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.8782410919619, 45.777701950983],
 			"name": "Lacha Gore"
 		},
@@ -66016,36 +65176,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/lacha-gore-villeurbanne-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.87854, 45.7817999],
-			"name": "Le Roccasecca"
-		},
-		"properties": {
-			"adress": "7 rue Antonins",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7817999,
-			"longitude": 4.87854,
-			"name": "Le Roccasecca",
-			"opened": null,
-			"phone": "+33 4 72 44 31 29",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "hotdogs",
-				"title": "Fast Food"
-			}, {
-				"alias": "pizza",
-				"title": "Pizza"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-roccasecca-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -66286,36 +65416,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.8793, 45.77904],
-			"name": "Arcaneum"
-		},
-		"properties": {
-			"adress": "49 rue des Antonins",
-			"icon": null,
-			"id": null,
-			"latitude": 45.77904,
-			"longitude": 4.8793,
-			"name": "Arcaneum",
-			"opened": null,
-			"phone": "+33 6 49 62 22 51",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "bars",
-				"title": "Bars"
-			}, {
-				"alias": "lancenters",
-				"title": "LAN Centers"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/arcaneum-villeurbanne?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.79545, 45.77315],
 			"name": "Guyot La Cave Gourmande"
 		},
@@ -66337,33 +65437,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/guyot-la-cave-gourmande-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.7948699, 45.7743607],
-			"name": "Eleven Restaurant"
-		},
-		"properties": {
-			"adress": "11 ave Sidoine Apollinaire",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7743607,
-			"longitude": 4.7948699,
-			"name": "Eleven Restaurant",
-			"opened": null,
-			"phone": "+33 6 78 47 51 62",
-			"price": null,
-			"rating": 3,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/eleven-restaurant-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -66460,63 +65533,27 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.81794, 45.77532],
-			"name": "Parc de la Cerisaie - Chazière"
+			"coordinates": [4.8307399, 45.77465],
+			"name": "Paddy's Corner"
 		},
 		"properties": {
-			"adress": "25 rue Chazière",
+			"adress": "4 rue de la Terrasse",
 			"icon": null,
 			"id": null,
-			"latitude": 45.77532,
-			"longitude": 4.81794,
-			"name": "Parc de la Cerisaie - Chazière",
+			"latitude": 45.77465,
+			"longitude": 4.8307399,
+			"name": "Paddy's Corner",
 			"opened": null,
-			"phone": "+33 4 72 98 23 50",
-			"price": null,
+			"phone": "+33 9 52 11 21 76",
+			"price": "€€",
 			"rating": 4.5,
 			"subtypes": [{
-				"alias": "gardens",
-				"title": "Botanical Gardens"
-			}, {
-				"alias": "parks",
-				"title": "Parks"
-			}, {
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
+				"alias": "irish_pubs",
+				"title": "Irish Pub"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/parc-de-la-cerisaie-chazi%C3%A8re-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8289572231939, 45.768622900554],
-			"name": "Le Bouchon des Filles"
-		},
-		"properties": {
-			"adress": "20 rue Sergent Blandan",
-			"icon": null,
-			"id": null,
-			"latitude": 45.768622900554,
-			"longitude": 4.8289572231939,
-			"name": "Le Bouchon des Filles",
-			"opened": null,
-			"phone": "+33 4 78 30 40 44",
-			"price": "€€€",
-			"rating": 4,
-			"subtypes": [{
-				"alias": "french",
-				"title": "French"
-			}, {
-				"alias": "lyonnais",
-				"title": "Lyonnais"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-bouchon-des-filles-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/paddys-corner-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -66943,33 +65980,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/takao-takano-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.85148826324436, 45.7732536109761],
-			"name": "Parc de la Tête d'Or"
-		},
-		"properties": {
-			"adress": "Place Général Leclerc",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7732536109761,
-			"longitude": 4.85148826324436,
-			"name": "Parc de la Tête d'Or",
-			"opened": null,
-			"phone": "+33 4 72 10 30 30",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-de-la-t%C3%AAte-d-or-lyon-6?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -67597,36 +66607,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.7965495, 45.7621687],
-			"name": "Parc de Champvert"
-		},
-		"properties": {
-			"adress": "39 Rue de Champvert",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7621687,
-			"longitude": 4.7965495,
-			"name": "Parc de Champvert",
-			"opened": null,
-			"phone": "+33 4 78 25 71 28",
-			"price": null,
-			"rating": 3,
-			"subtypes": [{
-				"alias": "gardens",
-				"title": "Botanical Gardens"
-			}, {
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-de-champvert-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.7922, 45.7658],
 			"name": "Pizza City et Pizza Clique"
 		},
@@ -67657,60 +66637,30 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.8044470204621, 45.7718804180203],
-			"name": "Fusion Cocotte & Wok"
+			"coordinates": [4.80091505399957, 45.7680650028992],
+			"name": "Nakamal"
 		},
 		"properties": {
-			"adress": "50 rue Saint Pierre de Vaise",
+			"adress": "36 ave Joannès Masset",
 			"icon": null,
 			"id": null,
-			"latitude": 45.7718804180203,
-			"longitude": 4.8044470204621,
-			"name": "Fusion Cocotte & Wok",
+			"latitude": 45.7680650028992,
+			"longitude": 4.80091505399957,
+			"name": "Nakamal",
 			"opened": null,
-			"phone": "+33 4 72 17 84 88",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "cajun",
-				"title": "Cajun/Creole"
-			}, {
-				"alias": "panasian",
-				"title": "Pan Asian"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/fusion-cocotte-et-wok-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.80391, 45.76823],
-			"name": "La Divina"
-		},
-		"properties": {
-			"adress": "21 rue Fraternelle",
-			"icon": null,
-			"id": null,
-			"latitude": 45.76823,
-			"longitude": 4.80391,
-			"name": "La Divina",
-			"opened": null,
-			"phone": "+33 4 37 64 66 79",
+			"phone": "+33 4 78 83 20 45",
 			"price": "€€",
-			"rating": 4,
+			"rating": 3.5,
 			"subtypes": [{
-				"alias": "italian",
-				"title": "Italian"
+				"alias": "french",
+				"title": "French"
 			}, {
-				"alias": "pizza",
-				"title": "Pizza"
+				"alias": "musicvenues",
+				"title": "Music Venues"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/la-divina-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/nakamal-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -67771,54 +66721,30 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.81464229524136, 45.7744530687001],
-			"name": "Tunnel Modes Doux De La Croix Rousse"
+			"coordinates": [4.81141, 45.7713],
+			"name": "La Petite Madeleine"
 		},
 		"properties": {
-			"adress": "Tunnel de la Croix Rousse",
+			"adress": "28 quai Arloing",
 			"icon": null,
 			"id": null,
-			"latitude": 45.7744530687001,
-			"longitude": 4.81464229524136,
-			"name": "Tunnel Modes Doux De La Croix Rousse",
+			"latitude": 45.7713,
+			"longitude": 4.81141,
+			"name": "La Petite Madeleine",
 			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/tunnel-modes-doux-de-la-croix-rousse-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.83071297695216, 45.7679638326153],
-			"name": "L'Antiquaire"
-		},
-		"properties": {
-			"adress": "20 rue Hippolyte Flandrin",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7679638326153,
-			"longitude": 4.83071297695216,
-			"name": "L'Antiquaire",
-			"opened": null,
-			"phone": "+33 6 34 21 54 65",
+			"phone": "+33 4 78 83 71 28",
 			"price": "€€",
-			"rating": 4.5,
+			"rating": 3.5,
 			"subtypes": [{
-				"alias": "cocktailbars",
-				"title": "Cocktail Bars"
+				"alias": "french",
+				"title": "French"
+			}, {
+				"alias": "tea",
+				"title": "Tea Rooms"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/l-antiquaire-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/la-petite-madeleine-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -67930,36 +66856,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/lal-qila-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.82357896331791, 45.7682366367757],
-			"name": "Rives de Saône"
-		},
-		"properties": {
-			"adress": "Quai Saint Vincent",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7682366367757,
-			"longitude": 4.82357896331791,
-			"name": "Rives de Saône",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}, {
-				"alias": "playgrounds",
-				"title": "Playgrounds"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/rives-de-sa%C3%B4ne-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -68107,33 +67003,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/le-tire-bouchon-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.828024, 45.768087],
-			"name": "La Fresque des Lyonnais"
-		},
-		"properties": {
-			"adress": "2 rue de la Martinière",
-			"icon": null,
-			"id": null,
-			"latitude": 45.768087,
-			"longitude": 4.828024,
-			"name": "La Fresque des Lyonnais",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/la-fresque-des-lyonnais-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -68626,63 +67495,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.797881, 45.760176],
-			"name": "Parc de la Passerelle"
-		},
-		"properties": {
-			"adress": "Rue Edmond Locard",
-			"icon": null,
-			"id": null,
-			"latitude": 45.760176,
-			"longitude": 4.797881,
-			"name": "Parc de la Passerelle",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-de-la-passerelle-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.7990749, 45.7582622],
-			"name": "Rectorat Notre Dame de Fourvière"
-		},
-		"properties": {
-			"adress": "8 Cloître de Fourvière",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7582622,
-			"longitude": 4.7990749,
-			"name": "Rectorat Notre Dame de Fourvière",
-			"opened": null,
-			"phone": "+33 4 78 25 80 98",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "churches",
-				"title": "Churches"
-			}, {
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/rectorat-notre-dame-de-fourvi%C3%A8re-lyon-3?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.78227990619601, 45.7543578949034],
 			"name": "Domino's Pizza"
 		},
@@ -68704,33 +67516,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/dominos-pizza-lyon-5?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.7914572, 45.7594795],
-			"name": "Parc de la Garde"
-		},
-		"properties": {
-			"adress": "6 rue de la Garde",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7594795,
-			"longitude": 4.7914572,
-			"name": "Parc de la Garde",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 1,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/parc-de-la-garde-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -68788,33 +67573,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/la-playa-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8115907, 45.76641585],
-			"name": "Nunc Est Bibendum"
-		},
-		"properties": {
-			"adress": "19 rue Docteur Rafin",
-			"icon": null,
-			"id": null,
-			"latitude": 45.76641585,
-			"longitude": 4.8115907,
-			"name": "Nunc Est Bibendum",
-			"opened": null,
-			"phone": "+33 4 78 27 16 68",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "wine_bars",
-				"title": "Wine Bars"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/nunc-est-bibendum-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -69286,33 +68044,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.8502302, 45.7635269],
-			"name": "Soirée Yelp & Giraudet fêtent l'été"
-		},
-		"properties": {
-			"adress": "Halles de Lyon",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7635269,
-			"longitude": 4.8502302,
-			"name": "Soirée Yelp & Giraudet fêtent l'été",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "yelpevents",
-				"title": "Yelp Events"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/soir%C3%A9e-yelp-et-giraudet-f%C3%AAtent-l-%C3%A9t%C3%A9-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.855888, 45.756084],
 			"name": "Petit Ogre"
 		},
@@ -69484,108 +68215,27 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.8011, 45.75764],
-			"name": "Le Parc de la Mairie"
+			"coordinates": [4.80639718472958, 45.767717783036],
+			"name": "Coeur d'Artichaut"
 		},
 		"properties": {
-			"adress": "14 rue Edmond Locard",
+			"adress": "51 rue du Sergent Michel Berthet",
 			"icon": null,
 			"id": null,
-			"latitude": 45.75764,
-			"longitude": 4.8011,
-			"name": "Le Parc de la Mairie",
+			"latitude": 45.767717783036,
+			"longitude": 4.80639718472958,
+			"name": "Coeur d'Artichaut",
 			"opened": null,
-			"phone": "+33 4 72 10 30 30",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/le-parc-de-la-mairie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.80393, 45.7699],
-			"name": "Saveurs et Composées"
-		},
-		"properties": {
-			"adress": "23 rue Gorge de Loup",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7699,
-			"longitude": 4.80393,
-			"name": "Saveurs et Composées",
-			"opened": null,
-			"phone": "+33 4 72 19 75 78",
+			"phone": "+33 9 83 09 23 35",
 			"price": "€€",
-			"rating": 3.5,
+			"rating": 4.5,
 			"subtypes": [{
-				"alias": "sandwiches",
-				"title": "Sandwiches"
+				"alias": "french",
+				"title": "French"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/saveurs-et-compos%C3%A9es-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8036914, 45.7679085],
-			"name": "la tonnelle"
-		},
-		"properties": {
-			"adress": "56 Rue St Pierre de Vaise",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7679085,
-			"longitude": 4.8036914,
-			"name": "la tonnelle",
-			"opened": null,
-			"phone": "+33 4 78 83 58 56",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "restaurants",
-				"title": "Restaurants"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/la-tonnelle-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.807017, 45.761201],
-			"name": "Tunnel de Fourvière"
-		},
-		"properties": {
-			"adress": "34-46 rue Pierre Audry",
-			"icon": null,
-			"id": null,
-			"latitude": 45.761201,
-			"longitude": 4.807017,
-			"name": "Tunnel de Fourvière",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 2,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/tunnel-de-fourvi%C3%A8re-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/coeur-d-artichaut-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -69613,33 +68263,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/la-petite-auberge-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.81618, 45.75962],
-			"name": "Jardin de la Visitation"
-		},
-		"properties": {
-			"adress": "23 rue Roger Radisson",
-			"icon": null,
-			"id": null,
-			"latitude": 45.75962,
-			"longitude": 4.81618,
-			"name": "Jardin de la Visitation",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/jardin-de-la-visitation-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -69730,84 +68353,57 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.82203720631749, 45.7551619156385],
-			"name": "Jardin des Curiosités"
+			"coordinates": [4.82548, 45.7593],
+			"name": "Café du Soleil"
 		},
 		"properties": {
-			"adress": "Place Abbé Larue",
+			"adress": "2 rue St Georges",
 			"icon": null,
 			"id": null,
-			"latitude": 45.7551619156385,
-			"longitude": 4.82203720631749,
-			"name": "Jardin des Curiosités",
+			"latitude": 45.7593,
+			"longitude": 4.82548,
+			"name": "Café du Soleil",
 			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4.5,
+			"phone": "+33 4 78 37 60 02",
+			"price": "€€",
+			"rating": 4,
 			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
+				"alias": "french",
+				"title": "French"
+			}, {
+				"alias": "lyonnais",
+				"title": "Lyonnais"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/jardin-des-curiosit%C3%A9s-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/caf%C3%A9-du-soleil-lyon-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.82501, 45.75776],
-			"name": "RDV Yelp Officiel Mon Premier Shooting Photo de Lyonnais-e"
+			"coordinates": [4.8247604250401, 45.757394006538],
+			"name": "Johnny Walsh's"
 		},
 		"properties": {
-			"adress": "46 Rue Saint-Georges",
+			"adress": "56 rue Saint Georges",
 			"icon": null,
 			"id": null,
-			"latitude": 45.75776,
-			"longitude": 4.82501,
-			"name": "RDV Yelp Officiel Mon Premier Shooting Photo de Lyonnais-e",
+			"latitude": 45.757394006538,
+			"longitude": 4.8247604250401,
+			"name": "Johnny Walsh's",
 			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "yelpevents",
-				"title": "Yelp Events"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/rdv-yelp-officiel-mon-premier-shooting-photo-de-lyonnais-e-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.82451, 45.75679],
-			"name": "Johnny's Kitchen"
-		},
-		"properties": {
-			"adress": "48 rue Saint-Georges",
-			"icon": null,
-			"id": null,
-			"latitude": 45.75679,
-			"longitude": 4.82451,
-			"name": "Johnny's Kitchen",
-			"opened": null,
-			"phone": "+33 4 78 37 94 13",
+			"phone": "+33 4 78 42 98 76",
 			"price": "€€",
 			"rating": 4,
 			"subtypes": [{
 				"alias": "pubs",
 				"title": "Pubs"
-			}, {
-				"alias": "burgers",
-				"title": "Burgers"
 			}],
 			"type": "Bar-Restaurant",
 			"types": null,
-			"website": "https://www.yelp.com/biz/johnnys-kitchen-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+			"website": "https://www.yelp.com/biz/johnny-walshs-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -70384,33 +68980,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.82897996902466, 45.759391784668],
-			"name": "Fête des Lumières de Lyon"
-		},
-		"properties": {
-			"adress": "69000 Lyon",
-			"icon": null,
-			"id": null,
-			"latitude": 45.759391784668,
-			"longitude": 4.82897996902466,
-			"name": "Fête des Lumières de Lyon",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "localflavor",
-				"title": "Local Flavor"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/f%C3%AAte-des-lumi%C3%A8res-de-lyon-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.8629111618066, 45.748266627969],
 			"name": "Kaffee Berlin"
 		},
@@ -70549,33 +69118,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/le-petit-dauphin-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8070998, 45.7495117],
-			"name": "Lares d'Aimé"
-		},
-		"properties": {
-			"adress": "10 rue Claude Jusseaud",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7495117,
-			"longitude": 4.8070998,
-			"name": "Lares d'Aimé",
-			"opened": null,
-			"phone": "+33 4 72 57 72 69",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "restaurants",
-				"title": "Restaurants"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/lares-d-aim%C3%A9-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -70822,33 +69364,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/la-cour-des-grands-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8175822, 45.7423303],
-			"name": "Jardin d'Erevan"
-		},
-		"properties": {
-			"adress": "Rue Casimir Périer",
-			"icon": null,
-			"id": null,
-			"latitude": 45.7423303,
-			"longitude": 4.8175822,
-			"name": "Jardin d'Erevan",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 5,
-			"subtypes": [{
-				"alias": "parks",
-				"title": "Parks"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/jardin-d-erevan-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -72331,33 +70846,6 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [4.87099, 45.74529],
-			"name": "Place Ambroise Courtois"
-		},
-		"properties": {
-			"adress": "Place Ambroise Courtois",
-			"icon": null,
-			"id": null,
-			"latitude": 45.74529,
-			"longitude": 4.87099,
-			"name": "Place Ambroise Courtois",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "landmarks",
-				"title": "Landmarks & Historical Buildings"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/place-ambroise-courtois-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [4.79079, 45.7295],
 			"name": "Fenet"
 		},
@@ -72382,60 +70870,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/fenet-sainte-foy-l%C3%A8s-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.80673, 45.72874],
-			"name": "Pizza Roule"
-		},
-		"properties": {
-			"adress": "103 rue Grand Roule",
-			"icon": null,
-			"id": null,
-			"latitude": 45.72874,
-			"longitude": 4.80673,
-			"name": "Pizza Roule",
-			"opened": null,
-			"phone": "+33 4 78 50 41 06",
-			"price": null,
-			"rating": 4,
-			"subtypes": [{
-				"alias": "pizza",
-				"title": "Pizza"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/pizza-roule-mulati%C3%A8re-la-2?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8153, 45.73692],
-			"name": "Soirée DrinkAlsace @ Le Sucre"
-		},
-		"properties": {
-			"adress": "50 Quai Rambaud",
-			"icon": null,
-			"id": null,
-			"latitude": 45.73692,
-			"longitude": 4.8153,
-			"name": "Soirée DrinkAlsace @ Le Sucre",
-			"opened": null,
-			"phone": "",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "yelpevents",
-				"title": "Yelp Events"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/soir%C3%A9e-drinkalsace-le-sucre-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}, {
@@ -72853,33 +71287,6 @@
 			"type": "Bar-Restaurant",
 			"types": null,
 			"website": "https://www.yelp.com/biz/gingko-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
-			"weekday_text": null
-		}
-	}, {
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [4.8774, 45.73711],
-			"name": "Foll'Envie"
-		},
-		"properties": {
-			"adress": "3 Rue Transvaal",
-			"icon": null,
-			"id": null,
-			"latitude": 45.73711,
-			"longitude": 4.8774,
-			"name": "Foll'Envie",
-			"opened": null,
-			"phone": "+33 4 72 78 61 09",
-			"price": null,
-			"rating": 4.5,
-			"subtypes": [{
-				"alias": "restaurants",
-				"title": "Restaurants"
-			}],
-			"type": "Bar-Restaurant",
-			"types": null,
-			"website": "https://www.yelp.com/biz/foll-envie-lyon?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
 			"weekday_text": null
 		}
 	}]
