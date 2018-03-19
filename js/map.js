@@ -46,8 +46,6 @@
 
             //cleanPositionDoublons();
 
-            //fusionYelpGoogle();
-
         }
 
     };
@@ -2040,7 +2038,7 @@ function fusionYelpGoogle() {
 
         if (xobj.readyState === 4 && xobj.status == "200") {
 
-            var time = 100;
+            var time = 50;
 
             var yelpJSON = JSON.parse(xobj.responseText);
 
@@ -2055,6 +2053,10 @@ function fusionYelpGoogle() {
                 console.log("Progression : " + i + " / " + yelpJSON.length);
 
                 if ( i >= yelpJSON.length ) {
+
+                    i = 0;
+
+                    formatFusionBase(geojsonBase, yelpJSON);
 
                     clearInterval(interval);
 
@@ -2074,7 +2076,7 @@ function fusionYelpGoogle() {
 
                             if (yelpJSON[i].phone.length != 0 && feature.phone == null) {
 
-                                feature.phone = yelpJSON[i]['display_phone'];
+                                feature.phone = formattedPhone;
 
                             }
 
@@ -2104,74 +2106,6 @@ function fusionYelpGoogle() {
 
             }, time);
 
-            setTimeout( function () {
-
-                for (var indice = 0 ; indice < yelpJSON.length; indice++) {
-
-                    var addedObject = {
-
-                        "type": "Feature",
-
-                        "geometry": {
-
-                            "type": "Point",
-
-                            "coordinates": [yelpJSON[indice].coordinates.longitude, yelpJSON[indice].coordinates.latitude],
-
-                            "name": yelpJSON[indice].name
-
-                        },
-
-                        "properties": {
-
-                            "adress": yelpJSON[indice].location['display_address'][0],
-
-                            "icon": null,
-
-                            "id": null,
-
-                            "latitude": yelpJSON[indice].coordinates.latitude,
-
-                            "longitude": yelpJSON[indice].coordinates.longitude,
-
-                            "name": yelpJSON[indice].name,
-
-                            "opened": null,
-
-                            "phone": yelpJSON[indice]["display_phone"],
-
-                            "price" : null,
-
-                            "rating": yelpJSON[indice].rating,
-
-                            "subtypes" : yelpJSON[indice].categories,
-
-                            "type": "Bar-Restaurant",
-
-                            "types": null,
-
-                            "website": yelpJSON[indice].url,
-
-                            "weekday_text": null
-
-                        }
-
-                    };
-
-                    if (yelpJSON[indice].price != null) {
-
-                        addedObject.properties.price = yelpJSON[indice].price;
-
-                    }
-
-                    geojsonBase.features.push(addedObject);
-
-                }
-
-                console.log(JSON.stringify(geojsonBase));
-
-            }, time * yelpJSON.length + 1000 )
-
         }
 
     };
@@ -2180,27 +2114,116 @@ function fusionYelpGoogle() {
 
 }
 
-function cleanPositionDoublons() {
+function formatFusionBase(geojsonBase, yelpJSON) {
 
-    var geoJSONParsed = JSON.parse(geojsonSource);
 
-    for (var i = 0; i < geoJSONParsed.length - 1; i++){
+    for (var indice = 0 ; indice < yelpJSON.length; indice++) {
 
-        for (var j = i + 1; j < geoJSONParsed.length; j++) {
+        var addedObject = {
 
-            if( geoJSONParsed[i].properties.latitude == geoJSONParsed[j].properties.latitude && geoJSONParsed[i].properties.longitude == geoJSONParsed[j].properties.longitude ) {
+            "type": "Feature",
 
-                geoJSONParsed[i].properties.latitude += 0.000010;
+            "geometry": {
 
-                geoJSONParsed[i].properties.longitude += 0.000010;
+                "type": "Point",
 
-                break;
+                "coordinates": [yelpJSON[indice].coordinates.longitude, yelpJSON[indice].coordinates.latitude],
+
+                "name": yelpJSON[indice].name
+
+            },
+
+            "properties": {
+
+                "adress": yelpJSON[indice].location['display_address'][0],
+
+                "icon": null,
+
+                "id": null,
+
+                "latitude": yelpJSON[indice].coordinates.latitude,
+
+                "longitude": yelpJSON[indice].coordinates.longitude,
+
+                "name": yelpJSON[indice].name,
+
+                "opened": null,
+
+                "phone": yelpJSON[indice]["display_phone"],
+
+                "price" : null,
+
+                "rating": yelpJSON[indice].rating,
+
+                "subtypes" : null,
+
+                "type": "Bar-Restaurant",
+
+                "types": null,
+
+                "website": yelpJSON[indice].url,
+
+                "weekday_text": null
+
+            }
+
+        };
+
+        if (yelpJSON[indice].price != null) {
+
+            addedObject.properties.price = yelpJSON[indice].price;
+
+        }
+
+        if( yelpJSON[indice].subtypes != null) {
+
+            addedObject.properties.subtypes = yelpJSON[indice].subtypes;
+
+        }
+
+        geojsonBase.features.push(addedObject);
+
+    }
+
+    //console.log(JSON.stringify(geojsonBase));
+
+    cleanPositionDoublons( JSON.stringify(geojsonBase) );
+
+}
+
+function cleanPositionDoublons( source ) {
+
+    console.log("cleaning");
+
+    var geoJSONParsed = JSON.parse(source);
+
+    var features = geoJSONParsed.features;
+
+    for (var i = 0; i < features.length - 1; i++){
+
+        console.log("Cleaning doublons... " + i + " / " + features.length);
+
+        for (var j = i + 1; j < features.length; j++) {
+
+            if( features[i].properties.latitude == features[j].properties.latitude && features[i].properties.longitude == features[j].properties.longitude ) {
+
+                features[i].properties.latitude += 0.000010;
+
+                features[i].properties.longitude += 0.000010;
+
+                features[i].geometry.coordinates[0] = features[i].properties.longitude;
+
+                features[i].geometry.coordinates[1] = features[i].properties.latitude;
+
+                j = features.length;
 
             }
 
         }
 
     }
+
+    console.log("Done.");
 
     console.log(JSON.stringify(geoJSONParsed));
 
