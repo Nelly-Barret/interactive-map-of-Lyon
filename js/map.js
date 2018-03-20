@@ -30,8 +30,6 @@
 
             init();
 
-            loadAllJSON();
-
         }
 
     };
@@ -118,7 +116,6 @@ function init() {
     map.on('click', function (element) {
 
         var features = map.queryRenderedFeatures(element.point, {
-            //~ layers: ['barPlaceSymbol', 'restaurantPlaceSymbol', 'barRestaurantPlaceSymbol'] // replace this with the name of the layer
 
             layers: ['placesSymbols']
 
@@ -132,7 +129,7 @@ function init() {
 
         var feature = features[0];
 
-        if( feature.properties.id != null ) {
+        if( feature.properties['place_id'] != null ) {
 
             popups.push(createPopupForSymbol(feature));
 
@@ -160,9 +157,9 @@ function init() {
 
         // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
 
-        console.log(feature.properties);
+        //console.log(feature.properties);
 
-        if( feature.properties.id != null ) {
+        if( feature.properties['place_id'] != null ) {
 
             popup = createPopupForSymbol(feature);
 
@@ -234,19 +231,19 @@ function mapInitialisation(userCoordinates) {
 
         map.addSource("places", {
             type: "geojson",
-            data: "JSON/places.geojson",
-           // cluster: false,
+            data: "JSON/fusionPlaces.geojson",
+            cluster: true,
             clusterMaxZoom: 16, // Max zoom to cluster points on
             clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
         });
 
         map.loadImage('Assets/homeIcon.png', function (error, image) {
 
-            map.addImage('barIcon', image);
+            map.addImage('homeIcon', image);
 
         });
 
-       /* map.addLayer({
+        map.addLayer({
             id: "placesSymbols",
             type: "symbol",
             source: "places",
@@ -255,7 +252,7 @@ function mapInitialisation(userCoordinates) {
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-offset": [0, 0.6],
                 "text-anchor": "top",
-                "icon-image": "barIcon",
+                "icon-image": "homeIcon",
                 "icon-size": 0.05,
                 "visibility": 'visible',
                 "icon-allow-overlap": true,
@@ -265,9 +262,9 @@ function mapInitialisation(userCoordinates) {
             paint: {
                 "text-halo-color": "rgba(0,0,0,1)"
             }
-        });*/
+        });
 
-        map.addLayer({
+       /* map.addLayer({
             id: "placesSymbols",
             type: "circle",
             source: "places",
@@ -279,7 +276,7 @@ function mapInitialisation(userCoordinates) {
                     5
             }
         });
-
+*/
         map.addLayer({
             id: "clusters",
             type: "circle",
@@ -427,7 +424,6 @@ function createPopupForSymbol(feature) {
     var popup = new mapboxgl.Popup({offset: popupOffsets})
         .setLngLat(feature.geometry.coordinates)
         .setHTML(createMarkerPopupHTML(placeInformations))
-        .setLngLat(feature.geometry.coordinates)
         .addTo(map);
 
     return popup;
@@ -438,21 +434,13 @@ function createPopupForSymbol(feature) {
 
 function createMarkerPopupHTML(place) {
 
-    var state = "closed";
-
-    if (place.opened) {
-
-        state = "opened";
-
-    }
-
     var html = "";
 
     var placeName = accent_fold(place.name);
 
     html += "<p id='popupTitle'>" + placeName + "</p>";
 
-    html += "<p id='popupType'>" + place.type + "</p>";
+    html += "<p id='popupType'>" + place.mainType + "</p>";
 
     if (place.rating != null) {
 
@@ -479,7 +467,7 @@ function createMarkerPopupHTML(place) {
         html += "</p>";
     }
 
-    html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place.id + "&travelmode=walking'>" + place.adress + "</a></p>";
+    html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place['place_id'] + "&travelmode=walking'>" + place['formatted_address'] + "</a></p>";
 
     if (place.website != null) {
 
@@ -487,9 +475,9 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    if (place.phone != null) {
+    if (place['formatted_phone_number'] != null) {
 
-        html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place.phone + "\">" + place.phone + "</a></p>";
+        html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place['formatted_phone_number'] + "\">" + place['formatted_phone_number'] + "</a></p>";
 
     }
 

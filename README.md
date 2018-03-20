@@ -38,25 +38,18 @@ Give an example
 Example of place informations:
 
     {
-        "id" :   actualPlace['place_id'],
-
-        "coordinates" : actualPlace['geometry']['location'],
-
-        "adress" : actualPlace['vicinity'],
-
-        "rating" : actualPlace['rating'],
-
-        "opened" : null,
-
-        "name" : actualPlace ['name'],
-
-        "type" : null,
-
-        "types" : actualPlace['types'],
-
-        "icon" : actualPlace['icon'],
-
-        "opening_hours" : actualPlace['opening_hours']
+        formatted_address       : "["Metro Cuire (C)","69300 Caluire et Cuire","France"]",
+        formatted_phone_number  : "06 61 41 99 60",
+        geometry                : "{"location":{"lat":45.785595167419004,"lng":4.83302194434442}}",
+        mainType                : "Bar-Restaurant",
+        name                    : "Pitakia",
+        place_id                : "pitakia-caluire-et-cuire",
+        price                   : "€",
+        rating                  : 4,
+        scope                   : "YELP",
+        subtypes                : "[{"alias":"foodtrucks","title":"Food Trucks"},{"alias":"greek","title":"Greek"}]",
+        url                     : "https://www.yelp.com/biz/pitakia-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
+        vicinity                : "Metro Cuire (C)"
     }
 
 ### Built With
