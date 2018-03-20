@@ -183,7 +183,15 @@ function init() {
 
     var searchTextfield = document.getElementById("textSearch");
 
-    searchTextfield.addEventListener("input", function () {
+/*    searchTextfield.addEventListener("input", function () {
+
+        filterSearch(searchTextfield.value);
+
+    });
+    */
+    var searchTextButton = document.getElementById("searchButton");
+
+    searchTextButton.addEventListener("click", function () {
 
         filterSearch(searchTextfield.value);
 
@@ -467,7 +475,7 @@ function createMarkerPopupHTML(place) {
         html += "</p>";
     }
 
-    html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place['place_id'] + "&travelmode=walking'>" + place['formatted_address'] + "</a></p>";
+    html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place['place_id'] + "&travelmode=walking'>" + place['vicinity'] + "</a></p>";
 
     if (place.website != null) {
 
@@ -543,7 +551,7 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    if ( place.subtypes != null ) {
+    if ( place.subtypes != "null" ) {
 
     	var subtypesToDisplay = JSON.parse(place.subtypes);
 
@@ -632,7 +640,7 @@ function createMarkerPopupHTML(place) {
 
     	    }
 
-    	    console.log(colors);
+    	    //console.log(colors);
 
     	    $("#subtypes"+i).css('background-color', ''+colors, '!important');
 
@@ -799,7 +807,7 @@ function filterFunction(filter) {
 
                 if (filter.types[i] == true) {
 
-                    bool = bool || value.properties.type == values[i];
+                    bool = bool || value.properties.mainType == values[i];
 
                 }
 
@@ -815,7 +823,7 @@ function filterFunction(filter) {
 
         features = features.filter( function (value) {
 
-            return value.properties.rating == filter.rating;
+            return Math.floor(value.properties.rating) == filter.rating;
 
         });
 
@@ -827,10 +835,10 @@ function filterFunction(filter) {
 
         features = features.filter( function (value) {
 
-            return ( value.properties.latitude <= userCoordinates.userLatitude + 2*latVariance
-                && value.properties.latitude >= userCoordinates.userLatitude - 2*latVariance
-                && value.properties.longitude <= userCoordinates.userLongitude + 2*lngVariance
-                && value.properties.longitude >= userCoordinates.userLongitude - 2*lngVariance);
+            return ( value.properties.geometry.location.lat <= userCoordinates.userLatitude + 2*latVariance
+                && value.properties.geometry.location.lat >= userCoordinates.userLatitude - 2*latVariance
+                && value.properties.geometry.location.lng <= userCoordinates.userLongitude + 2*lngVariance
+                && value.properties.geometry.location.lng >= userCoordinates.userLongitude - 2*lngVariance);
 
         });
 
@@ -858,7 +866,6 @@ function filterFunction(filter) {
 
                 }
 
-
                 return openenedFilter( openingHours );
 
             } else {
@@ -872,6 +879,7 @@ function filterFunction(filter) {
     }
 
     if ( filter.openingHours !== null ) {
+
         var str = document.getElementById("inputTime").value;
 
         var hour = str.substring(0, str.length - str.indexOf(':')-1);
@@ -915,7 +923,7 @@ function filterFunction(filter) {
 
             if( value.price != null ) {
 
-                return value.price == filter.price;
+                return value.price.length == filter.price;
 
             } else {
 
@@ -1078,9 +1086,9 @@ function filterSearch(searchString) {
 
                 var valueName = accent_fold(value.properties.name).toLowerCase();
 
-                var valueType = accent_fold(value.properties.type).toLowerCase();
+                var valueType = accent_fold(value.properties.mainType).toLowerCase();
 
-                var valueAddress = accent_fold(value.properties.adress).toLowerCase();
+                var valueAddress = accent_fold(value.properties["vicinity"]).toLowerCase();
 
                 var searchName = accent_fold(searchString).toLowerCase();
 
