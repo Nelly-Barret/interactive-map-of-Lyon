@@ -30,8 +30,6 @@
 
             init();
 
-            loadAllJSON();
-
         }
 
     };
@@ -1380,7 +1378,7 @@ function radarSquareCallBack( results, status, array, i ) {
 
 function getDetailsAfterRadar( placeIds, timeInterval ) {
 
-    var i = 1;
+    var i = 2464;
 
     var interval = setInterval( function () {
 
@@ -1602,8 +1600,6 @@ var loadedRestaurantsString = "";
 
 var loadedBarsRestaurantsString = "";
 
-var loadedYELPString = "";
-
 var numberOfJSONLoadingCallbacks = 0;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1616,15 +1612,11 @@ function loadAllJSON( callback ) {
 
     loadBarsRestaurantsJSON();
 
-    loadYelpJSON();
-
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 function loadBarsJSON() {
-
-    console.log("Retreiving Bars JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -1638,7 +1630,7 @@ function loadBarsJSON() {
 
             loadedBarsString = xobj.responseText;
 
-            console.log("Success.");
+            console.log("retrieved Bars");
 
             callbackLoadingJSON();
 
@@ -1654,8 +1646,6 @@ function loadBarsJSON() {
 
 function loadRestaurantsJSON() {
 
-    console.log("Retreiving Restaurants JSON...")
-
     var xobj = new XMLHttpRequest();
 
     xobj.open('GET', 'JSON/restaurants.json', true);
@@ -1666,7 +1656,7 @@ function loadRestaurantsJSON() {
 
             loadedRestaurantsString = xobj.responseText;
 
-            console.log("Success.");
+            console.log("retrieved Restaurants");
 
             callbackLoadingJSON();
 
@@ -1682,8 +1672,6 @@ function loadRestaurantsJSON() {
 
 function loadBarsRestaurantsJSON() {
 
-    console.log("Retreiving Bar-Restaurants JSON...")
-
     var xobj = new XMLHttpRequest();
 
     xobj.open('GET', 'JSON/barsRestaurants.json', true);
@@ -1694,45 +1682,7 @@ function loadBarsRestaurantsJSON() {
 
             loadedBarsRestaurantsString = xobj.responseText;
 
-            console.log("Success.");
-
-            callbackLoadingJSON();
-
-        }
-
-    };
-
-    xobj.send(null);
-
-}
-
-function loadYelpJSON() {
-
-    console.log("Retreiving Yelp JSON...")
-
-    var xobj = new XMLHttpRequest();
-
-    xobj.open('GET', 'JSON/jsonBusinessYELP.json', true);
-
-    xobj.onreadystatechange = function () {
-
-        if (xobj.readyState === 4 && xobj.status == "200") {
-
-            var yelpJSON = JSON.parse(xobj.responseText);
-
-            for (var i = 0; i < yelpJSON.length ; i++) {
-
-                if( yelpJSON[i]['display_phone'] != null ) {
-
-                    yelpJSON[i]['display_phone'] = yelpJSON[i]['display_phone'].replace('+33 ', '0');
-
-                }
-
-            }
-
-            loadedYELPString = JSON.stringify(yelpJSON);
-
-            console.log("Success.");
+            console.log("retrieved Bars-Restaurants");
 
             callbackLoadingJSON();
 
@@ -1750,7 +1700,7 @@ function callbackLoadingJSON() {
 
     numberOfJSONLoadingCallbacks++;
 
-    if (numberOfJSONLoadingCallbacks === 4) {
+    if (numberOfJSONLoadingCallbacks === 3) {
 
         generateGeoJSON();
 
@@ -1761,8 +1711,6 @@ function callbackLoadingJSON() {
 //----------------------------------------------------------------------------------------------------------------------
 
 function generateGeoJSON() {
-
-    console.log("Generating geojson with google data...");
 
     var parsedBars = JSON.parse(loadedBarsString);
 
@@ -1780,21 +1728,83 @@ function generateGeoJSON() {
 
             "type": "Point",
 
-            "coordinates": [null,null]
+            "coordinates": [null, null]
 
         },
 
-        "properties": null
+        "properties": {
+
+            "adress": null,
+
+            "icon": null,
+
+            "id": null,
+
+            "latitude" : null,
+
+            "longitude" : null,
+
+            "name": null,
+
+            "opened": null,
+
+            "phone": null,
+
+            "rating": null,
+
+            "type": null,
+
+            "types": null,
+
+            "website": null,
+
+            "weekday_text": null
+
+        }
 
     };
 
     for (var i = 0; i < parsedBars.length; i++) {
 
-        geoJSONItem.geometry.coordinates = [parsedBars[i].geometry.location.lng, parsedBars[i].geometry.location.lat];
+        geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
 
         geoJSONItem.geometry.name = parsedBars[i]["name"];
 
-        geoJSONItem.properties = parsedBars[i];
+        geoJSONItem.properties.latitude = parsedBars[i]["coordinates"]["lat"];
+
+        geoJSONItem.properties.longitude = parsedBars[i]["coordinates"]["lng"];
+
+        geoJSONItem.properties.id = parsedBars[i].id;
+
+        geoJSONItem.properties.name = parsedBars[i].name;
+
+        geoJSONItem.properties.type = parsedBars[i].type;
+
+        geoJSONItem.properties.types = parsedBars[i].types;
+
+        geoJSONItem.properties.adress = parsedBars[i].adress;
+
+        geoJSONItem.properties.rating = Math.floor(parsedBars[i].rating);
+
+        geoJSONItem.properties.icon = "Assets/barIcon.png";
+
+        if (parsedBars[i].phone != null) {
+
+            geoJSONItem.properties.phone = parsedBars[i].phone;
+
+        }
+
+        if (parsedBars[i]["weekday_text"] != null) {
+
+            geoJSONItem.properties.weekday_text = parsedBars[i].weekday_text;
+
+        }
+
+        if (parsedBars[i].website != null) {
+
+            geoJSONItem.properties.website = parsedBars[i].website;
+
+        }
 
         geoJSONString += JSON.stringify(geoJSONItem);
 
@@ -1809,13 +1819,47 @@ function generateGeoJSON() {
 
     for (var i = 0; i < parsedBarRestaurants.length; i++) {
 
-        geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i].geometry.location.lng, parsedBarRestaurants[i].geometry.location.lat];
+        geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i]["coordinates"]["lng"], parsedBarRestaurants[i]["coordinates"]["lat"]];
 
         geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
 
-        geoJSONItem.properties = parsedBarRestaurants[i];
+        geoJSONItem.properties.latitude = parsedBarRestaurants[i]["coordinates"]["lat"];
+
+        geoJSONItem.properties.longitude = parsedBarRestaurants[i]["coordinates"]["lng"];
+
+        geoJSONItem.properties.id = parsedBarRestaurants[i].id;
+
+        geoJSONItem.properties.name = parsedBarRestaurants[i].name;
+
+        geoJSONItem.properties.type = parsedBarRestaurants[i].type;
+
+        geoJSONItem.properties.types = parsedBarRestaurants[i].types;
+
+        geoJSONItem.properties.adress = parsedBarRestaurants[i].adress;
+
+        geoJSONItem.properties.rating = Math.floor(parsedBarRestaurants[i].rating);
+
+        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
 
         geoJSONString += JSON.stringify(geoJSONItem);
+
+        if (parsedBarRestaurants[i].phone != null) {
+
+            geoJSONItem.properties.phone = parsedBarRestaurants[i].phone;
+
+        }
+
+        if (parsedBarRestaurants[i]["weekday_text"] != null) {
+
+            geoJSONItem.properties.weekday_text = parsedBarRestaurants[i].weekday_text;
+
+        }
+
+        if (parsedBarRestaurants[i].website != null) {
+
+            geoJSONItem.properties.website = parsedBarRestaurants[i].website;
+
+        }
 
         if (i < parsedBarRestaurants.length - 1) {
 
@@ -1829,13 +1873,47 @@ function generateGeoJSON() {
 
     for (var i = 0; i < parsedRestaurants.length; i++) {
 
-        geoJSONItem.geometry.coordinates = [parsedRestaurants[i].geometry.location.lng, parsedRestaurants[i].geometry.location.lat];
+        geoJSONItem.geometry.coordinates = [parsedRestaurants[i]["coordinates"]["lng"], parsedRestaurants[i]["coordinates"]["lat"]];
 
         geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
 
-        geoJSONItem.properties = parsedRestaurants[i];
+        geoJSONItem.properties.latitude = parsedRestaurants[i]["coordinates"]["lat"];
+
+        geoJSONItem.properties.longitude = parsedRestaurants[i]["coordinates"]["lng"];
+
+        geoJSONItem.properties.id = parsedRestaurants[i].id;
+
+        geoJSONItem.properties.name = parsedRestaurants[i].name;
+
+        geoJSONItem.properties.type = parsedRestaurants[i].type;
+
+        geoJSONItem.properties.types = parsedRestaurants[i].types;
+
+        geoJSONItem.properties.adress = parsedRestaurants[i].adress;
+
+        geoJSONItem.properties.rating = Math.floor(parsedRestaurants[i].rating);
+
+        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
 
         geoJSONString += JSON.stringify(geoJSONItem);
+
+        if (parsedRestaurants[i].phone != null) {
+
+            geoJSONItem.properties.phone = parsedRestaurants[i].phone;
+
+        }
+
+        if (parsedRestaurants[i]["weekday_text"] != null) {
+
+            geoJSONItem.properties.weekday_text = parsedRestaurants[i].weekday_text;
+
+        }
+
+        if (parsedRestaurants[i].website != null) {
+
+            geoJSONItem.properties.website = parsedRestaurants[i].website;
+
+        }
 
         if (i < parsedRestaurants.length - 1) {
 
@@ -1847,8 +1925,6 @@ function generateGeoJSON() {
 
     geoJSONString += ']}';
 
-    console.log("Success.");
-
     //DEBUG DISPLAY
     //console.log(geoJSONString);
 
@@ -1858,12 +1934,103 @@ function generateGeoJSON() {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+function cleanGeoJSON() {
+
+    var xobj = new XMLHttpRequest();
+
+    xobj.overrideMimeType("application/json");
+
+    xobj.open('GET', 'JSON/places.geojson', true);
+
+    xobj.onreadystatechange = function () {
+
+        if (xobj.readyState === 4 && xobj.status == "200") {
+
+            var geoPlacesJSON = JSON.parse(xobj.responseText)["features"];
+
+            //~ console.log(geoPlacesJSON);
+
+            var newPlaces = [];
+
+            var ids = [];
+
+            var doublons = 0;
+
+            var geoJSONItem = {
+
+                "type": "Feature",
+
+                "geometry": {
+
+                    "type": "Point",
+
+                    "coordinates": [null, null]
+
+                },
+
+                "properties": {
+
+                    "adress": null,
+
+                    "icon": null,
+
+                    "id": null,
+
+                    "latitude" : null,
+
+                    "longitude" : null,
+
+                    "name": null,
+
+                    "opened": null,
+
+                    "phone": null,
+
+                    "rating": null,
+
+                    "type": null,
+
+                    "types": null,
+
+                    "website": null,
+
+                    "weekday_text": null
+
+                }
+
+            };
+
+            for (var i in geoPlacesJSON) {
+
+                geoJSONItem = geoPlacesJSON[i];
+
+                if (ids.indexOf(geoJSONItem.properties.id) === -1) {
+
+                    newPlaces.push(geoJSONItem);
+
+                    ids.push(geoJSONItem.properties.id);
+
+                } else {
+
+                    doublons++;
+
+                }
+
+            }
+
+            console.log(JSON.stringify(newPlaces));
+
+        }
+
+    };
+
+    xobj.send(null);
+
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 
 function cleanGeoJSON(geoJSONString) {
-
-    console.log("Cleaning geojson from doublons...");
 
     var geoPlacesJSON = JSON.parse(geoJSONString)["features"];
 
@@ -1874,6 +2041,50 @@ function cleanGeoJSON(geoJSONString) {
     var ids = [];
 
     var doublons = 0;
+
+    var geoJSONItem = {
+
+        "type": "Feature",
+
+        "geometry": {
+
+            "type": "Point",
+
+            "coordinates": [null, null]
+
+        },
+
+        "properties": {
+
+            "adress": null,
+
+            "icon": null,
+
+            "id": null,
+
+            "latitude" : null,
+
+            "longitude" : null,
+
+            "name": null,
+
+            "opened": null,
+
+            "phone": null,
+
+            "rating": null,
+
+            "type": null,
+
+            "types": null,
+
+            "website": null,
+
+            "weekday_text": null
+
+        }
+
+    };
 
     for (var i in geoPlacesJSON) {
 
@@ -1891,122 +2102,98 @@ function cleanGeoJSON(geoJSONString) {
 
     }
 
-    var newGeoJSON = {
-
-        type : "FeatureCollection",
-
-        features : newPlaces
-
-    };
-
-    console.log("Success.")
-
-    fusionYelpGoogle(newGeoJSON);
+    console.log("{\"type\" : \"FeatureCollection\", \"features\": " + JSON.stringify(newPlaces) + "}");
 
 }
 
-function fusionYelpGoogle( baseGeoJSON ) {
+function fusionYelpGoogle() {
 
-    console.log("Starting yelp-google fusion...");
+    var xobj = new XMLHttpRequest();
 
-    console.log("Merging existing google elements with similar yelp elements...");
+    xobj.open('GET', 'JSON/jsonBusinessYELP.json', true);
 
-    var time = 50;
+    xobj.onreadystatechange = function () {
 
-    var yelpJSON = JSON.parse(loadedYELPString);
+        if (xobj.readyState === 4 && xobj.status == "200") {
 
-    var i = 0;
+            var time = 50;
 
-    var geojsonBase = baseGeoJSON;
+            var yelpJSON = JSON.parse(xobj.responseText);
 
-    console.log(yelpJSON.length);
+            var i = 0;
 
-    var interval = setInterval(function () {
+            var geojsonBase = JSON.parse(geojsonSource);
 
-        console.log("Progression : " + i + " / " + yelpJSON.length);
+            console.log(yelpJSON.length);
 
-        if ( i >= yelpJSON.length ) {
+            var interval = setInterval(function () {
 
-            i = 0;
+                console.log("Progression : " + i + " / " + yelpJSON.length);
 
-            console.log("Success.");
+                if ( i >= yelpJSON.length ) {
 
-            addYELPElements(geojsonBase, yelpJSON);
+                    i = 0;
 
-            clearInterval(interval);
+                    formatFusionBase(geojsonBase, yelpJSON);
 
-        } else {
-
-            for (var j = 0; j < geojsonBase.features.length ; j++) {
-
-                var yelpFormattedPhone = yelpJSON[i]['display_phone'];
-
-                var yelpFormattedName = accent_fold(yelpJSON[i].name.toLowerCase());
-
-                var yelpFormattedAddress = accent_fold(yelpJSON[i].location.address1.toLowerCase());
-
-
-                var feature = geojsonBase.features[j].properties;
-
-
-                var featureFormattedPhone = feature['formatted_phone_number'];
-
-                var featureFormattedName = accent_fold(feature.name.toLowerCase());
-
-                var featureFormattedAddress = accent_fold(feature["formatted_address"].toLowerCase());
-
-                if( featureFormattedPhone == yelpFormattedPhone
-                    || featureFormattedAddress.indexOf(yelpFormattedAddress) != -1 ) {
-
-                    if ( yelpJSON[i].categories != null ) {
-
-                        feature.subtypes = yelpJSON[i].categories;
-
-                    }
-
-                    if ( yelpJSON[i].phone.length != 0 && featureFormattedPhone == null ) {
-
-                        feature["formatted_phone_number"] = yelpFormattedPhone;
-
-                    }
-
-                    if( yelpJSON[i].price != null ) {
-
-                        feature.price = yelpJSON[i].price;
-
-                    }
-
-                    if( yelpJSON[i].url != null && feature.website == null ) {
-
-                        feature.website = yelpJSON[i].url;
-
-                    }
-
-                    yelpJSON.splice(i, 1);
-
-                    break;
+                    clearInterval(interval);
 
                 } else {
 
-                    feature.subtypes = null;
+                    for (var j = 0; j < geojsonBase.features.length ; j++) {
 
-                    feature.price = null;
+                        var formattedPhone = yelpJSON[i]['display_phone'].replace('+33 ', '0');
+
+                        var name = accent_fold(yelpJSON[i].name.toLowerCase());
+
+                        var feature = geojsonBase.features[j].properties;
+
+                        if( accent_fold(feature.name).indexOf(name) != -1 || feature.phone == formattedPhone ) {
+
+                            feature.subtypes = yelpJSON[i].categories;
+
+                            if (yelpJSON[i].phone.length != 0 && feature.phone == null) {
+
+                                feature.phone = formattedPhone;
+
+                            }
+
+                            if( yelpJSON[i].price != null ) {
+
+                                feature.price = yelpJSON[i].price;
+
+                            }
+
+                            yelpJSON.splice(i, 1);
+
+                            break;
+
+                        } else {
+
+                            feature.subtypes = null;
+
+                            feature.price = null;
+
+                        }
+
+                    }
 
                 }
 
-            }
+                i++;
+
+            }, time);
 
         }
 
-        i++;
+    };
 
-    }, time);
+    xobj.send(null);
 
 }
 
-function addYELPElements(geojsonBase, yelpJSON) {
+function formatFusionBase(geojsonBase, yelpJSON) {
 
-    console.log("Adding new yelp elements to google database...");
 
     for (var indice = 0 ; indice < yelpJSON.length; indice++) {
 
@@ -2026,132 +2213,87 @@ function addYELPElements(geojsonBase, yelpJSON) {
 
             "properties": {
 
-                "formatted_address": yelpJSON[indice].location['display_address'],
+                "adress": yelpJSON[indice].location['display_address'][0],
 
-                "formatted_phone_number": null,
+                "icon": null,
 
-                "geometry": {
+                "id": null,
 
-                    "location": {
+                "latitude": yelpJSON[indice].coordinates.latitude,
 
-                        "lat": yelpJSON[indice].coordinates.latitude,
-
-                        "lng": yelpJSON[indice].coordinates.longitude
-
-                    }
-
-                },
-
-                "place_id": yelpJSON[indice].id,
-
-                "price" : null,
-
-                "subtypes" : null,
+                "longitude": yelpJSON[indice].coordinates.longitude,
 
                 "name": yelpJSON[indice].name,
 
+                "opened": null,
+
+                "phone": yelpJSON[indice]["display_phone"],
+
+                "price" : null,
+
                 "rating": yelpJSON[indice].rating,
 
-                "scope": "YELP",
+                "subtypes" : null,
 
-                "url": null,
+                "type": "Bar-Restaurant",
 
-                "vicinity": yelpJSON[indice].location['display_address'][0],
+                "types": null,
 
-                "mainType": "Bar-Restaurant"
+                "website": yelpJSON[indice].url,
+
+                "weekday_text": null
 
             }
 
         };
 
-        if( yelpJSON[indice]['display_phone'] != null ) {
-
-            addedObject.properties['formatted_phone_number'] = yelpJSON[indice]['display_phone'];
-
-        }
-
-        if ( yelpJSON[indice].price != null ) {
+        if (yelpJSON[indice].price != null) {
 
             addedObject.properties.price = yelpJSON[indice].price;
 
         }
 
-        if( yelpJSON[indice].categories != null) {
+        if( yelpJSON[indice].subtypes != null) {
 
-            addedObject.properties.subtypes = yelpJSON[indice].categories;
-
-            for( var j = 0; j < yelpJSON[indice].categories.length ; j++ ) {
-
-                if( yelpJSON[indice].categories[j].alias.indexOf('bars') != -1 ){
-
-                    addedObject.mainType = "Bar";
-
-                    break;
-
-                } else if ( yelpJSON[indice].categories[j].alias.indexOf('restaurants') != -1 ) {
-
-                    addedObject.mainType = "Restaurant";
-
-                    break;
-
-                }
-
-            }
+            addedObject.properties.subtypes = yelpJSON[indice].subtypes;
 
         }
-
-        if( yelpJSON[indice].url != null ) {
-
-            addedObject.properties.url = yelpJSON[indice].url;
-
-        }
-
 
         geojsonBase.features.push(addedObject);
 
     }
 
-    console.log("Success.");
-
     //console.log(JSON.stringify(geojsonBase));
 
-    cleanPositionDoublons( geojsonBase );
+    cleanPositionDoublons( JSON.stringify(geojsonBase) );
 
 }
 
-function cleanPositionDoublons( geoJSONSourceBase ) {
+function cleanPositionDoublons( source ) {
 
-    console.log("Cleaning positions doublons...");
+    console.log("cleaning");
 
-    var geoJSONParsed = geoJSONSourceBase;
+    var geoJSONParsed = JSON.parse(source);
 
     var features = geoJSONParsed.features;
 
     for (var i = 0; i < features.length - 1; i++){
 
-        console.log("Progression... " + i + " / " + features.length);
+        console.log("Cleaning doublons... " + i + " / " + features.length);
 
         for (var j = i + 1; j < features.length; j++) {
 
             if( features[i].properties.latitude == features[j].properties.latitude && features[i].properties.longitude == features[j].properties.longitude ) {
 
-                if (features[i].properties["formatted_phone_number"] == features[j].properties["formatted_phone_number"]) {
+                features[i].properties.latitude += 0.000010;
 
-                    features.splice(j, 1);
+                features[i].properties.longitude += 0.000010;
 
-                } else {
+                features[i].geometry.coordinates[0] = features[i].properties.longitude;
 
-                    features[i].properties.geometry.location.lat += 0.000010;
+                features[i].geometry.coordinates[1] = features[i].properties.latitude;
 
-                    features[i].properties.geometry.location.lng += 0.000010;
-
-                    features[i].geometry.coordinates[0] = features[i].properties.geometry.location.lng;
-
-                    features[i].geometry.coordinates[1] = features[i].properties.geometry.location.lat;
-
-                    j = features.length;
-
-                }
+                j = features.length;
 
             }
 
@@ -2159,9 +2301,9 @@ function cleanPositionDoublons( geoJSONSourceBase ) {
 
     }
 
-    console.log("Success.");
+    console.log("Done.");
 
-    geojsonSource = JSON.stringify(geoJSONParsed);
+    console.log(JSON.stringify(geoJSONParsed));
 
 }
 

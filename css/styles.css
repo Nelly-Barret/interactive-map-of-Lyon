@@ -113,15 +113,7 @@ input span::before {
 
 	background-color: rgba(0, 0, 0, 0.1) !important;
 
-	z-index: 100;
-
-}
-
-#navbarDropdown {
-
-	color: black;
-
-	text-decoration: none;
+	z-index: 100; /* "on" the map */
 
 }
 
@@ -129,9 +121,9 @@ input span::before {
 
 	background-color: rgba(0, 0, 0, 0.9) !important;
 
-	border: 20px solid rgba(0, 0, 0, 0.9) !important;
+	border: 10px solid rgba(0, 0, 0, 0.9) !important;
 
-	margin-top: 14px;
+	margin-top: 8px;
 
 	padding: 0;
 
@@ -142,6 +134,8 @@ input span::before {
 	background-color: rgba(0, 0, 0, 0) !important; /* 0 to opacity to have the color of the menu */
 
 	color: white;
+
+	margin: 10px;
 
 	padding: 0;
 
@@ -155,27 +149,19 @@ input span::before {
 
 }
 
-.navbar-toggler {
+.divSearch {
 
-	border: none;
+	position: absolute !important;
 
-}
-
-.fa-navicon {
-
-	color: white;
+	right: 70px !important;
 
 }
 
-/* navbar */
+.divGear {
 
-/* for the navbar's buttons */
+	position: absolute !important;
 
-nav button {
-
-	margin-bottom: 0;
-
-	margin-top: 10px;
+	right: 20px !important;
 
 }
 
@@ -184,51 +170,49 @@ nav button {
 /*############ FILTERS ###############################################################################################*/
 /*####################################################################################################################*/
 
+/* containers */
+
+.containerButtons {
+
+	margin: 0 !important;
+
+	padding: 0 !important;
+
+}
+
 /* restaurant / bar / bar-restaurant */
 
-button {
+.containerButtons button {
+
+	margin-left: 0;
 
 	opacity: 1 !important;
+
+	padding: 0;
 
 }
 
 .btnType {
 
-	margin-left: 0;
-
 	margin-right: 8px;
-
-	padding: 0;
 
 	width: 120px;
 
 }
 
-/* prices */
-
 .btnPrice {
-
-	margin-left: 0;
 
 	margin-right: 10px;
 
-	padding: 0;
-
-	width: 70px;
+	width: 86px;
 
 }
 
-/* rating */
-
 .btnStar {
-
-	margin-left: 0;
 
 	margin-right: 8px;
 
-	padding: 0;
-
-	width: 68.8px;
+	width: 69px;
 
 }
 
@@ -236,11 +220,7 @@ button {
 
 	border-radius: 25px;
 
-	margin-left: 0;
-
 	margin-right: 8px;
-
-	padding: 0;
 
 	width: 25px;
 
@@ -257,6 +237,60 @@ button {
 	margin-right: 20px;
 
 	padding: 0 15px 0 15px;
+
+}
+
+
+/*####################################################################################################################*/
+/*############ PARAMETERS ############################################################################################*/
+/*####################################################################################################################*/
+
+#parameters {
+
+	margin: 0;
+
+}
+
+#mapStyleButton {
+
+	margin-bottom: 5px;
+
+	padding: 0;
+
+}
+
+.containerStyles button {
+
+	border-radius: 0 !important;
+
+	margin: 0;
+
+	width: 100px;
+
+}
+
+/* first button */
+.containerStyles button:first-child {
+
+	border-top-left-radius: 5px !important;
+
+	border-bottom-left-radius: 5px !important;
+
+}
+
+/* last button */
+.containerStyles button:last-child {
+
+	border-top-right-radius: 5px !important;
+
+	border-bottom-right-radius: 5px !important;
+
+}
+
+/* the others */
+.containerStyles button:nth-child(1), button:nth-child(2), button:nth-child(3) {
+
+	border-right-color: rgba(0, 0, 0, 0.1) !important;
 
 }
 
@@ -432,6 +466,12 @@ button {
 
 }
 
+.fa-navicon {
+
+	color: white;
+
+}
+
 
 /*####################################################################################################################*/
 /*############ GEO CONTROLER #########################################################################################*/
@@ -467,6 +507,14 @@ a {
 	color: 	#6495ED;
 
 	text-decoration: underline;
+
+}
+
+label {
+
+	margin: 0;
+
+	padding: 0;
 
 }
 
