@@ -1,4 +1,4 @@
-<div>
+<div class="input-group">
     <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="textSearch">
-    <input class="form-control" type="button" value="Go" id="searchButton">
+    <button class="btn btn-success" type="button" id="searchButton">Go</button>
 </div>
