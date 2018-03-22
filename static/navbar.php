@@ -6,7 +6,7 @@
     <!-- the content of the navbar -->
     <div class="collapse navbar-collapse" id="navbarContent">
         <div class="nav-item dropdown">
-            <button type="button" class="dropdown-toggle btn" data-toggle="dropdown">Filters</button>
+            <button type="button" class="dropdown-toggle btn" data-toggle="dropdown" id="navFilterButton">Filters</button>
             <div class="dropdown-menu" id="dropdownFilters">
                 <div class="dropdown-item">
                     <label for="typeContainer">Type</label>

@@ -183,17 +183,37 @@ function init() {
 
     var searchTextfield = document.getElementById("textSearch");
 
-/*    searchTextfield.addEventListener("input", function () {
+    searchTextfield.addEventListener("input", function () {
 
-        filterSearch(searchTextfield.value);
+        if( searchTextfield.value.length == 0 ) {
+
+            resetFilter();
+
+        }
 
     });
-    */
+
     var searchTextButton = document.getElementById("searchButton");
 
     searchTextButton.addEventListener("click", function () {
 
         filterSearch(searchTextfield.value);
+
+    });
+
+    var navFilterButton = document.getElementById("navFilterButton");
+
+    navFilterButton.addEventListener("click", function () {
+
+        //console.log(popups);
+
+        for( var i = 0; i < popups.length ; i++ ) {
+
+            popups[i].remove();
+
+        }
+
+        popups.splice(0, popups.length);
 
     });
 
@@ -452,13 +472,13 @@ function createMarkerPopupHTML(place) {
 
     if (place.rating != null) {
 
-        console.log("rating=" + place.rating);
+        //console.log("rating=" + place.rating);
 
         html += "<p id='popupRating'>";
 
         var i;
 
-        for (i = 0; i < place.rating; i++) {
+        for (i = 0; i < Math.floor(place.rating); i++) {
 
             /* add full stars */
             html += "<i class=\"fa fa-star\"></i>";
@@ -481,6 +501,10 @@ function createMarkerPopupHTML(place) {
 
         html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.website + "\">Website</a></p>";
 
+    } else if (place.url != null) {
+
+        html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.url + "\">Website</a></p>";
+
     }
 
     if (place['formatted_phone_number'] != null) {
@@ -489,9 +513,9 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    if (place.weekday_text != null) {
+    if (place["opening_hours"] != null) {
 
-        var days = JSON.parse(place.weekday_text);
+        var days = JSON.parse(place["opening_hours"])["weekday_text"];
 
         if (days != null) {
 
@@ -527,19 +551,20 @@ function createMarkerPopupHTML(place) {
 
                 str = days[day - 1];
 
-                if( forcedDate == null ) {
+            }
 
-                    //str.indexOf( ': ' )+2 => starts after ': '
-                    html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p><br>";
+            if( forcedDate == null ) {
 
-                } else {
+                //str.indexOf( ': ' )+2 => starts after ': '
+                html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p><br>";
 
-                    //str.indexOf( ': ' )+2 => starts after ': '
-                    html += "<p class='day'><i class='fa fa-clock-o'></i>" + str + "</p>\n";
+            } else {
 
-                }
+                //str.indexOf( ': ' )+2 => starts after ': '
+                html += "<p class='day'><i class='fa fa-clock-o'></i>" + str + "</p>\n";
 
             }
+
 
         }
 
@@ -781,7 +806,7 @@ function filterMap() {
 
     }
 
-    //~console.log(filter);
+    //console.log(filter);
 
     filterFunction(filter);
 
@@ -848,31 +873,73 @@ function filterFunction(filter) {
 
         features = features.filter( function (value) {
 
-            if( value.properties.weekday_text != null ) {
+            var date = new Date();
 
-                var date = new Date();
+            var day = date.getDay();
 
-                var day = date.getDay();
+            if( day == 0 ) {
 
-                var openingHours = value.properties.weekday_text[day];
+                day = 6;
 
-                if (day === 0) {
+            } else {
 
-                    openingHours = value.properties.weekday_text[6];
+                day --;
+
+            }
+
+            var hour = date.getHours();
+
+            var minutes = date.getMinutes();
+
+            var time = hour * 100 + minutes;
+
+            var openingHours = value.properties["opening_hours"];
+
+            if( openingHours != null ) {
+
+                var periods = value.properties["opening_hours"]["periods"];
+
+                if ( periods != null ) {
+
+                    var openings = [];
+
+                    var closings = [];
+
+                    for (var i = 0; i < periods.length ; i ++ ) {
+
+                        if ( periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
+
+                            openings.push(periods[i]["open"]["time"]);
+
+                            closings.push(periods[i]["close"]["time"]);
+
+                        }
+
+                    }
+
+                    for (var i = 0; i < openings.length ; i ++) {
+
+                        if ( openings[i] <= time && time <= closings[i] ) {
+
+                            return true;
+
+                        }
+
+                    }
 
                 } else {
 
-                    openingHours = value.properties.weekday_text[day - 1];
+                    return false;
 
                 }
-
-                return openenedFilter( openingHours );
 
             } else {
 
                 return false;
 
             }
+
+            return false;
 
         });
 
@@ -921,9 +988,10 @@ function filterFunction(filter) {
 
         features = features.filter( function (value) {
 
-            if( value.price != null ) {
 
-                return value.price.length == filter.price;
+            if( value.properties.price != null ) {
+
+                return value.properties.price.length == filter.price;
 
             } else {
 
