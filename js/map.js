@@ -4,6 +4,8 @@
 //######################################################################################################################
 {
 
+    // Creation of a loader icon
+
     var loaderBackground = document.createElement("div");
 
     loaderBackground.classList.add("loaderBackground");
@@ -15,6 +17,8 @@
     loaderBackground.appendChild(loaderDiv);
 
     document.body.insertBefore(loaderBackground, document.body.firstChild);
+
+    // Request to load the GeoJson source file and set geojsonSource property, removes loader and launch init()
 
     var xobj = new XMLHttpRequest();
 
@@ -37,16 +41,17 @@
     xobj.send(null);
 
 }
-//######################################################################################################################
 
 //######################################################################################################################
 //######################## GLOBAL VARIABLES ############################################################################
 //######################################################################################################################
 
+// Accent map used by accen_fold
 var accentMap = {
     'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
 };
 
+// Function that removes accents in sentences.
 function accent_fold (s) {
 
     if (!s) { return ''; }
@@ -68,9 +73,9 @@ var latVariance = 0.001764; // Latitude difference to get to an other sector // 
 
 var lngVariance = 0.002560; // Longitude difference to get to an other sector // Base = 0.001280
 
-var geojsonSource;
+var geojsonSource;          // GeoJson source of the project, initialised at the start
 
-var forcedDate = null;
+var forcedDate = null;      //
 
 var mapGridBounds = {
 
@@ -82,12 +87,9 @@ var mapGridBounds = {
 
     rightLongitude : 4.871854
 
-};
+};  // Bounds of the map for research functions
 
-var popups = [];
-
-//######################################################################################################################
-
+var popups = [];            // Array of all active popups
 
 //######################################################################################################################
 //########## GENERAL INITIALISATION AND MAP INITIALISATION #############################################################
@@ -95,6 +97,10 @@ var popups = [];
 
 var userPositionMarker;     // Marker associated with user's location
 
+//----------------------------------------------------------------------------------------------------------------------
+// init() :
+//
+//  Initialize the map and all the event listeners on interactive elements
 //----------------------------------------------------------------------------------------------------------------------
 
 function init() {
@@ -113,73 +119,18 @@ function init() {
 
     map = mapInitialisation(userCoordinates);
 
-    map.on('click', function (element) {
 
-        var features = map.queryRenderedFeatures(element.point, {
-
-            layers: ['placesSymbols']
-
-        });
-
-        if (!features.length) {
-
-            return;
-
-        }
-
-        var feature = features[0];
-
-        if( feature.properties['place_id'] != null ) {
-
-            popups.push(createPopupForSymbol(feature));
-
-        }
-
-    });
-
-    var popup = new mapboxgl.Popup();
-
-    map.on('mouseenter', 'placesSymbols', function (element) {
-
-        var features = map.queryRenderedFeatures(element.point, {
-
-            layers: ['placesSymbols']
-
-        });
-
-        if (!features.length) {
-
-            return;
-
-        }
-
-        var feature = features[0];
-
-        // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
-
-        //console.log(feature.properties);
-
-        if( feature.properties['place_id'] != null ) {
-
-            popup = createPopupForSymbol(feature);
-
-        }
-
-    });
-
-    map.on('mouseleave', 'placesSymbols', function() {
-
-        popup.remove();
-
-    });
+    // Buttons interactions
 
     var goButton = document.getElementById("go");
 
     goButton.addEventListener("click", filterMap);
 
+
     var resetButton = document.getElementById("resetFilters");
 
     resetButton.addEventListener("click", resetFilter);
+
 
     var searchTextfield = document.getElementById("textSearch");
 
@@ -193,6 +144,7 @@ function init() {
 
     });
 
+
     var searchTextButton = document.getElementById("searchButton");
 
     searchTextButton.addEventListener("click", function () {
@@ -200,6 +152,18 @@ function init() {
         filterSearch(searchTextfield.value);
 
     });
+
+
+    window.addEventListener("keypress", function ( key ) {
+
+        if( key.keyCode == 13 ) {
+
+            filterSearch(searchTextfield.value);
+
+        }
+
+    });
+
 
     var navFilterButton = document.getElementById("navFilterButton");
 
@@ -219,6 +183,18 @@ function init() {
 
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// mapInitialisation( userCoordinates ) :
+//
+//  Initialize a map with passed coordinates and set the map interactions
+//
+// INPUT :
+//
+//  userCoordinates -> actual coordinates of user
+//
+// OUTPUT :
+//
+//  map -> a mapbox's map object
 //----------------------------------------------------------------------------------------------------------------------
 
 function mapInitialisation(userCoordinates) {
@@ -250,9 +226,11 @@ function mapInitialisation(userCoordinates) {
     }), 'bottom-right');
 
     // disable map rotation using right click + drag
+
     map.dragRotate.disable();
 
     // disable map rotation using touch rotation gesture
+
     map.touchZoomRotate.disableRotation();
 
     map.on('load', function () {
@@ -347,6 +325,67 @@ function mapInitialisation(userCoordinates) {
     });
 
 
+    map.on('click', function (element) {
+
+        var features = map.queryRenderedFeatures(element.point, {
+
+            layers: ['placesSymbols']
+
+        });
+
+        if (!features.length) {
+
+            return;
+
+        }
+
+        var feature = features[0];
+
+        if( feature.properties['place_id'] != null ) {
+
+            popups.push(createPopupForSymbol(feature));
+
+        }
+
+    });
+
+    var popup = new mapboxgl.Popup();
+
+    map.on('mouseenter', 'placesSymbols', function (element) {
+
+        var features = map.queryRenderedFeatures(element.point, {
+
+            layers: ['placesSymbols']
+
+        });
+
+        if (!features.length) {
+
+            return;
+
+        }
+
+        var feature = features[0];
+
+        // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
+
+        //console.log(feature.properties);
+
+        if( feature.properties['place_id'] != null ) {
+
+            popup = createPopupForSymbol(feature);
+
+        }
+
+    });
+
+    map.on('mouseleave', 'placesSymbols', function() {
+
+        popup.remove();
+
+    });
+
+
     // Update user's location
 
     getUserLocation();
@@ -402,6 +441,10 @@ function mapInitialisation(userCoordinates) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// getUserLocation() :
+//
+//  Launch a navigator's user's position watch
+//----------------------------------------------------------------------------------------------------------------------
 
 function getUserLocation() {
 
@@ -416,8 +459,16 @@ function getUserLocation() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// setUserCoordinates( position ) :
+//
+//  Update the userCoordinates property, and update the user's position's marker
+//
+// INPUT :
+//
+//  position -> a position with latitude and longitude
+//----------------------------------------------------------------------------------------------------------------------
 
-function setUserCoordinates(position) {
+function setUserCoordinates( position ) {
 
     userCoordinates.userLatitude = position.coords.latitude;
 
@@ -427,12 +478,24 @@ function setUserCoordinates(position) {
 
 }
 
-
 //######################################################################################################################
 //##################### DISPLAY RELATED METHODS ########################################################################
 //######################################################################################################################
+//----------------------------------------------------------------------------------------------------------------------
+// createPopupForSymbol( feature ) :
+//
+//  creates a popup for a place
+//
+// INPUT :
+//
+//  feature -> a geojson point object
+//
+// OUTPUT :
+//
+//  popup -> a mapbox popup
+//----------------------------------------------------------------------------------------------------------------------
 
-function createPopupForSymbol(feature) {
+function createPopupForSymbol( feature ) {
 
     var placeInformations = feature.properties;
 
@@ -458,6 +521,18 @@ function createPopupForSymbol(feature) {
 
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// createMarkerPopupHTML( place ) :
+//
+//  Creates the html content of the popup
+//
+// INPUT :
+//
+//  place -> a place's properties dictionary
+//
+// OUTPUT :
+//
+//  html -> a html text for the popup
 //----------------------------------------------------------------------------------------------------------------------
 
 function createMarkerPopupHTML(place) {
@@ -685,30 +760,16 @@ function createMarkerPopupHTML(place) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-
-function showMap(err, data) {
-    // The geocoder can return an area, like a city, or a
-    // point, like an address. Here we handle both cases,
-    // by fitting the map bounds to an area or zooming to a point.
-    if (data.lbounds) {
-
-        map.fitBounds(data.lbounds);
-
-    } else if (data.latlng) {
-
-        map.setView([data.latlng[0], data.latlng[1]], 13);
-
-    }
-}
-
-
 //######################################################################################################################
 //############ FILTER ACTIONS ON MAP ###################################################################################
 //######################################################################################################################
+//----------------------------------------------------------------------------------------------------------------------
+// filterMap() :
+//
+//  Prepare a filter object based on what is currently selected in the filters menu, then call filterFunction( filter )
+//----------------------------------------------------------------------------------------------------------------------
 
 function filterMap() {
-
 
     resetFilter();
 
@@ -820,6 +881,12 @@ function filterMap() {
 
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// filterFunction ( filter ) :
+//
+//  Apply a filter to the geojsonSource property based on the passed filter's properties
+//
+//  If only one object is left after filtering, we fly and zoom to it in the map
 //----------------------------------------------------------------------------------------------------------------------
 
 function filterFunction(filter) {
@@ -1023,69 +1090,7 @@ function filterFunction(filter) {
 
 }
 
-function openenedFilter(openingHours) {
-
-    var hourRegex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)))/);
-
-    var separatorRegex = new RegExp(/ . /);
-
-    var twoHoursRegex = new RegExp(/,/);
-
-    var closedRegex = new RegExp(/Closed/);
-
-    if( openingHours.search(closedRegex) == -1 ) {
-
-        var current = moment();
-
-        var endFirstPart = openingHours.search(twoHoursRegex);
-
-        var hourDeb = openingHours.search( hourRegex );
-
-        var hourEnd = openingHours.search( separatorRegex );
-
-        var firstHour = openingHours.substring( hourDeb, hourEnd );
-
-        var secondPart = openingHours.substring( hourEnd, openingHours.length );
-
-        var secondHourDeb = secondPart.search( hourRegex );
-
-        var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
-
-        var first = moment(firstHour, 'HH:mm a');
-
-        var second = moment(secondHour, 'HH:mm a');
-
-        if( endFirstPart == -1) {
-
-            return current.isBetween(first, second);
-
-        } else {
-
-            var afterHours = openingHours.substring(endFirstPart, openingHours.length);
-
-            var firstHour = afterHours.substring( hourDeb, hourEnd );
-
-            var secondPart = afterHours.substring( hourEnd, openingHours.length );
-
-            var secondHourDeb = secondPart.search( hourRegex );
-
-            var secondHour = secondPart.substring( secondHourDeb, openingHours.length );
-
-            var secondFirst = moment(firstHour, 'HH:mm a');
-
-            var secondSecond = moment(secondHour, 'HH:mm a');
-
-            return current.isBetween(first, second) || current.isBetween(secondFirst, secondSecond);
-
-        }
-
-    } else {
-
-        return false;
-
-    }
-
-}
+//----------------------------------------------------------------------------------------------------------------------
 
 function filterDate(filter) {
 
@@ -1127,6 +1132,10 @@ function filterDate(filter) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// resetFilter() :
+//
+//  Removes all current filters by setting the original geojsonSource
+//----------------------------------------------------------------------------------------------------------------------
 
 function resetFilter() {
 
@@ -1143,8 +1152,14 @@ function resetFilter() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// filterSearch( searchString ) :
+//
+//  Reset the current filters then applies filter on the geojson looking in addresses, names, subtypes, main types
+//
+//  If the searchString is empty, it just resets the filters
+//----------------------------------------------------------------------------------------------------------------------
 
-function filterSearch(searchString) {
+function filterSearch( searchString ) {
 
     resetFilter();
 
@@ -1285,6 +1300,12 @@ var placesRequest;          // Google places API request
 var counter;                // Simple counter for tasks
 
 //----------------------------------------------------------------------------------------------------------------------
+// fetchAllPlaceRadar ( timeInterval ) :
+//
+//  This will retrieves all places ids from google's method radarSearch, then it'll call getDetailsAfterRadar()
+//
+//  Intern radar search requests callbacks are handled with radarSquareCallBack() methods
+//----------------------------------------------------------------------------------------------------------------------
 
 function fetchAllPlaceRadar( timeInterval ) {
 
@@ -1295,7 +1316,6 @@ function fetchAllPlaceRadar( timeInterval ) {
     var lngStep = lngVariance * 7;
 
     var latStep = latVariance * 7;
-
 
     var baseBounds = {
 
@@ -1328,6 +1348,8 @@ function fetchAllPlaceRadar( timeInterval ) {
     var interval = setInterval( function () {
 
         if ( bounds.north < mapGridBounds.bottomLatitude - latVariance ) {
+
+            console.log( "All data retrieved" );
 
             console.log(JSON.stringify(allPlacesId));
 
@@ -1416,14 +1438,22 @@ function fetchAllPlaceRadar( timeInterval ) {
 
     }, timeInterval );
 
-    setTimeout( function () {
-
-        console.log( "All data retrieved" );
-
-    }, timeInterval * 31 + 1000 );
-
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// radarSquareCallBack ( results, status, array, i ) :
+//
+//  Callback that constructs the place_ids array
+//
+// INPUT :
+//
+//  results -> a JSON formatted response from google containing a place_id
+//  status -> request status after the call
+//  i -> a counter used to track progress of the task
+//
+// INPUT/OUTPUT :
+//
+//  array -> an array containing all place_id
 //----------------------------------------------------------------------------------------------------------------------
 
 function radarSquareCallBack( results, status, array, i ) {
@@ -1449,10 +1479,21 @@ function radarSquareCallBack( results, status, array, i ) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// getDetailsAfterRadar( placeIds, timeInterval ) :
+//
+//  Call google's getPlaceDetails then build a json string for each type based on constructed arrays by callbacks
+//
+//  containing all data
+//
+// INPUT :
+//
+//  placeIds -> an array full of place_id
+//  timeInterval -> time in milliseconds between two requests
+//----------------------------------------------------------------------------------------------------------------------
 
 function getDetailsAfterRadar( placeIds, timeInterval ) {
 
-    var i = 2464;
+    var i = 1;
 
     var interval = setInterval( function () {
 
@@ -1509,81 +1550,94 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
             }
 
-            return;
+            console.log( "All details retrieved" );
+
+        } else {
+
+            var detailsRequest = {
+
+                placeId : placeIds[i]
+
+            };
+
+            googlePlacesAPIService.getDetails( detailsRequest, function ( results, status ) {
+
+                if ( status === "OVER_QUERY_LIMIT" ) {
+
+                    console.log( "State " + i + ", interruption" );
+
+                    clearInterval( interval );
+
+                    for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
+
+                        barsString += JSON.stringify( fetchedBars[j] );
+
+                        if ( j !== fetchedBars.length - 1 ) {
+
+                            barsString += ",";
+
+                        }
+
+                    }
+
+                    for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
+
+                        restaurantsString += JSON.stringify( fetchedRestaurants[j] );
+
+                        if ( j !== fetchedRestaurants.length - 1 ) {
+
+                            restaurantsString += ",";
+
+                        }
+
+                    }
+
+                    for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
+
+                        barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
+
+                        if ( j !== fetchedBarRestaurants.length - 1 ) {
+
+                            barsRestaurantsString += ",";
+
+                        }
+
+                    }
+
+                } else {
+
+                    getDetailsCallback( results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants, i, placeIds.length );
+
+                }
+
+            } );
+
+            i++;
 
         }
 
-        var detailsRequest = {
-
-            placeId : placeIds[i]
-
-        };
-
-        googlePlacesAPIService.getDetails( detailsRequest, function ( results, status ) {
-
-            if ( status === "OVER_QUERY_LIMIT" ) {
-
-                console.log( "State " + i + ", interruption" );
-
-                clearInterval( interval );
-
-                for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
-
-                    barsString += JSON.stringify( fetchedBars[j] );
-
-                    if ( j !== fetchedBars.length - 1 ) {
-
-                        barsString += ",";
-
-                    }
-
-                }
-
-                for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
-
-                    restaurantsString += JSON.stringify( fetchedRestaurants[j] );
-
-                    if ( j !== fetchedRestaurants.length - 1 ) {
-
-                        restaurantsString += ",";
-
-                    }
-
-                }
-
-                for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
-
-                    barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
-
-                    if ( j !== fetchedBarRestaurants.length - 1 ) {
-
-                        barsRestaurantsString += ",";
-
-                    }
-
-                }
-
-            } else {
-
-                getDetailsCallback( results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants, i, placeIds.length );
-
-            }
-
-        } );
-
-        i++;
-
     }, timeInterval );
-
-    setTimeout( function () {
-
-        console.log( "All details retrieved" );
-
-    }, timeInterval * placeIds.length + 1000 );
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// getDetailsCallback ( result, status, bars, restaurants, barRestaurants, state, progression ) :
+//
+//  Callback of google's getDetails methods, fills arrays of bars, restaurants and bar-restaurants
+//
+// INPUT :
+//
+//  results -> a JSON formatted response from google containing a place_id
+//  status -> request status after the call
+//  state -> a counter used to track progress of the task
+//  progression -> total of requests to proceed
+//
+// INPUT/OUTPUT :
+//
+//  bars -> an array containing all bars
+//  restaurants -> an array containing all restaurants
+//  barRestaurants -> an array containing all barRestaurants
+// ----------------------------------------------------------------------------------------------------------------------
 
 function getDetailsCallback( result, status, bars, restaurants, barRestaurants, state , progression ) {
 
@@ -1626,6 +1680,14 @@ function getDetailsCallback( result, status, bars, restaurants, barRestaurants, 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// checkIfPlaceIsBar ( place ) :
+//
+//  verify if passed place's types contains "bar"
+//
+// INPUT :
+//
+//  place -> a place retrieved with google's getDetails method
+// ----------------------------------------------------------------------------------------------------------------------
 
 function checkIfPlaceIsBar( place ) {
 
@@ -1645,6 +1707,14 @@ function checkIfPlaceIsBar( place ) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// checkIfPlaceIsRestaurant ( place ) :
+//
+//  verify if passed place's types contains "restaurant"
+//
+// INPUT :
+//
+//  place -> a place retrieved with google's getDetails method
+// ----------------------------------------------------------------------------------------------------------------------
 
 function checkIfPlaceIsRestaurant( place ) {
 
@@ -1663,7 +1733,6 @@ function checkIfPlaceIsRestaurant( place ) {
 
 }
 
-
 //######################################################################################################################
 //############ JSON FILES LOADER AND GEOJSON GENERATION ################################################################
 //######################################################################################################################
@@ -1674,8 +1743,14 @@ var loadedRestaurantsString = "";
 
 var loadedBarsRestaurantsString = "";
 
+var loadedYELPString = "";
+
 var numberOfJSONLoadingCallbacks = 0;
 
+//----------------------------------------------------------------------------------------------------------------------
+// loadAllJSON () :
+//
+//  Loads all locally stored JSONs
 //----------------------------------------------------------------------------------------------------------------------
 
 function loadAllJSON( callback ) {
@@ -1686,11 +1761,19 @@ function loadAllJSON( callback ) {
 
     loadBarsRestaurantsJSON();
 
+    loadYelpJSON();
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// loadBarsJSON () :
+//
+//  Loads locally stored bars.json
+//----------------------------------------------------------------------------------------------------------------------
 
 function loadBarsJSON() {
+
+    console.log("Retreiving Bars JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -1704,7 +1787,7 @@ function loadBarsJSON() {
 
             loadedBarsString = xobj.responseText;
 
-            console.log("retrieved Bars");
+            console.log("Success.");
 
             callbackLoadingJSON();
 
@@ -1717,8 +1800,14 @@ function loadBarsJSON() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// loadRestaurantsJSON () :
+//
+//  Loads locally stored restaurants.json
+//----------------------------------------------------------------------------------------------------------------------
 
 function loadRestaurantsJSON() {
+
+    console.log("Retreiving Restaurants JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -1730,7 +1819,7 @@ function loadRestaurantsJSON() {
 
             loadedRestaurantsString = xobj.responseText;
 
-            console.log("retrieved Restaurants");
+            console.log("Success.");
 
             callbackLoadingJSON();
 
@@ -1743,8 +1832,14 @@ function loadRestaurantsJSON() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// loadBarsRestaurantsJSON () :
+//
+//  Loads locally stored barsRestaurants.json
+//----------------------------------------------------------------------------------------------------------------------
 
 function loadBarsRestaurantsJSON() {
+
+    console.log("Retreiving Bar-Restaurants JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -1756,7 +1851,7 @@ function loadBarsRestaurantsJSON() {
 
             loadedBarsRestaurantsString = xobj.responseText;
 
-            console.log("retrieved Bars-Restaurants");
+            console.log("Success.");
 
             callbackLoadingJSON();
 
@@ -1769,12 +1864,60 @@ function loadBarsRestaurantsJSON() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// loadYelpJSON () :
+//
+//  Loads locally stored jsonBusinessYELP.json
+//----------------------------------------------------------------------------------------------------------------------
+
+function loadYelpJSON() {
+
+    console.log("Retreiving Yelp JSON...")
+
+    var xobj = new XMLHttpRequest();
+
+    xobj.open('GET', 'JSON/jsonBusinessYELP.json', true);
+
+    xobj.onreadystatechange = function () {
+
+        if (xobj.readyState === 4 && xobj.status == "200") {
+
+            var yelpJSON = JSON.parse(xobj.responseText);
+
+            for (var i = 0; i < yelpJSON.length ; i++) {
+
+                if( yelpJSON[i]['display_phone'] != null ) {
+
+                    yelpJSON[i]['display_phone'] = yelpJSON[i]['display_phone'].replace('+33 ', '0');
+
+                }
+
+            }
+
+            loadedYELPString = JSON.stringify(yelpJSON);
+
+            console.log("Success.");
+
+            callbackLoadingJSON();
+
+        }
+
+    };
+
+    xobj.send(null);
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// callbackLoadingJSON () :
+//
+//  Callback of loading JSON methods, when all
+//----------------------------------------------------------------------------------------------------------------------
 
 function callbackLoadingJSON() {
 
     numberOfJSONLoadingCallbacks++;
 
-    if (numberOfJSONLoadingCallbacks === 3) {
+    if (numberOfJSONLoadingCallbacks === 4) {
 
         generateGeoJSON();
 
@@ -1783,8 +1926,14 @@ function callbackLoadingJSON() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+// generateGeoJSON () :
+//
+//  Parses all retrieved JSON strings files then starts to build the geojson string and cleans it
+//----------------------------------------------------------------------------------------------------------------------
 
 function generateGeoJSON() {
+
+    console.log("Generating geojson with google data...");
 
     var parsedBars = JSON.parse(loadedBarsString);
 
@@ -1802,83 +1951,21 @@ function generateGeoJSON() {
 
             "type": "Point",
 
-            "coordinates": [null, null]
+            "coordinates": [null,null]
 
         },
 
-        "properties": {
-
-            "adress": null,
-
-            "icon": null,
-
-            "id": null,
-
-            "latitude" : null,
-
-            "longitude" : null,
-
-            "name": null,
-
-            "opened": null,
-
-            "phone": null,
-
-            "rating": null,
-
-            "type": null,
-
-            "types": null,
-
-            "website": null,
-
-            "weekday_text": null
-
-        }
+        "properties": null
 
     };
 
     for (var i = 0; i < parsedBars.length; i++) {
 
-        geoJSONItem.geometry.coordinates = [parsedBars[i]["coordinates"]["lng"], parsedBars[i]["coordinates"]["lat"]];
+        geoJSONItem.geometry.coordinates = [parsedBars[i].geometry.location.lng, parsedBars[i].geometry.location.lat];
 
         geoJSONItem.geometry.name = parsedBars[i]["name"];
 
-        geoJSONItem.properties.latitude = parsedBars[i]["coordinates"]["lat"];
-
-        geoJSONItem.properties.longitude = parsedBars[i]["coordinates"]["lng"];
-
-        geoJSONItem.properties.id = parsedBars[i].id;
-
-        geoJSONItem.properties.name = parsedBars[i].name;
-
-        geoJSONItem.properties.type = parsedBars[i].type;
-
-        geoJSONItem.properties.types = parsedBars[i].types;
-
-        geoJSONItem.properties.adress = parsedBars[i].adress;
-
-        geoJSONItem.properties.rating = Math.floor(parsedBars[i].rating);
-
-        geoJSONItem.properties.icon = "Assets/barIcon.png";
-
-        if (parsedBars[i].phone != null) {
-
-            geoJSONItem.properties.phone = parsedBars[i].phone;
-
-        }
-
-        if (parsedBars[i]["weekday_text"] != null) {
-
-            geoJSONItem.properties.weekday_text = parsedBars[i].weekday_text;
-
-        }
-
-        if (parsedBars[i].website != null) {
-
-            geoJSONItem.properties.website = parsedBars[i].website;
-
-        }
+        geoJSONItem.properties = parsedBars[i];
 
         geoJSONString += JSON.stringify(geoJSONItem);
 
@@ -1893,47 +1980,13 @@ function generateGeoJSON() {
 
     for (var i = 0; i < parsedBarRestaurants.length; i++) {
 
-        geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i]["coordinates"]["lng"], parsedBarRestaurants[i]["coordinates"]["lat"]];
+        geoJSONItem.geometry.coordinates = [parsedBarRestaurants[i].geometry.location.lng, parsedBarRestaurants[i].geometry.location.lat];
 
         geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
 
-        geoJSONItem.properties.latitude = parsedBarRestaurants[i]["coordinates"]["lat"];
-
-        geoJSONItem.properties.longitude = parsedBarRestaurants[i]["coordinates"]["lng"];
-
-        geoJSONItem.properties.id = parsedBarRestaurants[i].id;
-
-        geoJSONItem.properties.name = parsedBarRestaurants[i].name;
-
-        geoJSONItem.properties.type = parsedBarRestaurants[i].type;
-
-        geoJSONItem.properties.types = parsedBarRestaurants[i].types;
-
-        geoJSONItem.properties.adress = parsedBarRestaurants[i].adress;
-
-        geoJSONItem.properties.rating = Math.floor(parsedBarRestaurants[i].rating);
-
-        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
+        geoJSONItem.properties = parsedBarRestaurants[i];
 
         geoJSONString += JSON.stringify(geoJSONItem);
-
-        if (parsedBarRestaurants[i].phone != null) {
-
-            geoJSONItem.properties.phone = parsedBarRestaurants[i].phone;
-
-        }
-
-        if (parsedBarRestaurants[i]["weekday_text"] != null) {
-
-            geoJSONItem.properties.weekday_text = parsedBarRestaurants[i].weekday_text;
-
-        }
-
-        if (parsedBarRestaurants[i].website != null) {
-
-            geoJSONItem.properties.website = parsedBarRestaurants[i].website;
-
-        }
 
         if (i < parsedBarRestaurants.length - 1) {
 
@@ -1947,47 +2000,13 @@ function generateGeoJSON() {
 
     for (var i = 0; i < parsedRestaurants.length; i++) {
 
-        geoJSONItem.geometry.coordinates = [parsedRestaurants[i]["coordinates"]["lng"], parsedRestaurants[i]["coordinates"]["lat"]];
+        geoJSONItem.geometry.coordinates = [parsedRestaurants[i].geometry.location.lng, parsedRestaurants[i].geometry.location.lat];
 
         geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
 
-        geoJSONItem.properties.latitude = parsedRestaurants[i]["coordinates"]["lat"];
-
-        geoJSONItem.properties.longitude = parsedRestaurants[i]["coordinates"]["lng"];
-
-        geoJSONItem.properties.id = parsedRestaurants[i].id;
-
-        geoJSONItem.properties.name = parsedRestaurants[i].name;
-
-        geoJSONItem.properties.type = parsedRestaurants[i].type;
-
-        geoJSONItem.properties.types = parsedRestaurants[i].types;
-
-        geoJSONItem.properties.adress = parsedRestaurants[i].adress;
-
-        geoJSONItem.properties.rating = Math.floor(parsedRestaurants[i].rating);
-
-        geoJSONItem.properties.icon = "Assets/restaurantIcon.png";
+        geoJSONItem.properties = parsedRestaurants[i];
 
         geoJSONString += JSON.stringify(geoJSONItem);
-
-        if (parsedRestaurants[i].phone != null) {
-
-            geoJSONItem.properties.phone = parsedRestaurants[i].phone;
-
-        }
-
-        if (parsedRestaurants[i]["weekday_text"] != null) {
-
-            geoJSONItem.properties.weekday_text = parsedRestaurants[i].weekday_text;
-
-        }
-
-        if (parsedRestaurants[i].website != null) {
-
-            geoJSONItem.properties.website = parsedRestaurants[i].website;
-
-        }
 
         if (i < parsedRestaurants.length - 1) {
 
@@ -1999,6 +2018,8 @@ function generateGeoJSON() {
 
     geoJSONString += ']}';
 
+    console.log("Success.");
+
     //DEBUG DISPLAY
     //console.log(geoJSONString);
 
@@ -2007,104 +2028,18 @@ function generateGeoJSON() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-
-function cleanGeoJSON() {
-
-    var xobj = new XMLHttpRequest();
-
-    xobj.overrideMimeType("application/json");
-
-    xobj.open('GET', 'JSON/places.geojson', true);
-
-    xobj.onreadystatechange = function () {
-
-        if (xobj.readyState === 4 && xobj.status == "200") {
-
-            var geoPlacesJSON = JSON.parse(xobj.responseText)["features"];
-
-            //~ console.log(geoPlacesJSON);
-
-            var newPlaces = [];
-
-            var ids = [];
-
-            var doublons = 0;
-
-            var geoJSONItem = {
-
-                "type": "Feature",
-
-                "geometry": {
-
-                    "type": "Point",
-
-                    "coordinates": [null, null]
-
-                },
-
-                "properties": {
-
-                    "adress": null,
-
-                    "icon": null,
-
-                    "id": null,
-
-                    "latitude" : null,
-
-                    "longitude" : null,
-
-                    "name": null,
-
-                    "opened": null,
-
-                    "phone": null,
-
-                    "rating": null,
-
-                    "type": null,
-
-                    "types": null,
-
-                    "website": null,
-
-                    "weekday_text": null
-
-                }
-
-            };
-
-            for (var i in geoPlacesJSON) {
-
-                geoJSONItem = geoPlacesJSON[i];
-
-                if (ids.indexOf(geoJSONItem.properties.id) === -1) {
-
-                    newPlaces.push(geoJSONItem);
-
-                    ids.push(geoJSONItem.properties.id);
-
-                } else {
-
-                    doublons++;
-
-                }
-
-            }
-
-            console.log(JSON.stringify(newPlaces));
-
-        }
-
-    };
-
-    xobj.send(null);
-
-}
-
+// cleanGeoJSON ( geoJSONString ) :
+//
+//  Cleans the passed geoJSONString from doublons then launches the yelp fusion procedure
+//
+// INPUT :
+//
+//  geoJSONString -> a geojson string
 //----------------------------------------------------------------------------------------------------------------------
 
-function cleanGeoJSON(geoJSONString) {
+function cleanGeoJSON( geoJSONString ) {
+
+    console.log("Cleaning geojson from doublons...");
 
     var geoPlacesJSON = JSON.parse(geoJSONString)["features"];
 
@@ -2115,50 +2050,6 @@ function cleanGeoJSON(geoJSONString) {
     var ids = [];
 
     var doublons = 0;
-
-    var geoJSONItem = {
-
-        "type": "Feature",
-
-        "geometry": {
-
-            "type": "Point",
-
-            "coordinates": [null, null]
-
-        },
-
-        "properties": {
-
-            "adress": null,
-
-            "icon": null,
-
-            "id": null,
-
-            "latitude" : null,
-
-            "longitude" : null,
-
-            "name": null,
-
-            "opened": null,
-
-            "phone": null,
-
-            "rating": null,
-
-            "type": null,
-
-            "types": null,
-
-            "website": null,
-
-            "weekday_text": null
-
-        }
-
-    };
 
     for (var i in geoPlacesJSON) {
 
@@ -2176,98 +2067,143 @@ function cleanGeoJSON(geoJSONString) {
 
     }
 
-    console.log("{\"type\" : \"FeatureCollection\", \"features\": " + JSON.stringify(newPlaces) + "}");
+    var newGeoJSON = {
 
-}
+        type : "FeatureCollection",
 
-function fusionYelpGoogle() {
-
-    var xobj = new XMLHttpRequest();
-
-    xobj.open('GET', 'JSON/jsonBusinessYELP.json', true);
-
-    xobj.onreadystatechange = function () {
-
-        if (xobj.readyState === 4 && xobj.status == "200") {
-
-            var time = 50;
-
-            var yelpJSON = JSON.parse(xobj.responseText);
-
-            var i = 0;
-
-            var geojsonBase = JSON.parse(geojsonSource);
-
-            console.log(yelpJSON.length);
-
-            var interval = setInterval(function () {
-
-                console.log("Progression : " + i + " / " + yelpJSON.length);
-
-                if ( i >= yelpJSON.length ) {
-
-                    i = 0;
-
-                    formatFusionBase(geojsonBase, yelpJSON);
-
-                    clearInterval(interval);
-
-                } else {
-
-                    for (var j = 0; j < geojsonBase.features.length ; j++) {
-
-                        var formattedPhone = yelpJSON[i]['display_phone'].replace('+33 ', '0');
-
-                        var name = accent_fold(yelpJSON[i].name.toLowerCase());
-
-                        var feature = geojsonBase.features[j].properties;
-
-                        if( accent_fold(feature.name).indexOf(name) != -1 || feature.phone == formattedPhone ) {
-
-                            feature.subtypes = yelpJSON[i].categories;
-
-                            if (yelpJSON[i].phone.length != 0 && feature.phone == null) {
-
-                                feature.phone = formattedPhone;
-
-                            }
-
-                            if( yelpJSON[i].price != null ) {
-
-                                feature.price = yelpJSON[i].price;
-
-                            }
-
-                            yelpJSON.splice(i, 1);
-
-                            break;
-
-                        } else {
-
-                            feature.subtypes = null;
-
-                            feature.price = null;
-
-                        }
-
-                    }
-
-                }
-
-                i++;
-
-            }, time);
-
-        }
+        features : newPlaces
 
     };
 
-    xobj.send(null);
+    console.log("Success.")
+
+    fusionYelpGoogle(newGeoJSON);
 
 }
 
-function formatFusionBase(geojsonBase, yelpJSON) {
+//----------------------------------------------------------------------------------------------------------------------
+// fusionYelpGoogle ( baseGeoJSON ) :
+//
+//  Add Yelp data to Google geojson's object presents in both google and yelp, then launches addYELPElements()
+//
+// INPUT :
+//
+//  baseGeoJSON -> a geojson string
+//----------------------------------------------------------------------------------------------------------------------
 
+function fusionYelpGoogle( baseGeoJSON ) {
+
+    console.log("Starting yelp-google fusion...");
+
+    console.log("Merging existing google elements with similar yelp elements...");
+
+    var time = 50;
+
+    var yelpJSON = JSON.parse(loadedYELPString);
+
+    var i = 0;
+
+    var geojsonBase = baseGeoJSON;
+
+    console.log(yelpJSON.length);
+
+    var interval = setInterval(function () {
+
+        console.log("Progression : " + i + " / " + yelpJSON.length);
+
+        if ( i >= yelpJSON.length ) {
+
+            i = 0;
+
+            console.log("Success.");
+
+            addYELPElements(geojsonBase, yelpJSON);
+
+            clearInterval(interval);
+
+        } else {
+
+            for (var j = 0; j < geojsonBase.features.length ; j++) {
+
+                var yelpFormattedPhone = yelpJSON[i]['display_phone'];
+
+                var yelpFormattedName = accent_fold(yelpJSON[i].name.toLowerCase());
+
+                var yelpFormattedAddress = accent_fold(yelpJSON[i].location.address1.toLowerCase());
+
+
+                var feature = geojsonBase.features[j].properties;
+
+
+                var featureFormattedPhone = feature['formatted_phone_number'];
+
+                var featureFormattedName = accent_fold(feature.name.toLowerCase());
+
+                var featureFormattedAddress = accent_fold(feature["formatted_address"].toLowerCase());
+
+                if( featureFormattedPhone == yelpFormattedPhone
+                    || featureFormattedAddress.indexOf(yelpFormattedAddress) != -1 ) {
+
+                    if ( yelpJSON[i].categories != null ) {
+
+                        feature.subtypes = yelpJSON[i].categories;
+
+                    }
+
+                    if ( yelpJSON[i].phone.length != 0 && featureFormattedPhone == null ) {
+
+                        feature["formatted_phone_number"] = yelpFormattedPhone;
+
+                    }
+
+                    if( yelpJSON[i].price != null ) {
+
+                        feature.price = yelpJSON[i].price;
+
+                    }
+
+                    if( yelpJSON[i].url != null && feature.website == null ) {
+
+                        feature.website = yelpJSON[i].url;
+
+                    }
+
+                    yelpJSON.splice(i, 1);
+
+                    break;
+
+                } else {
+
+                    feature.subtypes = null;
+
+                    feature.price = null;
+
+                }
+
+            }
+
+        }
+
+        i++;
+
+    }, time);
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// addYELPElements ( geojsonBase, yelpJSON ) :
+//
+//  Add Yelp data to Google geojson's object not present in google, then launches cleanPositionDoublons()
+//
+// INPUT :
+//
+//  geojsonBase -> a google geojson string
+//  yelpJSON -> a yelp JSON
+//----------------------------------------------------------------------------------------------------------------------
+
+function addYELPElements( geojsonBase, yelpJSON ) {
+
+    console.log("Adding new yelp elements to google database...");
 
     for (var indice = 0 ; indice < yelpJSON.length; indice++) {
 
@@ -2287,87 +2223,142 @@ function formatFusionBase(geojsonBase, yelpJSON) {
 
             "properties": {
 
-                "adress": yelpJSON[indice].location['display_address'][0],
+                "formatted_address": yelpJSON[indice].location['display_address'],
 
-                "icon": null,
+                "formatted_phone_number": null,
 
-                "id": null,
+                "geometry": {
 
-                "latitude": yelpJSON[indice].coordinates.latitude,
+                    "location": {
 
-                "longitude": yelpJSON[indice].coordinates.longitude,
+                        "lat": yelpJSON[indice].coordinates.latitude,
 
-                "name": yelpJSON[indice].name,
+                        "lng": yelpJSON[indice].coordinates.longitude
 
-                "opened": null,
+                    }
 
-                "phone": yelpJSON[indice]["display_phone"],
+                },
+
+                "place_id": yelpJSON[indice].id,
 
                 "price" : null,
 
-                "rating": yelpJSON[indice].rating,
-
                 "subtypes" : null,
 
-                "type": "Bar-Restaurant",
+                "name": yelpJSON[indice].name,
 
-                "types": null,
+                "rating": yelpJSON[indice].rating,
 
-                "website": yelpJSON[indice].url,
+                "scope": "YELP",
 
-                "weekday_text": null
+                "url": null,
+
+                "vicinity": yelpJSON[indice].location['display_address'][0],
+
+                "mainType": "Bar-Restaurant"
 
             }
 
         };
 
-        if (yelpJSON[indice].price != null) {
+        if( yelpJSON[indice]['display_phone'] != null ) {
+
+            addedObject.properties['formatted_phone_number'] = yelpJSON[indice]['display_phone'];
+
+        }
+
+        if ( yelpJSON[indice].price != null ) {
 
             addedObject.properties.price = yelpJSON[indice].price;
 
         }
 
-        if( yelpJSON[indice].subtypes != null) {
+        if( yelpJSON[indice].categories != null) {
 
-            addedObject.properties.subtypes = yelpJSON[indice].subtypes;
+            addedObject.properties.subtypes = yelpJSON[indice].categories;
+
+            for( var j = 0; j < yelpJSON[indice].categories.length ; j++ ) {
+
+                if( yelpJSON[indice].categories[j].alias.indexOf('bars') != -1 ){
+
+                    addedObject.mainType = "Bar";
+
+                    break;
+
+                } else if ( yelpJSON[indice].categories[j].alias.indexOf('restaurants') != -1 ) {
+
+                    addedObject.mainType = "Restaurant";
+
+                    break;
+
+                }
+
+            }
 
         }
+
+        if( yelpJSON[indice].url != null ) {
+
+            addedObject.properties.url = yelpJSON[indice].url;
+
+        }
+
 
         geojsonBase.features.push(addedObject);
 
     }
 
+    console.log("Success.");
+
     //console.log(JSON.stringify(geojsonBase));
 
-    cleanPositionDoublons( JSON.stringify(geojsonBase) );
+    cleanPositionDoublons( geojsonBase );
 
 }
 
-function cleanPositionDoublons( source ) {
+//----------------------------------------------------------------------------------------------------------------------
+// cleanPositionDoublons ( geoJSONSourceBase ) :
+//
+//  Cleans geojson to prevent from object's position duplicates, then set the geojsonSource gobal variable
+//
+// INPUT :
+//
+//  geoJSONSourceBase -> a geojson string
+//----------------------------------------------------------------------------------------------------------------------
 
-    console.log("cleaning");
+function cleanPositionDoublons( geoJSONSourceBase ) {
 
-    var geoJSONParsed = JSON.parse(source);
+    console.log("Cleaning positions doublons...");
+
+    var geoJSONParsed = geoJSONSourceBase;
 
     var features = geoJSONParsed.features;
 
     for (var i = 0; i < features.length - 1; i++){
 
-        console.log("Cleaning doublons... " + i + " / " + features.length);
+        console.log("Progression... " + i + " / " + features.length);
 
         for (var j = i + 1; j < features.length; j++) {
 
             if( features[i].properties.latitude == features[j].properties.latitude && features[i].properties.longitude == features[j].properties.longitude ) {
 
-                features[i].properties.latitude += 0.000010;
+                if (features[i].properties["formatted_phone_number"] == features[j].properties["formatted_phone_number"]) {
 
-                features[i].properties.longitude += 0.000010;
+                    features.splice(j, 1);
 
-                features[i].geometry.coordinates[0] = features[i].properties.longitude;
+                } else {
 
-                features[i].geometry.coordinates[1] = features[i].properties.latitude;
+                    features[i].properties.geometry.location.lat += 0.000010;
 
-                j = features.length;
+                    features[i].properties.geometry.location.lng += 0.000010;
+
+                    features[i].geometry.coordinates[0] = features[i].properties.geometry.location.lng;
+
+                    features[i].geometry.coordinates[1] = features[i].properties.geometry.location.lat;
+
+                    j = features.length;
+
+                }
 
             }
 
@@ -2375,9 +2366,9 @@ function cleanPositionDoublons( source ) {
 
     }
 
-    console.log("Done.");
+    console.log("Success.");
 
-    console.log(JSON.stringify(geoJSONParsed));
+    geojsonSource = JSON.stringify(geoJSONParsed);
 
 }
 
