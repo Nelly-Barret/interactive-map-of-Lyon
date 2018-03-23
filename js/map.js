@@ -95,8 +95,6 @@ var popups = [];
 
 var userPositionMarker;     // Marker associated with user's location
 
-//----------------------------------------------------------------------------------------------------------------------
-
 function init() {
 
     // Initialisation of user's location with coordinates of Lyon near Bellecour
@@ -113,73 +111,19 @@ function init() {
 
     map = mapInitialisation(userCoordinates);
 
-    map.on('click', function (element) {
+    // Buttons interactions
 
-        var features = map.queryRenderedFeatures(element.point, {
 
-            layers: ['placesSymbols']
-
-        });
-
-        if (!features.length) {
-
-            return;
-
-        }
-
-        var feature = features[0];
-
-        if( feature.properties['place_id'] != null ) {
-
-            popups.push(createPopupForSymbol(feature));
-
-        }
-
-    });
-
-    var popup = new mapboxgl.Popup();
-
-    map.on('mouseenter', 'placesSymbols', function (element) {
-
-        var features = map.queryRenderedFeatures(element.point, {
-
-            layers: ['placesSymbols']
-
-        });
-
-        if (!features.length) {
-
-            return;
-
-        }
-
-        var feature = features[0];
-
-        // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
-
-        //console.log(feature.properties);
-
-        if( feature.properties['place_id'] != null ) {
-
-            popup = createPopupForSymbol(feature);
-
-        }
-
-    });
-
-    map.on('mouseleave', 'placesSymbols', function() {
-
-        popup.remove();
-
-    });
 
     var goButton = document.getElementById("go");
 
     goButton.addEventListener("click", filterMap);
 
+
     var resetButton = document.getElementById("resetFilters");
 
     resetButton.addEventListener("click", resetFilter);
+
 
     var searchTextfield = document.getElementById("textSearch");
 
@@ -193,6 +137,7 @@ function init() {
 
     });
 
+
     var searchTextButton = document.getElementById("searchButton");
 
     searchTextButton.addEventListener("click", function () {
@@ -200,6 +145,18 @@ function init() {
         filterSearch(searchTextfield.value);
 
     });
+
+
+    window.addEventListener("keypress", function ( key ) {
+
+        if( key.keyCode == 13 ) {
+
+            filterSearch(searchTextfield.value);
+
+        }
+
+    });
+
 
     var navFilterButton = document.getElementById("navFilterButton");
 
@@ -343,6 +300,67 @@ function mapInitialisation(userCoordinates) {
                 "text-size": 12
             }
         });
+
+    });
+
+
+    map.on('click', function (element) {
+
+        var features = map.queryRenderedFeatures(element.point, {
+
+            layers: ['placesSymbols']
+
+        });
+
+        if (!features.length) {
+
+            return;
+
+        }
+
+        var feature = features[0];
+
+        if( feature.properties['place_id'] != null ) {
+
+            popups.push(createPopupForSymbol(feature));
+
+        }
+
+    });
+
+    var popup = new mapboxgl.Popup();
+
+    map.on('mouseenter', 'placesSymbols', function (element) {
+
+        var features = map.queryRenderedFeatures(element.point, {
+
+            layers: ['placesSymbols']
+
+        });
+
+        if (!features.length) {
+
+            return;
+
+        }
+
+        var feature = features[0];
+
+        // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
+
+        //console.log(feature.properties);
+
+        if( feature.properties['place_id'] != null ) {
+
+            popup = createPopupForSymbol(feature);
+
+        }
+
+    });
+
+    map.on('mouseleave', 'placesSymbols', function() {
+
+        popup.remove();
 
     });
 
@@ -1015,6 +1033,8 @@ function filterFunction(filter) {
 
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+
 function openenedFilter(openingHours) {
 
     var hourRegex = new RegExp(/((([1-9])|(1[0-2])):([0-5])(0|5)((\s(a|p)m)))/);
@@ -1078,6 +1098,8 @@ function openenedFilter(openingHours) {
     }
 
 }
+
+//----------------------------------------------------------------------------------------------------------------------
 
 function filterDate(filter) {
 
@@ -2172,6 +2194,8 @@ function cleanGeoJSON(geoJSONString) {
 
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+
 function fusionYelpGoogle() {
 
     var xobj = new XMLHttpRequest();
@@ -2258,6 +2282,8 @@ function fusionYelpGoogle() {
 
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+
 function formatFusionBase(geojsonBase, yelpJSON) {
 
 
@@ -2334,6 +2360,8 @@ function formatFusionBase(geojsonBase, yelpJSON) {
     cleanPositionDoublons( JSON.stringify(geojsonBase) );
 
 }
+
+//----------------------------------------------------------------------------------------------------------------------
 
 function cleanPositionDoublons( source ) {
 
