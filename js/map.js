@@ -580,6 +580,8 @@ function createMarkerPopupHTML(place) {
 
     	var subtypesToDisplay = JSON.parse(place.subtypes);
 
+    	console.log("subtypesToDisplay = " + subtypesToDisplay.length);
+
     	for (var i = 0 ; i < subtypesToDisplay.length ; i++) {
 
     	    var idColorR1 = Math.floor((Math.random() * 16));
@@ -596,8 +598,11 @@ function createMarkerPopupHTML(place) {
 
     	    var colors = "";
 
-    	    html += "<button type='button' class='btn btn-sm' id='subtypes'+i+''>" + subtypesToDisplay[i].title + "</button>";
+    	    var id="subtypes"+i;
 
+    	    html += "<button type='button' class='btn' id='" + id + "'>" + subtypesToDisplay[i].title + "</button>";
+
+    	    console.log(html);
 
     	    for (var j = 0 ; j < tabColors.length ; j++) {
 
@@ -665,9 +670,12 @@ function createMarkerPopupHTML(place) {
 
     	    }
 
-    	    //console.log(colors);
+    	    console.log("colors = " + colors);
 
-    	    $("#subtypes"+i).css('background-color', ''+colors, '!important');
+    	    console.log(document.getElementById(id));
+
+            //document.getElementById(id).style.backgroundColor = ""+colors;
+
 
     	}
 
