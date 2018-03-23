@@ -4,6 +4,8 @@
 //######################################################################################################################
 {
 
+    // Creation of a loader icon
+
     var loaderBackground = document.createElement("div");
 
     loaderBackground.classList.add("loaderBackground");
@@ -15,6 +17,8 @@
     loaderBackground.appendChild(loaderDiv);
 
     document.body.insertBefore(loaderBackground, document.body.firstChild);
+
+    // Request to load the GeoJson source file and set geojsonSource property, removes loader and launch init()
 
     var xobj = new XMLHttpRequest();
 
@@ -43,10 +47,12 @@
 //######################## GLOBAL VARIABLES ############################################################################
 //######################################################################################################################
 
+// Accent map used by accen_fold
 var accentMap = {
     'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
 };
 
+// Function that removes accents in sentences.
 function accent_fold (s) {
 
     if (!s) { return ''; }
@@ -68,9 +74,9 @@ var latVariance = 0.001764; // Latitude difference to get to an other sector // 
 
 var lngVariance = 0.002560; // Longitude difference to get to an other sector // Base = 0.001280
 
-var geojsonSource;
+var geojsonSource;          // GeoJson source of the project, initialised at the start
 
-var forcedDate = null;
+var forcedDate = null;      //
 
 var mapGridBounds = {
 
@@ -82,9 +88,9 @@ var mapGridBounds = {
 
     rightLongitude : 4.871854
 
-};
+};  // Bounds of the map for research functions
 
-var popups = [];
+var popups = [];            // Array of all active popups
 
 //######################################################################################################################
 
@@ -94,6 +100,8 @@ var popups = [];
 //######################################################################################################################
 
 var userPositionMarker;     // Marker associated with user's location
+
+// init() initialize the map and all the event listeners on interactive elements
 
 function init() {
 
@@ -111,9 +119,8 @@ function init() {
 
     map = mapInitialisation(userCoordinates);
 
+
     // Buttons interactions
-
-
 
     var goButton = document.getElementById("go");
 
@@ -176,6 +183,18 @@ function init() {
 
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// mapInitialisation( userCoordinates ) :
+//
+//  Initialize a map with passed coordinates and set the map interactions
+//
+// INPUT :
+//
+//  coordinates
+//
+// RETURN :
+//
+//  a map object
 //----------------------------------------------------------------------------------------------------------------------
 
 function mapInitialisation(userCoordinates) {
