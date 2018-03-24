@@ -324,7 +324,6 @@ function mapInitialisation(userCoordinates) {
 
     });
 
-
     map.on('click', function (element) {
 
         var features = map.queryRenderedFeatures(element.point, {
@@ -366,6 +365,8 @@ function mapInitialisation(userCoordinates) {
         }
 
         var feature = features[0];
+
+        console.log(feature.properties);
 
         // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
 
@@ -677,7 +678,7 @@ function createMarkerPopupHTML(place) {
 
     	    html += "<button type='button' class='btn' id='" + id + "'>" + subtypesToDisplay[i].title + "</button>";
 
-    	    console.log(html);
+    	    //console.log(html);
 
     	    for (var j = 0 ; j < tabColors.length ; j++) {
 
@@ -747,7 +748,7 @@ function createMarkerPopupHTML(place) {
 
     	    console.log("colors = " + colors);
 
-    	    console.log(document.getElementById(id));
+    	    //console.log(document.getElementById(id));
 
             //document.getElementById(id).style.backgroundColor = ""+colors;
 
@@ -821,7 +822,9 @@ function filterMap() {
 
         types: [false, false, false],
 
-        price: null,
+        filteringPrices : false,
+
+        price: [],
 
         rating: null,
 
@@ -841,9 +844,9 @@ function filterMap() {
 
         var clicked = $(typeButtons[i]).data().clicked;
 
-        filter.types[i] = clicked;
-
         if( clicked ) {
+
+            filter.types[i] = clicked;
 
             filter.filteringTypes = true;
 
@@ -852,12 +855,17 @@ function filterMap() {
     }
 
 
-    for (i = 1; i < priceButtons.length && $(priceButtons[i]).data().clicked; i++) {
+    for (i = 0; i < priceButtons.length; i++) {
 
-        filter.price = i + 1;
+        if ($(priceButtons[i]).data().clicked) {
+
+            filter.price.push(i + 1);
+
+            filter.filteringPrices = true;
+
+        }
 
     }
-
 
     for (i = 1; i < starButtons.length && $(starButtons[i]).data().clicked; i++) {
 
@@ -876,6 +884,8 @@ function filterMap() {
     }
 
     //console.log(filter);
+
+    console.log(filter);
 
     filterFunction(filter);
 
@@ -899,7 +909,7 @@ function filterFunction(filter) {
 
         features = filteredGeojson.features.filter(function (value) {
 
-            var values = ['Restaurant', 'Bar', 'Bar-restaurant'];
+            var values = ['Restaurant', 'Bar', 'Bar-Restaurant'];
 
             var bool = false;
 
@@ -1059,14 +1069,23 @@ function filterFunction(filter) {
 
     }
 
-    if( filter.price != null ) {
+    if( filter.filteringPrices == true ) {
 
         features = features.filter( function (value) {
 
-
             if( value.properties.price != null ) {
 
-                return value.properties.price.length == filter.price;
+                for (var i = 0; i < filter.price.length ; i++) {
+
+                    if ( value.properties.price.length == filter.price[i] ) {
+
+                        return true;
+
+                    }
+
+                }
+
+                return false;
 
             } else {
 
