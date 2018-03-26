@@ -49,6 +49,16 @@ function colorButton(button) {
 
 }
 
+function colorStarButton(button) {
+
+    button.css("background-color", "gold");
+
+    button.css("color", "gold");
+
+    button.data('clicked', true);
+
+}
+
 function uncolorButton(button) {
 
     button.css("background-color", "#DDDDDD");
@@ -92,7 +102,7 @@ $(".btnStar").on('click', function() {
     /* we color the buttons between 1 and max and uncolor between max+1 and 5 */
     for(var i = 1 ; i <= max ; i++) {
 
-       colorButton($("#starButton"+i));
+       colorStarButton($("#starButton"+i));
 
     }
 

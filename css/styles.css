@@ -319,7 +319,7 @@ input span::before {
 
 #youAreHere {
 
-	color: #FDF5E6; /* Oldlace */
+	color: whitesmoke;/*#FDF5E6; Oldlace */
 
 	font-size: 18px;
 
@@ -336,7 +336,7 @@ input span::before {
 
 #popupTitle, #popupType {
 
-	color: rgba(253, 245, 230, 1); /* OldLace */
+	color: whitesmoke;/*rgba(253, 245, 230, 1); OldLace */
 
 	font-family: "Open Sans", Times, serif;
 
@@ -378,7 +378,7 @@ input span::before {
 
 }
 
-#popupAddress, #popupOpen, #popupRating, #popupWebsite, #popupPhone, #popupWeekday {
+#popupAddress, #popupOpen, #popupRating, #popupWebsite, #popupPhone, #popupWeekday, #popupUrl {
 
 	font-family: "Open Sans", Times, serif;
 
@@ -410,6 +410,12 @@ input span::before {
 
 }
 
+.card {
+
+	padding-right: 20px !important;
+
+}
+
 .mapboxgl-popup-content {
 
 	background-color: rgba(0, 0, 0, 0.9) !important;
@@ -420,7 +426,7 @@ input span::before {
 
 	margin: 0;
 
-	padding: 0;
+	padding-top: 20px;
 
 }
 
@@ -482,11 +488,25 @@ input span::before {
 
 	padding-right: 10px !important;
 
+	color : whitesmoke !important;
+
+}
+
+.fa-star {
+
+	color : gold !important;
+
+}
+
+.fa-star-o {
+
+	color: whitesmoke !important;
+
 }
 
 .fa-navicon {
 
-	color: white;
+	color: whitesmoke;
 
 }
 

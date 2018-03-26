@@ -366,8 +366,6 @@ function mapInitialisation(userCoordinates) {
 
         var feature = features[0];
 
-        console.log(feature.properties);
-
         // For some strange reason, a cluster is considered as a placesSymbol's feature, this test assure not.
 
         //console.log(feature.properties);
@@ -518,6 +516,30 @@ function createPopupForSymbol( feature ) {
         .setHTML(createMarkerPopupHTML(placeInformations))
         .addTo(map);
 
+    if( placeInformations.subtypes != null && placeInformations.subtypes != "null"){
+
+        if( placeInformations.length != 0) {
+
+            var subtypesLength = JSON.parse(placeInformations.subtypes).length;
+
+            for (var j = 0; j < subtypesLength; j++) {
+
+                var button = document.getElementById("subtypes" + j);
+
+                button.addEventListener("click", function () {
+
+                    console.log("search " + button.innerText);
+
+                    filterSearch(button.innerText.toLowerCase());
+
+                });
+
+            }
+
+        }
+
+    }
+
     return popup;
 
 }
@@ -571,21 +593,21 @@ function createMarkerPopupHTML(place) {
         html += "</p>";
     }
 
-    html += "<br><p id='popupAddress'><i class='fa fa-street-view'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place['place_id'] + "&travelmode=walking'>" + place['vicinity'] + "</a></p>";
+    html += "<div class='card' style='background-color: transparent; border-color: whitesmoke; margin-top: 10px'><br><p id='popupAddress'><i class='fa fa-street-view card-body'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place['place_id'] + "&travelmode=walking' style = 'color : whitesmoke; '>" + place['vicinity'] + "</a></p>";
 
     if (place.website != null) {
 
-        html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.website + "\">Website</a></p>";
+        html += "<p id='popupWebsite' class='card-body'><i class='fa fa-at'></i><a target='_blank' href='" + place.website + "' style = 'color : whitesmoke; '>Website</a></p>";
 
     } else if (place.url != null) {
 
-        html += "<br><p id='popupWebsite'><i class='fa fa-at'></i><a target=\"_blank\" href=\"" + place.url + "\">Website</a></p>";
+        html += "<p id='popupUrl' class='card-body'><i class='fa fa-at'></i><a target='_blank' href='" + place.url + "' style = 'color : whitesmoke; '>Website</a></p>";
 
     }
 
     if (place['formatted_phone_number'] != null) {
 
-        html += "<br><p id='popupPhone'><i class='fa fa-phone'></i><a href=\"tel:" + place['formatted_phone_number'] + "\">" + place['formatted_phone_number'] + "</a></p>";
+        html += "<p id='popupPhone'><i class='fa fa-phone card-body'></i><a href=\"tel:" + place['formatted_phone_number'] + "\"style = 'color : whitesmoke; '>" + place['formatted_phone_number'] + "</a></p>";
 
     }
 
@@ -595,7 +617,7 @@ function createMarkerPopupHTML(place) {
 
         if (days != null) {
 
-            html += "<br><p id='popupWeekday'>";
+            html += "<p id='popupWeekday'>";
 
             var d = new Date();
 
@@ -632,12 +654,12 @@ function createMarkerPopupHTML(place) {
             if( forcedDate == null ) {
 
                 //str.indexOf( ': ' )+2 => starts after ': '
-                html += "<p class='day'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p><br>";
+                html += "<p class='day card-body'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>";
 
             } else {
 
                 //str.indexOf( ': ' )+2 => starts after ': '
-                html += "<p class='day'><i class='fa fa-clock-o'></i>" + str + "</p>\n";
+                html += "<p class='day card-body'><i class='fa fa-clock-o'></i>" + str + "</p>\n";
 
             }
 
@@ -652,6 +674,8 @@ function createMarkerPopupHTML(place) {
 
     }
 
+    html+= "</div>";
+
     if ( place.subtypes != "null" ) {
 
     	var subtypesToDisplay = JSON.parse(place.subtypes);
@@ -660,113 +684,8 @@ function createMarkerPopupHTML(place) {
 
     	for (var i = 0 ; i < subtypesToDisplay.length ; i++) {
 
-    	    var idColorR1 = Math.floor((Math.random() * 16));
-    	    var idColorR2 = Math.floor((Math.random() * 16));
 
-    	    var idColorG1 = Math.floor((Math.random() * 16));
-    	    var idColorG2 = Math.floor((Math.random() * 16));
-
-    	    var idColorB1 = Math.floor((Math.random() * 16));
-    	    var idColorB2 = Math.floor((Math.random() * 16));
-
-
-    	    var tabColors = [idColorR1, idColorR2, idColorG1, idColorG2, idColorB1,  idColorB2];
-
-    	    var colors = "";
-
-    	    var id="#subtypes"+i;
-
-    	    html += "<button type='button' class='btn' id='" + id + "'>" + subtypesToDisplay[i].title + "</button>";
-
-    	    //console.log(html);
-
-    	    for (var j = 0 ; j < tabColors.length ; j++) {
-
-    	        switch(tabColors[j]) {
-
-    	            case 10: {
-
-    	                tabColors[j] = "A";
-
-    	                break;
-
-    	            }
-
-    	            case 11: {
-
-    	                tabColors[j] = "B";
-
-    	                break;
-
-    	            }
-
-    	            case 12: {
-
-    	                tabColors[j] = "C";
-
-    	                break;
-
-    	            }
-
-    	            case 13: {
-
-    	                tabColors[j] = "D";
-
-    	                break;
-
-    	            }
-
-    	            case 14: {
-
-    	                tabColors[j] = "E";
-
-    	                break;
-
-    	            }
-
-    	            case 15: {
-
-    	                tabColors[j] = "F";
-
-    	                break;
-
-    	            }
-
-    	            default: {
-
-    	                tabColors[j] = "0";
-
-    	                break;
-
-    	            }
-
-    	        }
-
-    	        colors += tabColors[j];
-
-    	    }
-
-    	    //console.log("colors = " + colors);
-
-    	    //console.log(document.getElementById(id));
-
-    	    //var value = ""+colors+" !important";
-
-    	    //console.log("value = " + value);
-
-    	    //console.log("default-background = " + $(id).css("background-color"));
-
-            $(id).click(function(){
-                $(id).css("background-color", "yellow");
-            });
-
-
-            //console.log("new-background = " + $(id).css("background-color"));
-
-            console.log("done...");
-
-            //document.getElementById(id).style.backgroundColor = ""+colors;
-
+            html += "<button type=\"button\" class='btn btn-light subtypesButton' id='subtypes" + i + "' style=' margin-right: 5px; margin-top: 5px'>" + subtypesToDisplay[i].title + "</button>";
 
     	}
 
