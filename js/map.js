@@ -181,6 +181,31 @@ function init() {
 
     });
 
+    //adding interactions on parameters
+
+    var containerButtons = document.getElementById("containerViews");
+
+    console.log(containerButtons);
+
+    var buttons = containerButtons.getElementsByTagName("button");
+
+    console.log(buttons);
+
+    for (var i = 0 ; i < buttons.length ; i++) {
+
+        console.log(buttons[i]);
+
+        buttons[i].addEventListener("click", function() {
+
+           setStyleMap(this.textContent.toLowerCase());
+
+        });
+
+    }
+
+
+
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -773,6 +798,31 @@ function createMarkerPopupHTML(place) {
     }
 
     return html;
+
+}
+
+
+//######################################################################################################################
+//##################### PARAMETERS #####################################################################################
+//######################################################################################################################
+//----------------------------------------------------------------------------------------------------------------------
+// setStyleMap() :
+//
+//  Change the style of map
+//
+// INPUT :
+//
+//  button -> the on-click button
+//
+// OUTPUT :
+//
+//
+//----------------------------------------------------------------------------------------------------------------------
+function setStyleMap(content) {
+
+    console.log("setStyleMap(" + content + ")");
+
+    map.setStyle('mapbox://styles/mapbox/' + content + '-v9');
 
 }
 
