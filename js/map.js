@@ -674,7 +674,7 @@ function createMarkerPopupHTML(place) {
 
     	    var colors = "";
 
-    	    var id="subtypes"+i;
+    	    var id="#subtypes"+i;
 
     	    html += "<button type='button' class='btn' id='" + id + "'>" + subtypesToDisplay[i].title + "</button>";
 
@@ -746,9 +746,24 @@ function createMarkerPopupHTML(place) {
 
     	    }
 
-    	    console.log("colors = " + colors);
+    	    //console.log("colors = " + colors);
 
     	    //console.log(document.getElementById(id));
+
+    	    //var value = ""+colors+" !important";
+
+    	    //console.log("value = " + value);
+
+    	    //console.log("default-background = " + $(id).css("background-color"));
+
+            $(id).click(function(){
+                $(id).css("background-color", "yellow");
+            });
+
+
+            //console.log("new-background = " + $(id).css("background-color"));
+
+            console.log("done...");
 
             //document.getElementById(id).style.backgroundColor = ""+colors;
 
