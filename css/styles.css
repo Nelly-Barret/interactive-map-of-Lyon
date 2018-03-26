@@ -274,9 +274,9 @@ input span::before {
 
 	border-radius: 0 !important;
 
-	margin: 0;
+	margin: 0 !important;
 
-	width: 100px;
+	width: 100px !important;
 
 }
 

@@ -187,7 +187,7 @@ function init() {
 
     console.log(containerButtons);
 
-    var buttons = containerButtons.getElementsByTagName("button");
+    var buttons = containerButtons.getElementsByTagName("input");
 
     console.log(buttons);
 
@@ -199,12 +199,11 @@ function init() {
 
            setStyleMap(this.textContent.toLowerCase());
 
+           this.classList.add("btn-dark");
+
         });
 
     }
-
-
-
 
 }
 
@@ -812,15 +811,13 @@ function createMarkerPopupHTML(place) {
 //
 // INPUT :
 //
-//  button -> the on-click button
+//  content -> the name of map's style
 //
 // OUTPUT :
 //
 //
 //----------------------------------------------------------------------------------------------------------------------
 function setStyleMap(content) {
-
-    console.log("setStyleMap(" + content + ")");
 
     map.setStyle('mapbox://styles/mapbox/' + content + '-v9');
 
