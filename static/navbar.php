@@ -84,8 +84,8 @@
             </div>
             <div class="modal-body">
                 <label id="mapStyleButton" for="containerViews">Map style</label>
-                <div id="containerViews" class=" containerStyles btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn active">
+                <div id="containerViews" class=" containerStyles"> <!-- class=" btn-group btn-group-toggle" data-toggle="buttons"-->
+                    <!--<label class="btn active">
                         <input type="radio" class="btn" checked> Streets
                     </label>
                     <label class="btn">
@@ -96,9 +96,9 @@
                     </label>
                     <label class="btn">
                         <input type="radio" class="btn"> Satellite
-                    </label>
+                    </label>-->
 
-                    <!--<button type="button" class="btn">Streets</button><button type="button" class="btn">Light</button><button type="button" class="btn">Dark</button><button type="button" class="btn">Satellite</button>-->
+                    <button type="button" class="btn">Streets</button><button type="button" class="btn">Light</button><button type="button" class="btn">Dark</button><button type="button" class="btn">Satellite</button>
 
                 </div>
 

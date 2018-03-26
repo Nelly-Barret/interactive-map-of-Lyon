@@ -492,7 +492,7 @@ input span::before {
 
 }
 
-.fa-star {
+#popupRating .fa-star {
 
 	color : gold !important;
 
