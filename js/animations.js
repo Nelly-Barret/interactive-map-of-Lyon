@@ -51,9 +51,9 @@ function colorButton(button) {
 
 function colorStarButton(button) {
 
-    button.css("background-color", "gold");
+    button.css("background-color", "#28A745");
 
-    button.css("color", "gold");
+    button.css("color", "white");
 
     button.data('clicked', true);
 
