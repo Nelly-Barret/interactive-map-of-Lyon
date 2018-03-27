@@ -191,8 +191,6 @@ function init() {
 
     navFilterButton.addEventListener("click", function () {
 
-        //console.log(popups);
-
         for( var i = 0; i < popups.length ; i++ ) {
 
             popups[i].remove();
@@ -207,21 +205,17 @@ function init() {
 
     var containerButtons = document.getElementById("containerViews");
 
-    console.log(containerButtons);
-
-    var buttons = containerButtons.getElementsByTagName("input");
-
-    console.log(buttons);
+    var buttons = containerButtons.getElementsByTagName("button");
 
     for (var i = 0 ; i < buttons.length ; i++) {
 
-        console.log(buttons[i]);
+        //adding event listener on click
 
         buttons[i].addEventListener("click", function() {
 
-           setStyleMap(this.textContent.toLowerCase());
+            setStyleMap(this.textContent.toLowerCase()); //changing the style by passing the name of the layer
 
-           this.classList.add("btn-dark");
+            this.classList.add("btn-dark"); //the selected button becomes dark
 
         });
 
