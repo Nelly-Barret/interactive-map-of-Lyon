@@ -53,7 +53,30 @@
                     </div>
                 </div>
                 <div class="dropdown-item">
-                    <label for="inputTime">Time : </label><input type="time" id="inputTime">
+                    <label for"inputDay"> Opened on : </label>
+                  <select id="inputDay">
+
+                    <option value="-1" selected>Choose a day...</option>
+
+                    <option value="1">Monday</option>
+
+                    <option value="2">Tuesday</option>
+
+                    <option value="3">Wednesday</option>
+
+                    <option value="4">Thursday</option>
+
+                    <option value="5">Friday</option>
+
+                    <option value="6">Saturday</option>
+
+                    <option value="0">Sunday</option>
+
+                  </select>
+
+                  <label for="inputTime">at : </label>
+                  <input type="time" id="inputTime" value="now">
+
                 </div>
                 <!-- reset and go buttons -->
                 <div class="dropdown-item">

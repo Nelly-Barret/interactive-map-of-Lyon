@@ -53,6 +53,26 @@ var accentMap = {
     'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', '-' : ' '
 };
 
+var dayMap = {
+
+    "lundi" : "Monday",
+    "mardi" : "Tuesday",
+    "mercredi" : "Wednesday",
+    "jeudi" : "Thursday",
+    "vendredi" : "Friday",
+    "samedi" : "Saturday" ,
+    "dimanche" : "Sunday"
+
+};
+
+function day_fold( day ) {
+
+    if (!day) { return ''; }
+
+    return dayMap[day];
+
+}
+
 // Function that removes accents in sentences.
 function accent_fold (s) {
 
@@ -677,6 +697,8 @@ function createMarkerPopupHTML(place) {
 
             }
 
+            console.log(str);
+
             if( forcedDate == null ) {
 
                 //str.indexOf( ': ' )+2 => starts after ': '
@@ -685,7 +707,7 @@ function createMarkerPopupHTML(place) {
             } else {
 
                 //str.indexOf( ': ' )+2 => starts after ': '
-                html += "<p class='day card-body'><i class='fa fa-clock-o'></i>" + str + "</p>\n";
+                html += "<p class='day card-body'><i class='fa fa-clock-o'></i>" + day_fold(str.substring(0, str.indexOf(':'))) + str.substring(str.indexOf(':'), str.length) + "</p>\n";
 
             }
 
@@ -796,6 +818,7 @@ function filterMap() {
 
     var openingHoursInput = document.getElementById("inputTime");
 
+    var dayInput = document.getElementById("inputDay");
 
     var filter = {
 
@@ -813,7 +836,9 @@ function filterMap() {
 
         opened: false,
 
-        openingHours: null
+        openingHours: null,
+
+        openedDay: null
 
     };
 
@@ -861,6 +886,12 @@ function filterMap() {
     if ( openingHoursInput.value.length !== 0 ) {
 
         filter.openingHours = openingHoursInput.value;
+
+    }
+
+    if ( dayInput.value != -1 ) {
+
+        filter.openedDay = dayInput.value;
 
     }
 
@@ -1073,6 +1104,40 @@ function filterFunction(filter) {
                 return false;
 
             }
+
+        });
+
+    }
+
+    if (filter.openedDay) {
+
+        features = features.filter( function ( value ) {
+
+            var openingHours = value.properties["opening_hours"];
+
+            if( openingHours != null ) {
+
+                var periods = value.properties["opening_hours"]["periods"];
+
+                if ( periods != null ) {
+
+                    for (var i = 0; i < periods.length ; i ++ ) {
+
+                        if ( periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == filter.openedDay && periods[i]["open"]["day"] == filter.openedDay) {
+
+                            forcedDate = filter.openedDay;
+
+                            return true;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            return false;
 
         });
 
