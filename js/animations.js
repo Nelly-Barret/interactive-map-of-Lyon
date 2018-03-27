@@ -4,10 +4,8 @@
 
 $(document).ready(function() {
 
-    console.log("document ready");
-
     /* by default, all buttons aren't clicked */
-    $(".btnType, .btnPrice, .btnStar").each(function() {
+    $(".btnType, .btnPrice, .btnStar, .btnStyle").each(function() {
 
         $(this).data('clicked', false);
 
@@ -29,7 +27,6 @@ $(document).ready(function() {
 
 $(".dropdown-item, #textSearch, #searchButton").on('click', function (e) {
 
-    console.log("stopPropagation");
     e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
 
 });
@@ -141,6 +138,75 @@ $(".btnRemove").on('click', function() {
     });
 
 });
+
+
+$(".btnStyle").on("click", function(){
+
+    // get the 4 buttons
+
+    var container = document.getElementById("containerViews");
+
+    var buttons = container.getElementsByTagName("button");
+
+    // for each button, choose if we color or uncolor
+
+    for (var i = 0 ; i < buttons.length ; i++) {
+
+        // get the id of the current button
+
+        var string = $(this).attr('id');
+
+        var id = string.substring(string.indexOf("style")+5, string.length);
+
+        console.log("id = " + id);
+
+        if (""+i !== id) {
+
+            console.log("uncolor " + id);
+
+            //uncolorButton($(this));
+
+            this.classList.remove("btn-dark");
+
+        } /*else {
+
+            console.log("color " + id);
+
+            var button = document.getElementById("style" + id);
+
+            console.log(button);
+
+            //button.classList.add("btn-dark");
+
+            $(button).css("background-color", "rgb(255, 0, 0)");
+
+            console.log(button);
+
+        }*/
+
+    }
+
+});
+/*
+$("#style1, #style2, #style3, #style4").on("click", function() {
+
+    var container = document.getElementById("containerViews");
+
+    var buttons = container.getElementsByTagName("button");
+
+    for (var i = 0 ; i < buttons.length ; i++) {
+
+        if (i !== $(this) && $(this).data('clicked')) {
+
+            console.log("uncolor");
+
+            uncolorButton($(this));
+
+        }
+
+    }
+
+});*/
 
 
 //######################################################################################################################

@@ -98,7 +98,7 @@
                         <input type="radio" class="btn"> Satellite
                     </label>-->
 
-                    <button type="button" class="btn">Streets</button><button type="button" class="btn">Light</button><button type="button" class="btn">Dark</button><button type="button" class="btn">Satellite</button>
+                    <button type="button" class="btn btnStyle" id="style0">Streets</button><button type="button" class="btn btnStyle" id="style1">Light</button><button type="button" class="btn btnStyle" id="style2">Dark</button><button type="button" class="btn btnStyle" id="style3">Satellite</button>
 
                 </div>
 
