@@ -22,7 +22,7 @@
 
     var xobj = new XMLHttpRequest();
 
-    xobj.open('GET', 'JSON/fusionPlaces.geojson', true);
+    xobj.open('GET', 'JSON/fusionPlacesV2.geojson', true);
 
     xobj.onreadystatechange = function () {
 
@@ -33,6 +33,8 @@
             geojsonSource = xobj.responseText;
 
             init();
+
+           // loadAllJSON();
 
         }
 
@@ -48,7 +50,7 @@
 
 // Accent map used by accen_fold
 var accentMap = {
-    'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', ' ' : ' ', '-' : ' '
+    'á':'a', 'é':'e', 'í':'i','ó':'o','ú':'u', 'ä' : 'a', 'à' : 'a', 'è' : 'e', 'ï' : 'i', 'ô' : 'o', 'ö' : 'o', '\'' : ' ', '-' : ' '
 };
 
 // Function that removes accents in sentences.
@@ -700,11 +702,9 @@ function createMarkerPopupHTML(place) {
 
     html+= "</div>";
 
-    if ( place.subtypes != "null" ) {
+    if ( place.subtypes != null && place.subtypes != "null") {
 
     	var subtypesToDisplay = JSON.parse(place.subtypes);
-
-    	console.log("subtypesToDisplay = " + subtypesToDisplay.length);
 
     	for (var i = 0 ; i < subtypesToDisplay.length ; i++) {
 
@@ -1183,6 +1183,8 @@ function filterSearch( searchString ) {
 
                 var searchName = accent_fold(searchString).toLowerCase();
 
+                var reviews = accent_fold(value.properties.reviews).toLowerCase();
+
                 var subtype = false;
 
                 if( value.properties.subtypes != null ) {
@@ -1203,7 +1205,7 @@ function filterSearch( searchString ) {
 
                 }
 
-                return (valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1 || subtype);
+                return (reviews.indexOf(searchName) != -1 || valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1 || subtype);
 
             });
 
@@ -1753,7 +1755,7 @@ var numberOfJSONLoadingCallbacks = 0;
 //  Loads all locally stored JSONs
 //----------------------------------------------------------------------------------------------------------------------
 
-function loadAllJSON( callback ) {
+function loadAllJSON() {
 
     loadBarsJSON();
 
@@ -1951,21 +1953,102 @@ function generateGeoJSON() {
 
             "type": "Point",
 
-            "coordinates": [null,null]
+            "coordinates": [null, null]
 
         },
 
-        "properties": null
+        "properties": {
+
+            "formatted_address": null,
+
+            "formatted_phone_number": null,
+
+            "geometry": {
+
+                "location": {
+
+                    "lat": null,
+
+                    "lng": null
+
+                }
+
+            },
+
+            "place_id": null,
+
+            "name": null,
+
+            "scope": "GOOGLE",
+
+            "vicinity": null,
+
+        }
 
     };
 
-    for (var i = 0; i < parsedBars.length; i++) {
+    for (var i = 0; i < parsedBars.length; i++){
 
         geoJSONItem.geometry.coordinates = [parsedBars[i].geometry.location.lng, parsedBars[i].geometry.location.lat];
 
-        geoJSONItem.geometry.name = parsedBars[i]["name"];
+        geoJSONItem.geometry.name = parsedBars[i].name;
 
-        geoJSONItem.properties = parsedBars[i];
+        geoJSONItem.properties.formatted_address = parsedBars[i].formatted_address;
+
+        geoJSONItem.properties.formatted_phone_number = parsedBars[i].formatted_phone_number;
+
+        geoJSONItem.properties.geometry.location.lat = parsedBars[i].geometry.location.lat;
+
+        geoJSONItem.properties.geometry.location.lng = parsedBars[i].geometry.location.lng;
+
+        geoJSONItem.properties.place_id = parsedBars[i].place_id;
+
+        geoJSONItem.properties.name = parsedBars[i].name;
+
+        geoJSONItem.properties.vicinity = parsedBars[i].vicinity;
+
+        geoJSONItem.properties.mainType = parsedBars[i].mainType;
+
+        if( parsedBars[i].rating != null ) {
+
+            geoJSONItem.properties.rating = parsedBars[i].rating;
+
+        }
+
+        if( parsedBars[i].reviews != null ) {
+
+            var reviews = parsedBars[i].reviews;
+
+            var text = "";
+
+            for ( var j = 0 ; j < reviews.length ; j++ ){
+
+                text += reviews[j]['text'];
+
+            }
+
+            geoJSONItem.properties.reviews = text;
+
+
+        }
+
+        if ( parsedBars[i].opening_hours != null ) {
+
+            geoJSONItem.properties.opening_hours = parsedBars[i].opening_hours;
+
+        }
+
+        if (parsedBars[i].url != null ) {
+
+            geoJSONItem.properties.url = parsedBars[i].url;
+
+        }
+
+        if ( parsedBars[i].website != null ) {
+
+            geoJSONItem.properties.website = parsedBars[i].website;
+
+        }
 
         geoJSONString += JSON.stringify(geoJSONItem);
 
@@ -1984,7 +2067,62 @@ function generateGeoJSON() {
 
         geoJSONItem.geometry.name = parsedBarRestaurants[i]["name"];
 
-        geoJSONItem.properties = parsedBarRestaurants[i];
+        geoJSONItem.properties.formatted_address = parsedBarRestaurants[i].formatted_address;
+
+        geoJSONItem.properties.formatted_phone_number = parsedBarRestaurants[i].formatted_phone_number;
+
+        geoJSONItem.properties.geometry.location.lat = parsedBarRestaurants[i].geometry.location.lat;
+
+        geoJSONItem.properties.geometry.location.lng = parsedBarRestaurants[i].geometry.location.lng;
+
+        geoJSONItem.properties.place_id = parsedBarRestaurants[i].place_id;
+
+        geoJSONItem.properties.name = parsedBarRestaurants[i].name;
+
+        geoJSONItem.properties.vicinity = parsedBarRestaurants[i].vicinity;
+
+        geoJSONItem.properties.mainType = parsedBarRestaurants[i].mainType;
+
+        if( parsedBarRestaurants[i].rating != null ) {
+
+            geoJSONItem.properties.rating = parsedBarRestaurants[i].rating;
+
+        }
+
+        if( parsedBarRestaurants[i].reviews != null ) {
+
+            var reviews = parsedBarRestaurants[i].reviews;
+
+            var text = "";
+
+            for ( var j = 0 ; j < reviews.length ; j++ ){
+
+                text += reviews[j]['text'];
+
+            }
+
+            geoJSONItem.properties.reviews = text;
+
+
+        }
+
+        if ( parsedBarRestaurants[i].opening_hours != null ) {
+
+            geoJSONItem.properties.opening_hours = parsedBarRestaurants[i].opening_hours;
+
+        }
+
+        if (parsedBarRestaurants[i].url != null ) {
+
+            geoJSONItem.properties.url = parsedBarRestaurants[i].url;
+
+        }
+
+        if ( parsedBarRestaurants[i].website != null ) {
+
+            geoJSONItem.properties.website = parsedBarRestaurants[i].website;
+
+        }
 
         geoJSONString += JSON.stringify(geoJSONItem);
 
@@ -2004,7 +2142,62 @@ function generateGeoJSON() {
 
         geoJSONItem.geometry.name = parsedRestaurants[i]["name"];
 
-        geoJSONItem.properties = parsedRestaurants[i];
+        geoJSONItem.properties.formatted_address = parsedRestaurants[i].formatted_address;
+
+        geoJSONItem.properties.formatted_phone_number = parsedRestaurants[i].formatted_phone_number;
+
+        geoJSONItem.properties.geometry.location.lat = parsedRestaurants[i].geometry.location.lat;
+
+        geoJSONItem.properties.geometry.location.lng = parsedRestaurants[i].geometry.location.lng;
+
+        geoJSONItem.properties.place_id = parsedRestaurants[i].place_id;
+
+        geoJSONItem.properties.name = parsedRestaurants[i].name;
+
+        geoJSONItem.properties.vicinity = parsedRestaurants[i].vicinity;
+
+        geoJSONItem.properties.mainType = parsedRestaurants[i].mainType;
+
+        if( parsedRestaurants[i].rating != null ) {
+
+            geoJSONItem.properties.rating = parsedRestaurants[i].rating;
+
+        }
+
+        if( parsedRestaurants[i].reviews != null ) {
+
+            var reviews = parsedRestaurants[i].reviews;
+
+            var text = "";
+
+            for ( var j = 0 ; j < reviews.length ; j++ ){
+
+                text += reviews[j]['text'];
+
+            }
+
+            geoJSONItem.properties.reviews = text;
+
+
+        }
+
+        if ( parsedRestaurants[i].opening_hours != null ) {
+
+            geoJSONItem.properties.opening_hours = parsedRestaurants[i].opening_hours;
+
+        }
+
+        if (parsedRestaurants[i].url != null ) {
+
+            geoJSONItem.properties.url = parsedRestaurants[i].url;
+
+        }
+
+        if ( parsedRestaurants[i].website != null ) {
+
+            geoJSONItem.properties.website = parsedRestaurants[i].website;
+
+        }
 
         geoJSONString += JSON.stringify(geoJSONItem);
 
@@ -2053,11 +2246,11 @@ function cleanGeoJSON( geoJSONString ) {
 
     for (var i in geoPlacesJSON) {
 
-        if (ids.indexOf(geoPlacesJSON[i].properties.id) === -1) {
+        if (ids.indexOf(geoPlacesJSON[i].properties.place_id) === -1) {
 
             newPlaces.push(geoPlacesJSON[i]);
 
-            ids.push(geoPlacesJSON[i].properties.id);
+            ids.push(geoPlacesJSON[i].properties.place_id);
 
         } else {
 
@@ -2075,7 +2268,9 @@ function cleanGeoJSON( geoJSONString ) {
 
     };
 
-    console.log("Success.")
+    console.log("Found "+ doublons + " doublons.");
+
+    console.log("Success.");
 
     fusionYelpGoogle(newGeoJSON);
 
@@ -2127,8 +2322,6 @@ function fusionYelpGoogle( baseGeoJSON ) {
 
                 var yelpFormattedPhone = yelpJSON[i]['display_phone'];
 
-                var yelpFormattedName = accent_fold(yelpJSON[i].name.toLowerCase());
-
                 var yelpFormattedAddress = accent_fold(yelpJSON[i].location.address1.toLowerCase());
 
 
@@ -2136,8 +2329,6 @@ function fusionYelpGoogle( baseGeoJSON ) {
 
 
                 var featureFormattedPhone = feature['formatted_phone_number'];
-
-                var featureFormattedName = accent_fold(feature.name.toLowerCase());
 
                 var featureFormattedAddress = accent_fold(feature["formatted_address"].toLowerCase());
 
@@ -2162,7 +2353,7 @@ function fusionYelpGoogle( baseGeoJSON ) {
 
                     }
 
-                    if( yelpJSON[i].url != null && feature.website == null ) {
+                    if( yelpJSON[i].url != null && feature.url == null ) {
 
                         feature.website = yelpJSON[i].url;
 
@@ -2171,12 +2362,6 @@ function fusionYelpGoogle( baseGeoJSON ) {
                     yelpJSON.splice(i, 1);
 
                     break;
-
-                } else {
-
-                    feature.subtypes = null;
-
-                    feature.price = null;
 
                 }
 
@@ -2241,17 +2426,11 @@ function addYELPElements( geojsonBase, yelpJSON ) {
 
                 "place_id": yelpJSON[indice].id,
 
-                "price" : null,
-
-                "subtypes" : null,
-
                 "name": yelpJSON[indice].name,
 
                 "rating": yelpJSON[indice].rating,
 
                 "scope": "YELP",
-
-                "url": null,
 
                 "vicinity": yelpJSON[indice].location['display_address'][0],
 
