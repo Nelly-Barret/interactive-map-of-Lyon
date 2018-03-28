@@ -58,7 +58,7 @@ function colorStarButton(button) {
 
 function uncolorButton(button) {
 
-    button.css("background-color", "#DDDDDD");
+    button.css("background-color", "white");
 
     button.css("color", "black");
 
@@ -229,6 +229,10 @@ $("#resetFilters").on('click', function() {
         $("input").prop('checked', false);
 
     }
+
+    $("#inputDay").val('-1');
+
+    $("#inputTime").val('');
 
 });
 

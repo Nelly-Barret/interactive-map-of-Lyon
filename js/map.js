@@ -1040,38 +1040,79 @@ function filterFunction(filter) {
 
         var str = document.getElementById("inputTime").value;
 
-        var hour = str.substring(0, str.length - str.indexOf(':')-1);
+        var hours = str.substring(0, str.indexOf(':'));
 
-        var minute = str.substring(str.indexOf(':')+1, str.length);
+        var minutes = str.substring(str.indexOf(':') + 1, str.length);
+
+        var timeValue = hours + minutes;
+
+        console.log(timeValue);
 
         /* get the field "openingHours" from the variable filter */
-        if( filter.openingHours ) {
 
-            features = filteredGeojson.features.filter(function (value) {
+        features = filteredGeojson.features.filter(function (value) {
 
-                var values = [hour];
+            if (value.properties.opening_hours != null && value.properties.opening_hours.periods != null) {
 
-                var bool = false;
+                var date = new Date();
 
-                for (var i = 0; i < filter.openingHours.length; i++) {
+                var day = date.getDay();
 
-                    if (filter.openingHours[i] === hour) {
+                if( filter.openedDay == null ) {
 
-                        bool = bool || value.properties.openingHours === hour;
+                    if( day == 0 ) {
+
+                        day = 6;
+
+                    } else {
+
+                        day --;
+
+                    }
+
+                } else {
+
+                    day = filter.openedDay;
+
+                }
+
+                console.log(day);
+
+                var periods = value.properties.opening_hours.periods;
+
+                var openings = [];
+
+                var closings = [];
+
+                for (var i = 0; i < periods.length ; i ++ ) {
+
+                    if ( periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
+
+                        openings.push(periods[i]["open"]["time"]);
+
+                        closings.push(periods[i]["close"]["time"]);
 
                     }
 
                 }
 
-                console.log("return is applied..;");
+                for (var i = 0; i < openings.length ; i ++) {
 
-                return bool;
+                    if ( openings[i] <= timeValue && timeValue <= closings[i] ) {
 
-            });
+                        return true;
 
-        }
+                    }
 
-        console.log("filter is applied...");
+                }
+
+            } else {
+
+                return false;
+
+            }
+
+        });
 
     }
 

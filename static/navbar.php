@@ -74,8 +74,8 @@
 
                   </select>
 
-                  <label for="inputTime">at : </label>
-                  <input type="time" id="inputTime" value="now">
+                  <label for="inputTime">or/and at : </label>
+                  <input type="time" id="inputTime">
 
                 </div>
                 <!-- reset and go buttons -->
