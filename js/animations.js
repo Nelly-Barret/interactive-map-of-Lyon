@@ -144,6 +144,8 @@ $(".btnStyle").on("click", function(){
 
     // get the 4 buttons
 
+    console.log(this);
+
     var container = document.getElementById("containerViews");
 
     var buttons = container.getElementsByTagName("button");
@@ -166,7 +168,10 @@ $(".btnStyle").on("click", function(){
 
             //uncolorButton($(this));
 
+            console.log("class = " + this.classList);
             this.classList.remove("btn-dark");
+            console.log("class = " + this.classList);
+            console.log(this);
 
         } /*else {
 
