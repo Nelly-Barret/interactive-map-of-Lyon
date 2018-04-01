@@ -246,13 +246,11 @@ function init() {
 
     point.addEventListener("click", function() {
 
-        console.log("point");
-
         setClusters = false;
 
         icon = "";
 
-        overlap = false;
+        overlap = true;
 
         map.remove();
 
@@ -262,8 +260,6 @@ function init() {
 
 
     cluster.addEventListener("click", function() {
-
-        console.log("cluster");
 
         setClusters = true;
 
@@ -352,34 +348,22 @@ function mapInitialisation(userCoordinates) {
                 type: "circle",
                 source: "places",
                 paint: {
-                    "circle-color": "#ff0000"
-                    /*"circle-color": [
+                    //"circle-radius":5,
+                    //"circle-color":'#' + (Math.random().toString(16) + "000000").substring(2,8)
+                    "circle-color": [
                         "match",
-                        ["get", "type"],
-                        "bar", '#ff0000',
-                        "restaurant", '#00ff00',
-                        "bar-restaurant", '#0000ff',
+                        ["get", "mainType"],
+                        "Bar", '#51bbd6',
+                        "Restaurant", '#f25525',
+                        "Bar-restaurant", '#e9f154',
+                        "Bar-Restaurant", '#e9f154',
                         '#000000'
-                    ]*/
-                    /*"circle-color": {
-                        type: "categorical",
-                        property: "type",
-                        stops: [
-                            ["bar", '#ff0000'],
-                            ["restaurant", '#00ff00'],
-                        ]
-                    }*/
+                    ]
+                },
+                layout:{
+
                 }
             });
-
-            var colors = ['#ff0000', '#00ff00', '#0000ff'];
-            var cluster = map.queryRenderedFeatures({ layers: ["placesSymbols"] });
-console.log(cluster);
-            //HERE
-            for(i = 0; i < cluster.length; i++){
-                map.setPaintProperty('placesSymbols', 'circle-color', colors[i]);
-            }
-            console.log("fini");
 
         } else {
 
