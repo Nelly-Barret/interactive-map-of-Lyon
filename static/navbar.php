@@ -127,15 +127,15 @@
 
                 <label id="clusterButton" for="containerViews">Display</label>
                 <div id="containerClusters">
-                    <input type="radio" name="viewClust" id="viewPoints" checked="checked"><label id="clusterButton" for="viewPoints"> Points</label>
-                    <input type="radio" name="viewClust" id="viewClusters"><label id="clusterButton" for="viewClusters"> Clusters</label>
+                    <input type="radio" name="viewClusters" id="viewClusters" checked="checked"><label for="viewClusters"> Clusters</label>
+                    <input type="radio" name="viewClusters" id="viewPoints"><label for="viewPoints"> Points</label>
                 </div>
 
             </div>
-            <div class="modal-footer">
+            <!--<div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Apply</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+            </div>-->
         </div>
 
     </div>
