@@ -99,6 +99,14 @@ var geojsonSource;          // GeoJson source of the project, initialised at the
 
 var forcedDate = null;      //
 
+var defaultCoordinates = {
+
+    userLatitude: 45.75717800533178,
+
+    userLongitude: 4.83480298193669
+
+};
+
 var mapGridBounds = {
 
     topLatitude : 45.788347,
@@ -735,6 +743,11 @@ function createMarkerPopupHTML(place) {
 
 }
 
+function resetCamera() {
+
+    map.zoomTo(13,{offset : [defaultCoordinates.userLongitude, defaultCoordinates.userLatitude]});
+
+}
 
 //######################################################################################################################
 //##################### PARAMETERS #####################################################################################
@@ -1186,6 +1199,10 @@ function filterFunction(filter) {
 
         map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
 
+    } else {
+
+        resetCamera();
+
     }
 
 }
@@ -1371,11 +1388,17 @@ function filterSearch( searchString ) {
 
             map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
 
+        } else {
+
+            resetCamera();
+
         }
 
     } else {
 
         resetFilter();
+
+        resetCamera();
 
     }
 
