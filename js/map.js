@@ -219,24 +219,27 @@ function init() {
 
     var containerButtons = document.getElementById("containerViews");
 
-    var buttons = containerButtons.getElementsByTagName("button");
+    var input = containerButtons.getElementsByTagName("input");
 
-    for (var i = 0 ; i < buttons.length ; i++) {
 
-        //adding event listener on click
 
-        buttons[i].addEventListener("click", function() {
+    for (var i = 0 ; i < input.length ; i++) {
 
-            this.classList.add("btn-dark"); //the selected button becomes dark
+        console.log(input[i]);
 
-            style = this.textContent.toLowerCase();
+        input[i].addEventListener("click", function() {
+
+            //$(this).classList.add("btn-dark"); //the selected button becomes dark
+
+            console.log($(this).next());
+
+            style = $(this).next().value.toLowerCase();
 
             map.remove();
 
             mapInitialisation(userCoordinates);
 
         });
-
     }
 
     // Points or clusters choice

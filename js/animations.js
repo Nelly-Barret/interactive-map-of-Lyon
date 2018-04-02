@@ -138,13 +138,11 @@ $(".btnRemove").on('click', function() {
     });
 
 });
-
+/*
 
 $(".btnStyle").on("click", function(){
 
     // get the 4 buttons
-
-    console.log(this);
 
     var container = document.getElementById("containerViews");
 
@@ -160,38 +158,25 @@ $(".btnStyle").on("click", function(){
 
         var id = string.substring(string.indexOf("style")+5, string.length);
 
-        console.log("id = " + id);
-
         if (""+i !== id) {
-
-            console.log("uncolor " + id);
 
             //uncolorButton($(this));
 
-            console.log("class = " + this.classList);
             this.classList.remove("btn-dark");
-            console.log("class = " + this.classList);
-            console.log(this);
 
         } /*else {
 
-            console.log("color " + id);
-
             var button = document.getElementById("style" + id);
-
-            console.log(button);
 
             //button.classList.add("btn-dark");
 
             $(button).css("background-color", "rgb(255, 0, 0)");
 
-            console.log(button);
-
         }*/
 
-    }
+    //}
 
-});
+//});*/
 /*
 $("#style1, #style2, #style3, #style4").on("click", function() {
 
@@ -202,8 +187,6 @@ $("#style1, #style2, #style3, #style4").on("click", function() {
     for (var i = 0 ; i < buttons.length ; i++) {
 
         if (i !== $(this) && $(this).data('clicked')) {
-
-            console.log("uncolor");
 
             uncolorButton($(this));
 

@@ -108,20 +108,35 @@
             <div class="modal-body">
                 <label id="mapStyleButton" for="containerViews">Map style</label>
                 <div id="containerViews" class=" containerStyles"> <!-- class=" btn-group btn-group-toggle" data-toggle="buttons"-->
-                    <!--<label class="btn active">
-                        <input type="radio" class="btn" checked> Streets
-                    </label>
-                    <label class="btn">
-                        <input type="radio" class="btn"> Light
-                    </label>
-                    <label class="btn">
-                        <input type="radio" class="btn"> Dark
-                    </label>
-                    <label class="btn">
-                        <input type="radio" class="btn"> Satellite
-                    </label>-->
+                    <!--<div class="btn-group" data-toggle="buttons">-->
 
-                    <button type="button" class="btn btnStyle" id="style0">Streets</button><button type="button" class="btn btnStyle" id="style1">Light</button><button type="button" class="btn btnStyle" id="style2">Dark</button><button type="button" class="btn btnStyle" id="style3">Satellite</button>
+                        <label class="btn btnStyles">
+                            <input type="radio" name="viewStyles" id="viewStyles1" checked="checked"><label for="viewStyles"> Basic</label>
+                        </label>
+                        <label class="btn btnStyles">
+                            <input type="radio" name="viewStyles" id="viewStyles2"><label for="viewStyles"> Streets</label>
+                        </label>
+                        <label class="btn btnStyles">
+                            <input type="radio" name="viewStyles" id="viewStyles3"><label for="viewStyles"> Light</label>
+                        </label>
+                        <label class="btn btnStyles">
+                            <input type="radio" name="viewStyles" id="viewStyles4"><label for="viewStyles"> Dark</label>
+                        </label>
+                        <label class="btn btnStyles">
+                            <input type="radio" name="viewStyles" id="viewStyles5"><label for="viewStyles"> Satellite</label>
+                        </label>
+
+
+                        <!--
+                        <input type="radio" name="viewStyles" id="viewStyles" checked="checked"><label for="viewStyles"> Basic</label>
+                        <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Streets</label>
+                        <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Light</label>
+                        <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Dark</label>
+                        <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Satellite</label>
+                        -->
+
+                    <!--</div>-->
+
 
                 </div>
 
