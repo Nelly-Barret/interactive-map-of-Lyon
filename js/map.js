@@ -215,33 +215,6 @@ function init() {
 
     });
 
-    //adding interactions on parameters
-
-    var containerButtons = document.getElementById("containerViews");
-
-    var input = containerButtons.getElementsByTagName("input");
-
-
-
-    for (var i = 0 ; i < input.length ; i++) {
-
-        console.log(input[i]);
-
-        input[i].addEventListener("click", function() {
-
-            //$(this).classList.add("btn-dark"); //the selected button becomes dark
-
-            console.log($(this).next());
-
-            style = $(this).next().value.toLowerCase();
-
-            map.remove();
-
-            mapInitialisation(userCoordinates);
-
-        });
-    }
-
     // Points or clusters choice
     var point = document.getElementById("viewPoints");
 
@@ -814,6 +787,69 @@ function resetCamera() {
 //##################### PARAMETERS #####################################################################################
 //######################################################################################################################
 
+function changeStyle(input) {
+
+    var containerViews = document.getElementById("containerViews");
+
+    var inputs = containerViews.getElementsByTagName("input");
+
+    var otherInputs = [];
+
+    var id = input.getAttribute('id');
+
+    var newId = id.substring(id.length-1, id.length);
+
+
+    for (var i = 0 ; i < inputs.length ; i++) {
+
+        if (+newId === +i) {
+
+            otherInputs[i] = null;
+
+        } else {
+
+            otherInputs[i] = inputs[i];
+
+        }
+
+    }
+
+    var div = input.parentElement;
+
+    var label = input.nextSibling;
+
+    for (var i = 0 ; i < otherInputs.length ; i++) {
+
+        if (otherInputs[i] !== null)
+        {
+
+            console.log("white");
+            //div.classList.remove("btn-dark");
+
+            input.parentElement.style.backgroundColor = "white";
+
+            //console.log(div.style.backgroundColor);
+
+        } else {
+
+            console.log("black");
+
+            input.parentElement.style.backgroundColor = "black";
+
+            //console.log(div.style.backgroundColor);
+            //.add("btn-dark"); // The selected button becomes dark
+
+        }
+
+    }
+
+    style = label.textContent.toLowerCase();
+
+    map.remove();
+
+    mapInitialisation(userCoordinates);
+
+}
 
 //######################################################################################################################
 //############ FILTER ACTIONS ON MAP ###################################################################################
