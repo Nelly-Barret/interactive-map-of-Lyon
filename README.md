@@ -1,14 +1,14 @@
 # Interactive map of Lyon
 
-One Paragraph of project description goes here
+## Synopsis
+
+This project is an interactive map of Lyon with bars and restaurants. We can filter and search establishments. We also can personalize the view.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-You need an Internet connection
+You need an Internet connection.
 
 ### Installing
 
@@ -18,25 +18,9 @@ You don't need to install anything !
 
 There is a debug mode for the data retrieve.
 
-#### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-#### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-#### Data
+### Data
 Example of place informations:
-
+```
     {
         formatted_address       : "["Metro Cuire (C)","69300 Caluire et Cuire","France"]",
         formatted_phone_number  : "06 61 41 99 60",
@@ -51,25 +35,26 @@ Example of place informations:
         url                     : "https://www.yelp.com/biz/pitakia-caluire-et-cuire?adjust_creative=tF3mc9kTCu1E1IXMV0XVwQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=tF3mc9kTCu1E1IXMV0XVwQ",
         vicinity                : "Metro Cuire (C)"
     }
-
+```
 ### Built With
 
-* [Mapbox](https://www.mapbox.com/) - API of map
-* [Bootstrap](https://getbootstrap.com/) - The web framework used
+* [Mapbox](https://www.mapbox.com/) - API for map
+* [Google Places](https://developers.google.com/places/) - API for data
+* [Yelp](https://www.yelp.com/) - second API for data
+* [Bootstrap](https://getbootstrap.com/) - Web framework
+
 
 ### Versioning
 
-We use [Git Kraken](https://www.gitkraken.com/) for versioning.  
+* [Git Kraken](https://www.gitkraken.com/) for versioning.  
 
 ### Authors
 
-* **Louis LE BRUN   p1422721**
-* **Nelly BARRET    p1507461**
+* Louis LE BRUN   p1422721
+* Nelly BARRET    p1507461
 
 ### License
 
 This project is licensed under copyright.
 
-########################################################################################################################
-#### COPYRIGHTS @ Nelly BARRET et Louis LE BRUN - LIFPROJET 2018 ########################################################
-########################################################################################################################
+COPYRIGHTS @ Nelly BARRET et Louis LE BRUN - LIFPROJET 2018
