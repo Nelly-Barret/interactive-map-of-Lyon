@@ -817,15 +817,19 @@ function createMarkerPopupHTML(place) {
 
             console.log(str);
 
-            if( forcedDate == null ) {
+            if (str != null && str.length != 0){
 
-                //str.indexOf( ': ' )+2 => starts after ': '
-                html += "<p class='day card-body'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>";
+                if( forcedDate == null ) {
 
-            } else {
+                    //str.indexOf( ': ' )+2 => starts after ': '
+                    html += "<p class='day card-body'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>";
 
-                //str.indexOf( ': ' )+2 => starts after ': '
-                html += "<p class='day card-body'><i class='fa fa-clock-o'></i>" + day_fold(str.substring(0, str.indexOf(':'))) + str.substring(str.indexOf(':'), str.length) + "</p>\n";
+                } else {
+
+                    //str.indexOf( ': ' )+2 => starts after ': '
+                    html += "<p class='day card-body'><i class='fa fa-clock-o'></i>" + day_fold(str.substring(0, str.indexOf(':'))) + str.substring(str.indexOf(':'), str.length) + "</p>\n";
+
+                }
 
             }
 
