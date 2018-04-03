@@ -121,6 +121,13 @@
     </div>
 </div>
 
+<div id='legend' style="visibility: hidden">
+    <h4>Points</h4>
+    <div id="legendCircleBar"></div><div class="colorP">Bar</div>
+    <div id="legendCircleBarRestaurant"></div><div class="colorP">Bar-Restaurant</div>
+    <div id="legendCircleRestaurant"></div><div class="colorP">Restaurant</div>
+</div>
+
 
 <!-- our JS -->
 <script src="js/animations.js"></script>

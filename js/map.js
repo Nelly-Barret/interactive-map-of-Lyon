@@ -145,7 +145,17 @@ var pointColor = "#51bbd6"; // Color of points
 
 var markersTitleColor = "#000000";
 
+var barColor = "#51bbd6";
+
+var restaurantColor = "#f25525";
+
+var barRestaurantColor = "#e9f154";
+
 var iconImage = "homeIconBlack";
+
+var legend = document.getElementById("legend");
+
+var visibilityLegend = "hidden";
 
 //----------------------------------------------------------------------------------------------------------------------
 // init() :
@@ -267,6 +277,35 @@ function init() {
 
         mapInitialisation(userCoordinates);
 
+        visibilityLegend = "visible";
+
+        legend.style.visibility = visibilityLegend;
+
+        var circles = [document.getElementById("legendCircleBar"), document.getElementById("legendCircleRestaurant"), document.getElementById("legendCircleBarRestaurant")]
+
+        for (var i = 0 ; i < circles.length ; i++) {
+
+            circles[i].style.width = "10px";
+            circles[i].style.height = "10px";
+            circles[i].style.borderRadius = "5px";
+            circles[i].style.float = "left";
+
+            if (i === 0) {
+
+                circles[i].style.backgroundColor = barColor;
+
+            } else if (i === 1) {
+
+                circles[i].style.backgroundColor = restaurantColor;
+
+            } else if (i === 2) {
+
+                circles[i].style.backgroundColor = barRestaurantColor;
+
+            }
+
+        }
+
     });
 
 
@@ -281,6 +320,10 @@ function init() {
         map.remove();
 
         mapInitialisation(userCoordinates);
+
+        visibilityLegend = "hidden";
+
+        legend.style.visibility = visibilityLegend;
 
     });
 
@@ -370,15 +413,12 @@ function mapInitialisation(userCoordinates) {
                     "circle-color": [
                         "match",
                         ["get", "mainType"],
-                        "Bar", '#51bbd6',
-                        "Restaurant", '#f25525',
-                        "Bar-restaurant", '#e9f154',
-                        "Bar-Restaurant", '#e9f154',
+                        "Bar", barColor,
+                        "Restaurant", restaurantColor,
+                        "Bar-restaurant", barRestaurantColor,
+                        "Bar-Restaurant", barRestaurantColor,
                         '#000000'
                     ]
-                },
-                layout:{
-
                 }
             });
 

@@ -111,7 +111,7 @@ input span::before {
 
 .navbar {
 
-	background-color: rgba(0, 0, 0, 0.1) !important;
+	background-color: rgba(0, 0, 0, 0.7) !important;
 
 	z-index: 100; /* "on" the map */
 
@@ -490,6 +490,54 @@ input span::before {
 	width: 80px !important;
 
 }
+
+
+/*####################################################################################################################*/
+/*############ LEGEND ################################################################################################*/
+/*####################################################################################################################*/
+
+#legend {
+
+	background-color: rgba(0, 0, 0, 0.8);
+
+	border-radius: 3px;
+
+	bottom: 35px;
+
+	padding: 10px;
+
+	margin: 0;
+
+	position: absolute;
+
+	left: 10px;
+
+	width: 200px;
+
+	z-index: 1;
+
+}
+
+#legend h4 {
+
+	color: whitesmoke;
+
+}
+
+#legend div {
+
+	margin: 10px;
+
+	color: whitesmoke;
+
+}
+
+.colorP {
+
+	margin-left: 10px;
+
+}
+
 
 
 /*####################################################################################################################*/
