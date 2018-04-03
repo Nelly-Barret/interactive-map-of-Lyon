@@ -107,33 +107,8 @@
             </div>
             <div class="modal-body">
                 <label id="mapStyleButton" for="containerViews">Map style</label>
-                <div id="containerViews" class=" containerStyles"> <!-- class=" btn-group btn-group-toggle" data-toggle="buttons"-->
-                    <!--<div class="btn btnStyles">
-                        <input type="radio" name="viewStyles" id="viewStyles0" checked="checked" onclick="changeStyle(this)"><label for="viewStyles">Basic</label>
-                    </div>
-                    <div class="btn btnStyles">
-                        <input type="radio" name="viewStyles" id="viewStyles1" onclick="changeStyle(this)"><label for="viewStyles">Streets</label>
-                    </div>
-                    <div class="btn btnStyles">
-                        <input type="radio" name="viewStyles" id="viewStyles2" onclick="changeStyle(this)"><label for="viewStyles">Light</label>
-                    </div>
-                    <div class="btn btnStyles">
-                        <input type="radio" name="viewStyles" id="viewStyles3" onclick="changeStyle(this)"><label for="viewStyles">Dark</label>
-                    </div>
-                    <div class="btn btnStyles">
-                        <input type="radio" name="viewStyles" id="viewStyles4" onclick="changeStyle(this)"><label for="viewStyles">Satellite</label>
-                    </div>-->
-
-                    <button type="button" class="btn btnStyle" id="style0">Streets</button><button type="button" class="btn btnStyle" id="style1">Light</button><button type="button" class="btn btnStyle" id="style2">Dark</button><button type="button" class="btn btnStyle" id="style3">Satellite</button>
-
-
-                    <!--
-                    <input type="radio" name="viewStyles" id="viewStyles" checked="checked"><label for="viewStyles"> Basic</label>
-                    <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Streets</label>
-                    <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Light</label>
-                    <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Dark</label>
-                    <input type="radio" name="viewStyles" id="viewStyles"><label for="viewStyles"> Satellite</label>
-                    -->
+                <div id="containerViews" class=" containerStyles">
+                    <button type="button" class="btn btnStyle" id="style0">Basic</button><button type="button" class="btn btnStyle" id="style1">Streets</button><button type="button" class="btn btnStyle" id="style2">Light</button><button type="button" class="btn btnStyle" id="style3">Dark</button><button type="button" class="btn btnStyle" id="style4">Satellite</button>
                 </div>
 
                 <label id="clusterButton" for="containerViews">Display</label>
@@ -141,14 +116,8 @@
                     <input type="radio" name="viewClusters" id="viewClusters" checked="checked"><label for="viewClusters"> Clusters</label>
                     <input type="radio" name="viewClusters" id="viewPoints"><label for="viewPoints"> Points</label>
                 </div>
-
             </div>
-            <!--<div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Apply</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>-->
         </div>
-
     </div>
 </div>
 
