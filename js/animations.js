@@ -336,34 +336,6 @@ function removeBr() {
 
 }
 
-var selectedStyle = "";
-
-$(".btnStyle").on("click", function () {
-
-    selectedStyle = $(this).attr('id');
-
-    console.log(selectedStyle);
-
-    var btnStyles = $(".btnStyle");
-
-    console.log(btnStyles);
-
-    for ( var i = 0; i < btnStyles.length; i++) {
-
-        if ( $(btnStyles[i]).attr('id') == selectedStyle ) {
-
-            $(btnStyles[i])[0].classList["value"] = "btn btn-dark btnStyle";
-
-        } else {
-
-            $(btnStyles[i])[0].classList["value"] = "btn btn-light btnStyle";
-
-        }
-
-    }
-
-});
-
 /*####################################################################################################################*/
 /*#### COPYRIGHTS @ NELLY BARRET & LOUIS LE BRUN - LIFPROJET 2018 ####################################################*/
 /*####################################################################################################################*/

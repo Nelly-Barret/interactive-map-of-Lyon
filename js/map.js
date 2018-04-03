@@ -143,6 +143,10 @@ var overlap = true;         // For text overlap
 
 var pointColor = "#51bbd6"; // Color of points
 
+var markersTitleColor = "#000000";
+
+var iconImage = "homeIconBlack";
+
 //----------------------------------------------------------------------------------------------------------------------
 // init() :
 //
@@ -212,6 +216,37 @@ function init() {
         }
 
         popups.splice(0, popups.length);
+
+    });
+
+    // Style selection map
+    var selectedStyle = "";
+
+    $(".btnStyle").on("click", function () {
+
+        selectedStyle = $(this).attr('id');
+
+        console.log(selectedStyle);
+
+        var btnStyles = $(".btnStyle");
+
+        console.log(btnStyles);
+
+        for ( var i = 0; i < btnStyles.length; i++) {
+
+            if ( $(btnStyles[i]).attr('id') == selectedStyle ) {
+
+                $(btnStyles[i])[0].classList["value"] = "btn btn-dark btnStyle";
+
+                changeStyle($(btnStyles[i])[0]);
+
+            } else {
+
+                $(btnStyles[i])[0].classList["value"] = "btn btn-light btnStyle";
+
+            }
+
+        }
 
     });
 
@@ -311,9 +346,15 @@ function mapInitialisation(userCoordinates) {
             clusterRadius: 75 // Radius of each cluster when clustering points (defaults to 50)
         });
 
-        map.loadImage('Assets/homeIcon.png', function (error, image) {
+        map.loadImage('Assets/homeIconWhite.png', function (error, image) {
 
-            map.addImage('homeIcon', image);
+            map.addImage('homeIconWhite', image);
+
+        });
+
+        map.loadImage('Assets/homeIconBlack.png', function (error, image) {
+
+            map.addImage('homeIconBlack', image);
 
         });
 
@@ -352,14 +393,15 @@ function mapInitialisation(userCoordinates) {
                     "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                     "text-offset": [0, 0.6],
                     "text-anchor": "top",
-                    "icon-image": icon,
+                    "icon-image": iconImage,
                     "icon-size": 0.05,
                     "visibility": 'visible',
                     "icon-allow-overlap": true,
                     "text-allow-overlap": overlap
                 },
                 paint: {
-                    "text-halo-color": "rgba(0,0,0,1)"
+                    "text-halo-color": "rgba(0,0,0,1)",
+                    "text-color" : markersTitleColor
                 }
             });
 
@@ -789,61 +831,21 @@ function resetCamera() {
 
 function changeStyle(input) {
 
-    var containerViews = document.getElementById("containerViews");
+    style = input.innerText.toLowerCase();
 
-    var inputs = containerViews.getElementsByTagName("input");
+    if (style == "dark" || style == "satellite"){
 
-    var otherInputs = [];
+        markersTitleColor = "#ffffff";
 
-    var id = input.getAttribute('id');
+        iconImage = "homeIconWhite";
 
-    var newId = id.substring(id.length-1, id.length);
+    } else {
 
+        markersTitleColor = "#000000";
 
-    for (var i = 0 ; i < inputs.length ; i++) {
-
-        if (+newId === +i) {
-
-            otherInputs[i] = null;
-
-        } else {
-
-            otherInputs[i] = inputs[i];
-
-        }
+        iconImage = "homeIconBlack";
 
     }
-
-    var div = input.parentElement;
-
-    var label = input.nextSibling;
-
-    for (var i = 0 ; i < otherInputs.length ; i++) {
-
-        if (otherInputs[i] !== null)
-        {
-
-            console.log("white");
-            //div.classList.remove("btn-dark");
-
-            input.parentElement.style.backgroundColor = "white";
-
-            //console.log(div.style.backgroundColor);
-
-        } else {
-
-            console.log("black");
-
-            input.parentElement.style.backgroundColor = "black";
-
-            //console.log(div.style.backgroundColor);
-            //.add("btn-dark"); // The selected button becomes dark
-
-        }
-
-    }
-
-    style = label.textContent.toLowerCase();
 
     map.remove();
 
@@ -1279,7 +1281,7 @@ function filterFunction(filter) {
 
         map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
 
-    } else {
+    } else if (!filter.aroundMe){
 
         resetCamera();
 
