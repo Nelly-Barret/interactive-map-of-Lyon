@@ -108,7 +108,7 @@
             <div class="modal-body">
                 <label id="mapStyleButton" for="containerViews">Map style</label>
                 <div id="containerViews" class=" containerStyles"> <!-- class=" btn-group btn-group-toggle" data-toggle="buttons"-->
-                    <div class="btn btnStyles">
+                    <!--<div class="btn btnStyles">
                         <input type="radio" name="viewStyles" id="viewStyles0" checked="checked" onclick="changeStyle(this)"><label for="viewStyles">Basic</label>
                     </div>
                     <div class="btn btnStyles">
@@ -122,7 +122,10 @@
                     </div>
                     <div class="btn btnStyles">
                         <input type="radio" name="viewStyles" id="viewStyles4" onclick="changeStyle(this)"><label for="viewStyles">Satellite</label>
-                    </div>
+                    </div>-->
+
+                    <button type="button" class="btn btnStyle" id="style0">Streets</button><button type="button" class="btn btnStyle" id="style1">Light</button><button type="button" class="btn btnStyle" id="style2">Dark</button><button type="button" class="btn btnStyle" id="style3">Satellite</button>
+
 
                     <!--
                     <input type="radio" name="viewStyles" id="viewStyles" checked="checked"><label for="viewStyles"> Basic</label>
