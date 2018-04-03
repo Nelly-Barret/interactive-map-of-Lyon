@@ -1017,11 +1017,15 @@ function filterMap() {
 
         filter.openingHours = openingHoursInput.value;
 
+        filter.opened = false;
+
     }
 
     if ( dayInput.value != -1 ) {
 
         filter.openedDay = dayInput.value;
+
+        filter.opened = false;
 
     }
 
