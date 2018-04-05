@@ -371,6 +371,12 @@ function mapInitialisation(userCoordinates) {
 
     }), 'bottom-right');
 
+    // Adding map controls
+
+    map.addControl(new mapboxgl.NavigationControl({
+        "showCompass" : false
+    }), 'bottom-right');
+
     // disable map rotation using right click + drag
 
     map.dragRotate.disable();
