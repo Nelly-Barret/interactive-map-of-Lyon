@@ -170,6 +170,15 @@ function init() {
     map = mapInitialisation(userCoordinates);
 
 
+    var options = {
+        enableHighAccuracy: true
+    };
+
+    // Update user's location
+
+    navigator.geolocation.getCurrentPosition(locationUpdate, options);
+
+
     // Buttons interactions
 
     var goButton = document.getElementById("go");
@@ -555,11 +564,26 @@ function mapInitialisation(userCoordinates) {
     });
 
 
-    // Update user's location
-
-    getUserLocation();
-
     // Creation of user marker on map
+    googlePlacesAPIService = new google.maps.places.PlacesService(document.createElement('div'));
+
+    return map;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// getUserLocation() :
+//
+//  Launch a navigator's user's position watch
+//----------------------------------------------------------------------------------------------------------------------
+
+function locationUpdate( position ) {
+
+    console.log(position);
+
+    userCoordinates.userLongitude = position.coords.longitude;
+
+    userCoordinates.userLatitude = position.coords.latitude;
 
     userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
@@ -585,35 +609,9 @@ function mapInitialisation(userCoordinates) {
 
     userPositionMarker.addTo(map);
 
-    var location = new mapboxgl.LngLat(userCoordinates.userLongitude, userCoordinates.userLatitude);
-
-    var coords = {
-
-        latitude: location.lat,
-
-        longitude: location.lng
-
-    };
-
-    var pos = {
-
-        coords: coords
-
-    };
-
-    setUserCoordinates(pos);
-
-    googlePlacesAPIService = new google.maps.places.PlacesService(document.createElement('div'));
-
-    return map;
+    getUserLocation();
 
 }
-
-//----------------------------------------------------------------------------------------------------------------------
-// getUserLocation() :
-//
-//  Launch a navigator's user's position watch
-//----------------------------------------------------------------------------------------------------------------------
 
 function getUserLocation() {
 
@@ -728,6 +726,32 @@ function createPopupForSymbol( feature ) {
 //  html -> a html text for the popup
 //----------------------------------------------------------------------------------------------------------------------
 
+function urlConverter( urlString ) {
+
+    var charMap = {
+
+        " " : "%20",
+        "\"": "%22",
+        "<" : "%3C",
+        ">" : "%3E",
+        "#" : "%23",
+        "%" : "%25",
+        "|" : "%7C"
+
+    }
+
+    var correctString = "";
+
+    for (var c in urlString) {
+
+        correctString += charMap[urlString[c]] || urlString[c];
+
+    }
+
+    return correctString;
+
+}
+
 function createMarkerPopupHTML(place) {
 
     var html = "";
@@ -763,7 +787,25 @@ function createMarkerPopupHTML(place) {
         html += "</p>";
     }
 
-    html += "<div class='card' style='background-color: transparent; border-color: whitesmoke; margin-top: 10px'><br><p id='popupAddress'><i class='fa fa-street-view card-body'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place['place_id'] + "&travelmode=walking' style = 'color : whitesmoke; '>" + place['vicinity'] + "</a></p>";
+    var address = urlConverter(place['formatted_address']);
+
+    var geometryLat = JSON.parse(place['geometry'])['location']['lat'];
+
+    var geometryLng = JSON.parse(place['geometry'])['location']['lng'];
+
+    var destination;
+
+    if( address.toLowerCase().indexOf("unnamed") != -1 ){
+
+        destination = geometryLat + "," + geometryLng;
+
+    } else {
+
+        destination = address;
+
+    }
+
+    html += "<div class='card' style='background-color: transparent; border-color: whitesmoke; margin-top: 10px'><br><p id='popupAddress'><i class='fa fa-street-view card-body'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=" + destination + "&travelmode=walking' style = 'color : whitesmoke; '>" + place['vicinity'] + "</a></p>";
 
     if (place.website != null) {
 
