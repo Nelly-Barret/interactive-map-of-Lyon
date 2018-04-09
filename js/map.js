@@ -12,17 +12,27 @@
 
     var loaderDiv = document.createElement("div");
 
-    loaderDiv.classList.add("loader");
+    loaderDiv.classList.add("progress-bar");
 
     loaderBackground.appendChild(loaderDiv);
 
     document.body.insertBefore(loaderBackground, document.body.firstChild);
+
+    console.log($(".progress-bar"));
+
+    $(".progress-bar")[0].setAttribute("role", "progressbar");
+
+    $(".progress-bar")[0].setAttribute("aria-valuemin", "0");
+
+    $(".progress-bar")[0].setAttribute("aria-valuemax", "100");
 
     // Request to load the GeoJson source file and set geojsonSource property, removes loader and launch init()
 
     var xobj = new XMLHttpRequest();
 
     xobj.open('GET', 'JSON/fusionPlacesV2.geojson', true);
+
+    xobj.onprogress = loader;
 
     xobj.onreadystatechange = function () {
 
@@ -41,6 +51,20 @@
     };
 
     xobj.send(null);
+
+}
+
+function loader( progress ){
+
+    var loaded = progress.loaded;
+
+    var total = progress.total;
+
+    var value = (loaded * 100) / total;
+
+    $(".progress-bar")[0].setAttribute("aria-valuenow", value);
+
+    console.log(progress);
 
 }
 
