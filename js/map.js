@@ -780,8 +780,6 @@ function createMarkerPopupHTML(place) {
 
     if (place.rating != null) {
 
-        //console.log("rating=" + place.rating);
-
         html += "<p id='popupRating'>";
 
         var i;
@@ -801,6 +799,13 @@ function createMarkerPopupHTML(place) {
         }
 
         html += "</p>";
+
+    }
+
+    if ( place.price != null ) {
+
+        html += "<p id='popupPrice'>" + place.price + "</p>";
+
     }
 
     var address = urlConverter(place['formatted_address']);
@@ -899,12 +904,6 @@ function createMarkerPopupHTML(place) {
 
 
         }
-
-    }
-
-    if ( place.price != null ) {
-
-
 
     }
 
