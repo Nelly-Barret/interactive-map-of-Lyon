@@ -38,11 +38,11 @@
 
         if (xobj.readyState === 4 && xobj.status == "200") {
 
-            document.body.removeChild(loaderBackground);
+           // document.body.removeChild(loaderBackground);
 
-            geojsonSource = xobj.responseText;
+            //geojsonSource = xobj.responseText;
 
-            init();
+            //init();
 
            // loadAllJSON();
 
@@ -60,9 +60,11 @@ function loader( progress ){
 
     var total = progress.total;
 
-    var value = (loaded * 100) / total;
+    var value = Math.round((loaded * 100) / total);
 
     $(".progress-bar")[0].setAttribute("aria-valuenow", value);
+
+    $(".progress-bar")[0].innerText = value;
 
     console.log(progress);
 
