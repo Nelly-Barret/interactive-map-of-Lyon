@@ -58,7 +58,7 @@ function colorStarButton(button) {
 
 function uncolorButton(button) {
 
-    button.css("background-color", "white");
+    button.css("background-color", "#DDDDDD");
 
     button.css("color", "black");
 
