@@ -20,7 +20,6 @@
     <!-- https://github.com/kleinejan/titatoggle/tree/master/dist -->
     <link href="css/titatoggle-dist.css" rel="stylesheet">
 
-
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 

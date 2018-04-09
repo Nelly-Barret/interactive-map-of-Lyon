@@ -10,13 +10,25 @@
 
     loaderBackground.classList.add("loaderBackground");
 
+    var loaderProgressDiv = document.createElement("div");
+
+    loaderProgressDiv.classList.add("progress");
+
     var loaderDiv = document.createElement("div");
 
-    loaderDiv.classList.add("loader");
+    loaderDiv.classList["value"] = ["progress-bar progress-bar-striped"];
 
-    loaderBackground.appendChild(loaderDiv);
+    loaderProgressDiv.appendChild(loaderDiv);
+
+    loaderBackground.appendChild(loaderProgressDiv);
 
     document.body.insertBefore(loaderBackground, document.body.firstChild);
+
+    $(".progress-bar")[0].setAttribute("role", "progressbar");
+
+    $(".progress-bar")[0].setAttribute("aria-valuemin", "0");
+
+    $(".progress-bar")[0].setAttribute("aria-valuemax", "100");
 
     // Request to load the GeoJson source file and set geojsonSource property, removes loader and launch init()
 
@@ -24,23 +36,47 @@
 
     xobj.open('GET', 'JSON/fusionPlacesV2.geojson', true);
 
+    xobj.onprogress = loader;
+
     xobj.onreadystatechange = function () {
 
         if (xobj.readyState === 4 && xobj.status == "200") {
 
-            document.body.removeChild(loaderBackground);
+            setTimeout( function () {
 
-            geojsonSource = xobj.responseText;
+                document.body.removeChild(loaderBackground);
 
-            init();
+                geojsonSource = xobj.responseText;
 
-           // loadAllJSON();
+                init();
+
+            }, 1000);
+
+            //loadAllJSON();
 
         }
 
     };
 
     xobj.send(null);
+
+}
+
+function loader( progress ){
+
+    var loaded = progress.loaded;
+
+    var total = progress.total;
+
+    var value = Math.round((loaded * 100) / total);
+
+    $(".progress-bar")[0].setAttribute("aria-valuenow", value);
+
+    $(".progress-bar")[0].setAttribute("style", "width:"+value+"%;" );
+
+    $(".progress-bar")[0].innerText = value + " %";
+
+    //console.log(progress);
 
 }
 
