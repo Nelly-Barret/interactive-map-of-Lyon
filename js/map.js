@@ -10,11 +10,17 @@
 
     loaderBackground.classList.add("loaderBackground");
 
+    var loaderProgressDiv = document.createElement("div");
+
+    loaderProgressDiv.classList.add("progress");
+
     var loaderDiv = document.createElement("div");
 
     loaderDiv.classList.add("progress-bar");
 
-    loaderBackground.appendChild(loaderDiv);
+    loaderProgressDiv.appendChild(loaderDiv);
+
+    loaderBackground.appendChild(loaderProgressDiv);
 
     document.body.insertBefore(loaderBackground, document.body.firstChild);
 
@@ -63,6 +69,8 @@ function loader( progress ){
     var value = Math.round((loaded * 100) / total);
 
     $(".progress-bar")[0].setAttribute("aria-valuenow", value);
+
+    $(".progress-bar")[0].setAttribute("style", "width:"+value+"%;" );
 
     $(".progress-bar")[0].innerText = value;
 
