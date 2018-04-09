@@ -16,15 +16,13 @@
 
     var loaderDiv = document.createElement("div");
 
-    loaderDiv.classList.add("progress-bar");
+    loaderDiv.classList["value"] = ["progress-bar progress-bar-striped"];
 
     loaderProgressDiv.appendChild(loaderDiv);
 
     loaderBackground.appendChild(loaderProgressDiv);
 
     document.body.insertBefore(loaderBackground, document.body.firstChild);
-
-    console.log($(".progress-bar"));
 
     $(".progress-bar")[0].setAttribute("role", "progressbar");
 
@@ -44,11 +42,15 @@
 
         if (xobj.readyState === 4 && xobj.status == "200") {
 
-            document.body.removeChild(loaderBackground);
+            setTimeout( function () {
 
-            geojsonSource = xobj.responseText;
+                document.body.removeChild(loaderBackground);
 
-            init();
+                geojsonSource = xobj.responseText;
+
+                init();
+
+            }, 1000);
 
             //loadAllJSON();
 
@@ -72,7 +74,7 @@ function loader( progress ){
 
     $(".progress-bar")[0].setAttribute("style", "width:"+value+"%;" );
 
-    $(".progress-bar")[0].innerText = value;
+    $(".progress-bar")[0].innerText = value + " %";
 
     //console.log(progress);
 
