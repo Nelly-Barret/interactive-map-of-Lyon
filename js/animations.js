@@ -138,63 +138,6 @@ $(".btnRemove").on('click', function() {
     });
 
 });
-/*
-
-$(".btnStyle").on("click", function(){
-
-    // get the 4 buttons
-
-    var container = document.getElementById("containerViews");
-
-    var buttons = container.getElementsByTagName("button");
-
-    // for each button, choose if we color or uncolor
-
-    for (var i = 0 ; i < buttons.length ; i++) {
-
-        // get the id of the current button
-
-        var string = $(this).attr('id');
-
-        var id = string.substring(string.indexOf("style")+5, string.length);
-
-        if (""+i !== id) {
-
-            //uncolorButton($(this));
-
-            this.classList.remove("btn-dark");
-
-        } /*else {
-
-            var button = document.getElementById("style" + id);
-
-            //button.classList.add("btn-dark");
-
-            $(button).css("background-color", "rgb(255, 0, 0)");
-
-        }*/
-
-    //}
-
-//});*/
-/*
-$("#style1, #style2, #style3, #style4").on("click", function() {
-
-    var container = document.getElementById("containerViews");
-
-    var buttons = container.getElementsByTagName("button");
-
-    for (var i = 0 ; i < buttons.length ; i++) {
-
-        if (i !== $(this) && $(this).data('clicked')) {
-
-            uncolorButton($(this));
-
-        }
-
-    }
-
-});*/
 
 
 //######################################################################################################################
