@@ -176,8 +176,8 @@ function init() {
 
     // Update user's location
 
-    navigator.geolocation.getCurrentPosition(locationUpdate, options);
-
+    //navigator.geolocation.getCurrentPosition(locationUpdate, null, options);
+    getUserLocation();
 
     // Buttons interactions
 
@@ -495,7 +495,7 @@ function mapInitialisation(userCoordinates) {
                 layout: {
                     "text-field": "{point_count_abbreviated}",
                     "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 12
+                    "text-size": 13
                 }
             });
 
@@ -518,6 +518,12 @@ function mapInitialisation(userCoordinates) {
         }
 
         var feature = features[0];
+
+        var geometry = JSON.parse(feature.properties.geometry);
+
+        console.log(feature);
+
+        map.easeTo({center : [geometry.location.lng, geometry.location.lat + (2*latVariance)]});
 
         if( feature.properties['place_id'] != null ) {
 
@@ -572,7 +578,7 @@ function mapInitialisation(userCoordinates) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// getUserLocation() :
+// locationUpdate(position) :
 //
 //  Launch a navigator's user's position watch
 //----------------------------------------------------------------------------------------------------------------------
@@ -584,6 +590,18 @@ function locationUpdate( position ) {
     userCoordinates.userLongitude = position.coords.longitude;
 
     userCoordinates.userLatitude = position.coords.latitude;
+
+    getUserLocation();
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// getUserLocation() :
+//
+//  Launch a navigator's user's position watch
+//----------------------------------------------------------------------------------------------------------------------
+
+function getUserLocation() {
 
     userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
@@ -609,17 +627,15 @@ function locationUpdate( position ) {
 
     userPositionMarker.addTo(map);
 
-    getUserLocation();
-
-}
-
-function getUserLocation() {
-
     map.setCenter([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
     if (navigator.geolocation) {
 
         navigator.geolocation.watchPosition(setUserCoordinates);
+
+    } else {
+
+
 
     }
 
@@ -666,13 +682,13 @@ function createPopupForSymbol( feature ) {
 
     var placeInformations = feature.properties;
 
-    var markerHeight = 50, markerRadius = 10, linearOffset = 25;
+    var markerHeight = 20, markerRadius = 10, linearOffset = 25;
 
     var popupOffsets = {
         'top': [0, 0],
         'top-left': [0, 0],
         'top-right': [0, 0],
-        'bottom': [0, -markerHeight],
+        'bottom': [0, - markerHeight],
         'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
         'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
         'left': [markerRadius, (markerHeight - markerRadius) * -1],
