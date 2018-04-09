@@ -44,13 +44,13 @@
 
         if (xobj.readyState === 4 && xobj.status == "200") {
 
-           // document.body.removeChild(loaderBackground);
+            document.body.removeChild(loaderBackground);
 
-            //geojsonSource = xobj.responseText;
+            geojsonSource = xobj.responseText;
 
-            //init();
+            init();
 
-           // loadAllJSON();
+            //loadAllJSON();
 
         }
 
@@ -74,7 +74,7 @@ function loader( progress ){
 
     $(".progress-bar")[0].innerText = value;
 
-    console.log(progress);
+    //console.log(progress);
 
 }
 
