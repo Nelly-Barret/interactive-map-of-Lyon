@@ -54,25 +54,25 @@
                 </div>
                 <div class="dropdown-item">
                     <label for"inputDay"> Opened on : </label>
-                  <select id="inputDay">
+                    <select id="inputDay">
 
-                    <option value="-1" selected>Choose a day...</option>
+                        <option value="-1" selected>Choose a day...</option>
 
-                    <option value="1">Monday</option>
+                        <option value="1">Monday</option>
 
-                    <option value="2">Tuesday</option>
+                        <option value="2">Tuesday</option>
 
-                    <option value="3">Wednesday</option>
+                        <option value="3">Wednesday</option>
 
-                    <option value="4">Thursday</option>
+                        <option value="4">Thursday</option>
 
-                    <option value="5">Friday</option>
+                        <option value="5">Friday</option>
 
-                    <option value="6">Saturday</option>
+                        <option value="6">Saturday</option>
 
-                    <option value="0">Sunday</option>
+                        <option value="0">Sunday</option>
 
-                  </select>
+                    </select>
 
                   <label for="inputTime">or/and at : </label>
                   <input type="time" id="inputTime">
@@ -81,7 +81,7 @@
                 <!-- reset and go buttons -->
                 <div class="dropdown-item">
                     <button type="button" class="btn btn-success" id="go">Go</button>
-                    <button type="button" class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button>
+                    <button type="button" class="btn btn-danger" id="resetFilters"><i class="fa fa-trash"></i></button>
                 </div>
             </div>
         </div>
