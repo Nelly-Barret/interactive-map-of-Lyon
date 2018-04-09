@@ -170,6 +170,15 @@ function init() {
     map = mapInitialisation(userCoordinates);
 
 
+    var options = {
+        enableHighAccuracy: true
+    };
+
+    // Update user's location
+
+    //navigator.geolocation.getCurrentPosition(locationUpdate, null, options);
+    getUserLocation();
+
     // Buttons interactions
 
     var goButton = document.getElementById("go");
@@ -371,6 +380,12 @@ function mapInitialisation(userCoordinates) {
 
     }), 'bottom-right');
 
+    // Adding map controls
+
+    map.addControl(new mapboxgl.NavigationControl({
+        "showCompass" : false
+    }), 'bottom-right');
+
     // disable map rotation using right click + drag
 
     map.dragRotate.disable();
@@ -480,7 +495,7 @@ function mapInitialisation(userCoordinates) {
                 layout: {
                     "text-field": "{point_count_abbreviated}",
                     "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 12
+                    "text-size": 13
                 }
             });
 
@@ -503,6 +518,12 @@ function mapInitialisation(userCoordinates) {
         }
 
         var feature = features[0];
+
+        var geometry = JSON.parse(feature.properties.geometry);
+
+        console.log(feature);
+
+        map.easeTo({center : [geometry.location.lng, geometry.location.lat + (2*latVariance)]});
 
         if( feature.properties['place_id'] != null ) {
 
@@ -549,11 +570,38 @@ function mapInitialisation(userCoordinates) {
     });
 
 
-    // Update user's location
+    // Creation of user marker on map
+    googlePlacesAPIService = new google.maps.places.PlacesService(document.createElement('div'));
+
+    return map;
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// locationUpdate(position) :
+//
+//  Launch a navigator's user's position watch
+//----------------------------------------------------------------------------------------------------------------------
+
+function locationUpdate( position ) {
+
+    console.log(position);
+
+    userCoordinates.userLongitude = position.coords.longitude;
+
+    userCoordinates.userLatitude = position.coords.latitude;
 
     getUserLocation();
 
-    // Creation of user marker on map
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// getUserLocation() :
+//
+//  Launch a navigator's user's position watch
+//----------------------------------------------------------------------------------------------------------------------
+
+function getUserLocation() {
 
     userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
@@ -579,43 +627,15 @@ function mapInitialisation(userCoordinates) {
 
     userPositionMarker.addTo(map);
 
-    var location = new mapboxgl.LngLat(userCoordinates.userLongitude, userCoordinates.userLatitude);
-
-    var coords = {
-
-        latitude: location.lat,
-
-        longitude: location.lng
-
-    };
-
-    var pos = {
-
-        coords: coords
-
-    };
-
-    setUserCoordinates(pos);
-
-    googlePlacesAPIService = new google.maps.places.PlacesService(document.createElement('div'));
-
-    return map;
-
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// getUserLocation() :
-//
-//  Launch a navigator's user's position watch
-//----------------------------------------------------------------------------------------------------------------------
-
-function getUserLocation() {
-
     map.setCenter([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
     if (navigator.geolocation) {
 
         navigator.geolocation.watchPosition(setUserCoordinates);
+
+    } else {
+
+
 
     }
 
@@ -662,13 +682,13 @@ function createPopupForSymbol( feature ) {
 
     var placeInformations = feature.properties;
 
-    var markerHeight = 50, markerRadius = 10, linearOffset = 25;
+    var markerHeight = 20, markerRadius = 10, linearOffset = 25;
 
     var popupOffsets = {
         'top': [0, 0],
         'top-left': [0, 0],
         'top-right': [0, 0],
-        'bottom': [0, -markerHeight],
+        'bottom': [0, - markerHeight],
         'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
         'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
         'left': [markerRadius, (markerHeight - markerRadius) * -1],
@@ -722,6 +742,32 @@ function createPopupForSymbol( feature ) {
 //  html -> a html text for the popup
 //----------------------------------------------------------------------------------------------------------------------
 
+function urlConverter( urlString ) {
+
+    var charMap = {
+
+        " " : "%20",
+        "\"": "%22",
+        "<" : "%3C",
+        ">" : "%3E",
+        "#" : "%23",
+        "%" : "%25",
+        "|" : "%7C"
+
+    }
+
+    var correctString = "";
+
+    for (var c in urlString) {
+
+        correctString += charMap[urlString[c]] || urlString[c];
+
+    }
+
+    return correctString;
+
+}
+
 function createMarkerPopupHTML(place) {
 
     var html = "";
@@ -733,8 +779,6 @@ function createMarkerPopupHTML(place) {
     html += "<p id='popupType'>" + place.mainType + "</p>";
 
     if (place.rating != null) {
-
-        //console.log("rating=" + place.rating);
 
         html += "<p id='popupRating'>";
 
@@ -755,9 +799,34 @@ function createMarkerPopupHTML(place) {
         }
 
         html += "</p>";
+
     }
 
-    html += "<div class='card' style='background-color: transparent; border-color: whitesmoke; margin-top: 10px'><br><p id='popupAddress'><i class='fa fa-street-view card-body'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=QVB&destination_place_id=" + place['place_id'] + "&travelmode=walking' style = 'color : whitesmoke; '>" + place['vicinity'] + "</a></p>";
+    if ( place.price != null ) {
+
+        html += "<p id='popupPrice'>" + place.price + "</p>";
+
+    }
+
+    var address = urlConverter(place['formatted_address']);
+
+    var geometryLat = JSON.parse(place['geometry'])['location']['lat'];
+
+    var geometryLng = JSON.parse(place['geometry'])['location']['lng'];
+
+    var destination;
+
+    if( address.toLowerCase().indexOf("unnamed") != -1 ){
+
+        destination = geometryLat + "," + geometryLng;
+
+    } else {
+
+        destination = address;
+
+    }
+
+    html += "<div class='card' style='background-color: transparent; border-color: whitesmoke; margin-top: 10px'><br><p id='popupAddress'><i class='fa fa-street-view card-body'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=" + destination + "&travelmode=walking' style = 'color : whitesmoke; '>" + place['vicinity'] + "</a></p>";
 
     if (place.website != null) {
 
@@ -835,12 +904,6 @@ function createMarkerPopupHTML(place) {
 
 
         }
-
-    }
-
-    if ( place.price != null ) {
-
-
 
     }
 

@@ -368,13 +368,19 @@ input span::before {
 
 }
 
-#popupRating {
+#popupRating, #popupPrice {
 
 	margin: 0;
 
 	padding-top: 10px !important;
 
 	text-align: center;
+
+}
+
+#popupPrice {
+
+	font-size: 20px;
 
 }
 
@@ -558,7 +564,7 @@ input span::before {
 
 }
 
-.fa-star-o {
+.fa-star-o, .fa-euro-o {
 
 	color: whitesmoke !important;
 

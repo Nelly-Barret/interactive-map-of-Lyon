@@ -14,7 +14,7 @@
                         <button id="restaurantButton" type="button" class="btnType btn">Restaurant</button>
                         <button id="barButton" type="button" class="btnType btn">Bar</button>
                         <button id="barRestaurantButton" type="button" class="btnType btn">Bar-Restaurant</button>
-                        <button id="restaurantButton" type="button" class="btnRemove btn"><i class="fa fa-remove"></i></button>
+                        <button id="restaurantButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset type filter"><i class="fa fa-remove"></i></button>
                     </div>
                 </div>
                 <div class="dropdown-item">
@@ -24,7 +24,7 @@
                         <button id="priceButton2" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button>
                         <button id="priceButton3" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button>
                         <button id="priceButton4" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button>
-                        <button id="restaurantButton" type="button" class="btnRemove btn"><i class="fa fa-remove"></i></button>
+                        <button id="restaurantButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset currency filter"><i class="fa fa-remove"></i></button>
                     </div>
                 </div>
                 <div class="dropdown-item">
@@ -35,7 +35,7 @@
                         <button type="button" id="starButton3" class="btnStar btn"><span class="fa fa-star"></span></button>
                         <button type="button" id="starButton4" class="btnStar btn"><span class="fa fa-star"></span></button>
                         <button type="button" id="starButton5" class="btnStar btn"><span class="fa fa-star"></span></button>
-                        <button id="restaurantButton" type="button" class="btnRemove btn"><i class="fa fa-remove"></i></button>
+                        <button id="restaurantButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset stars filter"><i class="fa fa-remove"></i></button>
                     </div>
                 </div>
                 <div class="dropdown-item">
@@ -54,25 +54,25 @@
                 </div>
                 <div class="dropdown-item">
                     <label for"inputDay"> Opened on : </label>
-                  <select id="inputDay">
+                    <select id="inputDay">
 
-                    <option value="-1" selected>Choose a day...</option>
+                        <option value="-1" selected>Choose a day...</option>
 
-                    <option value="1">Monday</option>
+                        <option value="1">Monday</option>
 
-                    <option value="2">Tuesday</option>
+                        <option value="2">Tuesday</option>
 
-                    <option value="3">Wednesday</option>
+                        <option value="3">Wednesday</option>
 
-                    <option value="4">Thursday</option>
+                        <option value="4">Thursday</option>
 
-                    <option value="5">Friday</option>
+                        <option value="5">Friday</option>
 
-                    <option value="6">Saturday</option>
+                        <option value="6">Saturday</option>
 
-                    <option value="0">Sunday</option>
+                        <option value="0">Sunday</option>
 
-                  </select>
+                    </select>
 
                   <label for="inputTime">or/and at : </label>
                   <input type="time" id="inputTime">
@@ -80,8 +80,8 @@
                 </div>
                 <!-- reset and go buttons -->
                 <div class="dropdown-item">
-                    <button type="button" class="btn btn-success" id="go">Go</button>
-                    <button type="button" class="btn btn-danger" id="resetFilters"><i class="fa fa-repeat"></i></button>
+                    <button type="button" class="btn btn-success" id="go" data-toggle="tooltip" data-placement="bottom" title="Display results">Go</button>
+                    <button type="button" class="btn btn-danger" id="resetFilters"><i class="fa fa-trash" data-toggle="tooltip" data-placement="bottom" title="Reset all filters"></i></button>
                 </div>
             </div>
         </div>
