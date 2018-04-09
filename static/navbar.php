@@ -102,7 +102,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title">Parameters</h1>
+                <h1 class="modal-title">Settings</h1>
                 <button type="button" class="close" data-dismiss="modal" style="position:absolute; right:10px;">&times;</button>
             </div>
             <div class="modal-body">
