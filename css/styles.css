@@ -218,7 +218,7 @@ input span::before {
 
 .btnType {
 
-	margin-right: 8px;
+	margin-right: 10px;
 
 	width: 120px;
 
@@ -234,19 +234,23 @@ input span::before {
 
 .btnStar {
 
-	margin-right: 8px;
+	margin-right: 10px;
 
-	width: 69px;
+	width: 66px;
 
 }
 
 .btnRemove {
 
-	border-radius: 25px;
+	border-radius: 13px;
+
+	height: 26px;
 
 	margin-right: 8px;
 
-	width: 25px;
+	padding: 0;
+
+	width: 26px;
 
 }
 
@@ -343,7 +347,7 @@ input span::before {
 
 #youAreHere {
 
-	color: whitesmoke;/*#FDF5E6; Oldlace */
+	color: whitesmoke;
 
 	font-size: 18px;
 
@@ -360,7 +364,7 @@ input span::before {
 
 #popupTitle, #popupType {
 
-	color: whitesmoke;/*rgba(253, 245, 230, 1); OldLace */
+	color: whitesmoke;
 
 	font-family: "Open Sans", Times, serif;
 
