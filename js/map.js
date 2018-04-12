@@ -191,6 +191,8 @@ var iconImage = "homeIconBlack";
 
 var legend = document.getElementById("legend");
 
+var closeLegend = document.getElementById("closeLegend");
+
 var visibilityLegend = "hidden";
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -338,6 +340,12 @@ function init() {
         visibilityLegend = "visible";
 
         legend.style.visibility = visibilityLegend;
+
+        closeLegend.addEventListener("click", function() {
+
+            console.log("coucou");
+
+        });
 
         var circles = [document.getElementById("legendCircleBar"), document.getElementById("legendCircleRestaurant"), document.getElementById("legendCircleBarRestaurant")]
 
