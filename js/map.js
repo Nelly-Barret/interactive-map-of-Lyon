@@ -838,7 +838,7 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    if ( place.price != null ) {
+    if ( place.price != "null" ) {
 
         html += "<p id='popupPrice'>" + place.price + "</p>";
 
