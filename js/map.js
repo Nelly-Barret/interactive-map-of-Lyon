@@ -193,6 +193,10 @@ var legend = document.getElementById("legend");
 
 var closeLegend = document.getElementById("closeLegend");
 
+var smallLegend = document.getElementById("smallLegend");
+
+var restoreLegend = document.getElementById("restore");
+
 var visibilityLegend = "hidden";
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -325,6 +329,24 @@ function init() {
 
     var cluster = document.getElementById("viewClusters");
 
+    closeLegend.addEventListener("click", function() {
+
+        legend.style.visibility = "hidden";
+
+        smallLegend.style.visibility = "visible";
+
+    });
+
+    restoreLegend.addEventListener("click", function() {
+
+       smallLegend.style.visibility = "hidden";
+
+       legend.style.visibility = "visible";
+
+    });
+
+
+
     point.addEventListener("click", function() {
 
         setClusters = false;
@@ -340,12 +362,6 @@ function init() {
         visibilityLegend = "visible";
 
         legend.style.visibility = visibilityLegend;
-
-        closeLegend.addEventListener("click", function() {
-
-            console.log("coucou");
-
-        });
 
         var circles = [document.getElementById("legendCircleBar"), document.getElementById("legendCircleRestaurant"), document.getElementById("legendCircleBarRestaurant")]
 

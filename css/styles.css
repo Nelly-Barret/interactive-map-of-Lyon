@@ -281,6 +281,8 @@ input span::before {
 
 	margin: 0;
 
+	padding: 8px 14px 8px 14px;
+
 	position: absolute;
 
 	left: 110px;
@@ -416,6 +418,26 @@ input span::before {
 	left: 170px;
 
 	color: white;
+
+}
+
+#smallLegend {
+
+	background-color: rgba(0, 0, 0, 0.8);
+
+	border-radius: 3px;
+
+	color: white;
+
+	position: absolute;
+
+	padding: 10px;
+
+	bottom: 35px;
+
+	left: 10px;
+
+	z-index: 1;
 
 }
 
@@ -620,6 +642,12 @@ input span::before {
 .fa-navicon {
 
 	color: whitesmoke;
+
+}
+
+.fa-window-restore {
+
+	margin-left: 10px;
 
 }
 
