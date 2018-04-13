@@ -14,7 +14,28 @@ $(document).ready(function() {
     /* if the screen is too small, add Br */
     if(window.matchMedia("(max-width: 600px)").matches) {
 
-        addBr();
+        var newBr1 = document.createElement("br"); /* we create a new breakline */
+
+        var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same many times */
+
+
+        newBr1.setAttribute("id", "br1");
+
+        newBr2.setAttribute("id", "br2");
+
+
+        var containerType = document.getElementById("typeContainer");
+
+
+        /* we add the breaklines to the DOM via inserting them */
+        containerType.insertBefore(newBr1, containerType.childNodes[0]);
+
+        containerType.insertBefore(newBr2, containerType.childNodes[1]);
+
+
+        /* shrink the dropdown menu */
+        $("#dropdown-menu-collapse").width("180px");
+
 
     }
 
@@ -226,13 +247,17 @@ function addBr() {
         /* we add the breaklines to the DOM via inserting them */
         containerType.insertBefore(newBr1, containerType.childNodes[1]);
 
-        containerType.insertBefore(newBr2, containerType.childNodes[3]);
+        containerType.insertBefore(newBr2, containerType.childNodes[2]);
 
-        containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);
+        //containerType.insertBefore(newBr2, containerType.childNodes[2]);
+
+        //containerType.insertBefore(newBr3, containerType.childNodes[3]);
+
+        /*containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);
 
         containerStar.insertBefore(newBr4, containerStar.childNodes[2]);
 
-        containerStar.insertBefore(newBr5, containerStar.childNodes[5]);
+        containerStar.insertBefore(newBr5, containerStar.childNodes[5]);*/
 
         /* shrink the dropdown menu */
         $("#dropdown-menu-collapse").width("180px");
