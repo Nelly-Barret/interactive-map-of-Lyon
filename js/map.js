@@ -42,7 +42,7 @@
 
         if (xobj.readyState === 4 && xobj.status == "200") {
 
-            setTimeout( function () {
+            setTimeout(function () {
 
                 document.body.removeChild(loaderBackground);
 
@@ -62,7 +62,7 @@
 
 }
 
-function loader( progress ){
+function loader(progress){
 
     var loaded = progress.loaded;
 
@@ -72,7 +72,7 @@ function loader( progress ){
 
     $(".progress-bar")[0].setAttribute("aria-valuenow", value);
 
-    $(".progress-bar")[0].setAttribute("style", "width:"+value+"%;" );
+    $(".progress-bar")[0].setAttribute("style", "width:"+value+"%;");
 
     $(".progress-bar")[0].innerText = value + " %";
 
@@ -101,7 +101,7 @@ var dayMap = {
 
 };
 
-function day_fold( day ) {
+function day_fold(day) {
 
     if (!day) { return ''; }
 
@@ -237,7 +237,7 @@ function init() {
 
     searchTextfield.addEventListener("input", function () {
 
-        if( searchTextfield.value.length == 0 ) {
+        if(searchTextfield.value.length == 0) {
 
             resetFilter();
 
@@ -254,11 +254,11 @@ function init() {
 
     });
 
-    window.addEventListener("keyup", function ( key ) {
+    window.addEventListener("keyup", function (key) {
 
         console.log(key);
 
-        if ( key.keyCode == 27 ) {
+        if (key.keyCode == 27) {
 
             searchTextfield.value = "";
 
@@ -268,9 +268,9 @@ function init() {
 
     });
 
-    window.addEventListener("keypress", function ( key ) {
+    window.addEventListener("keypress", function (key) {
 
-        if( key.keyCode == 13 ) {
+        if(key.keyCode == 13) {
 
             filterSearch(searchTextfield.value);
 
@@ -283,7 +283,7 @@ function init() {
 
     navFilterButton.addEventListener("click", function () {
 
-        for( var i = 0; i < popups.length ; i++ ) {
+        for(var i = 0; i < popups.length ; i++) {
 
             popups[i].remove();
 
@@ -306,9 +306,9 @@ function init() {
 
         console.log(btnStyles);
 
-        for ( var i = 0; i < btnStyles.length; i++) {
+        for (var i = 0; i < btnStyles.length; i++) {
 
-            if ( $(btnStyles[i]).attr('id') == selectedStyle ) {
+            if ($(btnStyles[i]).attr('id') == selectedStyle) {
 
                 $(btnStyles[i])[0].classList["value"] = "btn btn-dark btnStyle";
 
@@ -329,6 +329,7 @@ function init() {
 
     var cluster = document.getElementById("viewClusters");
 
+    // Hide and show smallLegend and legend
     closeLegend.addEventListener("click", function() {
 
         legend.style.visibility = "hidden";
@@ -344,7 +345,6 @@ function init() {
        legend.style.visibility = "visible";
 
     });
-
 
 
     point.addEventListener("click", function() {
@@ -412,7 +412,7 @@ function init() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// mapInitialisation( userCoordinates ) :
+// mapInitialisation(userCoordinates) :
 //
 //  Initialize a map with passed coordinates and set the map interactions
 //
@@ -506,7 +506,7 @@ function mapInitialisation(userCoordinates) {
                         "Bar-restaurant", barRestaurantColor,
                         "Bar-Restaurant", barRestaurantColor,
                         '#000000'
-                    ]
+                   ]
                 }
             });
 
@@ -547,7 +547,7 @@ function mapInitialisation(userCoordinates) {
                         "#e9f154",
                         750,
                         "#f25525"
-                    ],
+                   ],
                     "circle-radius": [
                         "step",
                         ["get", "point_count"],
@@ -556,7 +556,7 @@ function mapInitialisation(userCoordinates) {
                         30,
                         750,
                         40
-                    ]
+                   ]
                 }
             });
 
@@ -598,7 +598,7 @@ function mapInitialisation(userCoordinates) {
 
         map.easeTo({center : [geometry.location.lng, geometry.location.lat + (2*latVariance)]});
 
-        if( feature.properties['place_id'] != null ) {
+        if(feature.properties['place_id'] != null) {
 
             popups.push(createPopupForSymbol(feature));
 
@@ -628,7 +628,7 @@ function mapInitialisation(userCoordinates) {
 
         //console.log(feature.properties);
 
-        if( feature.properties['place_id'] != null ) {
+        if(feature.properties['place_id'] != null) {
 
             popup = createPopupForSymbol(feature);
 
@@ -656,7 +656,7 @@ function mapInitialisation(userCoordinates) {
 //  Launch a navigator's user's position watch
 //----------------------------------------------------------------------------------------------------------------------
 
-function locationUpdate( position ) {
+function locationUpdate(position) {
 
     console.log(position);
 
@@ -715,7 +715,7 @@ function getUserLocation() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// setUserCoordinates( position ) :
+// setUserCoordinates(position) :
 //
 //  Update the userCoordinates property, and update the user's position's marker
 //
@@ -724,7 +724,7 @@ function getUserLocation() {
 //  position -> a position with latitude and longitude
 //----------------------------------------------------------------------------------------------------------------------
 
-function setUserCoordinates( position ) {
+function setUserCoordinates(position) {
 
     userCoordinates.userLatitude = position.coords.latitude;
 
@@ -738,7 +738,7 @@ function setUserCoordinates( position ) {
 //##################### DISPLAY RELATED METHODS ########################################################################
 //######################################################################################################################
 //----------------------------------------------------------------------------------------------------------------------
-// createPopupForSymbol( feature ) :
+// createPopupForSymbol(feature) :
 //
 //  creates a popup for a place
 //
@@ -751,7 +751,7 @@ function setUserCoordinates( position ) {
 //  popup -> a mapbox popup
 //----------------------------------------------------------------------------------------------------------------------
 
-function createPopupForSymbol( feature ) {
+function createPopupForSymbol(feature) {
 
     var placeInformations = feature.properties;
 
@@ -773,9 +773,9 @@ function createPopupForSymbol( feature ) {
         .setHTML(createMarkerPopupHTML(placeInformations))
         .addTo(map);
 
-    if( placeInformations.subtypes != null && placeInformations.subtypes != "null"){
+    if(placeInformations.subtypes != null && placeInformations.subtypes != "null"){
 
-        if( placeInformations.length != 0) {
+        if(placeInformations.length != 0) {
 
             var subtypesLength = JSON.parse(placeInformations.subtypes).length;
 
@@ -802,7 +802,7 @@ function createPopupForSymbol( feature ) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// createMarkerPopupHTML( place ) :
+// createMarkerPopupHTML(place) :
 //
 //  Creates the html content of the popup
 //
@@ -815,7 +815,7 @@ function createPopupForSymbol( feature ) {
 //  html -> a html text for the popup
 //----------------------------------------------------------------------------------------------------------------------
 
-function urlConverter( urlString ) {
+function urlConverter(urlString) {
 
     var charMap = {
 
@@ -875,7 +875,7 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    if ( place.price != "null" ) {
+    if (place.price != "null") {
 
         html += "<p id='popupPrice'>" + place.price + "</p>";
 
@@ -889,7 +889,7 @@ function createMarkerPopupHTML(place) {
 
     var destination;
 
-    if( address.toLowerCase().indexOf("unnamed") != -1 ){
+    if(address.toLowerCase().indexOf("unnamed") != -1){
 
         destination = geometryLat + "," + geometryLng;
 
@@ -929,7 +929,7 @@ function createMarkerPopupHTML(place) {
 
             var day = d.getDay();
 
-            if( forcedDate != null ) {
+            if(forcedDate != null) {
 
                 day = forcedDate;
 
@@ -961,14 +961,14 @@ function createMarkerPopupHTML(place) {
 
             if (str != null && str.length != 0){
 
-                if( forcedDate == null ) {
+                if(forcedDate == null) {
 
-                    //str.indexOf( ': ' )+2 => starts after ': '
+                    //str.indexOf(': ')+2 => starts after ': '
                     html += "<p class='day card-body'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>";
 
                 } else {
 
-                    //str.indexOf( ': ' )+2 => starts after ': '
+                    //str.indexOf(': ')+2 => starts after ': '
                     html += "<p class='day card-body'><i class='fa fa-clock-o'></i>" + day_fold(str.substring(0, str.indexOf(':'))) + str.substring(str.indexOf(':'), str.length) + "</p>\n";
 
                 }
@@ -982,7 +982,7 @@ function createMarkerPopupHTML(place) {
 
     html+= "</div>";
 
-    if ( place.subtypes != null && place.subtypes != "null") {
+    if (place.subtypes != null && place.subtypes != "null") {
 
     	var subtypesToDisplay = JSON.parse(place.subtypes);
 
@@ -1040,7 +1040,7 @@ function changeStyle(input) {
 //----------------------------------------------------------------------------------------------------------------------
 // filterMap() :
 //
-//  Prepare a filter object based on what is currently selected in the filters menu, then call filterFunction( filter )
+//  Prepare a filter object based on what is currently selected in the filters menu, then call filterFunction(filter)
 //----------------------------------------------------------------------------------------------------------------------
 
 function filterMap() {
@@ -1120,7 +1120,7 @@ function filterMap() {
 
         var clicked = $(typeButtons[i]).data().clicked;
 
-        if( clicked ) {
+        if(clicked) {
 
             filter.types[i] = clicked;
 
@@ -1153,7 +1153,7 @@ function filterMap() {
 
     filter.opened = openedNowButton.checked;
 
-    if ( openingHoursInput.value.length !== 0 ) {
+    if (openingHoursInput.value.length !== 0) {
 
         filter.openingHours = openingHoursInput.value;
 
@@ -1161,7 +1161,7 @@ function filterMap() {
 
     }
 
-    if ( dayInput.value != -1 ) {
+    if (dayInput.value != -1) {
 
         filter.openedDay = dayInput.value;
 
@@ -1178,7 +1178,7 @@ function filterMap() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// filterFunction ( filter ) :
+// filterFunction (filter) :
 //
 //  Apply a filter to the geojsonSource property based on the passed filter's properties
 //
@@ -1191,7 +1191,7 @@ function filterFunction(filter) {
 
     var features = filteredGeojson.features;
 
-    if( filter.filteringTypes ) {
+    if(filter.filteringTypes) {
 
         features = filteredGeojson.features.filter(function (value) {
 
@@ -1215,9 +1215,9 @@ function filterFunction(filter) {
 
     }
 
-    if( filter.rating != null ){
+    if(filter.rating != null){
 
-        features = features.filter( function (value) {
+        features = features.filter(function (value) {
 
             return Math.floor(value.properties.rating) == filter.rating;
 
@@ -1225,13 +1225,13 @@ function filterFunction(filter) {
 
     }
 
-    if( filter.aroundMe ) {
+    if(filter.aroundMe) {
 
         map.flyTo({center : [userCoordinates.userLongitude, userCoordinates.userLatitude]});
 
-        features = features.filter( function (value) {
+        features = features.filter(function (value) {
 
-            return ( value.properties.geometry.location.lat <= userCoordinates.userLatitude + 2*latVariance
+            return (value.properties.geometry.location.lat <= userCoordinates.userLatitude + 2*latVariance
                 && value.properties.geometry.location.lat >= userCoordinates.userLatitude - 2*latVariance
                 && value.properties.geometry.location.lng <= userCoordinates.userLongitude + 2*lngVariance
                 && value.properties.geometry.location.lng >= userCoordinates.userLongitude - 2*lngVariance);
@@ -1240,15 +1240,15 @@ function filterFunction(filter) {
 
     }
 
-    if( filter.opened ) {
+    if(filter.opened) {
 
-        features = features.filter( function (value) {
+        features = features.filter(function (value) {
 
             var date = new Date();
 
             var day = date.getDay();
 
-            if( day == 0 ) {
+            if(day == 0) {
 
                 day = 6;
 
@@ -1266,19 +1266,19 @@ function filterFunction(filter) {
 
             var openingHours = value.properties["opening_hours"];
 
-            if( openingHours != null ) {
+            if(openingHours != null) {
 
                 var periods = value.properties["opening_hours"]["periods"];
 
-                if ( periods != null ) {
+                if (periods != null) {
 
                     var openings = [];
 
                     var closings = [];
 
-                    for (var i = 0; i < periods.length ; i ++ ) {
+                    for (var i = 0; i < periods.length ; i ++) {
 
-                        if ( periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
+                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
 
                             openings.push(periods[i]["open"]["time"]);
 
@@ -1290,7 +1290,7 @@ function filterFunction(filter) {
 
                     for (var i = 0; i < openings.length ; i ++) {
 
-                        if ( openings[i] <= time && time <= closings[i] ) {
+                        if (openings[i] <= time && time <= closings[i]) {
 
                             return true;
 
@@ -1316,7 +1316,7 @@ function filterFunction(filter) {
 
     }
 
-    if ( filter.openingHours !== null ) {
+    if (filter.openingHours !== null) {
 
         var str = document.getElementById("inputTime").value;
 
@@ -1338,9 +1338,9 @@ function filterFunction(filter) {
 
                 var day = date.getDay();
 
-                if( filter.openedDay == null ) {
+                if(filter.openedDay == null) {
 
-                    if( day == 0 ) {
+                    if(day == 0) {
 
                         day = 6;
 
@@ -1364,9 +1364,9 @@ function filterFunction(filter) {
 
                 var closings = [];
 
-                for (var i = 0; i < periods.length ; i ++ ) {
+                for (var i = 0; i < periods.length ; i ++) {
 
-                    if ( periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
+                    if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
 
                         openings.push(periods[i]["open"]["time"]);
 
@@ -1378,7 +1378,7 @@ function filterFunction(filter) {
 
                 for (var i = 0; i < openings.length ; i ++) {
 
-                    if ( openings[i] <= timeValue && timeValue <= closings[i] ) {
+                    if (openings[i] <= timeValue && timeValue <= closings[i]) {
 
                         return true;
 
@@ -1396,15 +1396,15 @@ function filterFunction(filter) {
 
     }
 
-    if( filter.filteringPrices == true ) {
+    if(filter.filteringPrices == true) {
 
-        features = features.filter( function (value) {
+        features = features.filter(function (value) {
 
-            if( value.properties.price != null ) {
+            if(value.properties.price != null) {
 
                 for (var i = 0; i < filter.price.length ; i++) {
 
-                    if ( value.properties.price.length == filter.price[i] ) {
+                    if (value.properties.price.length == filter.price[i]) {
 
                         return true;
 
@@ -1426,19 +1426,19 @@ function filterFunction(filter) {
 
     if (filter.openedDay) {
 
-        features = features.filter( function ( value ) {
+        features = features.filter(function (value) {
 
             var openingHours = value.properties["opening_hours"];
 
-            if( openingHours != null ) {
+            if(openingHours != null) {
 
                 var periods = value.properties["opening_hours"]["periods"];
 
-                if ( periods != null ) {
+                if (periods != null) {
 
-                    for (var i = 0; i < periods.length ; i ++ ) {
+                    for (var i = 0; i < periods.length ; i ++) {
 
-                        if ( periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == filter.openedDay && periods[i]["open"]["day"] == filter.openedDay) {
+                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == filter.openedDay && periods[i]["open"]["day"] == filter.openedDay) {
 
                             forcedDate = filter.openedDay;
 
@@ -1462,7 +1462,7 @@ function filterFunction(filter) {
 
     map.getSource('places').setData(filteredGeojson);
 
-    if ( filteredGeojson.features.length == 1 ) {
+    if (filteredGeojson.features.length == 1) {
 
         map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
 
@@ -1489,7 +1489,7 @@ function filterDate(filter) {
 
     var features = filteredGeojson.features;
 
-    if( filter.filteringTypes ) {
+    if(filter.filteringTypes) {
 
         features = filteredGeojson.features.filter(function (value) {
 
@@ -1536,14 +1536,14 @@ function resetFilter() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// filterSearch( searchString ) :
+// filterSearch(searchString) :
 //
 //  Reset the current filters then applies filter on the geojson looking in addresses, names, subtypes, main types
 //
 //  If the searchString is empty, it just resets the filters
 //----------------------------------------------------------------------------------------------------------------------
 
-function filterSearch( searchString ) {
+function filterSearch(searchString) {
 
     resetFilter();
 
@@ -1555,7 +1555,7 @@ function filterSearch( searchString ) {
 
         var optionRegex = new RegExp(/!/);
 
-        if( searchString.search(optionRegex) == -1 ) {
+        if(searchString.search(optionRegex) == -1) {
 
             features = features.filter(function (value) {
 
@@ -1571,13 +1571,13 @@ function filterSearch( searchString ) {
 
                 var subtype = false;
 
-                if( value.properties.subtypes != null ) {
+                if(value.properties.subtypes != null) {
 
                     for (var l = 0  ; l < value.properties.subtypes.length; l++) {
 
                         var elem = value.properties.subtypes[l];
 
-                        if( accent_fold(elem.alias).indexOf(searchName) != -1 || accent_fold(elem.title.toLowerCase()).indexOf(searchName) != -1 ) {
+                        if(accent_fold(elem.alias).indexOf(searchName) != -1 || accent_fold(elem.title.toLowerCase()).indexOf(searchName) != -1) {
 
                             subtype = true;
 
@@ -1597,9 +1597,9 @@ function filterSearch( searchString ) {
 
             var openRegex = new RegExp(/open/);
 
-            if( searchString.search( openRegex ) != -1 ) {
+            if(searchString.search(openRegex) != -1) {
 
-                features = features.filter( function (value) {
+                features = features.filter(function (value) {
 
                     var sundayRegex = new RegExp(/sunday|dimanche/);
 
@@ -1615,19 +1615,19 @@ function filterSearch( searchString ) {
 
                     var saturdayRegex = new RegExp(/saturday|samedi/);
 
-                    var regexes = [ sundayRegex, mondayRegex, tuesdayRegex, wednesdayRegex, thursdayRegex, fridayRegex, saturdayRegex ];
+                    var regexes = [sundayRegex, mondayRegex, tuesdayRegex, wednesdayRegex, thursdayRegex, fridayRegex, saturdayRegex];
 
                     for(var i = 0; i < regexes.length ; i++) {
 
-                        if ( searchString.search( regexes[i] ) != -1 ) {
+                        if (searchString.search(regexes[i]) != -1) {
 
-                            if( value.properties.weekday_text != null && i < value.properties.weekday_text.length ) {
+                            if(value.properties.weekday_text != null && i < value.properties.weekday_text.length) {
 
                                 forcedDate = i;
 
-                                var openingHours = value.properties.weekday_text[ i ];
+                                var openingHours = value.properties.weekday_text[i];
 
-                                return openenedFilter( openingHours );
+                                return openenedFilter(openingHours);
 
                             } else {
 
@@ -1651,7 +1651,7 @@ function filterSearch( searchString ) {
 
         map.getSource('places').setData(filteredGeojson);
 
-        if ( filteredGeojson.features.length == 1 ) {
+        if (filteredGeojson.features.length == 1) {
 
             map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
 
@@ -1692,14 +1692,14 @@ var placesRequest;          // Google places API request
 var counter;                // Simple counter for tasks
 
 //----------------------------------------------------------------------------------------------------------------------
-// fetchAllPlaceRadar ( timeInterval ) :
+// fetchAllPlaceRadar (timeInterval) :
 //
 //  This will retrieves all places ids from google's method radarSearch, then it'll call getDetailsAfterRadar()
 //
 //  Intern radar search requests callbacks are handled with radarSquareCallBack() methods
 //----------------------------------------------------------------------------------------------------------------------
 
-function fetchAllPlaceRadar( timeInterval ) {
+function fetchAllPlaceRadar(timeInterval) {
 
     var allPlacesId = [];
 
@@ -1735,27 +1735,27 @@ function fetchAllPlaceRadar( timeInterval ) {
 
     var i = 1;
 
-    console.log( "Crawling on lyon..." );
+    console.log("Crawling on lyon...");
 
-    var interval = setInterval( function () {
+    var interval = setInterval(function () {
 
-        if ( bounds.north < mapGridBounds.bottomLatitude - latVariance ) {
+        if (bounds.north < mapGridBounds.bottomLatitude - latVariance) {
 
-            console.log( "All data retrieved" );
+            console.log("All data retrieved");
 
             console.log(JSON.stringify(allPlacesId));
 
-            getDetailsAfterRadar( allPlacesId, 2000 );
+            getDetailsAfterRadar(allPlacesId, 2000);
 
-            clearInterval( interval );
+            clearInterval(interval);
 
         } else {
 
-            var sw = new google.maps.LatLng( bounds.south.toFixed( 6 ), bounds.west.toFixed( 6 ) );
+            var sw = new google.maps.LatLng(bounds.south.toFixed(6), bounds.west.toFixed(6));
 
-            var ne = new google.maps.LatLng( bounds.north.toFixed( 6 ), bounds.east.toFixed( 6 ) );
+            var ne = new google.maps.LatLng(bounds.north.toFixed(6), bounds.east.toFixed(6));
 
-            var radarBounds = new google.maps.LatLngBounds( sw, ne );
+            var radarBounds = new google.maps.LatLngBounds(sw, ne);
 
             placesRequest = {
 
@@ -1765,11 +1765,11 @@ function fetchAllPlaceRadar( timeInterval ) {
 
             };
 
-            googlePlacesAPIService.radarSearch( placesRequest, function ( results, status ) {
+            googlePlacesAPIService.radarSearch(placesRequest, function (results, status) {
 
-                radarSquareCallBack( results, status, allPlacesId, i );
+                radarSquareCallBack(results, status, allPlacesId, i);
 
-            } );
+            });
 
             placesRequest = {
 
@@ -1779,34 +1779,34 @@ function fetchAllPlaceRadar( timeInterval ) {
 
             };
 
-            googlePlacesAPIService.radarSearch( placesRequest, function ( results, status ) {
+            googlePlacesAPIService.radarSearch(placesRequest, function (results, status) {
 
-                radarSquareCallBack( results, status, allPlacesId, i );
+                radarSquareCallBack(results, status, allPlacesId, i);
 
-            } );
+            });
 
             // test markers
             /*~
-                    console.log( bounds );
+                    console.log(bounds);
 
-                    var position = new mapboxgl.LngLat( bounds.west.toFixed( 6 ), bounds.north.toFixed( 6 ) );
+                    var position = new mapboxgl.LngLat(bounds.west.toFixed(6), bounds.north.toFixed(6));
 
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+                    new  mapboxgl.Marker().setLngLat(position).addTo(map);
 
-                    position = new mapboxgl.LngLat( bounds.west.toFixed( 6 ), bounds.south.toFixed( 6 ) );
+                    position = new mapboxgl.LngLat(bounds.west.toFixed(6), bounds.south.toFixed(6));
 
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+                    new  mapboxgl.Marker().setLngLat(position).addTo(map);
 
-                    position = new mapboxgl.LngLat( bounds.east.toFixed( 6 ), bounds.north.toFixed( 6 ) );
+                    position = new mapboxgl.LngLat(bounds.east.toFixed(6), bounds.north.toFixed(6));
 
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+                    new  mapboxgl.Marker().setLngLat(position).addTo(map);
 
-                    position = new mapboxgl.LngLat( bounds.east.toFixed( 6 ), bounds.south.toFixed( 6 ) );
+                    position = new mapboxgl.LngLat(bounds.east.toFixed(6), bounds.south.toFixed(6));
 
-                    new  mapboxgl.Marker().setLngLat( position ).addTo( map );
+                    new  mapboxgl.Marker().setLngLat(position).addTo(map);
             */
 
-            if ( bounds.west > mapGridBounds.rightLongitude ) {
+            if (bounds.west > mapGridBounds.rightLongitude) {
 
                 bounds.west = baseBounds.west;
 
@@ -1828,12 +1828,12 @@ function fetchAllPlaceRadar( timeInterval ) {
 
         }
 
-    }, timeInterval );
+    }, timeInterval);
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// radarSquareCallBack ( results, status, array, i ) :
+// radarSquareCallBack (results, status, array, i) :
 //
 //  Callback that constructs the place_ids array
 //
@@ -1848,30 +1848,30 @@ function fetchAllPlaceRadar( timeInterval ) {
 //  array -> an array containing all place_id
 //----------------------------------------------------------------------------------------------------------------------
 
-function radarSquareCallBack( results, status, array, i ) {
+function radarSquareCallBack(results, status, array, i) {
 
     i--;
 
-    console.log( "Fetching zones : " + i + " / 31 ... Status : " + status );
+    console.log("Fetching zones : " + i + " / 31 ... Status : " + status);
 
-    if ( status === google.maps.places.PlacesServiceStatus.OK ) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-        //~ console.log( results );
+        //~ console.log(results);
 
-        for ( var i = 0 ; i < results.length ; i++ ) {
+        for (var i = 0 ; i < results.length ; i++) {
 
-            array.push( results[i]["place_id"] );
+            array.push(results[i]["place_id"]);
 
         }
 
     }
 
-    //~ console.log( array.toString() );
+    //~ console.log(array.toString());
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// getDetailsAfterRadar( placeIds, timeInterval ) :
+// getDetailsAfterRadar(placeIds, timeInterval) :
 //
 //  Call google's getPlaceDetails then build a json string for each type based on constructed arrays by callbacks
 //
@@ -1883,34 +1883,34 @@ function radarSquareCallBack( results, status, array, i ) {
 //  timeInterval -> time in milliseconds between two requests
 //----------------------------------------------------------------------------------------------------------------------
 
-function getDetailsAfterRadar( placeIds, timeInterval ) {
+function getDetailsAfterRadar(placeIds, timeInterval) {
 
     var i = 1;
 
-    var interval = setInterval( function () {
+    var interval = setInterval(function () {
 
-        if ( i % 100 === 0 ) {
+        if (i % 100 === 0) {
 
-            console.log( "Bars : " );
-            console.log( fetchedBars );
-            console.log( "Bar Restaurants : " );
-            console.log( fetchedBarRestaurants );
-            console.log( "Restaurants : " );
-            console.log( fetchedRestaurants );
-            console.log( "Total : " );
-            console.log( fetchedBarRestaurants.length + fetchedBars.length + fetchedRestaurants.length );
+            console.log("Bars : ");
+            console.log(fetchedBars);
+            console.log("Bar Restaurants : ");
+            console.log(fetchedBarRestaurants);
+            console.log("Restaurants : ");
+            console.log(fetchedRestaurants);
+            console.log("Total : ");
+            console.log(fetchedBarRestaurants.length + fetchedBars.length + fetchedRestaurants.length);
 
         }
 
-        if ( i >= placeIds.length ) {
+        if (i >= placeIds.length) {
 
-            clearInterval( interval );
+            clearInterval(interval);
 
-            for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
+            for (var j = 0 ; j < fetchedBars.length ; j ++) {
 
-                barsString += JSON.stringify( fetchedBars[j] );
+                barsString += JSON.stringify(fetchedBars[j]);
 
-                if ( j !== fetchedBars.length - 1 ) {
+                if (j !== fetchedBars.length - 1) {
 
                     barsString += ",";
 
@@ -1918,11 +1918,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
             }
 
-            for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
+            for (j = 0 ; j < fetchedRestaurants.length ; j ++) {
 
-                restaurantsString += JSON.stringify( fetchedRestaurants[j] );
+                restaurantsString += JSON.stringify(fetchedRestaurants[j]);
 
-                if ( j !== fetchedRestaurants.length - 1 ) {
+                if (j !== fetchedRestaurants.length - 1) {
 
                     restaurantsString += ",";
 
@@ -1930,11 +1930,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
             }
 
-            for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
+            for (j = 0 ; j < fetchedBarRestaurants.length ; j ++) {
 
-                barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
+                barsRestaurantsString += JSON.stringify(fetchedBarRestaurants[j]);
 
-                if ( j !== fetchedBarRestaurants.length - 1 ) {
+                if (j !== fetchedBarRestaurants.length - 1) {
 
                     barsRestaurantsString += ",";
 
@@ -1942,7 +1942,7 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
             }
 
-            console.log( "All details retrieved" );
+            console.log("All details retrieved");
 
         } else {
 
@@ -1952,19 +1952,19 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
             };
 
-            googlePlacesAPIService.getDetails( detailsRequest, function ( results, status ) {
+            googlePlacesAPIService.getDetails(detailsRequest, function (results, status) {
 
-                if ( status === "OVER_QUERY_LIMIT" ) {
+                if (status === "OVER_QUERY_LIMIT") {
 
-                    console.log( "State " + i + ", interruption" );
+                    console.log("State " + i + ", interruption");
 
-                    clearInterval( interval );
+                    clearInterval(interval);
 
-                    for ( var j = 0 ; j < fetchedBars.length ; j ++ ) {
+                    for (var j = 0 ; j < fetchedBars.length ; j ++) {
 
-                        barsString += JSON.stringify( fetchedBars[j] );
+                        barsString += JSON.stringify(fetchedBars[j]);
 
-                        if ( j !== fetchedBars.length - 1 ) {
+                        if (j !== fetchedBars.length - 1) {
 
                             barsString += ",";
 
@@ -1972,11 +1972,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
                     }
 
-                    for ( j = 0 ; j < fetchedRestaurants.length ; j ++ ) {
+                    for (j = 0 ; j < fetchedRestaurants.length ; j ++) {
 
-                        restaurantsString += JSON.stringify( fetchedRestaurants[j] );
+                        restaurantsString += JSON.stringify(fetchedRestaurants[j]);
 
-                        if ( j !== fetchedRestaurants.length - 1 ) {
+                        if (j !== fetchedRestaurants.length - 1) {
 
                             restaurantsString += ",";
 
@@ -1984,11 +1984,11 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
                     }
 
-                    for ( j = 0 ; j < fetchedBarRestaurants.length ; j ++ ) {
+                    for (j = 0 ; j < fetchedBarRestaurants.length ; j ++) {
 
-                        barsRestaurantsString += JSON.stringify( fetchedBarRestaurants[j] );
+                        barsRestaurantsString += JSON.stringify(fetchedBarRestaurants[j]);
 
-                        if ( j !== fetchedBarRestaurants.length - 1 ) {
+                        if (j !== fetchedBarRestaurants.length - 1) {
 
                             barsRestaurantsString += ",";
 
@@ -1998,22 +1998,22 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 
                 } else {
 
-                    getDetailsCallback( results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants, i, placeIds.length );
+                    getDetailsCallback(results, status, fetchedBars, fetchedRestaurants, fetchedBarRestaurants, i, placeIds.length);
 
                 }
 
-            } );
+            });
 
             i++;
 
         }
 
-    }, timeInterval );
+    }, timeInterval);
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// getDetailsCallback ( result, status, bars, restaurants, barRestaurants, state, progression ) :
+// getDetailsCallback (result, status, bars, restaurants, barRestaurants, state, progression) :
 //
 //  Callback of google's getDetails methods, fills arrays of bars, restaurants and bar-restaurants
 //
@@ -2031,39 +2031,39 @@ function getDetailsAfterRadar( placeIds, timeInterval ) {
 //  barRestaurants -> an array containing all barRestaurants
 // ----------------------------------------------------------------------------------------------------------------------
 
-function getDetailsCallback( result, status, bars, restaurants, barRestaurants, state , progression ) {
+function getDetailsCallback(result, status, bars, restaurants, barRestaurants, state , progression) {
 
     state --;
 
-    console.log( "Progression : " + state + " / " + progression + " ... Status : " + status );
+    console.log("Progression : " + state + " / " + progression + " ... Status : " + status);
 
-    if ( status === google.maps.places.PlacesServiceStatus.OK ) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
 
-        //~ console.log( "callback" );
+        //~ console.log("callback");
 
         var actualPlace = result;
 
-        var isBar = checkIfPlaceIsBar( actualPlace );
+        var isBar = checkIfPlaceIsBar(actualPlace);
 
-        var isRestaurant = checkIfPlaceIsRestaurant( actualPlace );
+        var isRestaurant = checkIfPlaceIsRestaurant(actualPlace);
 
-        if ( isBar && isRestaurant ) {
+        if (isBar && isRestaurant) {
 
             actualPlace.mainType = "Bar-restaurant";
 
-            barRestaurants.push( actualPlace );
+            barRestaurants.push(actualPlace);
 
-        } else if ( isBar ) {
+        } else if (isBar) {
 
             actualPlace.mainType = "Bar";
 
-            bars.push( actualPlace );
+            bars.push(actualPlace);
 
-        } else if ( isRestaurant ) {
+        } else if (isRestaurant) {
 
             actualPlace.mainType = "Restaurant";
 
-            restaurants.push( actualPlace );
+            restaurants.push(actualPlace);
 
         }
 
@@ -2072,7 +2072,7 @@ function getDetailsCallback( result, status, bars, restaurants, barRestaurants, 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// checkIfPlaceIsBar ( place ) :
+// checkIfPlaceIsBar (place) :
 //
 //  verify if passed place's types contains "bar"
 //
@@ -2081,12 +2081,12 @@ function getDetailsCallback( result, status, bars, restaurants, barRestaurants, 
 //  place -> a place retrieved with google's getDetails method
 // ----------------------------------------------------------------------------------------------------------------------
 
-function checkIfPlaceIsBar( place ) {
+function checkIfPlaceIsBar(place) {
 
-    for ( var i = 0 ; i < place.types.length ; i++ )
+    for (var i = 0 ; i < place.types.length ; i++)
     {
 
-        if ( place.types[i] === "bar" ) {
+        if (place.types[i] === "bar") {
 
             return true;
 
@@ -2099,7 +2099,7 @@ function checkIfPlaceIsBar( place ) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// checkIfPlaceIsRestaurant ( place ) :
+// checkIfPlaceIsRestaurant (place) :
 //
 //  verify if passed place's types contains "restaurant"
 //
@@ -2108,12 +2108,12 @@ function checkIfPlaceIsBar( place ) {
 //  place -> a place retrieved with google's getDetails method
 // ----------------------------------------------------------------------------------------------------------------------
 
-function checkIfPlaceIsRestaurant( place ) {
+function checkIfPlaceIsRestaurant(place) {
 
-    for ( var i = 0 ; i < place.types.length ; i++ )
+    for (var i = 0 ; i < place.types.length ; i++)
     {
 
-        if ( place.types[i] === "restaurant" ) {
+        if (place.types[i] === "restaurant") {
 
             return true;
 
@@ -2277,7 +2277,7 @@ function loadYelpJSON() {
 
             for (var i = 0; i < yelpJSON.length ; i++) {
 
-                if( yelpJSON[i]['display_phone'] != null ) {
+                if(yelpJSON[i]['display_phone'] != null) {
 
                     yelpJSON[i]['display_phone'] = yelpJSON[i]['display_phone'].replace('+33 ', '0');
 
@@ -2399,19 +2399,19 @@ function generateGeoJSON() {
 
         geoJSONItem.properties.mainType = parsedBars[i].mainType;
 
-        if( parsedBars[i].rating != null ) {
+        if(parsedBars[i].rating != null) {
 
             geoJSONItem.properties.rating = parsedBars[i].rating;
 
         }
 
-        if( parsedBars[i].reviews != null ) {
+        if(parsedBars[i].reviews != null) {
 
             var reviews = parsedBars[i].reviews;
 
             var text = "";
 
-            for ( var j = 0 ; j < reviews.length ; j++ ){
+            for (var j = 0 ; j < reviews.length ; j++){
 
                 text += reviews[j]['text'];
 
@@ -2422,19 +2422,19 @@ function generateGeoJSON() {
 
         }
 
-        if ( parsedBars[i].opening_hours != null ) {
+        if (parsedBars[i].opening_hours != null) {
 
             geoJSONItem.properties.opening_hours = parsedBars[i].opening_hours;
 
         }
 
-        if (parsedBars[i].url != null ) {
+        if (parsedBars[i].url != null) {
 
             geoJSONItem.properties.url = parsedBars[i].url;
 
         }
 
-        if ( parsedBars[i].website != null ) {
+        if (parsedBars[i].website != null) {
 
             geoJSONItem.properties.website = parsedBars[i].website;
 
@@ -2473,19 +2473,19 @@ function generateGeoJSON() {
 
         geoJSONItem.properties.mainType = parsedBarRestaurants[i].mainType;
 
-        if( parsedBarRestaurants[i].rating != null ) {
+        if(parsedBarRestaurants[i].rating != null) {
 
             geoJSONItem.properties.rating = parsedBarRestaurants[i].rating;
 
         }
 
-        if( parsedBarRestaurants[i].reviews != null ) {
+        if(parsedBarRestaurants[i].reviews != null) {
 
             var reviews = parsedBarRestaurants[i].reviews;
 
             var text = "";
 
-            for ( var j = 0 ; j < reviews.length ; j++ ){
+            for (var j = 0 ; j < reviews.length ; j++){
 
                 text += reviews[j]['text'];
 
@@ -2496,19 +2496,19 @@ function generateGeoJSON() {
 
         }
 
-        if ( parsedBarRestaurants[i].opening_hours != null ) {
+        if (parsedBarRestaurants[i].opening_hours != null) {
 
             geoJSONItem.properties.opening_hours = parsedBarRestaurants[i].opening_hours;
 
         }
 
-        if (parsedBarRestaurants[i].url != null ) {
+        if (parsedBarRestaurants[i].url != null) {
 
             geoJSONItem.properties.url = parsedBarRestaurants[i].url;
 
         }
 
-        if ( parsedBarRestaurants[i].website != null ) {
+        if (parsedBarRestaurants[i].website != null) {
 
             geoJSONItem.properties.website = parsedBarRestaurants[i].website;
 
@@ -2548,19 +2548,19 @@ function generateGeoJSON() {
 
         geoJSONItem.properties.mainType = parsedRestaurants[i].mainType;
 
-        if( parsedRestaurants[i].rating != null ) {
+        if(parsedRestaurants[i].rating != null) {
 
             geoJSONItem.properties.rating = parsedRestaurants[i].rating;
 
         }
 
-        if( parsedRestaurants[i].reviews != null ) {
+        if(parsedRestaurants[i].reviews != null) {
 
             var reviews = parsedRestaurants[i].reviews;
 
             var text = "";
 
-            for ( var j = 0 ; j < reviews.length ; j++ ){
+            for (var j = 0 ; j < reviews.length ; j++){
 
                 text += reviews[j]['text'];
 
@@ -2571,19 +2571,19 @@ function generateGeoJSON() {
 
         }
 
-        if ( parsedRestaurants[i].opening_hours != null ) {
+        if (parsedRestaurants[i].opening_hours != null) {
 
             geoJSONItem.properties.opening_hours = parsedRestaurants[i].opening_hours;
 
         }
 
-        if (parsedRestaurants[i].url != null ) {
+        if (parsedRestaurants[i].url != null) {
 
             geoJSONItem.properties.url = parsedRestaurants[i].url;
 
         }
 
-        if ( parsedRestaurants[i].website != null ) {
+        if (parsedRestaurants[i].website != null) {
 
             geoJSONItem.properties.website = parsedRestaurants[i].website;
 
@@ -2611,7 +2611,7 @@ function generateGeoJSON() {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// cleanGeoJSON ( geoJSONString ) :
+// cleanGeoJSON (geoJSONString) :
 //
 //  Cleans the passed geoJSONString from doublons then launches the yelp fusion procedure
 //
@@ -2620,7 +2620,7 @@ function generateGeoJSON() {
 //  geoJSONString -> a geojson string
 //----------------------------------------------------------------------------------------------------------------------
 
-function cleanGeoJSON( geoJSONString ) {
+function cleanGeoJSON(geoJSONString) {
 
     console.log("Cleaning geojson from doublons...");
 
@@ -2667,7 +2667,7 @@ function cleanGeoJSON( geoJSONString ) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// fusionYelpGoogle ( baseGeoJSON ) :
+// fusionYelpGoogle (baseGeoJSON) :
 //
 //  Add Yelp data to Google geojson's object presents in both google and yelp, then launches addYELPElements()
 //
@@ -2676,7 +2676,7 @@ function cleanGeoJSON( geoJSONString ) {
 //  baseGeoJSON -> a geojson string
 //----------------------------------------------------------------------------------------------------------------------
 
-function fusionYelpGoogle( baseGeoJSON ) {
+function fusionYelpGoogle(baseGeoJSON) {
 
     console.log("Starting yelp-google fusion...");
 
@@ -2696,7 +2696,7 @@ function fusionYelpGoogle( baseGeoJSON ) {
 
         console.log("Progression : " + i + " / " + yelpJSON.length);
 
-        if ( i >= yelpJSON.length ) {
+        if (i >= yelpJSON.length) {
 
             i = 0;
 
@@ -2722,28 +2722,28 @@ function fusionYelpGoogle( baseGeoJSON ) {
 
                 var featureFormattedAddress = accent_fold(feature["formatted_address"].toLowerCase());
 
-                if( featureFormattedPhone == yelpFormattedPhone
-                    || featureFormattedAddress.indexOf(yelpFormattedAddress) != -1 ) {
+                if(featureFormattedPhone == yelpFormattedPhone
+                    || featureFormattedAddress.indexOf(yelpFormattedAddress) != -1) {
 
-                    if ( yelpJSON[i].categories != null ) {
+                    if (yelpJSON[i].categories != null) {
 
                         feature.subtypes = yelpJSON[i].categories;
 
                     }
 
-                    if ( yelpJSON[i].phone.length != 0 && featureFormattedPhone == null ) {
+                    if (yelpJSON[i].phone.length != 0 && featureFormattedPhone == null) {
 
                         feature["formatted_phone_number"] = yelpFormattedPhone;
 
                     }
 
-                    if( yelpJSON[i].price != null ) {
+                    if(yelpJSON[i].price != null) {
 
                         feature.price = yelpJSON[i].price;
 
                     }
 
-                    if( yelpJSON[i].url != null && feature.url == null ) {
+                    if(yelpJSON[i].url != null && feature.url == null) {
 
                         feature.website = yelpJSON[i].url;
 
@@ -2766,7 +2766,7 @@ function fusionYelpGoogle( baseGeoJSON ) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// addYELPElements ( geojsonBase, yelpJSON ) :
+// addYELPElements (geojsonBase, yelpJSON) :
 //
 //  Add Yelp data to Google geojson's object not present in google, then launches cleanPositionDoublons()
 //
@@ -2776,7 +2776,7 @@ function fusionYelpGoogle( baseGeoJSON ) {
 //  yelpJSON -> a yelp JSON
 //----------------------------------------------------------------------------------------------------------------------
 
-function addYELPElements( geojsonBase, yelpJSON ) {
+function addYELPElements(geojsonBase, yelpJSON) {
 
     console.log("Adding new yelp elements to google database...");
 
@@ -2830,31 +2830,31 @@ function addYELPElements( geojsonBase, yelpJSON ) {
 
         };
 
-        if( yelpJSON[indice]['display_phone'] != null ) {
+        if(yelpJSON[indice]['display_phone'] != null) {
 
             addedObject.properties['formatted_phone_number'] = yelpJSON[indice]['display_phone'];
 
         }
 
-        if ( yelpJSON[indice].price != null ) {
+        if (yelpJSON[indice].price != null) {
 
             addedObject.properties.price = yelpJSON[indice].price;
 
         }
 
-        if( yelpJSON[indice].categories != null) {
+        if(yelpJSON[indice].categories != null) {
 
             addedObject.properties.subtypes = yelpJSON[indice].categories;
 
-            for( var j = 0; j < yelpJSON[indice].categories.length ; j++ ) {
+            for(var j = 0; j < yelpJSON[indice].categories.length ; j++) {
 
-                if( yelpJSON[indice].categories[j].alias.indexOf('bars') != -1 ){
+                if(yelpJSON[indice].categories[j].alias.indexOf('bars') != -1){
 
                     addedObject.mainType = "Bar";
 
                     break;
 
-                } else if ( yelpJSON[indice].categories[j].alias.indexOf('restaurants') != -1 ) {
+                } else if (yelpJSON[indice].categories[j].alias.indexOf('restaurants') != -1) {
 
                     addedObject.mainType = "Restaurant";
 
@@ -2866,7 +2866,7 @@ function addYELPElements( geojsonBase, yelpJSON ) {
 
         }
 
-        if( yelpJSON[indice].url != null ) {
+        if(yelpJSON[indice].url != null) {
 
             addedObject.properties.url = yelpJSON[indice].url;
 
@@ -2881,12 +2881,12 @@ function addYELPElements( geojsonBase, yelpJSON ) {
 
     //console.log(JSON.stringify(geojsonBase));
 
-    cleanPositionDoublons( geojsonBase );
+    cleanPositionDoublons(geojsonBase);
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// cleanPositionDoublons ( geoJSONSourceBase ) :
+// cleanPositionDoublons (geoJSONSourceBase) :
 //
 //  Cleans geojson to prevent from object's position duplicates, then set the geojsonSource gobal variable
 //
@@ -2895,7 +2895,7 @@ function addYELPElements( geojsonBase, yelpJSON ) {
 //  geoJSONSourceBase -> a geojson string
 //----------------------------------------------------------------------------------------------------------------------
 
-function cleanPositionDoublons( geoJSONSourceBase ) {
+function cleanPositionDoublons(geoJSONSourceBase) {
 
     console.log("Cleaning positions doublons...");
 
@@ -2909,7 +2909,7 @@ function cleanPositionDoublons( geoJSONSourceBase ) {
 
         for (var j = i + 1; j < features.length; j++) {
 
-            if( features[i].properties.latitude == features[j].properties.latitude && features[i].properties.longitude == features[j].properties.longitude ) {
+            if(features[i].properties.latitude == features[j].properties.latitude && features[i].properties.longitude == features[j].properties.longitude) {
 
                 if (features[i].properties["formatted_phone_number"] == features[j].properties["formatted_phone_number"]) {
 

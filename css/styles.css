@@ -2,16 +2,16 @@
 /*############ MEMO ON CSS ##########################################################################################*/
 /*####################################################################################################################*/
 
-/* element1, element2 : selects element1 and element2 */
-/* element1 element2 : selects all descendants (children, grandchildren...) which are element2 => descendant combinator */
-/* element1>element2 : selects (only) children which are element2 => child combinator */
+/* element1, element2: selects element1 and element2 */
+/* element1 element2: selects all descendants (children, grandchildren...) which are element2 => descendant combinator */
+/* element1>element2: selects (only) children which are element2 => child combinator */
 
-/* padding : the space between the content and the border */
-/* padding : padding-top padding-right padding-bottom padding-left */
-/* margin : the space around the border (document side)*/
-/* margin : margin-top margin-right margin-bottom margin-left */
+/* padding: the space between the content and the border */
+/* padding: padding-top padding-right padding-bottom padding-left */
+/* margin: the space around the border (document side)*/
+/* margin: margin-top margin-right margin-bottom margin-left */
 
-/* CSS font-property : Times and serif are generic fonts (used if the navigator don't understand the others) */
+/* CSS font-property: Times and serif are generic fonts (used if the navigator don't understand the others) */
 
 
 /*####################################################################################################################*/
@@ -623,13 +623,13 @@ input span::before {
 
 	padding-right: 10px !important;
 
-	color : whitesmoke !important;
+	color: whitesmoke !important;
 
 }
 
 #popupRating .fa-star {
 
-	color : gold !important;
+	color: gold !important;
 
 }
 
