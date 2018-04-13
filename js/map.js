@@ -250,8 +250,6 @@ function init() {
 
     window.addEventListener("keyup", function (key) {
 
-        console.log(key);
-
         if (key.keyCode == 27) {
 
             searchTextfield.value = "";
