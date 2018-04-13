@@ -191,13 +191,7 @@ var iconImage = "homeIconBlack";
 
 var legend = document.getElementById("legend");
 
-var closeLegend = document.getElementById("closeLegend");
-
 var smallLegend = document.getElementById("smallLegend");
-
-var restoreLegend = document.getElementById("restore");
-
-var visibilityLegend = "hidden";
 
 //----------------------------------------------------------------------------------------------------------------------
 // init() :
@@ -329,23 +323,6 @@ function init() {
 
     var cluster = document.getElementById("viewClusters");
 
-    // Hide and show smallLegend and legend
-    closeLegend.addEventListener("click", function() {
-
-        legend.style.visibility = "hidden";
-
-        smallLegend.style.visibility = "visible";
-
-    });
-
-    restoreLegend.addEventListener("click", function() {
-
-       smallLegend.style.visibility = "hidden";
-
-       legend.style.visibility = "visible";
-
-    });
-
 
     point.addEventListener("click", function() {
 
@@ -359,9 +336,25 @@ function init() {
 
         mapInitialisation(userCoordinates);
 
-        visibilityLegend = "visible";
+        legend.style.visibility = "visible";
 
-        legend.style.visibility = visibilityLegend;
+        // Hide and show smallLegend and legend
+        $("#closeLegend").on("click", function() {
+
+            legend.style.visibility = "hidden";
+
+            smallLegend.style.visibility = "visible";
+
+        });
+
+        $("#restore").on("click", function() {
+
+            legend.style.visibility = "visible";
+
+            smallLegend.style.visibility = "hidden";
+
+        });
+
 
         var circles = [document.getElementById("legendCircleBar"), document.getElementById("legendCircleRestaurant"), document.getElementById("legendCircleBarRestaurant")]
 
@@ -403,9 +396,7 @@ function init() {
 
         mapInitialisation(userCoordinates);
 
-        visibilityLegend = "hidden";
-
-        legend.style.visibility = visibilityLegend;
+        legend.style.visibility = "hidden";
 
     });
 
