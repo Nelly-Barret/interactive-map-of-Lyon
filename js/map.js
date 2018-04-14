@@ -30,7 +30,7 @@
     $(".progress-bar")[0].setAttribute("aria-valuemax", "100");
 
 
-    // Request to load the GeoJson source file and set geoJsonSource property, removes loader and launch init()
+    // Request to load the GeoJson source file and set geojsonSource property, removes loader and launch init()
 
     var xobj = new XMLHttpRequest();
 
@@ -46,7 +46,7 @@
 
                 document.body.removeChild(loaderBackground);
 
-                geoJsonSource = xobj.responseText;
+                geojsonSource = xobj.responseText;
 
                 init();
 
@@ -103,11 +103,7 @@ var dayMap = {
 
 function day_fold(day) {
 
-    if (!day) {
-
-        return '';
-
-    }
+    if (!day) { return ''; }
 
     return dayMap[day];
 
@@ -116,24 +112,14 @@ function day_fold(day) {
 // Function that removes accents in sentences.
 function accent_fold (s) {
 
-    if (!s) {
-
-        return '';
-
-    }
-
-
+    if (!s) { return ''; }
     var ret = '';
-
-    for (var i = 0 ; i < s.length ; i++) {
-
+    for (var i = 0; i < s.length; i++) {
         ret += accentMap[s.charAt(i)] || s.charAt(i);
-
     }
-
     return ret;
 
-}
+};
 
 var googlePlacesAPIService; // Service for API request executions
 
@@ -151,7 +137,7 @@ var latVariance = 0.001764; // Latitude difference to get to an other sector // 
 
 var lngVariance = 0.002560; // Longitude difference to get to an other sector // Base = 0.001280
 
-var geoJsonSource;          // GeoJson source of the project, initialised at the start
+var geojsonSource;          // GeoJson source of the project, initialised at the start
 
 var forcedDate = null;
 
@@ -171,7 +157,7 @@ var mapGridBounds = {
 
     bottomLatitude : 45.732777,
 
-    leftLongitude : 4.791173,
+    leftLongitute : 4.791173,
 
     rightLongitude : 4.871854
 
@@ -192,6 +178,8 @@ var setClusters = true;     // Choose between points or clusters
 var icon = "homeIcon";      // Points of clusters of colored points
 
 var overlap = true;         // For text overlap
+
+var pointColor = "#51bbd6"; // Color of points
 
 var markersTitleColor = "#000000";
 
@@ -220,18 +208,14 @@ function init() {
     map = mapInitialisation(userCoordinates);
 
 
-    /*~
     var options = {
-
         enableHighAccuracy: true
     };
-    */
 
     // Update user's location
 
-    //~navigator.geolocation.getCurrentPosition(locationUpdate, null, options);
+    //navigator.geolocation.getCurrentPosition(locationUpdate, null, options);
     getUserLocation();
-
 
     // Buttons interactions
 
@@ -249,7 +233,7 @@ function init() {
 
     searchTextfield.addEventListener("input", function () {
 
-        if(searchTextfield.value.length === 0) {
+        if(searchTextfield.value.length == 0) {
 
             resetFilter();
 
@@ -268,7 +252,7 @@ function init() {
 
     window.addEventListener("keyup", function (key) {
 
-        if (key.keyCode === 27) {
+        if (key.keyCode == 27) {
 
             searchTextfield.value = "";
 
@@ -280,7 +264,7 @@ function init() {
 
     window.addEventListener("keypress", function (key) {
 
-        if(key.keyCode === 13) {
+        if(key.keyCode == 13) {
 
             filterSearch(searchTextfield.value);
 
@@ -318,7 +302,7 @@ function init() {
 
         for (var i = 0; i < btnStyles.length; i++) {
 
-            if ($(btnStyles[i]).attr('id') === selectedStyle) {
+            if ($(btnStyles[i]).attr('id') == selectedStyle) {
 
                 $(btnStyles[i])[0].classList["value"] = "btn btn-dark btnStyle";
 
@@ -372,7 +356,7 @@ function init() {
         });
 
 
-        var circles = [document.getElementById("legendCircleBar"), document.getElementById("legendCircleRestaurant"), document.getElementById("legendCircleBarRestaurant")];
+        var circles = [document.getElementById("legendCircleBar"), document.getElementById("legendCircleRestaurant"), document.getElementById("legendCircleBarRestaurant")]
 
         for (var i = 0 ; i < circles.length ; i++) {
 
@@ -663,7 +647,6 @@ function mapInitialisation(userCoordinates) {
 //  Launch a navigator's user's position watch
 //----------------------------------------------------------------------------------------------------------------------
 
-/*~
 function locationUpdate(position) {
 
     console.log(position);
@@ -675,7 +658,6 @@ function locationUpdate(position) {
     getUserLocation();
 
 }
-*/
 
 //----------------------------------------------------------------------------------------------------------------------
 // getUserLocation() :
@@ -753,11 +735,11 @@ function setUserCoordinates(position) {
 //
 // INPUT :
 //
-//  feature -> a geoJson point object
+//  feature -> a geojson point object
 //
 // OUTPUT :
 //
-//  popup -> a MapBox popup
+//  popup -> a mapbox popup
 //----------------------------------------------------------------------------------------------------------------------
 
 function createPopupForSymbol(feature) {
@@ -782,9 +764,9 @@ function createPopupForSymbol(feature) {
         .setHTML(createMarkerPopupHTML(placeInformations))
         .addTo(map);
 
-    if(placeInformations.subtypes !== null && placeInformations.subtypes !== "null"){
+    if(placeInformations.subtypes != null && placeInformations.subtypes != "null"){
 
-        if(placeInformations.length !== 0) {
+        if(placeInformations.length != 0) {
 
             var subtypesLength = JSON.parse(placeInformations.subtypes).length;
 
@@ -898,7 +880,7 @@ function createMarkerPopupHTML(place) {
 
     var destination;
 
-    if(address.toLowerCase().indexOf("unnamed") !== -1){
+    if(address.toLowerCase().indexOf("unnamed") != -1){
 
         destination = geometryLat + "," + geometryLng;
 
@@ -922,7 +904,7 @@ function createMarkerPopupHTML(place) {
 
     if (place['formatted_phone_number'] != null) {
 
-        html += "<p id='popupPhone'><i class='fa fa-phone card-body'></i><a href=\"tel:" + place['formatted_phone_number'] + "\" style = 'color : whitesmoke; '>" + place['formatted_phone_number'] + "</a></p>";
+        html += "<p id='popupPhone'><i class='fa fa-phone card-body'></i><a href=\"tel:" + place['formatted_phone_number'] + "\"style = 'color : whitesmoke; '>" + place['formatted_phone_number'] + "</a></p>";
 
     }
 
@@ -991,7 +973,7 @@ function createMarkerPopupHTML(place) {
 
     html+= "</div>";
 
-    if (place.subtypes !== null && place.subtypes !== "null") {
+    if (place.subtypes != null && place.subtypes != "null") {
 
     	var subtypesToDisplay = JSON.parse(place.subtypes);
 
@@ -1023,7 +1005,7 @@ function changeStyle(input) {
 
     style = input.innerText.toLowerCase();
 
-    if (style === "dark" || style === "satellite") {
+    if (style === "dark" || style === "satellite"){
 
         markersTitleColor = "#ffffff";
 
@@ -1170,7 +1152,7 @@ function filterMap() {
 
     }
 
-    if (dayInput.value !== -1) {
+    if (dayInput.value != -1) {
 
         filter.openedDay = dayInput.value;
 
@@ -1187,20 +1169,20 @@ function filterMap() {
 //----------------------------------------------------------------------------------------------------------------------
 // filterFunction (filter) :
 //
-//  Apply a filter to the geoJsonSource property based on the passed filter's properties
+//  Apply a filter to the geojsonSource property based on the passed filter's properties
 //
 //  If only one object is left after filtering, we fly and zoom to it in the map
 //----------------------------------------------------------------------------------------------------------------------
 
 function filterFunction(filter) {
 
-    var filteredGeoJson = JSON.parse(geoJsonSource);
+    var filteredGeojson = JSON.parse(geojsonSource);
 
-    var features = filteredGeoJson.features;
+    var features = filteredGeojson.features;
 
     if(filter.filteringTypes) {
 
-        features = filteredGeoJson.features.filter(function (value) {
+        features = filteredGeojson.features.filter(function (value) {
 
             var values = ['Restaurant', 'Bar', 'Bar-Restaurant'];
 
@@ -1208,9 +1190,9 @@ function filterFunction(filter) {
 
             for (var i = 0; i < filter.types.length; i++) {
 
-                if (filter.types[i] === true) {
+                if (filter.types[i] == true) {
 
-                    bool = bool || value.properties.mainType === values[i];
+                    bool = bool || value.properties.mainType == values[i];
 
                 }
 
@@ -1226,7 +1208,7 @@ function filterFunction(filter) {
 
         features = features.filter(function (value) {
 
-            return Math.floor(value.properties.rating) === filter.rating;
+            return Math.floor(value.properties.rating) == filter.rating;
 
         });
 
@@ -1255,7 +1237,7 @@ function filterFunction(filter) {
 
             var day = date.getDay();
 
-            if(day === 0) {
+            if(day == 0) {
 
                 day = 6;
 
@@ -1285,7 +1267,7 @@ function filterFunction(filter) {
 
                     for (var i = 0; i < periods.length ; i ++) {
 
-                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] === day && periods[i]["open"]["day"] === day) {
+                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
 
                             openings.push(periods[i]["open"]["time"]);
 
@@ -1337,7 +1319,7 @@ function filterFunction(filter) {
 
         // Get the field "openingHours" from the variable filter
 
-        features = filteredGeoJson.features.filter(function (value) {
+        features = filteredGeojson.features.filter(function (value) {
 
             if (value.properties.opening_hours != null && value.properties.opening_hours.periods != null) {
 
@@ -1347,7 +1329,7 @@ function filterFunction(filter) {
 
                 if(filter.openedDay == null) {
 
-                    if(day === 0) {
+                    if(day == 0) {
 
                         day = 6;
 
@@ -1373,7 +1355,7 @@ function filterFunction(filter) {
 
                 for (var i = 0; i < periods.length ; i ++) {
 
-                    if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] === day && periods[i]["open"]["day"] === day) {
+                    if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == day && periods[i]["open"]["day"] == day) {
 
                         openings.push(periods[i]["open"]["time"]);
 
@@ -1403,7 +1385,7 @@ function filterFunction(filter) {
 
     }
 
-    if(filter.filteringPrices === true) {
+    if(filter.filteringPrices == true) {
 
         features = features.filter(function (value) {
 
@@ -1411,7 +1393,7 @@ function filterFunction(filter) {
 
                 for (var i = 0; i < filter.price.length ; i++) {
 
-                    if (value.properties.price.length === filter.price[i]) {
+                    if (value.properties.price.length == filter.price[i]) {
 
                         return true;
 
@@ -1445,7 +1427,7 @@ function filterFunction(filter) {
 
                     for (var i = 0; i < periods.length ; i ++) {
 
-                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] === filter.openedDay && periods[i]["open"]["day"] === filter.openedDay) {
+                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == filter.openedDay && periods[i]["open"]["day"] == filter.openedDay) {
 
                             forcedDate = filter.openedDay;
 
@@ -1465,13 +1447,13 @@ function filterFunction(filter) {
 
     }
 
-    filteredGeoJson.features = features;
+    filteredGeojson.features = features;
 
-    map.getSource('places').setData(filteredGeoJson);
+    map.getSource('places').setData(filteredGeojson);
 
-    if (filteredGeoJson.features.length === 1) {
+    if (filteredGeojson.features.length == 1) {
 
-        map.flyTo({center : filteredGeoJson.features[0].geometry.coordinates});
+        map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
 
     } else if (!filter.aroundMe){
 
@@ -1482,7 +1464,7 @@ function filterFunction(filter) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-/*~
+
 function filterDate(filter) {
 
     var str = document.getElementById("#inputTime").value;
@@ -1492,7 +1474,7 @@ function filterDate(filter) {
     var minute = str.substring(str.indexOf(':')+1, str.length);
 
 
-    var filteredGeojson = JSON.parse(geoJsonSource);
+    var filteredGeojson = JSON.parse(geojsonSource);
 
     var features = filteredGeojson.features;
 
@@ -1506,9 +1488,9 @@ function filterDate(filter) {
 
             for (var i = 0; i < filter.types.length; i++) {
 
-                if (filter.types[i] === true) {
+                if (filter.types[i] == true) {
 
-                    bool = bool || value.properties.type === values[i];
+                    bool = bool || value.properties.type == values[i];
 
                 }
 
@@ -1521,12 +1503,11 @@ function filterDate(filter) {
     }
 
 }
-*/
 
 //----------------------------------------------------------------------------------------------------------------------
 // resetFilter() :
 //
-//  Removes all current filters by setting the original geoJsonSource
+//  Removes all current filters by setting the original geojsonSource
 //----------------------------------------------------------------------------------------------------------------------
 
 function resetFilter() {
@@ -1539,7 +1520,7 @@ function resetFilter() {
 
     forcedDate = null;
 
-    map.getSource('places').setData(JSON.parse(geoJsonSource));
+    map.getSource('places').setData(JSON.parse(geojsonSource));
 
 }
 
@@ -1557,13 +1538,13 @@ function filterSearch(searchString) {
 
     if (searchString.length !== 0) {
 
-        var filteredGeojson = JSON.parse(geoJsonSource);
+        var filteredGeojson = JSON.parse(geojsonSource);
 
         var features = filteredGeojson.features;
 
         var optionRegex = new RegExp(/!/);
 
-        if(searchString.search(optionRegex) === -1) {
+        if(searchString.search(optionRegex) == -1) {
 
             features = features.filter(function (value) {
 
@@ -1585,7 +1566,7 @@ function filterSearch(searchString) {
 
                         var elem = value.properties.subtypes[l];
 
-                        if(accent_fold(elem.alias).indexOf(searchName) !== -1 || accent_fold(elem.title.toLowerCase()).indexOf(searchName) !== -1) {
+                        if(accent_fold(elem.alias).indexOf(searchName) != -1 || accent_fold(elem.title.toLowerCase()).indexOf(searchName) != -1) {
 
                             subtype = true;
 
@@ -1597,7 +1578,7 @@ function filterSearch(searchString) {
 
                 }
 
-                return (reviews.indexOf(searchName) !== -1 || valueName.indexOf(searchName) !== -1 || valueAddress.indexOf(searchName) !== -1 || valueType.indexOf(searchName) !== -1 || subtype);
+                return (reviews.indexOf(searchName) != -1 || valueName.indexOf(searchName) != -1 || valueAddress.indexOf(searchName) != -1 || valueType.indexOf(searchName) != -1 || subtype);
 
             });
 
@@ -1605,7 +1586,7 @@ function filterSearch(searchString) {
 
             var openRegex = new RegExp(/open/);
 
-            if(searchString.search(openRegex) !== -1) {
+            if(searchString.search(openRegex) != -1) {
 
                 features = features.filter(function (value) {
 
@@ -1627,7 +1608,7 @@ function filterSearch(searchString) {
 
                     for(var i = 0; i < regexes.length ; i++) {
 
-                        if (searchString.search(regexes[i]) !== -1) {
+                        if (searchString.search(regexes[i]) != -1) {
 
                             if(value.properties.weekday_text != null && i < value.properties.weekday_text.length) {
 
@@ -1659,7 +1640,7 @@ function filterSearch(searchString) {
 
         map.getSource('places').setData(filteredGeojson);
 
-        if (filteredGeojson.features.length === 1) {
+        if (filteredGeojson.features.length == 1) {
 
             map.flyTo({center : filteredGeojson.features[0].geometry.coordinates});
 
@@ -2173,7 +2154,7 @@ function loadAllJSON() {
 
 function loadBarsJSON() {
 
-    console.log("Retreiving Bars JSON...");
+    console.log("Retreiving Bars JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -2207,7 +2188,7 @@ function loadBarsJSON() {
 
 function loadRestaurantsJSON() {
 
-    console.log("Retreiving Restaurants JSON...");
+    console.log("Retreiving Restaurants JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -2239,7 +2220,7 @@ function loadRestaurantsJSON() {
 
 function loadBarsRestaurantsJSON() {
 
-    console.log("Retreiving Bar-Restaurants JSON...");
+    console.log("Retreiving Bar-Restaurants JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -2271,7 +2252,7 @@ function loadBarsRestaurantsJSON() {
 
 function loadYelpJSON() {
 
-    console.log("Retreiving Yelp JSON...");
+    console.log("Retreiving Yelp JSON...")
 
     var xobj = new XMLHttpRequest();
 
@@ -2379,7 +2360,7 @@ function generateGeoJSON() {
 
             "scope": "GOOGLE",
 
-            "vicinity": null
+            "vicinity": null,
 
         }
 
@@ -2896,7 +2877,7 @@ function addYELPElements(geojsonBase, yelpJSON) {
 //----------------------------------------------------------------------------------------------------------------------
 // cleanPositionDoublons (geoJSONSourceBase) :
 //
-//  Cleans geojson to prevent from object's position duplicates, then set the geoJsonSource gobal variable
+//  Cleans geojson to prevent from object's position duplicates, then set the geojsonSource gobal variable
 //
 // INPUT :
 //
@@ -2945,7 +2926,7 @@ function cleanPositionDoublons(geoJSONSourceBase) {
 
     console.log("Success.");
 
-    geoJsonSource = JSON.stringify(geoJSONParsed);
+    geojsonSource = JSON.stringify(geoJSONParsed);
 
 }
 
