@@ -1160,8 +1160,6 @@ function filterMap() {
 
     //console.log(filter);
 
-    console.log(filter);
-
     filterFunction(filter);
 
 }

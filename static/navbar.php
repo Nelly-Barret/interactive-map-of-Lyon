@@ -12,22 +12,11 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div class="dropdown-item">
                         <label for="typeContainer">Type</label>
-                        <div class="containerButtons" id="typeContainer">
-                            <button id="restaurantButton" type="button" class="btnType btn">Restaurant</button>
-                            <button id="barButton" type="button" class="btnType btn">Bar</button>
-                            <button id="barRestaurantButton" type="button" class="btnType btn">Bar-Restaurant</button>
-                            <button id="resetButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset type filter"><i class="fa fa-remove"></i></button>
-                        </div>
+                        <div class="containerButtons" id="typeContainer"><button id="restaurantButton" type="button" class="btnType btn">Restaurant</button><button id="barButton" type="button" class="btnType btn">Bar</button><button id="barRestaurantButton" type="button" class="btnType btn">Bar-Restaurant</button><button id="resetButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset type filter"><i class="fa fa-remove"></i></button></div>
                     </div>
                     <div class="dropdown-item">
                         <label for="currencyContainer">Price</label>
-                        <div class="containerButtons" id="currencyContainer">
-                            <button id="priceButton1" type="button" class="btnPrice btn"><i class="fa fa-euro"></i></button>
-                            <button id="priceButton2" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button>
-                            <button id="priceButton3" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button>
-                            <button id="priceButton4" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button>
-                            <button id="resetButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset currency filter"><i class="fa fa-remove"></i></button>
-                        </div>
+                        <div class="containerButtons" id="currencyContainer"><button id="priceButton1" type="button" class="btnPrice btn"><i class="fa fa-euro"></i></button><button id="priceButton2" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="priceButton3" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="priceButton4" type="button" class="btnPrice btn"><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i><i class="fa fa-euro"></i></button><button id="resetButton" type="button" class="btnRemove btn" data-toggle="tooltip" data-placement="bottom" title="Reset currency filter"><i class="fa fa-remove"></i></button></div>
                     </div>
                     <div class="dropdown-item">
                         <label for="starContainer">Rating</label>

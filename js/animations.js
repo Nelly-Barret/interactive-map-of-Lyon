@@ -191,12 +191,12 @@ $(window).resize(function() {
 });
 
 function addBr() {
-
+/*
     if($("#br1").length === 0) {
 
-        var newBr1 = document.createElement("br"); /* we create a new breakline */
+        var newBr1 = document.createElement("br"); /* we create a new breakline *
 
-        var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same many times */
+        var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same many times *
 
         var newBr3 = document.createElement("br");
 
@@ -241,32 +241,50 @@ function addBr() {
 
         newBr11.setAttribute("id", "br11");
 
-        newBr12.setAttribute("id", "br12");
+        newBr12.setAttribute("id", "br12");*/
 
 
         var containerType = document.getElementById("typeContainer");
-
+/*
         var containerPrice = document.getElementById("currencyContainer");
 
         var containerStar = document.getElementById("starContainer");
 
         var inputDay = document.getElementById("inputDay");
-
+*/
 
         /* we add the breaklines to the DOM via inserting them */
         /* child nodes are 3 and 5 because 1 is button, 2 is text, 3 is button, 4 is text, 5 is button, 6 is text */
 
-        for (var i = 0 ; i < containerStar.childNodes.length ; i++) {
+        //containerType.insertBefore(newBr1, containerType.childNodes[3]);
 
-            console.log(containerStar.childNodes[i]);
+        //containerType.insertBefore(newBr2, containerType.childNodes[5]);
+
+        for (var i = 1 ; i < containerType.childNodes.length-1 ; i++) {
+
+            console.log(containerType.childNodes[i]);
+
+            var newBr = document.createElement("br"); // we create a new breakline
+
+            containerType.insertBefore(newBr, document.getElementById("typeButton"+i));
 
         }
 
-        containerType.insertBefore(newBr1, containerType.childNodes[3]);
+/*
+        console.log(containerPrice.childNodes.length-1);
 
-        containerType.insertBefore(newBr2, containerType.childNodes[5]);
+        //containerPrice.insertBefore(newBr3, document.getElementById("priceButton2"));
 
+        for (var i = 1 ; i < containerPrice.childNodes.length ; i++) {
 
+            //console.log(containerPrice.childNodes[i]);
+
+            var newBr = document.createElement("br"); /* we create a new breakline *
+
+            containerPrice.insertBefore(newBr, document.getElementById("priceButton"+i));
+
+        }*/
+/*
         containerPrice.insertBefore(newBr3, containerPrice.childNodes[3]);
 
         containerPrice.insertBefore(newBr4, containerPrice.childNodes[5]);
@@ -274,30 +292,32 @@ function addBr() {
         containerPrice.insertBefore(newBr5, containerPrice.childNodes[7]);
 
         containerPrice.insertBefore(newBr6, containerPrice.childNodes[9]);
+*//*
+        console.log(containerStar.childNodes.length-1);
 
+        for (var i = 3 ; i < containerStar.childNodes.length-1 ; i+=2) {
 
-        containerStar.insertBefore(newBr7, containerStar.childNodes[2]);
+            console.log(i);
 
-        containerStar.insertBefore(newBr8, containerStar.childNodes[3]);
+            var newBr = document.createElement("br");
 
-        containerStar.insertBefore(newBr9, containerStar.childNodes[4]);
+            containerStar.insertBefore(newBr, document.getElementById("starButton"+i));
 
-        containerStar.insertBefore(newBr10, containerStar.childNodes[5]);
-
+        }
 
         inputDay.insertBefore(newBr12, inputDay.childNodes[1].nextSibling);
 
-
+*/
         /* shrink the dropdown menu */
-        $("#dropdown-menu-collapse").width("180px");
+        //$("#dropdown-menu-collapse").width("180px");
 
-    }
+    //}
 
 }
 
 function removeBr() {
 
-    /* we remove the breaklines if they exist */
+    /* we remove the breaklines if they exist *//*
     if(document.getElementById("br1") !== undefined && document.getElementById("br1") !== null) {
 
         document.getElementById("br1").remove();
@@ -356,10 +376,10 @@ function removeBr() {
 
         document.getElementById("br10").remove();
 
-    }
+    }*/
 
     /* expand the dropdown menu */
-    $("#dropdown-menu-collapse").width("400px");
+    //$("#dropdown-menu-collapse").width("400px");
 
 }
 
