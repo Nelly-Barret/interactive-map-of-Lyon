@@ -193,18 +193,13 @@ $(window).resize(function() {
 function addBr() {
 
     // If there is no br yet
-    if($("#brType1").length === 0) {
+    if(document.getElementById("brType1").length === 0) {
 
         var containerType = document.getElementById("typeContainer");
 
         var containerPrice = document.getElementById("currencyContainer");
 
         var containerStar = document.getElementById("starContainer");
-
-        var chooseDay = document.getElementsByClassName("dropdown-item")[5];
-
-        var inputDay = chooseDay.getElementsByTagName("label")[1];
-
 
         // We add the breaklines to the DOM via inserting them
         var i = 1;
@@ -254,14 +249,16 @@ function addBr() {
 
         newBrDay.setAttribute("id", "brDay");
 
-        console.log(inputDay.childNodes[0].parentNode);
+        // We must insert in the parent node
+        var day = document.getElementById("labelDay").parentNode;
 
-        var day = inputDay.childNodes[0].parentNode;
+        day.insertBefore(newBrDay, document.getElementById("labelDay"));
 
-        day.insertBefore(newBrDay, day);
+        // Shrink the drop-down menu
+        document.getElementsByClassName("dropdown-menu").item(0).style.width = "300px";
 
-        // Shrink the dropdown menu
-        document.getElementsByClassName("dropdown-menu").item(0).style.width = "400px";
+        // Resize the search bar
+        document.getElementById("textSearch").style.width = "250px";
 
     }
 
@@ -269,8 +266,11 @@ function addBr() {
 
 function removeBr() {
 
+    // For for loops
+    var i;
+
     // We remove the breaklines if they exist
-    for (var i = 1 ; i < 3 ; i++) {
+    for (i = 1 ; i < 3 ; i++) {
 
         if(document.getElementById("brType"+i) !== undefined && document.getElementById("brType"+i) !== null) {
 
@@ -280,7 +280,7 @@ function removeBr() {
 
     }
 
-    for (var i = 1 ; i < 4 ; i++) {
+    for (i = 1 ; i < 4 ; i++) {
 
         if(document.getElementById("brPrice"+i) !== undefined && document.getElementById("brPrice"+i) !== null) {
 
@@ -290,7 +290,7 @@ function removeBr() {
 
     }
 
-    for (var i = 1 ; i < 5 ; i++) {
+    for (i = 1 ; i < 5 ; i++) {
 
         if(document.getElementById("brStar"+i) !== undefined && document.getElementById("brStar"+i) !== null) {
 
