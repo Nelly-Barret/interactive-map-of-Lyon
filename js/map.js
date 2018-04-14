@@ -1,4 +1,3 @@
-
 //######################################################################################################################
 //########################## MAIN PROGRAM ##############################################################################
 //######################################################################################################################
@@ -29,6 +28,7 @@
     $(".progress-bar")[0].setAttribute("aria-valuemin", "0");
 
     $(".progress-bar")[0].setAttribute("aria-valuemax", "100");
+
 
     // Request to load the GeoJson source file and set geojsonSource property, removes loader and launch init()
 
@@ -139,16 +139,18 @@ var lngVariance = 0.002560; // Longitude difference to get to an other sector //
 
 var geojsonSource;          // GeoJson source of the project, initialised at the start
 
-var forcedDate = null;      //
+var forcedDate = null;
 
+// Initialisation of user's location with coordinates of Lyon near Bellecour
 var defaultCoordinates = {
 
     userLatitude: 45.75717800533178,
 
     userLongitude: 4.83480298193669
 
-}; // Initialisation of user's location with coordinates of Lyon near Bellecour
+};
 
+// Bounds of the map for research functions
 var mapGridBounds = {
 
     topLatitude : 45.788347,
@@ -159,7 +161,7 @@ var mapGridBounds = {
 
     rightLongitude : 4.871854
 
-};  // Bounds of the map for research functions
+};
 
 var popups = [];            // Array of all active popups
 
@@ -448,11 +450,11 @@ function mapInitialisation(userCoordinates) {
         "showCompass" : false
     }), 'bottom-right');
 
-    // disable map rotation using right click + drag
+    // Disable map rotation using right click + drag
 
     map.dragRotate.disable();
 
-    // disable map rotation using touch rotation gesture
+    // Disable map rotation using touch rotation gesture
 
     map.touchZoomRotate.disableRotation();
 
@@ -816,7 +818,7 @@ function urlConverter(urlString) {
         "%" : "%25",
         "|" : "%7C"
 
-    }
+    };
 
     var correctString = "";
 
@@ -848,14 +850,14 @@ function createMarkerPopupHTML(place) {
 
         for (i = 0; i < Math.floor(place.rating); i++) {
 
-            /* add full stars */
+            // Adding full stars
             html += "<i class=\"fa fa-star\"></i>";
 
         }
 
         for (var j = i; j < 5; j++) {
 
-            /* add empty stars */
+            // Adding empty stars
             html += "<i class=\"fa fa-star-o\"></i>";
 
         }
@@ -864,7 +866,7 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    if (place.price != "null") {
+    if (place.price !== "null") {
 
         html += "<p id='popupPrice'>" + place.price + "</p>";
 
@@ -924,7 +926,7 @@ function createMarkerPopupHTML(place) {
 
             }
 
-            //In JavaScript, the first day of the week (0) means Sunday
+            // In JavaScript, the first day of the week (0) means Sunday
             // getDay()			days[]
             // 0 Sunday			Monday
             // 1 Monday			Tuesday
@@ -948,16 +950,16 @@ function createMarkerPopupHTML(place) {
 
             console.log(str);
 
-            if (str != null && str.length != 0){
+            if (str !== null && str.length !== 0){
 
                 if(forcedDate == null) {
 
-                    //str.indexOf(': ')+2 => starts after ': '
+                    // str.indexOf(': ')+2 => starts after ': '
                     html += "<p class='day card-body'><i class='fa fa-clock-o'></i>Today: " + str.substring(str.indexOf(': ') + 2, str.length) + "</p>";
 
                 } else {
 
-                    //str.indexOf(': ')+2 => starts after ': '
+                    // str.indexOf(': ')+2 => starts after ': '
                     html += "<p class='day card-body'><i class='fa fa-clock-o'></i>" + day_fold(str.substring(0, str.indexOf(':'))) + str.substring(str.indexOf(':'), str.length) + "</p>\n";
 
                 }
@@ -1003,7 +1005,7 @@ function changeStyle(input) {
 
     style = input.innerText.toLowerCase();
 
-    if (style == "dark" || style == "satellite"){
+    if (style === "dark" || style === "satellite"){
 
         markersTitleColor = "#ffffff";
 
@@ -1315,7 +1317,7 @@ function filterFunction(filter) {
 
         console.log(timeValue);
 
-        /* get the field "openingHours" from the variable filter */
+        // Get the field "openingHours" from the variable filter
 
         features = filteredGeojson.features.filter(function (value) {
 

@@ -48,8 +48,7 @@
                             <option value="6">Saturday</option>
                             <option value="0">Sunday</option>
                         </select>
-
-                        <label for="inputTime">or/and at : </label>
+                        <label id="labelDay" for="inputTime">or/and at : </label>
                         <input type="time" id="inputTime">
 
                     </div>
