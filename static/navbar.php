@@ -59,7 +59,7 @@
                 </div>
             </li>
             <li class="nav-item divGear">
-                <button type="button" class="btn" id="parameters" data-toggle="modal" data-target="#modalParameters"><i class="fa fa-gear"></i></button>
+                <button type="button" class="btn" id="settings" data-toggle="modal" data-target="#modalSettings"><i class="fa fa-gear"></i></button>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
@@ -70,7 +70,7 @@
 </nav>
 
 <!-- modal -->
-<div id="modalParameters" class="modal fade" role="dialog">
+<div id="modalSettings" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
