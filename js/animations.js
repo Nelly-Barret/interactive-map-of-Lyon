@@ -1,3 +1,5 @@
+var number = 1;
+
 //######################################################################################################################
 //############ ON READY ################################################################################################
 //######################################################################################################################
@@ -14,7 +16,9 @@ $(document).ready(function() {
     // If the screen is too small, add Br
     if(window.matchMedia("(max-width: 600px)").matches) {
 
-            addBr();
+        addBr(number);
+
+        number++;
 
     }
 
@@ -172,12 +176,16 @@ $("#resetFilters").on('click', function() {
 //############ RESIZE WINDOW ###########################################################################################
 //######################################################################################################################
 
+number = 1;
+
 $(window).resize(function() {
 
     // When the window is too small, we add Br to buttons in the menu
     if(window.matchMedia("(max-width: 600px)").matches) {
 
-        addBr();
+        addBr(number);
+
+        number++;
 
     }
 
@@ -190,10 +198,11 @@ $(window).resize(function() {
 
 });
 
-function addBr() {
+function addBr(number) {
 
     // If there is no br yet
-    if(document.getElementById("brType1").length === 0) {
+    //if(document.getElementById("brType1").length === 0) {
+    if (number === 1) {
 
         var containerType = document.getElementById("typeContainer");
 
@@ -266,7 +275,7 @@ function addBr() {
 
 function removeBr() {
 
-    // For for loops
+    // For loops
     var i;
 
     // We remove the breaklines if they exist
@@ -297,6 +306,12 @@ function removeBr() {
             document.getElementById("brStar"+i).remove();
 
         }
+
+    }
+
+    if(document.getElementById("brDay") !== undefined && document.getElementById("brDay") !== null) {
+
+        document.getElementById("brDay").remove();
 
     }
 

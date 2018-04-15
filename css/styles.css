@@ -283,9 +283,9 @@ input span::before {
 
 	padding: 8px 14px 8px 14px;
 
-	position: absolute;
+	position: relative;
 
-	left: 110px;
+	left: 20px;
 
 }
 
@@ -296,11 +296,17 @@ input span::before {
 
 		margin: 0;
 
-		position: absolute;
+		position: relative;
 
-		left: 90px;
+		left: 0;
 
-		top: 40px;
+		top: 8px;
+
+	}
+
+	#navFilterButton, #settings {
+
+		display: inline-block !important;
 
 	}
 
