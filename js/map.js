@@ -52,8 +52,6 @@
 
             }, 1000);
 
-            //loadAllJSON();
-
         }
 
     };
@@ -598,7 +596,8 @@ function mapInitialisation(userCoordinates) {
 
         console.log(feature);
 
-        map.easeTo({center : [geometry.location.lng, geometry.location.lat + (2*latVariance)]});
+        map.easeTo({center : [geometry.location.lng, geometry.location.lat + (2*latVariance)],
+                    zoom : 15});
 
         if(feature.properties['place_id'] != null) {
 
@@ -704,13 +703,15 @@ function getUserLocation() {
 
     map.setCenter([userCoordinates.userLongitude, userCoordinates.userLatitude]);
 
-    if (navigator.geolocation) {
+    if ( navigator.geolocation ) {
 
-        navigator.geolocation.watchPosition(setUserCoordinates);
+        console.log("Big brother is watching you...");
 
-    } else {
+        navigator.geolocation.watchPosition(setUserCoordinates, function (error) {
 
+            window.alert("Please activate your geolocalization for a better experience ! :) ");
 
+        });
 
     }
 
@@ -727,6 +728,8 @@ function getUserLocation() {
 //----------------------------------------------------------------------------------------------------------------------
 
 function setUserCoordinates(position) {
+
+    console.log("Position update : " + position );
 
     userCoordinates.userLatitude = position.coords.latitude;
 
@@ -883,7 +886,9 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    var address = urlConverter(place['formatted_address']);
+    var address = urlConverter(place['formatted-address']);
+
+    var vicinity = place['vicinity'];
 
     var geometryLat = JSON.parse(place['geometry'])['location']['lat'];
 
@@ -891,9 +896,11 @@ function createMarkerPopupHTML(place) {
 
     var destination = "";
 
-    if(address.toLowerCase().indexOf("unnamed") !== -1) {
+    if(vicinity.toLowerCase().indexOf("unnamed") !== -1) {
 
-        destination = geometryLat + "," + geometryLng;
+        destination = geometryLat.toFixed(6) + "," + geometryLng.toFixed(6);
+
+        vicinity = "Coordinates : " + destination;
 
     } else {
 
@@ -901,7 +908,7 @@ function createMarkerPopupHTML(place) {
 
     }
 
-    html += "<div class='card' style='background-color: transparent; border-color: whitesmoke; margin-top: 10px'><br><p id='popupAddress'><i class='fa fa-street-view card-body'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=" + destination + "&travelmode=walking' style = 'color : whitesmoke; '>" + place['vicinity'] + "</a></p>";
+    html += "<div class='card' style='background-color: transparent; border-color: whitesmoke; margin-top: 10px'><br><p id='popupAddress'><i class='fa fa-street-view card-body'></i><a target='_blank' href='https://www.google.com/maps/dir/?api=1&origin=" + userCoordinates.userLatitude + ',' + userCoordinates.userLongitude + "&destination=" + destination + "&travelmode=walking' style = 'color : whitesmoke; '>" + vicinity + "</a></p>";
 
     if (place.website != null) {
 
@@ -1433,7 +1440,7 @@ function filterFunction(filter) {
 
                     for (var i = 0; i < periods.length ; i ++) {
 
-                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == filter.openedDay && periods[i]["open"]["day"] == filter.openedDay) {
+                        if (periods[i]["close"] != null && periods[i]["open"] != null && periods[i]["close"]["day"] == filter.openedDay && periods[i]["open"]["day"] == filter.openedDay ) {
 
                             forcedDate = filter.openedDay;
 
@@ -1781,7 +1788,7 @@ function fetchAllPlaceRadar(timeInterval) {
             });
 
             // test markers
-            /*~
+
                     console.log(bounds);
 
                     var position = new mapboxgl.LngLat(bounds.west.toFixed(6), bounds.north.toFixed(6));
@@ -1799,7 +1806,7 @@ function fetchAllPlaceRadar(timeInterval) {
                     position = new mapboxgl.LngLat(bounds.east.toFixed(6), bounds.south.toFixed(6));
 
                     new  mapboxgl.Marker().setLngLat(position).addTo(map);
-            */
+
 
             if (bounds.west > mapGridBounds.rightLongitude) {
 
