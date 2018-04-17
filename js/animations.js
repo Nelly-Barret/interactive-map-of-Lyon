@@ -1,20 +1,24 @@
+var number = 1;
+
 //######################################################################################################################
 //############ ON READY ################################################################################################
 //######################################################################################################################
 
 $(document).ready(function() {
 
-    /* by default, all buttons aren't clicked */
+    // By default, all buttons aren't clicked
     $(".btnType, .btnPrice, .btnStar, .btnStyle").each(function() {
 
         $(this).data('clicked', false);
 
     });
 
-    /* if the screen is too small, add Br */
+    // If the screen is too small, add Br
     if(window.matchMedia("(max-width: 600px)").matches) {
 
-        addBr();
+        addBr(number);
+
+        number++;
 
     }
 
@@ -27,7 +31,7 @@ $(document).ready(function() {
 
 $(".dropdown-item, #textSearch, #searchButton").on('click', function (e) {
 
-    e.stopPropagation(); /* to avoid that menu closes when clicking on an item */
+    e.stopPropagation(); // To avoid that menu closes when clicking on an item
 
 });
 
@@ -68,17 +72,17 @@ function uncolorButton(button) {
 
 /*******************************************************************/
 
-/* color and un-color type and price buttons when clicking */
+// Color and un-color type and price buttons when clicking
 $(".btnType, .btnPrice").on('click', function() {
 
-    /* it's green -> to grey */
+    // It's green -> to grey
     if($(this).data('clicked')) {
 
         uncolorButton($(this));
 
     }
 
-    /* it's grey -> to green */
+    // It's grey -> to green
     else {
 
         colorButton($(this));
@@ -87,23 +91,23 @@ $(".btnType, .btnPrice").on('click', function() {
 
 });
 
-/* color and un-color star button when clicking */
+// Color and un-color star button when clicking
 $(".btnStar").on('click', function() {
 
     var id = $(this).attr('id');
 
 
-    var max = id.substring(10, 11); /* get the number */
+    var max = id.substring(10, 11); // Get the number
 
 
-    /* we color the buttons between 1 and max and uncolor between max+1 and 5 */
+    // We color the buttons between 1 and max and uncolor between max+1 and 5
     for(var i = 1 ; i <= max ; i++) {
 
        colorStarButton($("#starButton"+i));
 
     }
 
-    /* we must use +max+1 to convert max as an integer (it's considered by JS as a string) */
+    // We must use +max+1 to convert max as an integer (it's considered by JS as a string)
     for(var j = +max+1 ; j <= 5 ; j++) {
 
        uncolorButton($("#starButton"+j));
@@ -112,21 +116,21 @@ $(".btnStar").on('click', function() {
 
 });
 
-/* color the remove buttons in red when the mouse is over */
+// Color the remove buttons in red when the mouse is over
 $(".btnRemove").on('mouseover', function() {
 
     $(this).css("background-color", "#DC3545");
 
 });
 
-/* by default, remove buttons are grey */
+// By default, remove buttons are grey
 $(".btnRemove").on('mouseleave', function() {
 
     $(this).css("background-color", "#DDDDDD");
 
 });
 
-/* remove the selected buttons */
+// Remove the selected buttons
 $(".btnRemove").on('click', function() {
 
     $(this).css("background-color", "#DC3545");
@@ -146,15 +150,15 @@ $(".btnRemove").on('click', function() {
 
 $("#resetFilters").on('click', function() {
 
-    /* reset the type buttons to grey */
+    // Reset the type buttons to grey
     $(".btnType, .btnPrice, .btnStar").each(function() {
 
         uncolorButton($(this));
 
     });
 
-    /* uncheck the checkboxes */
-    /* .attr() is deprecated for properties ; use the new .prop() function instead */
+    // Uncheck the checkboxes
+    // .attr() is deprecated for properties, use the new .prop() function instead
     if($("input").prop('checked', true)) {
 
         $("input").prop('checked', false);
@@ -172,16 +176,20 @@ $("#resetFilters").on('click', function() {
 //############ RESIZE WINDOW ###########################################################################################
 //######################################################################################################################
 
+number = 1;
+
 $(window).resize(function() {
 
-    /* when the window is too small, we add Br to buttons in the menu */
+    // When the window is too small, we add Br to buttons in the menu
     if(window.matchMedia("(max-width: 600px)").matches) {
 
-        addBr();
+        addBr(number);
+
+        number++;
 
     }
 
-    /* when the window become larger, remove the Br */
+    // When the window become larger, remove the Br
     else {
 
         removeBr();
@@ -190,31 +198,11 @@ $(window).resize(function() {
 
 });
 
-function addBr() {
+function addBr(number) {
 
-    /* there is no br yet */
-    if($("#br1").length === 0) {
-
-        var newBr1 = document.createElement("br"); /* we create a new breakline */
-
-        var newBr2 = document.createElement("br"); /* we create another breakline because we can't use the same many times */
-
-        var newBr3 = document.createElement("br");
-
-        var newBr4 = document.createElement("br");
-
-        var newBr5 = document.createElement("br");
-
-        newBr1.setAttribute("id", "br1");
-
-        newBr2.setAttribute("id", "br2");
-
-        newBr3.setAttribute("id", "br3");
-
-        newBr4.setAttribute("id", "br4");
-
-        newBr5.setAttribute("id", "br5");
-
+    // If there is no br yet
+    //if(document.getElementById("brType1").length === 0) {
+    if (number === 1) {
 
         var containerType = document.getElementById("typeContainer");
 
@@ -222,20 +210,64 @@ function addBr() {
 
         var containerStar = document.getElementById("starContainer");
 
+        // We add the breaklines to the DOM via inserting them
+        var i = 1;
 
-        /* we add the breaklines to the DOM via inserting them */
-        containerType.insertBefore(newBr1, containerType.childNodes[1]);
+        // While we get a button, we add a breakline before its
+        while(containerType.getElementsByTagName("button")[i] && i < 3) {
 
-        containerType.insertBefore(newBr2, containerType.childNodes[3]);
+            var newBrType = document.createElement("br"); // We create a new breakline
 
-        containerPrice.insertBefore(newBr3, containerPrice.childNodes[2]);
+            newBrType.setAttribute("id", "brType"+i);
 
-        containerStar.insertBefore(newBr4, containerStar.childNodes[2]);
+            containerType.insertBefore(newBrType, containerType.getElementsByTagName("button")[i]);
 
-        containerStar.insertBefore(newBr5, containerStar.childNodes[5]);
+            i++;
 
-        /* shrink the dropdown menu */
-        $("#dropdown-menu-collapse").width("180px");
+        }
+
+        i = 1;
+
+        while(containerPrice.getElementsByTagName("button")[i] && i < 4) {
+
+            var newBrPrice = document.createElement("br");
+
+            newBrPrice.setAttribute("id", "brPrice"+i);
+
+            containerPrice.insertBefore(newBrPrice, containerPrice.getElementsByTagName("button")[i]);
+
+            i++;
+
+        }
+
+        i = 1;
+
+        while(containerStar.getElementsByTagName("button")[i] && i < 5) {
+
+            var newBrStar= document.createElement("br");
+
+            newBrStar.setAttribute("id", "brStar"+i);
+
+            containerStar.insertBefore(newBrStar, containerStar.getElementsByTagName("button")[i]);
+
+            i++;
+
+        }
+
+        var newBrDay= document.createElement("br");
+
+        newBrDay.setAttribute("id", "brDay");
+
+        // We must insert in the parent node
+        var day = document.getElementById("labelDay").parentNode;
+
+        day.insertBefore(newBrDay, document.getElementById("labelDay"));
+
+        // Shrink the drop-down menu
+        document.getElementsByClassName("dropdown-menu").item(0).style.width = "300px";
+
+        // Resize the search bar
+        document.getElementById("textSearch").style.width = "250px";
 
     }
 
@@ -243,39 +275,48 @@ function addBr() {
 
 function removeBr() {
 
-    /* we remove the breaklines if they exist */
-    if(document.getElementById("br1") !== undefined && document.getElementById("br1") !== null) {
+    // For loops
+    var i;
 
-        document.getElementById("br1").remove();
+    // We remove the breaklines if they exist
+    for (i = 1 ; i < 3 ; i++) {
 
-    }
+        if(document.getElementById("brType"+i) !== undefined && document.getElementById("brType"+i) !== null) {
 
-    if(document.getElementById("br2") !== undefined && document.getElementById("br2") !== null) {
+            document.getElementById("brType"+i).remove();
 
-        document.getElementById("br2").remove();
-
-    }
-
-    if(document.getElementById("br3") !== undefined && document.getElementById("br3") !== null) {
-
-        document.getElementById("br3").remove();
+        }
 
     }
 
-    if(document.getElementById("br4") !== undefined && document.getElementById("br4") !== null) {
+    for (i = 1 ; i < 4 ; i++) {
 
-        document.getElementById("br4").remove();
+        if(document.getElementById("brPrice"+i) !== undefined && document.getElementById("brPrice"+i) !== null) {
 
-    }
+            document.getElementById("brPrice"+i).remove();
 
-    if(document.getElementById("br5") !== undefined && document.getElementById("br5") !== null) {
-
-        document.getElementById("br5").remove();
+        }
 
     }
 
-    /* expand the dropdown menu */
-    $("#dropdown-menu-collapse").width("400px");
+    for (i = 1 ; i < 5 ; i++) {
+
+        if(document.getElementById("brStar"+i) !== undefined && document.getElementById("brStar"+i) !== null) {
+
+            document.getElementById("brStar"+i).remove();
+
+        }
+
+    }
+
+    if(document.getElementById("brDay") !== undefined && document.getElementById("brDay") !== null) {
+
+        document.getElementById("brDay").remove();
+
+    }
+
+    // Expand the dropdown menu
+    document.getElementsByClassName("dropdown-menu").item(0).style.width = "460px";
 
 }
 

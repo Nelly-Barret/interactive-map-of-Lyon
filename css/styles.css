@@ -2,16 +2,16 @@
 /*############ MEMO ON CSS ##########################################################################################*/
 /*####################################################################################################################*/
 
-/* element1, element2 : selects element1 and element2 */
-/* element1 element2 : selects all descendants (children, grandchildren...) which are element2 => descendant combinator */
-/* element1>element2 : selects (only) children which are element2 => child combinator */
+/* element1, element2: selects element1 and element2 */
+/* element1 element2: selects all descendants (children, grandchildren...) which are element2 => descendant combinator */
+/* element1>element2: selects (only) children which are element2 => child combinator */
 
-/* padding : the space between the content and the border */
-/* padding : padding-top padding-right padding-bottom padding-left */
-/* margin : the space around the border (document side)*/
-/* margin : margin-top margin-right margin-bottom margin-left */
+/* padding: the space between the content and the border */
+/* padding: padding-top padding-right padding-bottom padding-left */
+/* margin: the space around the border (document side)*/
+/* margin: margin-top margin-right margin-bottom margin-left */
 
-/* CSS font-property : Times and serif are generic fonts (used if the navigator don't understand the others) */
+/* CSS font-property: Times and serif are generic fonts (used if the navigator don't understand the others) */
 
 
 /*####################################################################################################################*/
@@ -181,14 +181,6 @@ input span::before {
 
 }
 
-.divGear {
-
-	position: absolute !important;
-
-	right: 20px !important;
-
-}
-
 
 /*####################################################################################################################*/
 /*############ FILTERS ###############################################################################################*/
@@ -218,7 +210,7 @@ input span::before {
 
 .btnType {
 
-	margin-right: 8px;
+	margin-right: 10px;
 
 	width: 120px;
 
@@ -228,13 +220,13 @@ input span::before {
 
 	margin-right: 10px;
 
-	width: 86px;
+	width: 88px;
 
 }
 
 .btnStar {
 
-	margin-right: 8px;
+	margin-right: 10px;
 
 	width: 69px;
 
@@ -242,11 +234,15 @@ input span::before {
 
 .btnRemove {
 
-	border-radius: 25px;
+	border-radius: 13px;
+
+	height: 26px;
 
 	margin-right: 8px;
 
-	width: 25px;
+	padding: 0;
+
+	width: 26px;
 
 }
 
@@ -277,14 +273,45 @@ input span::before {
 
 
 /*####################################################################################################################*/
-/*############ PARAMETERS ############################################################################################*/
+/*############ SETTINGS ##############################################################################################*/
 /*####################################################################################################################*/
 
-#parameters {
+/* other devices */
+#settings {
 
 	margin: 0;
 
+	padding: 8px 14px 8px 14px;
+
+	position: relative;
+
+	left: 20px;
+
 }
+
+/* phones */
+@media (max-width: 600px) {
+
+	#settings {
+
+		margin: 0;
+
+		position: relative;
+
+		left: 0;
+
+		top: 8px;
+
+	}
+
+	#navFilterButton, #settings {
+
+		display: inline-block !important;
+
+	}
+
+}
+
 
 #mapStyleButton {
 
@@ -329,10 +356,94 @@ input span::before {
 
 }
 
+#containerViews button {
+
+	width: 80px !important;
+
+}
 
 #viewPoints, #viewClusters {
 
 	margin: 10px;
+
+}
+
+
+/*####################################################################################################################*/
+/*############ LEGEND ################################################################################################*/
+/*####################################################################################################################*/
+
+#legend {
+
+	background-color: rgba(0, 0, 0, 0.8);
+
+	border-radius: 3px;
+
+	bottom: 35px;
+
+	padding: 10px;
+
+	margin: 0;
+
+	position: absolute;
+
+	left: 10px;
+
+	width: 200px;
+
+	z-index: 1;
+
+}
+
+#legend h4 {
+
+	color: whitesmoke;
+
+}
+
+#legend div {
+
+	margin: 10px;
+
+	color: whitesmoke;
+
+}
+
+.colorP {
+
+	margin-left: 10px;
+
+}
+
+#closeLegend {
+
+	position: absolute;
+
+	top: 10px;
+
+	left: 170px;
+
+	color: white;
+
+}
+
+#smallLegend {
+
+	background-color: rgba(0, 0, 0, 0.8);
+
+	border-radius: 3px;
+
+	color: white;
+
+	position: absolute;
+
+	padding: 10px;
+
+	bottom: 35px;
+
+	left: 10px;
+
+	z-index: 1;
 
 }
 
@@ -343,7 +454,7 @@ input span::before {
 
 #youAreHere {
 
-	color: whitesmoke;/*#FDF5E6; Oldlace */
+	color: whitesmoke;
 
 	font-size: 18px;
 
@@ -360,7 +471,7 @@ input span::before {
 
 #popupTitle, #popupType {
 
-	color: whitesmoke;/*rgba(253, 245, 230, 1); OldLace */
+	color: whitesmoke;
 
 	font-family: "Open Sans", Times, serif;
 
@@ -510,66 +621,6 @@ input span::before {
 }
 
 
-
-/*####################################################################################################################*/
-/*############ PARAMETERS ############################################################################################*/
-/*####################################################################################################################*/
-
-#containerViews button {
-
-	width: 80px !important;
-
-}
-
-
-/*####################################################################################################################*/
-/*############ LEGEND ################################################################################################*/
-/*####################################################################################################################*/
-
-#legend {
-
-	background-color: rgba(0, 0, 0, 0.8);
-
-	border-radius: 3px;
-
-	bottom: 35px;
-
-	padding: 10px;
-
-	margin: 0;
-
-	position: absolute;
-
-	left: 10px;
-
-	width: 200px;
-
-	z-index: 1;
-
-}
-
-#legend h4 {
-
-	color: whitesmoke;
-
-}
-
-#legend div {
-
-	margin: 10px;
-
-	color: whitesmoke;
-
-}
-
-.colorP {
-
-	margin-left: 10px;
-
-}
-
-
-
 /*####################################################################################################################*/
 /*############ FONTS AWESOME #########################################################################################*/
 /*####################################################################################################################*/
@@ -578,13 +629,13 @@ input span::before {
 
 	padding-right: 10px !important;
 
-	color : whitesmoke !important;
+	color: whitesmoke !important;
 
 }
 
 #popupRating .fa-star {
 
-	color : gold !important;
+	color: gold !important;
 
 }
 
@@ -597,6 +648,12 @@ input span::before {
 .fa-navicon {
 
 	color: whitesmoke;
+
+}
+
+.fa-window-restore {
+
+	margin-left: 10px;
 
 }
 
