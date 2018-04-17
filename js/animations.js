@@ -7,7 +7,7 @@ var number = 1;
 $(document).ready(function() {
 
     // By default, all buttons aren't clicked
-    $(".btnType, .btnPrice, .btnStar, .btnStyle").each(function() {
+    $(".btnType, .btnPrice, .btnStar, .btnStyle, .btnRemove").each(function() {
 
         uncolorButton($(this));
 
