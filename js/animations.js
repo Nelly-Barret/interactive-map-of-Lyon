@@ -7,9 +7,9 @@ var number = 1;
 $(document).ready(function() {
 
     // By default, all buttons aren't clicked
-    $(".btnType, .btnPrice, .btnStar, .btnStyle").each(function() {
+    $(".btnType, .btnPrice, .btnStar, .btnStyle, .btnRemove").each(function() {
 
-        $(this).data('clicked', false);
+        uncolorButton($(this));
 
     });
 
@@ -62,7 +62,7 @@ function colorStarButton(button) {
 
 function uncolorButton(button) {
 
-    button.css("background-color", "#DDDDDD");
+    button.css("background-color", "white");
 
     button.css("color", "black");
 
@@ -126,7 +126,7 @@ $(".btnRemove").on('mouseover', function() {
 // By default, remove buttons are grey
 $(".btnRemove").on('mouseleave', function() {
 
-    $(this).css("background-color", "#DDDDDD");
+    $(this).css("background-color", "white");
 
 });
 

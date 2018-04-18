@@ -45,12 +45,6 @@
 
 }
 
-.progress-bar {
-
-
-
-}
-
 .loader {
 
 	border: 16px solid #f3f3f3; /* Light grey */
@@ -150,6 +144,18 @@ input span::before {
 	margin-top: 8px;
 
 	padding: 0;
+
+}
+
+#navFilterButton, #settings {
+
+	background-color: white !important;
+
+}
+
+#navFilterButton:hover, #settings:hover {
+
+	color: darkgray !important;
 
 }
 
