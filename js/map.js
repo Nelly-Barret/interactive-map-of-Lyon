@@ -1,6 +1,7 @@
 //######################################################################################################################
 //########################## MAIN PROGRAM ##############################################################################
 //######################################################################################################################
+
 {
 
     // Creation of a loader icon
@@ -60,6 +61,11 @@
 
 }
 
+/**
+ * Set attributes of the progress-bar.
+ *
+ * @param progress A percentage
+ */
 function loader(progress) {
 
     var loaded = progress.loaded;
@@ -99,6 +105,11 @@ var dayMap = {
 
 };
 
+/**
+ * Get the day of dayMap corresponding to day
+ * @param day A string which represents a day
+ * @returns A day
+ */
 function day_fold(day) {
 
     if (!day) {
@@ -111,7 +122,12 @@ function day_fold(day) {
 
 }
 
-// Function that removes accents in sentences.
+/**
+ * Remove accents of a string.
+ *
+ * @param s A string
+ * @returns The new string without accents
+ */
 function accent_fold (s) {
 
     if (!s) {
@@ -204,12 +220,10 @@ var legend = document.getElementById("legend");
 
 var smallLegend = document.getElementById("smallLegend");
 
-//----------------------------------------------------------------------------------------------------------------------
-// init() :
-//
-//  Initialize the map and all the event listeners on interactive elements
-//----------------------------------------------------------------------------------------------------------------------
 
+/**
+ * Initialize the map and all the event listeners on interactive elements.
+ */
 function init() {
 
     // Mapbox generation with API key authentication
@@ -411,20 +425,12 @@ function init() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// mapInitialisation(userCoordinates) :
-//
-//  Initialize a map with passed coordinates and set the map interactions
-//
-// INPUT :
-//
-//  userCoordinates -> actual coordinates of user
-//
-// OUTPUT :
-//
-//  map -> a mapbox's map object
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Initialize a map with passed coordinates and set the map interactions.
+ *
+ * @param userCoordinates Actual coordinates of user
+ * @returns A Mapbox's map object
+ */
 function mapInitialisation(userCoordinates) {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWd0ZXJyYWwiLCJhIjoiY2pkMjRnbjJkNWYwZDJ4bGdwMWlxODJiYSJ9.4W9g-Go5vHpL9UZmjnGj4g';
@@ -651,12 +657,11 @@ function mapInitialisation(userCoordinates) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// locationUpdate(position) :
-//
-//  Launch a navigator's user's position watch
-//----------------------------------------------------------------------------------------------------------------------
-/*~
+/**
+ * Launch a navigator's user's position watch.
+ *
+ * @param position Actual coordinates of user
+ */
 function locationUpdate(position) {
 
     console.log(position);
@@ -668,13 +673,10 @@ function locationUpdate(position) {
     getUserLocation();
 
 }
-*/
-//----------------------------------------------------------------------------------------------------------------------
-// getUserLocation() :
-//
-//  Launch a navigator's user's position watch
-//----------------------------------------------------------------------------------------------------------------------
 
+/**
+ * Place the user on the map and center to his position.
+ */
 function getUserLocation() {
 
     userPositionMarker = new mapboxgl.Marker().setLngLat([userCoordinates.userLongitude, userCoordinates.userLatitude]);
@@ -717,16 +719,11 @@ function getUserLocation() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// setUserCoordinates(position) :
-//
-//  Update the userCoordinates property, and update the user's position's marker
-//
-// INPUT :
-//
-//  position -> a position with latitude and longitude
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Update the userCoordinates property, and update the user's position's marker.
+ *
+ * @param position A position with latitude and longitude
+ */
 function setUserCoordinates(position) {
 
     console.log("Position update : " + position);
@@ -742,20 +739,13 @@ function setUserCoordinates(position) {
 //######################################################################################################################
 //##################### DISPLAY RELATED METHODS ########################################################################
 //######################################################################################################################
-//----------------------------------------------------------------------------------------------------------------------
-// createPopupForSymbol(feature) :
-//
-//  creates a popup for a place
-//
-// INPUT :
-//
-//  feature -> a geoJson point object
-//
-// OUTPUT :
-//
-//  popup -> a MapBox popup
-//----------------------------------------------------------------------------------------------------------------------
 
+/**
+ * Create a popup for a place.
+ *
+ * @param feature A geoJson point object
+ * @returns A MapBox popup
+ */
 function createPopupForSymbol(feature) {
 
     var placeInformations = feature.properties;
@@ -806,20 +796,12 @@ function createPopupForSymbol(feature) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// createMarkerPopupHTML(place) :
-//
-//  Creates the html content of the popup
-//
-// INPUT :
-//
-//  place -> a place's properties dictionary
-//
-// OUTPUT :
-//
-//  html -> a html text for the popup
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Convert an URL to a correct string.
+ *
+ * @param urlString An URL
+ * @returns The URL without symbols from charMap
+ */
 function urlConverter(urlString) {
 
     var charMap = {
@@ -846,6 +828,12 @@ function urlConverter(urlString) {
 
 }
 
+/**
+ * Create the html content of the popup.
+ *
+ * @param place A place's properties dictionary
+ * @returns An html text for the popup
+ */
 function createMarkerPopupHTML(place) {
 
     var html = "";
@@ -1007,6 +995,9 @@ function createMarkerPopupHTML(place) {
 
 }
 
+/**
+ * Zoom to the user's coordinates.
+ */
 function resetCamera() {
 
     map.zoomTo(13,{offset : [defaultCoordinates.userLongitude, defaultCoordinates.userLatitude]});
@@ -1018,6 +1009,11 @@ function resetCamera() {
 //##################### SETTINGS #######################################################################################
 //######################################################################################################################
 
+/**
+ * Change the style of the map.
+ *
+ * @param input A button
+ */
 function changeStyle(input) {
 
     style = input.innerText.toLowerCase();
@@ -1045,12 +1041,10 @@ function changeStyle(input) {
 //######################################################################################################################
 //############ FILTER ACTIONS ON MAP ###################################################################################
 //######################################################################################################################
-//----------------------------------------------------------------------------------------------------------------------
-// filterMap() :
-//
-//  Prepare a filter object based on what is currently selected in the filters menu, then call filterFunction(filter)
-//----------------------------------------------------------------------------------------------------------------------
 
+/**
+ * Prepare a filter object based on what is currently selected in the filter menu, then call filterFunction(filter).
+ */
 function filterMap() {
 
     resetFilter();
@@ -1183,14 +1177,12 @@ function filterMap() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// filterFunction (filter) :
-//
-//  Apply a filter to the geoJsonSource property based on the passed filter's properties
-//
-//  If only one object is left after filtering, we fly and zoom to it in the map
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Apply a filter to the geoJsonSource property based on the passed filter's properties.
+ * If only one object is left after filtering, we fly and zoom to it in the map.
+ *
+ * @param filter A dictionary of filters
+ */
 function filterFunction(filter) {
 
     var filteredGeoJson = JSON.parse(geoJsonSource);
@@ -1477,7 +1469,11 @@ function filterFunction(filter) {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Filter by opening hours.
+ *
+ * @param filter A dictionary of filters
+ */
 function filterDate(filter) {
 
     var str = document.getElementById("#inputTime").value;
@@ -1517,12 +1513,9 @@ function filterDate(filter) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// resetFilter() :
-//
-//  Removes all current filters by setting the original geoJsonSource
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Remove all current filters by setting the original geoJsonSource.
+ */
 function resetFilter() {
 
     for (var i = 0 ; i < popups.length ; i++) {
@@ -1537,14 +1530,12 @@ function resetFilter() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// filterSearch(searchString) :
-//
-//  Reset the current filters then applies filter on the geojson looking in addresses, names, subtypes, main types
-//
-//  If the searchString is empty, it just resets the filters
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Reset the current filters then applies filter on the geojson looking in addresses, names, subtypes, main types.
+ * If the searchString is empty, it just resets the filters
+ *
+ * @param searchString The input in the search bar
+ */
 function filterSearch(searchString) {
 
     resetFilter();
@@ -1693,14 +1684,12 @@ var placesRequest;          // Google places API request
 
 var counter;                // Simple counter for tasks
 
-//----------------------------------------------------------------------------------------------------------------------
-// fetchAllPlaceRadar (timeInterval) :
-//
-//  This will retrieves all places ids from google's method radarSearch, then it'll call getDetailsAfterRadar()
-//
-//  Intern radar search requests callbacks are handled with radarSquareCallBack() methods
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Retrieve all places ids from Google's method radarSearch, then it'll call getDetailsAfterRadar().
+ * Intern radar search requests callbacks are handled with radarSquareCallBack() methods.
+ *
+ * @param timeInterval An interval for sending requests
+ */
 function fetchAllPlaceRadar(timeInterval) {
 
     var allPlacesId = [];
@@ -1834,22 +1823,14 @@ function fetchAllPlaceRadar(timeInterval) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// radarSquareCallBack (results, status, array, i) :
-//
-//  Callback that constructs the place_ids array
-//
-// INPUT :
-//
-//  results -> a JSON formatted response from google containing a place_id
-//  status -> request status after the call
-//  i -> a counter used to track progress of the task
-//
-// INPUT/OUTPUT :
-//
-//  array -> an array containing all place_id
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Callback that constructs the place_ids array.
+ *
+ * @param results A JSON formatted response from google containing a place_id
+ * @param status The request status after the call
+ * @param array An array containing all place_id
+ * @param i A counter used to track progress of the task
+ */
 function radarSquareCallBack(results, status, array, i) {
 
     i--;
@@ -1872,19 +1853,12 @@ function radarSquareCallBack(results, status, array, i) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// getDetailsAfterRadar(placeIds, timeInterval) :
-//
-//  Call google's getPlaceDetails then build a json string for each type based on constructed arrays by callbacks
-//
-//  containing all data
-//
-// INPUT :
-//
-//  placeIds -> an array full of place_id
-//  timeInterval -> time in milliseconds between two requests
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Call google's getPlaceDetails then build a json string for each type based on constructed arrays by callbacks containing all data.
+ *
+ * @param placeIds An array full of place_id
+ * @param timeInterval The time in milliseconds between two requests
+ */
 function getDetailsAfterRadar(placeIds, timeInterval) {
 
     var i = 1;
@@ -2014,25 +1988,17 @@ function getDetailsAfterRadar(placeIds, timeInterval) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// getDetailsCallback (result, status, bars, restaurants, barRestaurants, state, progression) :
-//
-//  Callback of google's getDetails methods, fills arrays of bars, restaurants and bar-restaurants
-//
-// INPUT :
-//
-//  results -> a JSON formatted response from google containing a place_id
-//  status -> request status after the call
-//  state -> a counter used to track progress of the task
-//  progression -> total of requests to proceed
-//
-// INPUT/OUTPUT :
-//
-//  bars -> an array containing all bars
-//  restaurants -> an array containing all restaurants
-//  barRestaurants -> an array containing all barRestaurants
-// ----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Callback of google's getDetails methods, fills arrays of bars, restaurants and bar-restaurants.
+ *
+ * @param result A JSON formatted response from google containing a place_id
+ * @param status The request status after the call
+ * @param bars An array containing all bars
+ * @param restaurants An array containing all restaurants
+ * @param barRestaurants An array containing all barRestaurants
+ * @param state A counter used to track progress of the task
+ * @param progression The total of requests to proceed
+ */
 function getDetailsCallback(result, status, bars, restaurants, barRestaurants, state , progression) {
 
     state --;
@@ -2073,16 +2039,11 @@ function getDetailsCallback(result, status, bars, restaurants, barRestaurants, s
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// checkIfPlaceIsBar (place) :
-//
-//  verify if passed place's types contains "bar"
-//
-// INPUT :
-//
-//  place -> a place retrieved with google's getDetails method
-// ----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Verify if passed place's types contains "bar".
+ *
+ * @param place A place retrieved with google's getDetails method
+ */
 function checkIfPlaceIsBar(place) {
 
     for (var i = 0 ; i < place.types.length ; i++)
@@ -2100,16 +2061,11 @@ function checkIfPlaceIsBar(place) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// checkIfPlaceIsRestaurant (place) :
-//
-//  verify if passed place's types contains "restaurant"
-//
-// INPUT :
-//
-//  place -> a place retrieved with google's getDetails method
-// ----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Verify if passed place's types contains "restaurant".
+ *
+ * @param place A place retrieved with google's getDetails method
+ */
 function checkIfPlaceIsRestaurant(place) {
 
     for (var i = 0 ; i < place.types.length ; i++)
@@ -2141,12 +2097,9 @@ var loadedYELPString = "";
 
 var numberOfJSONLoadingCallbacks = 0;
 
-//----------------------------------------------------------------------------------------------------------------------
-// loadAllJSON () :
-//
-//  Loads all locally stored JSONs
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Load all locally stored JSONs.
+ */
 function loadAllJSON() {
 
     loadBarsJSON();
@@ -2159,12 +2112,9 @@ function loadAllJSON() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// loadBarsJSON () :
-//
-//  Loads locally stored bars.json
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Load locally stored bars.json.
+ */
 function loadBarsJSON() {
 
     console.log("Retreiving Bars JSON...")
@@ -2193,12 +2143,9 @@ function loadBarsJSON() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// loadRestaurantsJSON () :
-//
-//  Loads locally stored restaurants.json
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Load locally stored restaurants.json.
+ */
 function loadRestaurantsJSON() {
 
     console.log("Retreiving Restaurants JSON...")
@@ -2225,12 +2172,9 @@ function loadRestaurantsJSON() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// loadBarsRestaurantsJSON () :
-//
-//  Loads locally stored barsRestaurants.json
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Load locally stored barsRestaurants.json.
+ */
 function loadBarsRestaurantsJSON() {
 
     console.log("Retreiving Bar-Restaurants JSON...")
@@ -2257,12 +2201,9 @@ function loadBarsRestaurantsJSON() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// loadYelpJSON () :
-//
-//  Loads locally stored jsonBusinessYELP.json
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Load locally stored jsonBusinessYELP.json.
+ */
 function loadYelpJSON() {
 
     console.log("Retreiving Yelp JSON...")
@@ -2301,12 +2242,9 @@ function loadYelpJSON() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// callbackLoadingJSON () :
-//
-//  Callback of loading JSON methods, when all
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Callback of loading JSON methods, when all.
+ */
 function callbackLoadingJSON() {
 
     numberOfJSONLoadingCallbacks++;
@@ -2319,12 +2257,9 @@ function callbackLoadingJSON() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// generateGeoJSON () :
-//
-//  Parses all retrieved JSON strings files then starts to build the geojson string and cleans it
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Parse all retrieved JSON strings files then starts to build the geojson string and cleans it.
+ */
 function generateGeoJSON() {
 
     console.log("Generating geojson with google data...");
@@ -2612,16 +2547,11 @@ function generateGeoJSON() {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// cleanGeoJSON (geoJSONString) :
-//
-//  Cleans the passed geoJSONString from doublons then launches the yelp fusion procedure
-//
-// INPUT :
-//
-//  geoJSONString -> a geojson string
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Clean the passed geoJSONString from doublons then launches the yelp fusion procedure.
+ *
+ * @param geoJSONString A geojson string
+ */
 function cleanGeoJSON(geoJSONString) {
 
     console.log("Cleaning geojson from doublons...");
@@ -2668,16 +2598,11 @@ function cleanGeoJSON(geoJSONString) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// fusionYelpGoogle (baseGeoJSON) :
-//
-//  Add Yelp data to Google geojson's object presents in both google and yelp, then launches addYELPElements()
-//
-// INPUT :
-//
-//  baseGeoJSON -> a geojson string
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Add Yelp data to Google geojson's object presents in both google and yelp, then launches addYELPElements().
+ *
+ * @param baseGeoJSON A geojson string
+ */
 function fusionYelpGoogle(baseGeoJSON) {
 
     console.log("Starting yelp-google fusion...");
@@ -2767,17 +2692,12 @@ function fusionYelpGoogle(baseGeoJSON) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// addYELPElements (geojsonBase, yelpJSON) :
-//
-//  Add Yelp data to Google geojson's object not present in google, then launches cleanPositionDoublons()
-//
-// INPUT :
-//
-//  geojsonBase -> a google geojson string
-//  yelpJSON -> a yelp JSON
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Add Yelp data to Google geojson's object not present in google, then launches cleanPositionDoublons().
+ *
+ * @param geoJsonBase A Google geojson string
+ * @param yelpJSON A Yelp JSON
+ */
 function addYELPElements(geoJsonBase, yelpJSON) {
 
     console.log("Adding new yelp elements to google database...");
@@ -2887,16 +2807,12 @@ function addYELPElements(geoJsonBase, yelpJSON) {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-// cleanPositionDoublons (geoJSONSourceBase) :
-//
-//  Cleans geojson to prevent from object's position duplicates, then set the geoJsonSource gobal variable
-//
-// INPUT :
-//
-//  geoJSONSourceBase -> a geojson string
-//----------------------------------------------------------------------------------------------------------------------
-
+/**
+ * Clean geojson to prevent from object's position duplicates, then set the geoJsonSource gobal variable.
+ *
+ * @param geoJSONSourceBase A geojson string
+ * @param yelpJSON A Yelp JSON
+ */
 function cleanPositionDoublons(geoJSONSourceBase) {
 
     console.log("Cleaning positions doublons...");
