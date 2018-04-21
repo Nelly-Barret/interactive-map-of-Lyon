@@ -4,6 +4,9 @@ var number = 1;
 //############ ON READY ################################################################################################
 //######################################################################################################################
 
+/**
+ * Initialize buttons and if this is a mobile version, add.
+ */
 $(document).ready(function() {
 
     // By default, all buttons aren't clicked
@@ -28,10 +31,12 @@ $(document).ready(function() {
 //######################################################################################################################
 //############ DROPDOWN MENU ###########################################################################################
 //######################################################################################################################
-
+/**
+ * Avoid that menu closes when clicking on an item.
+ */
 $(".dropdown-item, #textSearch, #searchButton").on('click', function (e) {
 
-    e.stopPropagation(); // To avoid that menu closes when clicking on an item
+    e.stopPropagation();
 
 });
 
@@ -40,6 +45,10 @@ $(".dropdown-item, #textSearch, #searchButton").on('click', function (e) {
 //############ COLOR - UNCOLOR #########################################################################################
 //######################################################################################################################
 
+/**
+ * Color in green the passed button.
+ * @param button An HTML button
+ */
 function colorButton(button) {
 
     button.css("background-color", "#28A745");
@@ -50,16 +59,10 @@ function colorButton(button) {
 
 }
 
-function colorStarButton(button) {
-
-    button.css("background-color", "#28A745");
-
-    button.css("color", "white");
-
-    button.data('clicked', true);
-
-}
-
+/**
+ * Un-color in grey the passed button.
+ * @param button An HTML button
+ */
 function uncolorButton(button) {
 
     button.css("background-color", "white");
@@ -72,7 +75,9 @@ function uncolorButton(button) {
 
 /*******************************************************************/
 
-// Color and un-color type and price buttons when clicking
+/**
+ * Color and un-color type and price buttons when clicking.
+ */
 $(".btnType, .btnPrice").on('click', function() {
 
     // It's green -> to grey
@@ -91,7 +96,9 @@ $(".btnType, .btnPrice").on('click', function() {
 
 });
 
-// Color and un-color star button when clicking
+/**
+ * Color and un-color star button when clicking.
+ */
 $(".btnStar").on('click', function() {
 
     var id = $(this).attr('id');
@@ -103,7 +110,7 @@ $(".btnStar").on('click', function() {
     // We color the buttons between 1 and max and uncolor between max+1 and 5
     for(var i = 1 ; i <= max ; i++) {
 
-       colorStarButton($("#starButton"+i));
+       colorButton($("#starButton"+i));
 
     }
 
@@ -116,21 +123,27 @@ $(".btnStar").on('click', function() {
 
 });
 
-// Color the remove buttons in red when the mouse is over
+/**
+ * Color the remove buttons in red when the mouse is over.
+ */
 $(".btnRemove").on('mouseover', function() {
 
     $(this).css("background-color", "#DC3545");
 
 });
 
-// By default, remove buttons are grey
+/**
+ * By default, remove buttons are grey.
+ */
 $(".btnRemove").on('mouseleave', function() {
 
     $(this).css("background-color", "white");
 
 });
 
-// Remove the selected buttons
+/**
+ * Remove the selected buttons.
+ */
 $(".btnRemove").on('click', function() {
 
     $(this).css("background-color", "#DC3545");
@@ -148,6 +161,9 @@ $(".btnRemove").on('click', function() {
 //############ RESET FILTERS ###########################################################################################
 //######################################################################################################################
 
+/**
+ * Reset all filters (un-color, uncheck...).
+ */
 $("#resetFilters").on('click', function() {
 
     // Reset the type buttons to grey
@@ -178,6 +194,9 @@ $("#resetFilters").on('click', function() {
 
 number = 1;
 
+/**
+ * Adapt the filters to the size of the container.
+ */
 $(window).resize(function() {
 
     // When the window is too small, we add Br to buttons in the menu
@@ -198,6 +217,9 @@ $(window).resize(function() {
 
 });
 
+/**
+ * Add br in the menu.
+ */
 function addBr(number) {
 
     // If there is no br yet
@@ -273,6 +295,9 @@ function addBr(number) {
 
 }
 
+/**
+ * Remove br in the menu.
+ */
 function removeBr() {
 
     // For loops

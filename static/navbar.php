@@ -69,40 +69,9 @@
     </div>
 </nav>
 
-<!-- modal -->
-<div id="modalSettings" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">Settings</h1>
-                <button type="button" class="close" data-dismiss="modal" style="position:absolute; right:10px;">&times;</button>
-            </div>
-            <div class="modal-body">
-                <label id="mapStyleButton" for="containerViews">Map style</label>
-                <div id="containerViews" class=" containerStyles">
-                    <button type="button" class="btn btnStyle" id="style0">Basic</button><button type="button" class="btn btnStyle" id="style1">Streets</button><button type="button" class="btn btnStyle" id="style2">Light</button><button type="button" class="btn btnStyle" id="style3">Dark</button><button type="button" class="btn btnStyle" id="style4">Satellite</button>
-                </div>
+<?php include('settings.php'); ?>
 
-                <label id="clusterButton" for="containerViews">Display</label>
-                <div id="containerClusters">
-                    <input type="radio" name="viewClusters" id="viewClusters" checked="checked"><label for="viewClusters"> Clusters</label>
-                    <input type="radio" name="viewClusters" id="viewPoints"><label for="viewPoints"> Points</label>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id='legend' style="visibility: hidden">
-    <h4>Points</h4>
-    <i id="closeLegend" class="fa fa-window-minimize"></i>
-    <div id="legendCircleBar"></div><div class="colorP">Bar</div>
-    <div id="legendCircleBarRestaurant"></div><div class="colorP">Bar-Restaurant</div>
-    <div id="legendCircleRestaurant"></div><div class="colorP">Restaurant</div>
-</div>
-
-<div id="smallLegend" style="visibility: hidden">Legend<i id="restore" class="fa fa-window-restore"></i></div>
+<?php include('legend.php'); ?>
 
 
 <!-- our JS -->

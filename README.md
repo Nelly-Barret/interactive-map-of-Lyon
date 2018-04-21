@@ -42,6 +42,7 @@ Example of place informations:
 * [Google Places](https://developers.google.com/places/) - API for data
 * [Yelp](https://www.yelp.com/) - second API for data
 * [Bootstrap](https://getbootstrap.com/) - Web framework
+* [JsDoc](http://usejsdoc.org/) - API documentation generator for JavaScript (generate JsDoc (at the root of the project) : jsdoc js -d=doc)
 
 
 ### Versioning

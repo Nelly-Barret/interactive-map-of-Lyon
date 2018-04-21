@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Adding image to logo -->
-    <link rel="shortcut icon" href="Assets/homeIconWhite.png" />
+    <link rel="shortcut icon" href="Assets/homeIconBlue.png" />
 
     <!-- Don't change the order else it won't work -->
 
