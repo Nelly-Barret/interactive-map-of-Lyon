@@ -106,7 +106,8 @@ var dayMap = {
 };
 
 /**
- * Gets the day of dayMap corresponding to day
+ * Returns the day in english.
+ *
  * @param day A string which represents a day
  * @returns A day
  */
@@ -123,10 +124,10 @@ function day_fold(day) {
 }
 
 /**
- * Removes accents of a string.
+ * Removes special characters of a string.
  *
  * @param s A string
- * @returns The new string without accents
+ * @returns The new string without special characters
  */
 function accent_fold (s) {
 
@@ -1472,7 +1473,7 @@ function filterFunction(filter) {
 /**
  * Filters by opening hours.
  *
- * @param filter A dictionary of filters
+ * @param filter An object filter
  */
 function filterDate(filter) {
 
@@ -2811,7 +2812,6 @@ function addYELPElements(geoJsonBase, yelpJSON) {
  * Cleans geojson to prevent from object's position duplicates, then set the geoJsonSource gobal variable.
  *
  * @param geoJSONSourceBase A geojson string
- * @param yelpJSON A Yelp JSON
  */
 function cleanPositionDoublons(geoJSONSourceBase) {
 

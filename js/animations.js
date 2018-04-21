@@ -5,7 +5,7 @@ var number = 1;
 //######################################################################################################################
 
 /**
- * Initialize buttons and if this is a mobile version, add <br>.
+ * Initialize buttons and if this is a mobile version, add.
  */
 $(document).ready(function() {
 
@@ -218,7 +218,7 @@ $(window).resize(function() {
 });
 
 /**
- * Add <br> in the menu.
+ * Add br in the menu.
  */
 function addBr(number) {
 
@@ -296,7 +296,7 @@ function addBr(number) {
 }
 
 /**
- * Remove <br> in the menu.
+ * Remove br in the menu.
  */
 function removeBr() {
 
