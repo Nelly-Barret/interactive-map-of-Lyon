@@ -361,6 +361,14 @@ input span::before {
 
 }
 
+.btn-dark {
+
+	color: #fff !important;
+
+	background-color: #343a40 !important;
+
+}
+
 /* the others */
 .containerStyles button {
 
