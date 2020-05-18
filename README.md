@@ -4,7 +4,7 @@ You can find our project [here](http://nellybarret.fr/projets/interactiveMapLyon
 
 ## Introduction
 
-InterMap is an interactive map of Lyon with bars and restaurants. It allows you to search for an establishment and to filter results by selecting criteria like price or rating. The data integration part allowed us to retrieve data from many sources, i.e. Google and Yelp, in order to have data as complete as possible. The first one, Google Places API, is for data about establishments and their locations and the second one, Yelp API, brings to us more information about testahblishments, like type of food, opoening hours and even comments on these facilities. 
+InterMap is an interactive map of Lyon with bars and restaurants. It allows you to search for an establishment and to filter results by selecting criteria like price or rating. The data integration part allowed us to retrieve data from many sources, i.e. Google and Yelp, in order to have data as complete as possible. The first one, Google Places API, is for data about establishments and their locations and the second one, Yelp API, brings to us more information about testahblishments, like type of food, opoening hours and even comments on these facilities. The interface has many display styles, especially for entities which can be displayed as points or clusters.
 
 The integrated sources are stored in a JSON file which contains for each entity at least a name, an address and a geometry (GeoJSON). Each entity is the union of information retrieved from Google And Yelp. A specific matching procedure have been defined for the matching part. It have been made at the entity level, i.e. detecting same entities between Google and Yelp. 
 
