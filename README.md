@@ -14,7 +14,7 @@ Alice has lived in Lyon for 10 years and she really likes to go out with her fri
 
 ### Another use-case with Bob, a newcomer in Lyon
 
-Bob is a newcomer in Lyon after his job transfer. He has no idea where he can find a traditional French restaurant to celebrate his promotion with his family. With InterMap he searches for a restaurant which is opened on Staurday evening and which have a high quality (high price and four or five stars for rating). TThe the intergation of Google and Yelp he has a lot of choices displayed on the map. He can visit website or call many establishments to have more details about the menu. Finally, he checks the opening hours of the top-5 restaurants that he have selected. 
+Bob is a newcomer in Lyon after his job transfer. He has no idea where he can find a traditional French restaurant to celebrate his promotion with his family. With InterMap he searches for a restaurant which is opened on Staurday evening and which have a high quality (high price and four or five stars for rating). With the intergation of Google and Yelp he has a lot of choices displayed on the map. He can visit website or call many establishments to have more details about the menu. Finally, he checks the opening hours of the top-5 restaurants that he have selected. 
 
 ## Getting Started
 
